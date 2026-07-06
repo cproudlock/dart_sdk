@@ -18,6 +18,8 @@ import '../models/channel_pins_response.dart';
 import '../models/channel_response.dart';
 import '../models/channel_slowmode_state_response.dart';
 import '../models/channel_update_request.dart';
+import '../models/thread_create_request.dart';
+import '../models/thread_update_request.dart';
 import '../models/complete_multipart_attachment_upload_request.dart';
 import '../models/complete_multipart_attachment_upload_response.dart';
 import '../models/message_ack_request.dart';
@@ -105,6 +107,53 @@ abstract class ChannelsApi {
     @Body() required SudoVerificationSchema body,
     @Query('silent') String? silent,
     @Query('delete_messages') String? deleteMessages,
+  });
+
+  // Echowire: threads + forums. `channel_id` is the PARENT for create/list, the
+  // THREAD for update/delete/members.
+
+  /// Create a thread (or forum post) under the parent channel.
+  @POST('/channels/{channel_id}/threads')
+  Future<ChannelResponse> createThread({
+    @Path('channel_id') required SnowflakeType channelId,
+    @Body() required ThreadCreateRequest body,
+  });
+
+  /// List active (non-archived) threads under the parent channel.
+  @GET('/channels/{channel_id}/threads')
+  Future<List<ChannelResponse>> listActiveThreads({
+    @Path('channel_id') required SnowflakeType channelId,
+  });
+
+  /// List archived threads under the parent channel.
+  @GET('/channels/{channel_id}/threads/archived')
+  Future<List<ChannelResponse>> listArchivedThreads({
+    @Path('channel_id') required SnowflakeType channelId,
+  });
+
+  /// Update a thread (archive/lock/pin/rename/retag).
+  @PATCH('/channels/{channel_id}/thread')
+  Future<ChannelResponse> updateThread({
+    @Path('channel_id') required SnowflakeType channelId,
+    @Body() required ThreadUpdateRequest body,
+  });
+
+  /// Delete a thread.
+  @DELETE('/channels/{channel_id}/thread')
+  Future<void> deleteThread({
+    @Path('channel_id') required SnowflakeType channelId,
+  });
+
+  /// Join the current user to a thread.
+  @PUT('/channels/{channel_id}/thread-members/@me')
+  Future<void> joinThread({
+    @Path('channel_id') required SnowflakeType channelId,
+  });
+
+  /// Remove the current user from a thread.
+  @DELETE('/channels/{channel_id}/thread-members/@me')
+  Future<void> leaveThread({
+    @Path('channel_id') required SnowflakeType channelId,
   });
 
   /// Request presigned attachment upload URLs.
