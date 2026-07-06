@@ -303,6 +303,25 @@ class ChannelUpdateBulkEvent extends GatewayEvent {
   final List<ChannelResponse> channels;
 }
 
+/// Echowire: emitted when a thread's membership changes (join/leave). Carries
+/// the fresh member count and the added/removed user IDs.
+class ThreadMembersUpdateEvent extends GatewayEvent {
+  const ThreadMembersUpdateEvent({
+    required this.id,
+    this.guildId,
+    this.memberCount,
+    this.addedMemberIds,
+    this.removedMemberIds,
+  });
+
+  /// The thread (channel) ID.
+  final String id;
+  final String? guildId;
+  final int? memberCount;
+  final List<String>? addedMemberIds;
+  final List<String>? removedMemberIds;
+}
+
 class ChannelPinsUpdateEvent extends GatewayEvent {
   const ChannelPinsUpdateEvent({
     required this.channelId,

@@ -74,6 +74,32 @@ class EventParser {
         'CHANNEL_DELETE' => ChannelDeleteEvent(
           channel: ChannelResponse.fromJson(data),
         ),
+        // Echowire: a thread IS a channel, so thread create/update/delete carry
+        // a ChannelResponse and reuse the channel event types + handlers.
+        'THREAD_CREATE' => ChannelCreateEvent(
+          channel: ChannelResponse.fromJson(data),
+        ),
+        'THREAD_UPDATE' => ChannelUpdateEvent(
+          channel: ChannelResponse.fromJson(data),
+        ),
+        'THREAD_DELETE' => ChannelDeleteEvent(
+          channel: ChannelResponse.fromJson(data),
+        ),
+        'THREAD_MEMBERS_UPDATE' => ThreadMembersUpdateEvent(
+          id: data['id'] as String,
+          guildId: data['guild_id'] as String?,
+          memberCount: (data['member_count'] as num?)?.toInt(),
+          addedMemberIds:
+              (data['added_members'] as List<dynamic>?)
+                  ?.map(
+                    (dynamic m) =>
+                        (m as Map<String, dynamic>)['user_id'] as String,
+                  )
+                  .toList(),
+          removedMemberIds: (data['removed_member_ids'] as List<dynamic>?)
+              ?.map((dynamic id) => id as String)
+              .toList(),
+        ),
         'GUILD_CREATE' => GuildCreateEvent(
           guild: GuildCreateData.fromJson(data),
         ),
