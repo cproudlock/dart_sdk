@@ -73,6 +73,43 @@ ChannelResponse _$ChannelResponseFromJson(
           (k, e) => MapEntry(k, e as String),
         ),
       ),
+      threadMetadata: $checkedConvert(
+        'thread_metadata',
+        (v) => v == null
+            ? null
+            : ThreadMetadataResponse.fromJson(v as Map<String, dynamic>),
+      ),
+      memberCount: $checkedConvert('member_count', (v) => (v as num?)?.toInt()),
+      messageCount: $checkedConvert(
+        'message_count',
+        (v) => (v as num?)?.toInt(),
+      ),
+      pinned: $checkedConvert('pinned', (v) => v as bool?),
+      availableTags: $checkedConvert(
+        'available_tags',
+        (v) => (v as List<dynamic>?)
+            ?.map((e) => ForumTagResponse.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      ),
+      appliedTags: $checkedConvert(
+        'applied_tags',
+        (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
+      ),
+      defaultReactionEmoji: $checkedConvert(
+        'default_reaction_emoji',
+        (v) => v == null
+            ? null
+            : DefaultReactionEmojiResponse.fromJson(v as Map<String, dynamic>),
+      ),
+      defaultSortOrder: $checkedConvert(
+        'default_sort_order',
+        (v) => (v as num?)?.toInt(),
+      ),
+      defaultAutoArchiveDuration: $checkedConvert(
+        'default_auto_archive_duration',
+        (v) => (v as num?)?.toInt(),
+      ),
+      requireTag: $checkedConvert('require_tag', (v) => v as bool?),
     );
     return val;
   },
@@ -90,6 +127,15 @@ ChannelResponse _$ChannelResponseFromJson(
     'contentWarningLevel': 'content_warning_level',
     'contentWarningText': 'content_warning_text',
     'rateLimitPerUser': 'rate_limit_per_user',
+    'threadMetadata': 'thread_metadata',
+    'memberCount': 'member_count',
+    'messageCount': 'message_count',
+    'availableTags': 'available_tags',
+    'appliedTags': 'applied_tags',
+    'defaultReactionEmoji': 'default_reaction_emoji',
+    'defaultSortOrder': 'default_sort_order',
+    'defaultAutoArchiveDuration': 'default_auto_archive_duration',
+    'requireTag': 'require_tag',
   },
 );
 
@@ -119,4 +165,14 @@ Map<String, dynamic> _$ChannelResponseToJson(ChannelResponse instance) =>
       'content_warning_text': ?instance.contentWarningText,
       'rate_limit_per_user': ?instance.rateLimitPerUser,
       'nicks': ?instance.nicks,
+      'thread_metadata': ?instance.threadMetadata,
+      'member_count': ?instance.memberCount,
+      'message_count': ?instance.messageCount,
+      'pinned': ?instance.pinned,
+      'available_tags': ?instance.availableTags,
+      'applied_tags': ?instance.appliedTags,
+      'default_reaction_emoji': ?instance.defaultReactionEmoji,
+      'default_sort_order': ?instance.defaultSortOrder,
+      'default_auto_archive_duration': ?instance.defaultAutoArchiveDuration,
+      'require_tag': ?instance.requireTag,
     };

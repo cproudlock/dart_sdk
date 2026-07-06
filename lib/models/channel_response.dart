@@ -6,8 +6,11 @@ import 'package:json_annotation/json_annotation.dart';
 
 import 'channel_overwrite_response.dart';
 import 'content_warning_level.dart';
+import 'default_reaction_emoji_response.dart';
+import 'forum_tag_response.dart';
 import 'int32_type.dart';
 import 'snowflake_type.dart';
+import 'thread_metadata_response.dart';
 import 'user_partial_response.dart';
 
 part 'channel_response.g.dart';
@@ -39,6 +42,16 @@ class ChannelResponse {
     this.contentWarningText,
     this.rateLimitPerUser,
     this.nicks,
+    this.threadMetadata,
+    this.memberCount,
+    this.messageCount,
+    this.pinned,
+    this.availableTags,
+    this.appliedTags,
+    this.defaultReactionEmoji,
+    this.defaultSortOrder,
+    this.defaultAutoArchiveDuration,
+    this.requireTag,
   });
 
   factory ChannelResponse.fromJson(Map<String, Object?> json) =>
@@ -129,6 +142,51 @@ class ChannelResponse {
   /// Custom nicknames for users in this channel (for group DMs)
   @JsonKey(includeIfNull: false)
   final Map<String, String>? nicks;
+
+  // Echowire: thread fields (present only on thread channels; owner_id above
+  // doubles as the thread creator).
+
+  /// Thread metadata; present only for thread channels
+  @JsonKey(includeIfNull: false, name: 'thread_metadata')
+  final ThreadMetadataResponse? threadMetadata;
+
+  /// Approximate count of members in the thread (threads only)
+  @JsonKey(includeIfNull: false, name: 'member_count')
+  final Int32Type? memberCount;
+
+  /// Approximate count of messages in the thread (threads only)
+  @JsonKey(includeIfNull: false, name: 'message_count')
+  final Int32Type? messageCount;
+
+  /// Whether this forum post / thread is pinned to the top
+  @JsonKey(includeIfNull: false)
+  final bool? pinned;
+
+  // Echowire: forum-channel fields.
+
+  /// Tags that can be applied to posts in a forum channel (max 20)
+  @JsonKey(includeIfNull: false, name: 'available_tags')
+  final List<ForumTagResponse>? availableTags;
+
+  /// Tag IDs applied to a forum post / thread (max 5)
+  @JsonKey(includeIfNull: false, name: 'applied_tags')
+  final List<SnowflakeType>? appliedTags;
+
+  /// The default reaction shown on forum posts
+  @JsonKey(includeIfNull: false, name: 'default_reaction_emoji')
+  final DefaultReactionEmojiResponse? defaultReactionEmoji;
+
+  /// Default sort for forum posts (0 = latest activity, 1 = creation)
+  @JsonKey(includeIfNull: false, name: 'default_sort_order')
+  final Int32Type? defaultSortOrder;
+
+  /// Default inactivity (minutes) new forum posts inherit
+  @JsonKey(includeIfNull: false, name: 'default_auto_archive_duration')
+  final Int32Type? defaultAutoArchiveDuration;
+
+  /// Whether a forum post must have at least one tag
+  @JsonKey(includeIfNull: false, name: 'require_tag')
+  final bool? requireTag;
 
   Map<String, Object?> toJson() => _$ChannelResponseToJson(this);
 }
