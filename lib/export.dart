@@ -100,6 +100,7 @@ export 'models/channel_overwrite_response.dart';
 export 'models/default_reaction_emoji_response.dart';
 export 'models/forum_tag_response.dart';
 export 'models/thread_create_request.dart';
+export 'models/thread_member_response.dart';
 export 'models/thread_metadata_response.dart';
 export 'models/thread_update_request.dart';
 export 'models/content_warning_level.dart';

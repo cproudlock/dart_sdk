@@ -19,6 +19,7 @@ import '../models/channel_response.dart';
 import '../models/channel_slowmode_state_response.dart';
 import '../models/channel_update_request.dart';
 import '../models/thread_create_request.dart';
+import '../models/thread_member_response.dart';
 import '../models/thread_update_request.dart';
 import '../models/complete_multipart_attachment_upload_request.dart';
 import '../models/complete_multipart_attachment_upload_response.dart';
@@ -153,6 +154,12 @@ abstract class ChannelsApi {
   /// Remove the current user from a thread.
   @DELETE('/channels/{channel_id}/thread-members/@me')
   Future<void> leaveThread({
+    @Path('channel_id') required SnowflakeType channelId,
+  });
+
+  /// List the members of a thread.
+  @GET('/channels/{channel_id}/thread-members')
+  Future<List<ThreadMemberResponse>> listThreadMembers({
     @Path('channel_id') required SnowflakeType channelId,
   });
 
