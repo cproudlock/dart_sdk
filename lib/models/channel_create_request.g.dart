@@ -312,3 +312,48 @@ Map<String, dynamic> _$ChannelCreateRequest998ToJson(
   'type': instance.type,
   'name': instance.name,
 };
+
+ChannelCreateRequest15 _$ChannelCreateRequest15FromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate(
+  'ChannelCreateRequest15',
+  json,
+  ($checkedConvert) {
+    final val = ChannelCreateRequest15(
+      name: $checkedConvert('name', (v) => v as String),
+      topic: $checkedConvert('topic', (v) => v as String?),
+      parentId: $checkedConvert('parent_id', (v) => v as String?),
+      permissionOverwrites: $checkedConvert(
+        'permission_overwrites',
+        (v) => (v as List<dynamic>?)
+            ?.map(
+              (e) => GuildTextChannelCreateRequestPermissionOverwrites.fromJson(
+                e as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
+      nsfw: $checkedConvert('nsfw', (v) => v as bool?),
+      nsfwOverride: $checkedConvert('nsfw_override', (v) => v as bool?),
+      type: $checkedConvert('type', (v) => (v as num?)?.toInt() ?? 15),
+    );
+    return val;
+  },
+  fieldKeyMap: const {
+    'parentId': 'parent_id',
+    'permissionOverwrites': 'permission_overwrites',
+    'nsfwOverride': 'nsfw_override',
+  },
+);
+
+Map<String, dynamic> _$ChannelCreateRequest15ToJson(
+  ChannelCreateRequest15 instance,
+) => <String, dynamic>{
+  'topic': instance.topic,
+  'parent_id': instance.parentId,
+  'permission_overwrites': instance.permissionOverwrites,
+  'nsfw': instance.nsfw,
+  'nsfw_override': instance.nsfwOverride,
+  'type': instance.type,
+  'name': instance.name,
+};

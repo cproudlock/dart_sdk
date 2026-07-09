@@ -38,6 +38,8 @@ extension ChannelCreateRequestUnionDeserializer on ChannelCreateRequest {
       ChannelCreateRequest2: '2',
       ChannelCreateRequest4: '4',
       ChannelCreateRequest998: '998',
+      // Echowire: forum channel create (absent upstream).
+      ChannelCreateRequest15: '15',
     };
     final value = json[key];
     final effective = mapping ?? mappingFallback;
@@ -50,6 +52,8 @@ extension ChannelCreateRequestUnionDeserializer on ChannelCreateRequest {
         ChannelCreateRequest4.fromJson(json),
       _ when value == effective[ChannelCreateRequest998] =>
         ChannelCreateRequest998.fromJson(json),
+      _ when value == effective[ChannelCreateRequest15] =>
+        ChannelCreateRequest15.fromJson(json),
       _ => throw FormatException(
         'Unknown discriminator value "${json[key]}" for ChannelCreateRequest',
       ),
@@ -243,4 +247,37 @@ class ChannelCreateRequest998 extends ChannelCreateRequest {
 
   @override
   Map<String, dynamic> toJson() => _$ChannelCreateRequest998ToJson(this);
+}
+
+// Echowire: hand-added forum (type 15) create variant (absent from the upstream
+// OpenAPI spec). A forum is a container of threaded posts.
+@JsonSerializable()
+class ChannelCreateRequest15 extends ChannelCreateRequest {
+  final String? topic;
+  @JsonKey(name: 'parent_id')
+  final SnowflakeType? parentId;
+  @JsonKey(name: 'permission_overwrites')
+  final List<GuildTextChannelCreateRequestPermissionOverwrites>?
+  permissionOverwrites;
+  final bool? nsfw;
+  @JsonKey(name: 'nsfw_override')
+  final bool? nsfwOverride;
+  final int type;
+  final String name;
+
+  const ChannelCreateRequest15({
+    required this.name,
+    this.topic,
+    this.parentId,
+    this.permissionOverwrites,
+    this.nsfw,
+    this.nsfwOverride,
+    this.type = 15,
+  });
+
+  factory ChannelCreateRequest15.fromJson(Map<String, dynamic> json) =>
+      _$ChannelCreateRequest15FromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$ChannelCreateRequest15ToJson(this);
 }
