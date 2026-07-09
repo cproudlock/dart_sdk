@@ -19,6 +19,7 @@ class ThreadUpdateRequest {
     this.invitable,
     this.appliedTags,
     this.pinned,
+    this.availableTags,
   });
 
   factory ThreadUpdateRequest.fromJson(Map<String, Object?> json) =>
@@ -44,6 +45,11 @@ class ThreadUpdateRequest {
 
   @JsonKey(includeIfNull: false)
   final bool? pinned;
+
+  /// Echowire: a forum channel's full set of available tags (replace-style).
+  /// Each entry is `{name, id?, emoji_name?}`; omit `id` to create a new tag.
+  @JsonKey(includeIfNull: false, name: 'available_tags')
+  final List<Map<String, Object?>>? availableTags;
 
   Map<String, Object?> toJson() => _$ThreadUpdateRequestToJson(this);
 }

@@ -25,12 +25,19 @@ ThreadUpdateRequest _$ThreadUpdateRequestFromJson(Map<String, dynamic> json) =>
             (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
           ),
           pinned: $checkedConvert('pinned', (v) => v as bool?),
+          availableTags: $checkedConvert(
+            'available_tags',
+            (v) => (v as List<dynamic>?)
+                ?.map((e) => e as Map<String, dynamic>)
+                .toList(),
+          ),
         );
         return val;
       },
       fieldKeyMap: const {
         'autoArchiveDuration': 'auto_archive_duration',
         'appliedTags': 'applied_tags',
+        'availableTags': 'available_tags',
       },
     );
 
@@ -44,4 +51,5 @@ Map<String, dynamic> _$ThreadUpdateRequestToJson(
   'invitable': ?instance.invitable,
   'applied_tags': ?instance.appliedTags,
   'pinned': ?instance.pinned,
+  'available_tags': ?instance.availableTags,
 };
