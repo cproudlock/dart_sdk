@@ -490,6 +490,7 @@ class EventParser {
       userId: userId,
       status: data['status'] as String,
       customStatus: serializeCustomStatusMap(customStatusMap),
+      mobile: data['mobile'] as bool? ?? false,
     );
   }
 
