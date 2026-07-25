@@ -1,6 +1,15 @@
+## V2.2.0
+
+- Added zstd stream compression for the gateway.
+- Updated openapi_sdk_gen to fix some POST request issues.
+
+## V2.1.0
+
+- Updated to latest production OpenAPI Spec.
+
 ## V2.0.0
 
-- Updated to latest perduction OpenAPI Spec.
+- Updated to latest production OpenAPI Spec.
 
 ## V1.3.0
 
