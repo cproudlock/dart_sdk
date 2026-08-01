@@ -107,6 +107,7 @@ class GatewayConnection {
   Timer? _reconnectTimer;
   int _connectGeneration = 0;
   Duration? _lastHeartbeatInterval;
+  DateTime? _connectedAt;
   int _consecutiveDecodeFailureReconnects = 0;
   bool _disableCompressionForNextConnection = false;
   late String _activeCompress;
@@ -139,10 +140,11 @@ class GatewayConnection {
     compressionNegotiated: _compressionNegotiated,
   );
 
-  /// True when the heartbeat ack is older than the interval + 15s, or unknown.
+  /// True when the heartbeat ack is older than the interval + 15s.
   bool get isLikelyStale => computeIsLikelyStale(
     lastAckAt: _session.lastAckAt,
     heartbeatInterval: _lastHeartbeatInterval,
+    connectedAt: _connectedAt,
     now: DateTime.now(),
   );
 
@@ -150,13 +152,20 @@ class GatewayConnection {
   static bool computeIsLikelyStale({
     required DateTime? lastAckAt,
     required Duration? heartbeatInterval,
+    required DateTime? connectedAt,
     required DateTime now,
   }) {
-    if (lastAckAt == null || heartbeatInterval == null) {
-      return true;
+    if (heartbeatInterval == null) {
+      return false;
     }
-    return now.difference(lastAckAt) >
-        heartbeatInterval + const Duration(seconds: 15);
+    final Duration staleAfter = heartbeatInterval + const Duration(seconds: 15);
+    if (lastAckAt != null) {
+      return now.difference(lastAckAt) > staleAfter;
+    }
+    if (connectedAt == null) {
+      return false;
+    }
+    return now.difference(connectedAt) > staleAfter;
   }
 
   /// Connects to the gateway.
@@ -221,6 +230,7 @@ class GatewayConnection {
     _zstdEncoder?.dispose();
     _zstdEncoder = null;
     _session.clear();
+    _connectedAt = null;
     _setState(GatewayState.disconnected);
   }
 
@@ -554,9 +564,11 @@ class GatewayConnection {
       final sessionId = data['session_id'] as String;
       _session.setSession(sessionId);
       _reconnectAttempts = 0;
+      _connectedAt = DateTime.now();
       _setState(GatewayState.connected);
     } else if (eventType == 'RESUMED') {
       _reconnectAttempts = 0;
+      _connectedAt = DateTime.now();
       _setState(GatewayState.connected);
     }
 
