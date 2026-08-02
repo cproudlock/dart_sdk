@@ -14,11 +14,11 @@ part 'rich_embed_request.g.dart';
 @JsonSerializable()
 class RichEmbedRequest {
   const RichEmbedRequest({
-    required this.description,
     this.url,
     this.title,
     this.color,
     this.timestamp,
+    this.description,
     this.author,
     this.image,
     this.thumbnail,
@@ -46,7 +46,7 @@ class RichEmbedRequest {
   final dynamic timestamp;
 
   /// Description of the embed (1-4096 characters)
-  @JsonKey(includeIfNull: true)
+  @JsonKey(includeIfNull: false)
   final String? description;
 
   /// Author information
