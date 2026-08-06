@@ -43,22 +43,28 @@ Map<String, Object?> _userPrivateJson({String id = '100'}) => {
   'premium_will_cancel': false,
   'premium_billing_cycle': null,
   'premium_lifetime_sequence': null,
+  'premium_grace_ends_at': null,
+  'premium_discriminator': false,
   'premium_badge_hidden': false,
   'premium_badge_masked': false,
   'premium_badge_timestamp_hidden': false,
   'premium_badge_sequence_hidden': false,
   'premium_purchase_disabled': false,
   'premium_enabled_override': false,
+  'premium_perks_disabled': false,
   'password_last_changed_at': null,
-  'required_actions': null,
+  'last_voice_activity_sharing_change_at': null,
+  'required_actions': <String>[],
   'nsfw_allowed': false,
   'has_dismissed_premium_onboarding': false,
   'has_ever_purchased': false,
   'has_unread_gift_inventory': false,
   'unread_gift_inventory_count': 0,
-  'used_mobile_client': false,
+  'has_verified_phone': false,
   'pending_bulk_message_deletion': null,
   'phone': null,
+  'terms_agreed_at': null,
+  'privacy_agreed_at': null,
 };
 
 /// Minimal JSON for a ChannelResponse.
@@ -93,6 +99,8 @@ Map<String, Object?> _guildJson({String id = '300'}) => {
   'explicit_content_filter': 0,
   'default_message_notifications': 0,
   'disabled_operations': 0,
+  'content_warning_level': 0,
+  'nsfw': false,
 };
 
 /// Minimal JSON for a GuildRoleResponse.
@@ -133,6 +141,9 @@ Map<String, Object?> _messageJson({
   'timestamp': '2026-01-01T00:00:00.000Z',
   'pinned': false,
   'mention_everyone': false,
+  'tts': false,
+  'mentions': <Object?>[],
+  'mention_roles': <String>[],
 };
 
 /// Minimal JSON for a GuildMemberResponse.
@@ -150,6 +161,8 @@ Map<String, Object?> _relationshipJson({String id = '100', int type = 1}) => {
   'type': type,
   'user': _userPartialJson(),
   'nickname': null,
+  'share_voice_activity': false,
+  'friend_shares_voice_activity': true,
 };
 
 /// Minimal JSON for a UserSettingsResponse.
@@ -180,6 +193,15 @@ Map<String, Object?> _userSettingsJson() => {
   'developer_mode': false,
   'trusted_domains': <String>[],
   'default_hide_muted_channels': false,
+  'profile_privacy': 0,
+  'synced_preferences': '{}',
+  'default_share_voice_activity': false,
+  'sensitive_content_friend_dm_filter': 0,
+  'sensitive_content_non_friend_dm_filter': 0,
+  'sensitive_content_guild_filter': 0,
+  'suppress_unprivileged_self_mentions': false,
+  'suppress_unprivileged_self_mentions_bypass_user_ids': <String>[],
+  'staff_dm_access_user_ids': <String>[],
 };
 
 void main() {
@@ -1057,8 +1079,8 @@ void main() {
       final data = <String, Object?>{
         'guild_id': 'g1',
         'emojis': [
-          {'id': 'e1', 'name': 'smile', 'animated': false},
-          {'id': 'e2', 'name': 'wave', 'animated': true},
+          {'id': 'e1', 'name': 'smile', 'animated': false, 'nsfw': false},
+          {'id': 'e2', 'name': 'wave', 'animated': true, 'nsfw': false},
         ],
       };
       final event = parser.parse('GUILD_EMOJIS_UPDATE', data);
@@ -1084,6 +1106,7 @@ void main() {
             'description': 'A cool sticker',
             'tags': ['cool', 'nice'],
             'animated': false,
+            'nsfw': false,
           },
         ],
       };
