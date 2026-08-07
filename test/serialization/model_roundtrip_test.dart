@@ -67,6 +67,8 @@ void main() {
         'explicit_content_filter': 0,
         'default_message_notifications': 0,
         'disabled_operations': 0,
+        'content_warning_level': 0,
+        'nsfw': false,
       };
 
       final model = GuildResponse.fromJson(json);
@@ -98,6 +100,8 @@ void main() {
         'explicit_content_filter': 0,
         'default_message_notifications': 0,
         'disabled_operations': 0,
+        'content_warning_level': 0,
+        'nsfw': false,
       };
 
       final model = GuildResponse.fromJson(json);
@@ -162,6 +166,9 @@ void main() {
         'timestamp': '2026-03-20T12:00:00.000Z',
         'pinned': false,
         'mention_everyone': false,
+        'tts': false,
+        'mentions': <Object?>[],
+        'mention_roles': <String>[],
       };
 
       final model = MessageResponseSchema.fromJson(json);
@@ -193,6 +200,9 @@ void main() {
         'timestamp': '2026-03-20T12:00:00.000Z',
         'pinned': false,
         'mention_everyone': false,
+        'tts': false,
+        'mentions': <Object?>[],
+        'mention_roles': <String>[],
         'embeds': [
           {'type': 'image', 'url': 'https://example.com/img.png'},
         ],
@@ -225,6 +235,9 @@ void main() {
         'timestamp': '2026-03-20T12:00:00.000Z',
         'pinned': true,
         'mention_everyone': false,
+        'tts': false,
+        'mentions': <Object?>[],
+        'mention_roles': <String>[],
       };
 
       final model = MessageResponseSchema.fromJson(json);
@@ -251,6 +264,8 @@ void main() {
           'flags': 0,
         },
         'nickname': 'Buddy',
+        'share_voice_activity': false,
+        'friend_shares_voice_activity': true,
       };
 
       final model = RelationshipResponse.fromJson(json);
@@ -272,6 +287,8 @@ void main() {
           'flags': 0,
         },
         'nickname': null,
+        'share_voice_activity': false,
+        'friend_shares_voice_activity': true,
       };
 
       final model = RelationshipResponse.fromJson(json);
@@ -285,6 +302,12 @@ void main() {
       final json = <String, dynamic>{
         'token': 'secret-token-123',
         'user_id': '999',
+        'user': {
+          'id': '999',
+          'username': 'testuser',
+          'discriminator': '0001',
+          'flags': 0,
+        },
       };
 
       final response = AuthLoginResponse.fromJson(json);
@@ -305,7 +328,7 @@ void main() {
       };
 
       final response = AuthLoginResponse.fromJson(json);
-      final mfaResponse = response.toAuthMfaRequiredResponse();
+      final mfaResponse = response.toVariant2();
       expect(mfaResponse.ticket, 'mfa-ticket-abc');
       expect(mfaResponse.allowedMethods, ['totp', 'sms']);
       expect(mfaResponse.totp, true);

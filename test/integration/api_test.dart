@@ -170,7 +170,7 @@ void main() {
         markTestSkipped('No guilds available');
         return;
       }
-      final members = await client.guilds.listGuildMembers2(
+      final members = await client.guilds.listGuildMembers(
         guildId: guilds.first.id,
       );
       expect(members, isA<List<GuildMemberResponse>>());
@@ -198,7 +198,7 @@ void main() {
         markTestSkipped('No guilds available');
         return;
       }
-      final emojis = await client.guilds.listGuildEmojis2(
+      final emojis = await client.guilds.listGuildEmojis(
         guildId: guilds.first.id,
       );
       expect(emojis, isNotNull);
@@ -211,7 +211,7 @@ void main() {
         markTestSkipped('No guilds available');
         return;
       }
-      final stickers = await client.guilds.listGuildStickers2(
+      final stickers = await client.guilds.listGuildStickers(
         guildId: guilds.first.id,
       );
       expect(stickers, isNotNull);
@@ -320,7 +320,7 @@ void main() {
       expect(info.apiCodeVersion, isPositive);
       expect(info.endpoints, isNotNull);
       expect(info.features, isNotNull);
-      expect(info.features.smsMfaEnabled, isA<bool>());
+      expect(info.features.emailsEnabled, isA<bool>());
       expect(info.features.voiceEnabled, isA<bool>());
       expect(info.features.selfHosted, isA<bool>());
     });
@@ -393,7 +393,7 @@ void main() {
         markTestSkipped('No guilds available');
         return;
       }
-      final members = await client.guilds.listGuildMembers2(
+      final members = await client.guilds.listGuildMembers(
         guildId: guilds.first.id,
       );
       if (members.isEmpty) {
@@ -616,7 +616,7 @@ void main() {
         markTestSkipped('No guilds available');
         return;
       }
-      final members = await client.guilds.listGuildMembers2(
+      final members = await client.guilds.listGuildMembers(
         guildId: guilds.first.id,
       );
       if (members.isEmpty) {

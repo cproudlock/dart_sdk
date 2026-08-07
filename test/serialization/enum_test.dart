@@ -7,9 +7,7 @@ void main() {
   // ---------------------------------------------------------------------------
   group('NsfwLevel (int enum)', () {
     test('deserializes from int values', () {
-      expect(NsfwLevel.fromJson(0), NsfwLevel.valueDefault);
-      expect(NsfwLevel.fromJson(1), NsfwLevel.explicit);
-      expect(NsfwLevel.fromJson(2), NsfwLevel.safe);
+      expect(NsfwLevel.fromJson(0), NsfwLevel.safe);
       expect(NsfwLevel.fromJson(3), NsfwLevel.ageRestricted);
     });
 
@@ -18,9 +16,7 @@ void main() {
     });
 
     test('serializes to int representation', () {
-      expect(NsfwLevel.valueDefault.toJson(), 0);
-      expect(NsfwLevel.explicit.toJson(), 1);
-      expect(NsfwLevel.safe.toJson(), 2);
+      expect(NsfwLevel.safe.toJson(), 0);
       expect(NsfwLevel.ageRestricted.toJson(), 3);
     });
 
@@ -30,11 +26,11 @@ void main() {
 
     test('\$valuesDefined excludes \$unknown', () {
       expect(NsfwLevel.$valuesDefined, isNot(contains(NsfwLevel.$unknown)));
-      expect(NsfwLevel.$valuesDefined.length, 4);
+      expect(NsfwLevel.$valuesDefined.length, 2);
     });
 
-    test('keyword "default" is renamed to "valueDefault"', () {
-      expect(NsfwLevel.valueDefault.json, 0);
+    test('safe maps to json value 0', () {
+      expect(NsfwLevel.safe.json, 0);
     });
   });
 
@@ -124,35 +120,15 @@ void main() {
   });
 
   // ---------------------------------------------------------------------------
-  // String enums
+  // String embed types
   // ---------------------------------------------------------------------------
-  group('MessageEmbedType (string enum)', () {
-    test('deserializes from string values', () {
-      expect(MessageEmbedType.fromJson('image'), MessageEmbedType.image);
-      expect(MessageEmbedType.fromJson('video'), MessageEmbedType.video);
-      expect(MessageEmbedType.fromJson('sound'), MessageEmbedType.sound);
-      expect(MessageEmbedType.fromJson('article'), MessageEmbedType.article);
-    });
-
-    test('unknown values fall back to \$unknown', () {
-      expect(MessageEmbedType.fromJson('gifv'), MessageEmbedType.$unknown);
-      expect(MessageEmbedType.fromJson(''), MessageEmbedType.$unknown);
-    });
-
-    test('serializes back to string', () {
-      expect(MessageEmbedType.image.toJson(), 'image');
-      expect(MessageEmbedType.video.toJson(), 'video');
-    });
-
-    test('\$unknown serializes to "null"', () {
-      expect(MessageEmbedType.$unknown.toJson(), 'null');
-    });
-
-    test('roundtrips through json', () {
-      for (final value in MessageEmbedType.$valuesDefined) {
-        final json = value.toJson();
-        expect(MessageEmbedType.fromJson(json), value);
-      }
+  group('MessageEmbedResponse type (string)', () {
+    test('deserializes embed type as string', () {
+      final embed = MessageEmbedResponse.fromJson(<String, Object?>{
+        'type': 'image',
+        'url': 'https://example.com/img.png',
+      });
+      expect(embed.type, 'image');
     });
   });
 }
