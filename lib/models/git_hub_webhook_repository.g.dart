@@ -8,20 +8,15 @@ part of 'git_hub_webhook_repository.dart';
 
 GitHubWebhookRepository _$GitHubWebhookRepositoryFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'GitHubWebhookRepository',
-  json,
-  ($checkedConvert) {
-    final val = GitHubWebhookRepository(
-      id: $checkedConvert('id', (v) => (v as num).toInt()),
-      htmlUrl: $checkedConvert('html_url', (v) => v as String),
-      name: $checkedConvert('name', (v) => v as String),
-      fullName: $checkedConvert('full_name', (v) => v as String),
-    );
-    return val;
-  },
-  fieldKeyMap: const {'htmlUrl': 'html_url', 'fullName': 'full_name'},
-);
+) => $checkedCreate('GitHubWebhookRepository', json, ($checkedConvert) {
+  final val = GitHubWebhookRepository(
+    id: $checkedConvert('id', (v) => (v as num).toInt()),
+    htmlUrl: $checkedConvert('html_url', (v) => v as String),
+    name: $checkedConvert('name', (v) => v as String),
+    fullName: $checkedConvert('full_name', (v) => v as String),
+  );
+  return val;
+}, fieldKeyMap: const {'htmlUrl': 'html_url', 'fullName': 'full_name'});
 
 Map<String, dynamic> _$GitHubWebhookRepositoryToJson(
   GitHubWebhookRepository instance,

@@ -157,10 +157,6 @@ enum ApiErrorCode {
   emailServiceNotTestable('EMAIL_SERVICE_NOT_TESTABLE'),
   @JsonValue('EMAIL_VERIFICATION_REQUIRED')
   emailVerificationRequired('EMAIL_VERIFICATION_REQUIRED'),
-  @JsonValue('CANARY_TESTER_EMAIL_VERIFICATION_REQUIRED')
-  canaryTesterEmailVerificationRequired(
-    'CANARY_TESTER_EMAIL_VERIFICATION_REQUIRED',
-  ),
   @JsonValue('DIRECT_MESSAGE_EMAIL_VERIFICATION_REQUIRED')
   directMessageEmailVerificationRequired(
     'DIRECT_MESSAGE_EMAIL_VERIFICATION_REQUIRED',

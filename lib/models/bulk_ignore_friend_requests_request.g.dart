@@ -8,26 +8,21 @@ part of 'bulk_ignore_friend_requests_request.dart';
 
 BulkIgnoreFriendRequestsRequest _$BulkIgnoreFriendRequestsRequestFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'BulkIgnoreFriendRequestsRequest',
-  json,
-  ($checkedConvert) {
-    final val = BulkIgnoreFriendRequestsRequest(
-      filter: $checkedConvert(
-        'filter',
-        (v) => v == null
-            ? null
-            : BulkIgnoreFriendRequestsRequestFilterFilter.fromJson(v as String),
-      ),
-      maxAccountAgeSeconds: $checkedConvert(
-        'max_account_age_seconds',
-        (v) => (v as num?)?.toInt(),
-      ),
-    );
-    return val;
-  },
-  fieldKeyMap: const {'maxAccountAgeSeconds': 'max_account_age_seconds'},
-);
+) => $checkedCreate('BulkIgnoreFriendRequestsRequest', json, ($checkedConvert) {
+  final val = BulkIgnoreFriendRequestsRequest(
+    filter: $checkedConvert(
+      'filter',
+      (v) => v == null
+          ? null
+          : BulkIgnoreFriendRequestsRequestFilterFilter.fromJson(v as String),
+    ),
+    maxAccountAgeSeconds: $checkedConvert(
+      'max_account_age_seconds',
+      (v) => (v as num?)?.toInt(),
+    ),
+  );
+  return val;
+}, fieldKeyMap: const {'maxAccountAgeSeconds': 'max_account_age_seconds'});
 
 Map<String, dynamic> _$BulkIgnoreFriendRequestsRequestToJson(
   BulkIgnoreFriendRequestsRequest instance,

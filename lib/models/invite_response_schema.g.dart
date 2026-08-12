@@ -118,36 +118,33 @@ Map<String, dynamic> _$InviteResponseSchemaGroupDmInviteResponseToJson(
 
 InviteResponseSchemaPackInviteResponse
 _$InviteResponseSchemaPackInviteResponseFromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'InviteResponseSchemaPackInviteResponse',
-      json,
-      ($checkedConvert) {
-        final val = InviteResponseSchemaPackInviteResponse(
-          code: $checkedConvert('code', (v) => v as String),
-          type: $checkedConvert(
-            'type',
-            (v) => PackInviteResponseTypeType.fromJson((v as num).toInt()),
-          ),
-          pack: $checkedConvert(
-            'pack',
-            (v) => PackInviteResponsePack.fromJson(v as Map<String, dynamic>),
-          ),
-          inviter: $checkedConvert(
-            'inviter',
-            (v) => v == null
-                ? null
-                : UserPartialResponse.fromJson(v as Map<String, dynamic>),
-          ),
-          expiresAt: $checkedConvert(
-            'expires_at',
-            (v) => v == null ? null : DateTime.parse(v as String),
-          ),
-          temporary: $checkedConvert('temporary', (v) => v as bool),
-        );
-        return val;
-      },
-      fieldKeyMap: const {'expiresAt': 'expires_at'},
-    );
+    $checkedCreate('InviteResponseSchemaPackInviteResponse', json, (
+      $checkedConvert,
+    ) {
+      final val = InviteResponseSchemaPackInviteResponse(
+        code: $checkedConvert('code', (v) => v as String),
+        type: $checkedConvert(
+          'type',
+          (v) => PackInviteResponseTypeType.fromJson((v as num).toInt()),
+        ),
+        pack: $checkedConvert(
+          'pack',
+          (v) => PackInviteResponsePack.fromJson(v as Map<String, dynamic>),
+        ),
+        inviter: $checkedConvert(
+          'inviter',
+          (v) => v == null
+              ? null
+              : UserPartialResponse.fromJson(v as Map<String, dynamic>),
+        ),
+        expiresAt: $checkedConvert(
+          'expires_at',
+          (v) => v == null ? null : DateTime.parse(v as String),
+        ),
+        temporary: $checkedConvert('temporary', (v) => v as bool),
+      );
+      return val;
+    }, fieldKeyMap: const {'expiresAt': 'expires_at'});
 
 Map<String, dynamic> _$InviteResponseSchemaPackInviteResponseToJson(
   InviteResponseSchemaPackInviteResponse instance,

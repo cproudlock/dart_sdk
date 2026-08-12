@@ -134,12 +134,6 @@ abstract class UsersApi {
     @Body() required SudoVerificationSchema body,
   });
 
-  /// Join the canary testers guild.
-  ///
-  /// Adds the authenticated user to the hardcoded Fluxer Testers guild used for canary feedback. Restricted to non-bot users with verified email, an account at least 30 minutes old, no effective suspicious-activity flags, and not banned from the target guild. Rate-limited; surfaced via the canary nagbar.
-  @POST('/users/@me/canary-tester/join')
-  Future<SuccessResponse> joinCanaryTesters();
-
   /// List private channels.
   ///
   /// Retrieves all private channels (direct messages) accessible to the current user. Returns list of channel objects with metadata including recipient information.

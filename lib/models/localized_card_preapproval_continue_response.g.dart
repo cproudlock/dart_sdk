@@ -57,31 +57,28 @@ Map<String, dynamic> _$LocalizedCardPreapprovalContinueResponseReadyToJson(
 LocalizedCardPreapprovalContinueResponseRejected
 _$LocalizedCardPreapprovalContinueResponseRejectedFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'LocalizedCardPreapprovalContinueResponseRejected',
-  json,
-  ($checkedConvert) {
-    final val = LocalizedCardPreapprovalContinueResponseRejected(
-      status: $checkedConvert(
-        'status',
-        (v) =>
-            RejectedLocalizedCardPreapprovalContinueResponseStatusStatus.fromJson(
-              v as String,
-            ),
-      ),
-      reason: $checkedConvert(
-        'reason',
-        (v) =>
-            RejectedLocalizedCardPreapprovalContinueResponseReasonReason.fromJson(
-              v as String,
-            ),
-      ),
-      actualCountry: $checkedConvert('actual_country', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {'actualCountry': 'actual_country'},
-);
+) => $checkedCreate('LocalizedCardPreapprovalContinueResponseRejected', json, (
+  $checkedConvert,
+) {
+  final val = LocalizedCardPreapprovalContinueResponseRejected(
+    status: $checkedConvert(
+      'status',
+      (v) =>
+          RejectedLocalizedCardPreapprovalContinueResponseStatusStatus.fromJson(
+            v as String,
+          ),
+    ),
+    reason: $checkedConvert(
+      'reason',
+      (v) =>
+          RejectedLocalizedCardPreapprovalContinueResponseReasonReason.fromJson(
+            v as String,
+          ),
+    ),
+    actualCountry: $checkedConvert('actual_country', (v) => v as String?),
+  );
+  return val;
+}, fieldKeyMap: const {'actualCountry': 'actual_country'});
 
 Map<String, dynamic> _$LocalizedCardPreapprovalContinueResponseRejectedToJson(
   LocalizedCardPreapprovalContinueResponseRejected instance,

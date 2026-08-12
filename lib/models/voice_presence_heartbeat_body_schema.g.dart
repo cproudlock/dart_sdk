@@ -8,17 +8,13 @@ part of 'voice_presence_heartbeat_body_schema.dart';
 
 VoicePresenceHeartbeatBodySchema _$VoicePresenceHeartbeatBodySchemaFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'VoicePresenceHeartbeatBodySchema',
-  json,
-  ($checkedConvert) {
-    final val = VoicePresenceHeartbeatBodySchema(
-      connectionId: $checkedConvert('connection_id', (v) => v as String),
-    );
-    return val;
-  },
-  fieldKeyMap: const {'connectionId': 'connection_id'},
-);
+) =>
+    $checkedCreate('VoicePresenceHeartbeatBodySchema', json, ($checkedConvert) {
+      final val = VoicePresenceHeartbeatBodySchema(
+        connectionId: $checkedConvert('connection_id', (v) => v as String),
+      );
+      return val;
+    }, fieldKeyMap: const {'connectionId': 'connection_id'});
 
 Map<String, dynamic> _$VoicePresenceHeartbeatBodySchemaToJson(
   VoicePresenceHeartbeatBodySchema instance,
