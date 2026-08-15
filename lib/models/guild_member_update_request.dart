@@ -14,8 +14,7 @@ part 'guild_member_update_request.g.dart';
 @JsonSerializable()
 class GuildMemberUpdateRequest {
   const GuildMemberUpdateRequest({
-    required this.nick,
-    required this.communicationDisabledUntil,
+    this.nick,
     this.roles,
     this.avatar,
     this.banner,
@@ -26,6 +25,7 @@ class GuildMemberUpdateRequest {
     this.mentionFlags,
     this.mute,
     this.deaf,
+    this.communicationDisabledUntil,
     this.timeoutReason,
     this.channelId,
     this.connectionId,
@@ -35,7 +35,7 @@ class GuildMemberUpdateRequest {
       _$GuildMemberUpdateRequestFromJson(json);
 
   /// The nickname to set for the member (1-32 characters)
-  @JsonKey(includeIfNull: true)
+  @JsonKey(includeIfNull: false)
   final String? nick;
 
   /// Array of role IDs to assign to the member (max 100)
@@ -77,7 +77,7 @@ class GuildMemberUpdateRequest {
   final bool? deaf;
 
   /// ISO8601 timestamp until which the member is timed out
-  @JsonKey(includeIfNull: true, name: 'communication_disabled_until')
+  @JsonKey(includeIfNull: false, name: 'communication_disabled_until')
   final DateTime? communicationDisabledUntil;
 
   /// The reason for timing out the member (1-512 characters)

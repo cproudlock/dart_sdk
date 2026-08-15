@@ -14,10 +14,6 @@ GuildMemberUpdateRequest _$GuildMemberUpdateRequestFromJson(
   ($checkedConvert) {
     final val = GuildMemberUpdateRequest(
       nick: $checkedConvert('nick', (v) => v as String?),
-      communicationDisabledUntil: $checkedConvert(
-        'communication_disabled_until',
-        (v) => v == null ? null : DateTime.parse(v as String),
-      ),
       roles: $checkedConvert(
         'roles',
         (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
@@ -39,6 +35,10 @@ GuildMemberUpdateRequest _$GuildMemberUpdateRequestFromJson(
       ),
       mute: $checkedConvert('mute', (v) => v as bool?),
       deaf: $checkedConvert('deaf', (v) => v as bool?),
+      communicationDisabledUntil: $checkedConvert(
+        'communication_disabled_until',
+        (v) => v == null ? null : DateTime.parse(v as String),
+      ),
       timeoutReason: $checkedConvert('timeout_reason', (v) => v as String?),
       channelId: $checkedConvert('channel_id', (v) => v as String?),
       connectionId: $checkedConvert('connection_id', (v) => v as String?),
@@ -46,10 +46,10 @@ GuildMemberUpdateRequest _$GuildMemberUpdateRequestFromJson(
     return val;
   },
   fieldKeyMap: const {
-    'communicationDisabledUntil': 'communication_disabled_until',
     'accentColor': 'accent_color',
     'profileFlags': 'profile_flags',
     'mentionFlags': 'mention_flags',
+    'communicationDisabledUntil': 'communication_disabled_until',
     'timeoutReason': 'timeout_reason',
     'channelId': 'channel_id',
     'connectionId': 'connection_id',
@@ -59,7 +59,7 @@ GuildMemberUpdateRequest _$GuildMemberUpdateRequestFromJson(
 Map<String, dynamic> _$GuildMemberUpdateRequestToJson(
   GuildMemberUpdateRequest instance,
 ) => <String, dynamic>{
-  'nick': instance.nick,
+  'nick': ?instance.nick,
   'roles': ?instance.roles,
   'avatar': ?instance.avatar,
   'banner': ?instance.banner,
@@ -70,7 +70,7 @@ Map<String, dynamic> _$GuildMemberUpdateRequestToJson(
   'mention_flags': ?instance.mentionFlags,
   'mute': ?instance.mute,
   'deaf': ?instance.deaf,
-  'communication_disabled_until': instance.communicationDisabledUntil
+  'communication_disabled_until': ?instance.communicationDisabledUntil
       ?.toIso8601String(),
   'timeout_reason': ?instance.timeoutReason,
   'channel_id': ?instance.channelId,
