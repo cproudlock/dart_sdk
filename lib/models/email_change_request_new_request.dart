@@ -5,6 +5,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
 import 'email_type.dart';
+import 'password_type.dart';
 
 part 'email_change_request_new_request.g.dart';
 
@@ -14,6 +15,7 @@ class EmailChangeRequestNewRequest {
     required this.ticket,
     required this.newEmail,
     required this.originalProof,
+    this.newPassword,
   });
 
   factory EmailChangeRequestNewRequest.fromJson(Map<String, Object?> json) =>
@@ -27,6 +29,8 @@ class EmailChangeRequestNewRequest {
   /// Proof token obtained from verifying the original email
   @JsonKey(name: 'original_proof')
   final String originalProof;
+  @JsonKey(includeIfNull: false, name: 'new_password')
+  final PasswordType? newPassword;
 
   Map<String, Object?> toJson() => _$EmailChangeRequestNewRequestToJson(this);
 }
