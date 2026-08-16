@@ -4,13 +4,18 @@
 
 import 'package:json_annotation/json_annotation.dart';
 
+import 'discovery_guild_list_response_category_counts.dart';
 import 'discovery_guild_list_response_guilds.dart';
 
 part 'discovery_guild_list_response.g.dart';
 
 @JsonSerializable()
 class DiscoveryGuildListResponse {
-  const DiscoveryGuildListResponse({required this.guilds, required this.total});
+  const DiscoveryGuildListResponse({
+    required this.guilds,
+    required this.total,
+    required this.categoryCounts,
+  });
 
   factory DiscoveryGuildListResponse.fromJson(Map<String, Object?> json) =>
       _$DiscoveryGuildListResponseFromJson(json);
@@ -20,6 +25,10 @@ class DiscoveryGuildListResponse {
 
   /// Total number of matching guilds
   final num total;
+
+  /// Match counts per category for the current filters, ignoring the category filter
+  @JsonKey(name: 'category_counts')
+  final List<DiscoveryGuildListResponseCategoryCounts> categoryCounts;
 
   Map<String, Object?> toJson() => _$DiscoveryGuildListResponseToJson(this);
 }

@@ -18,6 +18,7 @@ class DiscoveryGuildListResponseGuilds {
     required this.features,
     required this.verificationLevel,
     this.icon,
+    this.banner,
     this.description,
     this.primaryLanguage,
   });
@@ -35,6 +36,10 @@ class DiscoveryGuildListResponseGuilds {
   /// Guild icon hash
   @JsonKey(includeIfNull: false)
   final String? icon;
+
+  /// Guild banner hash
+  @JsonKey(includeIfNull: false)
+  final String? banner;
 
   /// Discovery description
   @JsonKey(includeIfNull: false)

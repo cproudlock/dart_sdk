@@ -503,6 +503,7 @@ export 'models/scheduled_message_response_schema_payload_allowed_mentions.dart';
 export 'models/scheduled_message_response_schema_payload_message_reference.dart';
 export 'models/scheduled_message_response_schema_payload.dart';
 export 'models/discovery_guild_list_response_guilds.dart';
+export 'models/discovery_guild_list_response_category_counts.dart';
 export 'models/gateway_bot_response_session_start_limit.dart';
 export 'models/template_channel_permission_overwrites.dart';
 export 'models/guild_audit_log_entry_response_options.dart';
