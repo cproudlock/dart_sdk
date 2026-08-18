@@ -10,6 +10,10 @@ AuthSessionResponseClientInfo _$AuthSessionResponseClientInfoFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('AuthSessionResponseClientInfo', json, ($checkedConvert) {
   final val = AuthSessionResponseClientInfo(
+    device: $checkedConvert(
+      'device',
+      (v) => AuthSessionResponseClientInfoDeviceDevice.fromJson(v as String),
+    ),
     platform: $checkedConvert('platform', (v) => v as String?),
     os: $checkedConvert('os', (v) => v as String?),
     browser: $checkedConvert('browser', (v) => v as String?),
@@ -29,5 +33,6 @@ Map<String, dynamic> _$AuthSessionResponseClientInfoToJson(
   'platform': ?instance.platform,
   'os': ?instance.os,
   'browser': ?instance.browser,
+  'device': instance.device,
   'location': ?instance.location,
 };

@@ -4,6 +4,7 @@
 
 import 'package:json_annotation/json_annotation.dart';
 
+import 'auth_session_response_client_info_device_device.dart';
 import 'auth_session_location.dart';
 
 part 'auth_session_response_client_info.g.dart';
@@ -11,6 +12,7 @@ part 'auth_session_response_client_info.g.dart';
 @JsonSerializable()
 class AuthSessionResponseClientInfo {
   const AuthSessionResponseClientInfo({
+    required this.device,
     this.platform,
     this.os,
     this.browser,
@@ -31,6 +33,9 @@ class AuthSessionResponseClientInfo {
   /// The browser reported by the client
   @JsonKey(includeIfNull: false)
   final String? browser;
+
+  /// Device class of the session, decided by the server
+  final AuthSessionResponseClientInfoDeviceDevice device;
 
   /// The geolocation data sent by the client
   @JsonKey(includeIfNull: false)
