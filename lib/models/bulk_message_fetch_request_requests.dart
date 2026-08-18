@@ -24,7 +24,7 @@ class BulkMessageFetchRequestRequests {
   @JsonKey(name: 'channel_id')
   final SnowflakeType channelId;
 
-  /// Number of messages to return for this channel (1-25)
+  /// Number of messages to return for this channel (1-50)
   final int limit;
   @JsonKey(includeIfNull: false)
   final SnowflakeType? before;
