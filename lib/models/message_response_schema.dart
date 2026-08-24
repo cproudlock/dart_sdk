@@ -141,7 +141,7 @@ class MessageResponseSchema {
   @JsonKey(includeIfNull: false)
   final MessageResponseSchemaCall? call;
 
-  /// The message that this message is replying to or forwarding
+  /// The reply target. Present and populated when the target resolved, present and null when the target is gone, absent when this message carries no default reference. Clients must tell null apart from absent by key presence.
   @JsonKey(includeIfNull: false, name: 'referenced_message')
   final MessageResponseSchemaReferencedMessage? referencedMessage;
 
