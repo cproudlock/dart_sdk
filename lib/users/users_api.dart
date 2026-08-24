@@ -108,6 +108,16 @@ part 'users_api.g.dart';
 abstract class UsersApi {
   factory UsersApi(Dio dio, {String? baseUrl}) = _UsersApi;
 
+  /// Download data harvest archive.
+  ///
+  /// Streams a completed data harvest archive. Authorised by a signed, expiring token rather than a session, so the link works from the harvest completion email. Only active when presigned harvest downloads are disabled.
+  ///
+  /// [harvestId] - The harvestId.
+  @GET('/harvest-downloads/{harvestId}')
+  Future<void> downloadDataHarvestArchive({
+    @Path('harvestId') required String harvestId,
+  });
+
   /// Get current user profile.
   ///
   /// Retrieves the current authenticated user's profile information, including account details and settings. OAuth2 bearer tokens require identify scope, and email is returned only when the email scope is also present. Bearer tokens receive a reduced response: sensitive fields such as phone, MFA status, authenticator types, ACLs, traits, premium billing details, and password metadata are omitted. Session and bot tokens return the full user object with all private fields.
