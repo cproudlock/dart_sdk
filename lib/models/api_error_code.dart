@@ -331,10 +331,6 @@ enum ApiErrorCode {
   globalIpTemporarilyBanned('GLOBAL_IP_TEMPORARILY_BANNED'),
   @JsonValue('IP_BANNED')
   ipBanned('IP_BANNED'),
-  @JsonValue('RESIDENTIAL_PROXY_BLOCKED')
-  residentialProxyBlocked('RESIDENTIAL_PROXY_BLOCKED'),
-  @JsonValue('TOR_BLOCKED')
-  torBlocked('TOR_BLOCKED'),
   @JsonValue('MAX_ANIMATED_EMOJIS')
   maxAnimatedEmojis('MAX_ANIMATED_EMOJIS'),
   @JsonValue('MAX_APPLICATIONS')

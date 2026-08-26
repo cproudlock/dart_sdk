@@ -437,8 +437,7 @@ class GuildCreateData {
   final bool unavailable;
   final bool hasCompletePayload;
 
-  bool get shouldTreatAsUnavailable =>
-      unavailable || !hasCompletePayload;
+  bool get shouldTreatAsUnavailable => unavailable || !hasCompletePayload;
 
   static bool _hasCompletePayload(Map<String, dynamic> json) {
     for (final key in ['channels', 'members', 'roles', 'emojis']) {
