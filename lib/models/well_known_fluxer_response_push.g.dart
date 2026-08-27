@@ -8,17 +8,12 @@ part of 'well_known_fluxer_response_push.dart';
 
 WellKnownFluxerResponsePush _$WellKnownFluxerResponsePushFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'WellKnownFluxerResponsePush',
-  json,
-  ($checkedConvert) {
-    final val = WellKnownFluxerResponsePush(
-      publicVapidKey: $checkedConvert('public_vapid_key', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {'publicVapidKey': 'public_vapid_key'},
-);
+) => $checkedCreate('WellKnownFluxerResponsePush', json, ($checkedConvert) {
+  final val = WellKnownFluxerResponsePush(
+    publicVapidKey: $checkedConvert('public_vapid_key', (v) => v as String?),
+  );
+  return val;
+}, fieldKeyMap: const {'publicVapidKey': 'public_vapid_key'});
 
 Map<String, dynamic> _$WellKnownFluxerResponsePushToJson(
   WellKnownFluxerResponsePush instance,

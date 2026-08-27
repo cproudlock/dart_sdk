@@ -30,6 +30,7 @@ SelfServeRefundResponse _$SelfServeRefundResponseFromJson(
       ),
       currency: $checkedConvert('currency', (v) => v as String),
       subscriptionId: $checkedConvert('subscription_id', (v) => v as String?),
+      status: $checkedConvert('status', (v) => v as String?),
     );
     return val;
   },
@@ -55,4 +56,5 @@ Map<String, dynamic> _$SelfServeRefundResponseToJson(
   'invoice_amount_paid_cents': instance.invoiceAmountPaidCents,
   'currency': instance.currency,
   'subscription_id': instance.subscriptionId,
+  'status': instance.status,
 };

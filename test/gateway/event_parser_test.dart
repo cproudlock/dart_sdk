@@ -1533,6 +1533,15 @@ void main() {
       expect(e.id, 'meme1');
     });
 
+    test('FAVORITE_MEME_DELETE with meme_id → FavoriteMemeDeleteEvent', () {
+      final data = <String, Object?>{'meme_id': 'meme2'};
+      final event = parser.parse('FAVORITE_MEME_DELETE', data);
+
+      expect(event, isA<FavoriteMemeDeleteEvent>());
+      final e = event as FavoriteMemeDeleteEvent;
+      expect(e.id, 'meme2');
+    });
+
     test('SESSIONS_REPLACE → SessionsReplaceEvent', () {
       final data = <String, dynamic>{};
       final event = parser.parse('SESSIONS_REPLACE', data);

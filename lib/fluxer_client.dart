@@ -17,6 +17,8 @@ import 'emojis/emojis_api.dart';
 import 'gateway/gateway_api.dart';
 import 'gifts/gifts_api.dart';
 import 'guilds/guilds_api.dart';
+import 'users/users_api.dart';
+import 'geolocation/geolocation_api.dart';
 import 'packs/packs_api.dart';
 import 'premium/premium_api.dart';
 import 'billing/billing_api.dart';
@@ -25,7 +27,6 @@ import 'reports/reports_api.dart';
 import 'search/search_api.dart';
 import 'stickers/stickers_api.dart';
 import 'debug/debug_api.dart';
-import 'users/users_api.dart';
 import 'connections/connections_api.dart';
 import 'themes/themes_api.dart';
 import 'voice/voice_api.dart';
@@ -54,6 +55,8 @@ class FluxerClient {
   GatewayApi? _gateway;
   GiftsApi? _gifts;
   GuildsApi? _guilds;
+  UsersApi? _users;
+  GeolocationApi? _geolocation;
   PacksApi? _packs;
   PremiumApi? _premium;
   BillingApi? _billing;
@@ -62,7 +65,6 @@ class FluxerClient {
   SearchApi? _search;
   StickersApi? _stickers;
   DebugApi? _debug;
-  UsersApi? _users;
   ConnectionsApi? _connections;
   ThemesApi? _themes;
   VoiceApi? _voice;
@@ -99,6 +101,11 @@ class FluxerClient {
 
   GuildsApi get guilds => _guilds ??= GuildsApi(_dio, baseUrl: _baseUrl);
 
+  UsersApi get users => _users ??= UsersApi(_dio, baseUrl: _baseUrl);
+
+  GeolocationApi get geolocation =>
+      _geolocation ??= GeolocationApi(_dio, baseUrl: _baseUrl);
+
   PacksApi get packs => _packs ??= PacksApi(_dio, baseUrl: _baseUrl);
 
   PremiumApi get premium => _premium ??= PremiumApi(_dio, baseUrl: _baseUrl);
@@ -116,8 +123,6 @@ class FluxerClient {
       _stickers ??= StickersApi(_dio, baseUrl: _baseUrl);
 
   DebugApi get debug => _debug ??= DebugApi(_dio, baseUrl: _baseUrl);
-
-  UsersApi get users => _users ??= UsersApi(_dio, baseUrl: _baseUrl);
 
   ConnectionsApi get connections =>
       _connections ??= ConnectionsApi(_dio, baseUrl: _baseUrl);

@@ -17,6 +17,7 @@ class SelfServeRefundResponse {
     required this.invoiceAmountPaidCents,
     required this.currency,
     required this.subscriptionId,
+    required this.status,
   });
 
   factory SelfServeRefundResponse.fromJson(Map<String, Object?> json) =>
@@ -30,6 +31,8 @@ class SelfServeRefundResponse {
   final String? chargeId;
   @JsonKey(includeIfNull: true, name: 'refund_id')
   final String? refundId;
+
+  /// Amount actually refunded so far, in the currency minor unit; 0 until the provider confirms success
   @JsonKey(name: 'refunded_amount_cents')
   final int refundedAmountCents;
   @JsonKey(name: 'invoice_amount_paid_cents')
@@ -39,6 +42,10 @@ class SelfServeRefundResponse {
   /// Subscription that was cancelled along with the refund, when applicable
   @JsonKey(includeIfNull: true, name: 'subscription_id')
   final String? subscriptionId;
+
+  /// Provider status of the refund (e.g. pending, succeeded, failed); money only moved once succeeded
+  @JsonKey(includeIfNull: true)
+  final String? status;
 
   Map<String, Object?> toJson() => _$SelfServeRefundResponseToJson(this);
 }

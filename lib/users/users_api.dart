@@ -108,6 +108,16 @@ part 'users_api.g.dart';
 abstract class UsersApi {
   factory UsersApi(Dio dio, {String? baseUrl}) = _UsersApi;
 
+  /// Download data harvest archive.
+  ///
+  /// Streams a completed data harvest archive. Authorised by a signed, expiring token rather than a session, so the link works from the harvest completion email. Only active when presigned harvest downloads are disabled.
+  ///
+  /// [harvestId] - The harvestId.
+  @GET('/harvest-downloads/{harvestId}')
+  Future<void> downloadDataHarvestArchive({
+    @Path('harvestId') required String harvestId,
+  });
+
   /// Get current user profile.
   ///
   /// Retrieves the current authenticated user's profile information, including account details and settings. OAuth2 bearer tokens require identify scope, and email is returned only when the email scope is also present. Bearer tokens receive a reduced response: sensitive fields such as phone, MFA status, authenticator types, ACLs, traits, premium billing details, and password metadata are omitted. Session and bot tokens return the full user object with all private fields.
@@ -133,12 +143,6 @@ abstract class UsersApi {
   Future<void> forgetAuthorizedIps({
     @Body() required SudoVerificationSchema body,
   });
-
-  /// Join the canary testers guild.
-  ///
-  /// Adds the authenticated user to the hardcoded Fluxer Testers guild used for canary feedback. Restricted to non-bot users with verified email, an account at least 30 minutes old, no effective suspicious-activity flags, and not banned from the target guild. Rate-limited; surfaced via the canary nagbar.
-  @POST('/users/@me/canary-tester/join')
-  Future<SuccessResponse> joinCanaryTesters();
 
   /// List private channels.
   ///

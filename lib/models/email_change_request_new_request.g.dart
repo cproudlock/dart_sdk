@@ -16,12 +16,14 @@ EmailChangeRequestNewRequest _$EmailChangeRequestNewRequestFromJson(
       ticket: $checkedConvert('ticket', (v) => v as String),
       newEmail: $checkedConvert('new_email', (v) => v as String),
       originalProof: $checkedConvert('original_proof', (v) => v as String),
+      newPassword: $checkedConvert('new_password', (v) => v as String?),
     );
     return val;
   },
   fieldKeyMap: const {
     'newEmail': 'new_email',
     'originalProof': 'original_proof',
+    'newPassword': 'new_password',
   },
 );
 
@@ -31,4 +33,5 @@ Map<String, dynamic> _$EmailChangeRequestNewRequestToJson(
   'ticket': instance.ticket,
   'new_email': instance.newEmail,
   'original_proof': instance.originalProof,
+  'new_password': ?instance.newPassword,
 };

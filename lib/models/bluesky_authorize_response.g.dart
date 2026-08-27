@@ -8,17 +8,12 @@ part of 'bluesky_authorize_response.dart';
 
 BlueskyAuthorizeResponse _$BlueskyAuthorizeResponseFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'BlueskyAuthorizeResponse',
-  json,
-  ($checkedConvert) {
-    final val = BlueskyAuthorizeResponse(
-      authorizeUrl: $checkedConvert('authorize_url', (v) => v as String),
-    );
-    return val;
-  },
-  fieldKeyMap: const {'authorizeUrl': 'authorize_url'},
-);
+) => $checkedCreate('BlueskyAuthorizeResponse', json, ($checkedConvert) {
+  final val = BlueskyAuthorizeResponse(
+    authorizeUrl: $checkedConvert('authorize_url', (v) => v as String),
+  );
+  return val;
+}, fieldKeyMap: const {'authorizeUrl': 'authorize_url'});
 
 Map<String, dynamic> _$BlueskyAuthorizeResponseToJson(
   BlueskyAuthorizeResponse instance,

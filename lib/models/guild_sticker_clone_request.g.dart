@@ -8,17 +8,12 @@ part of 'guild_sticker_clone_request.dart';
 
 GuildStickerCloneRequest _$GuildStickerCloneRequestFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'GuildStickerCloneRequest',
-  json,
-  ($checkedConvert) {
-    final val = GuildStickerCloneRequest(
-      sourceStickerId: $checkedConvert('source_sticker_id', (v) => v as String),
-    );
-    return val;
-  },
-  fieldKeyMap: const {'sourceStickerId': 'source_sticker_id'},
-);
+) => $checkedCreate('GuildStickerCloneRequest', json, ($checkedConvert) {
+  final val = GuildStickerCloneRequest(
+    sourceStickerId: $checkedConvert('source_sticker_id', (v) => v as String),
+  );
+  return val;
+}, fieldKeyMap: const {'sourceStickerId': 'source_sticker_id'});
 
 Map<String, dynamic> _$GuildStickerCloneRequestToJson(
   GuildStickerCloneRequest instance,

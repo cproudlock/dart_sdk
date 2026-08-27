@@ -8,21 +8,15 @@ part of 'guild_role_hoist_positions_request_item.dart';
 
 GuildRoleHoistPositionsRequestItem _$GuildRoleHoistPositionsRequestItemFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'GuildRoleHoistPositionsRequestItem',
-  json,
-  ($checkedConvert) {
-    final val = GuildRoleHoistPositionsRequestItem(
-      id: $checkedConvert('id', (v) => v as String),
-      hoistPosition: $checkedConvert(
-        'hoist_position',
-        (v) => (v as num).toInt(),
-      ),
-    );
-    return val;
-  },
-  fieldKeyMap: const {'hoistPosition': 'hoist_position'},
-);
+) => $checkedCreate('GuildRoleHoistPositionsRequestItem', json, (
+  $checkedConvert,
+) {
+  final val = GuildRoleHoistPositionsRequestItem(
+    id: $checkedConvert('id', (v) => v as String),
+    hoistPosition: $checkedConvert('hoist_position', (v) => (v as num).toInt()),
+  );
+  return val;
+}, fieldKeyMap: const {'hoistPosition': 'hoist_position'});
 
 Map<String, dynamic> _$GuildRoleHoistPositionsRequestItemToJson(
   GuildRoleHoistPositionsRequestItem instance,

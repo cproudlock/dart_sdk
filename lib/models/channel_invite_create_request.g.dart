@@ -8,20 +8,15 @@ part of 'channel_invite_create_request.dart';
 
 ChannelInviteCreateRequest _$ChannelInviteCreateRequestFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'ChannelInviteCreateRequest',
-  json,
-  ($checkedConvert) {
-    final val = ChannelInviteCreateRequest(
-      maxUses: $checkedConvert('max_uses', (v) => (v as num?)?.toInt()),
-      maxAge: $checkedConvert('max_age', (v) => (v as num?)?.toInt()),
-      unique: $checkedConvert('unique', (v) => v as bool?),
-      temporary: $checkedConvert('temporary', (v) => v as bool?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {'maxUses': 'max_uses', 'maxAge': 'max_age'},
-);
+) => $checkedCreate('ChannelInviteCreateRequest', json, ($checkedConvert) {
+  final val = ChannelInviteCreateRequest(
+    maxUses: $checkedConvert('max_uses', (v) => (v as num?)?.toInt()),
+    maxAge: $checkedConvert('max_age', (v) => (v as num?)?.toInt()),
+    unique: $checkedConvert('unique', (v) => v as bool?),
+    temporary: $checkedConvert('temporary', (v) => v as bool?),
+  );
+  return val;
+}, fieldKeyMap: const {'maxUses': 'max_uses', 'maxAge': 'max_age'});
 
 Map<String, dynamic> _$ChannelInviteCreateRequestToJson(
   ChannelInviteCreateRequest instance,

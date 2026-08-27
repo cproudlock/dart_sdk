@@ -348,7 +348,7 @@ class EventParser {
         'FAVORITE_MEME_CREATE' => FavoriteMemeCreateEvent(data: data),
         'FAVORITE_MEME_UPDATE' => FavoriteMemeUpdateEvent(data: data),
         'FAVORITE_MEME_DELETE' => FavoriteMemeDeleteEvent(
-          id: data['id'] as String,
+          id: (data['id'] ?? data['meme_id']) as String,
         ),
         'SESSIONS_REPLACE' => const SessionsReplaceEvent(),
 

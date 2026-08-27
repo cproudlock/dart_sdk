@@ -16,7 +16,7 @@ class HarvestDownloadUrlResponse {
   factory HarvestDownloadUrlResponse.fromJson(Map<String, Object?> json) =>
       _$HarvestDownloadUrlResponseFromJson(json);
 
-  /// The presigned URL to download the harvest archive
+  /// The temporary URL to download the harvest archive
   @JsonKey(name: 'download_url')
   final String downloadUrl;
 

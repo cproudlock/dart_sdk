@@ -4,13 +4,19 @@
 
 import 'package:json_annotation/json_annotation.dart';
 
+import 'handoff_info_response_client_info_device_device.dart';
 import 'auth_session_location.dart';
 
 part 'handoff_info_response_client_info.g.dart';
 
 @JsonSerializable()
 class HandoffInfoResponseClientInfo {
-  const HandoffInfoResponseClientInfo({this.platform, this.os, this.location});
+  const HandoffInfoResponseClientInfo({
+    required this.device,
+    this.platform,
+    this.os,
+    this.location,
+  });
 
   factory HandoffInfoResponseClientInfo.fromJson(Map<String, Object?> json) =>
       _$HandoffInfoResponseClientInfoFromJson(json);
@@ -22,6 +28,9 @@ class HandoffInfoResponseClientInfo {
   /// The operating system of the requesting device
   @JsonKey(includeIfNull: false)
   final String? os;
+
+  /// Device class of the requesting device, decided by the server
+  final HandoffInfoResponseClientInfoDeviceDevice device;
 
   /// The approximate location of the requesting device
   @JsonKey(includeIfNull: false)

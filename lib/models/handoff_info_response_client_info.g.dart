@@ -10,6 +10,10 @@ HandoffInfoResponseClientInfo _$HandoffInfoResponseClientInfoFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('HandoffInfoResponseClientInfo', json, ($checkedConvert) {
   final val = HandoffInfoResponseClientInfo(
+    device: $checkedConvert(
+      'device',
+      (v) => HandoffInfoResponseClientInfoDeviceDevice.fromJson(v as String),
+    ),
     platform: $checkedConvert('platform', (v) => v as String?),
     os: $checkedConvert('os', (v) => v as String?),
     location: $checkedConvert(
@@ -27,5 +31,6 @@ Map<String, dynamic> _$HandoffInfoResponseClientInfoToJson(
 ) => <String, dynamic>{
   'platform': ?instance.platform,
   'os': ?instance.os,
+  'device': instance.device,
   'location': ?instance.location,
 };

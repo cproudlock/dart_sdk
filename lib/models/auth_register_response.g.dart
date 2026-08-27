@@ -9,23 +9,20 @@ part of 'auth_register_response.dart';
 AuthRegisterResponseAuthTokenWithUserIdResponse
 _$AuthRegisterResponseAuthTokenWithUserIdResponseFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'AuthRegisterResponseAuthTokenWithUserIdResponse',
-  json,
-  ($checkedConvert) {
-    final val = AuthRegisterResponseAuthTokenWithUserIdResponse(
-      token: $checkedConvert('token', (v) => v as String),
-      userId: $checkedConvert('user_id', (v) => v as String),
-      user: $checkedConvert(
-        'user',
-        (v) =>
-            AuthTokenWithUserIdResponseUser.fromJson(v as Map<String, dynamic>),
-      ),
-    );
-    return val;
-  },
-  fieldKeyMap: const {'userId': 'user_id'},
-);
+) => $checkedCreate('AuthRegisterResponseAuthTokenWithUserIdResponse', json, (
+  $checkedConvert,
+) {
+  final val = AuthRegisterResponseAuthTokenWithUserIdResponse(
+    token: $checkedConvert('token', (v) => v as String),
+    userId: $checkedConvert('user_id', (v) => v as String),
+    user: $checkedConvert(
+      'user',
+      (v) =>
+          AuthTokenWithUserIdResponseUser.fromJson(v as Map<String, dynamic>),
+    ),
+  );
+  return val;
+}, fieldKeyMap: const {'userId': 'user_id'});
 
 Map<String, dynamic> _$AuthRegisterResponseAuthTokenWithUserIdResponseToJson(
   AuthRegisterResponseAuthTokenWithUserIdResponse instance,
@@ -37,27 +34,22 @@ Map<String, dynamic> _$AuthRegisterResponseAuthTokenWithUserIdResponseToJson(
 
 AuthRegisterResponseVariant2 _$AuthRegisterResponseVariant2FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'AuthRegisterResponseVariant2',
-  json,
-  ($checkedConvert) {
-    final val = AuthRegisterResponseVariant2(
-      mfa: $checkedConvert(
-        'mfa',
-        (v) => AuthRegisterResponseVariant2MfaMfa.fromJson(v as bool),
-      ),
-      ticket: $checkedConvert('ticket', (v) => v as String),
-      allowedMethods: $checkedConvert(
-        'allowed_methods',
-        (v) => (v as List<dynamic>).map((e) => e as String).toList(),
-      ),
-      totp: $checkedConvert('totp', (v) => v as bool),
-      webauthn: $checkedConvert('webauthn', (v) => v as bool),
-    );
-    return val;
-  },
-  fieldKeyMap: const {'allowedMethods': 'allowed_methods'},
-);
+) => $checkedCreate('AuthRegisterResponseVariant2', json, ($checkedConvert) {
+  final val = AuthRegisterResponseVariant2(
+    mfa: $checkedConvert(
+      'mfa',
+      (v) => AuthRegisterResponseVariant2MfaMfa.fromJson(v as bool),
+    ),
+    ticket: $checkedConvert('ticket', (v) => v as String),
+    allowedMethods: $checkedConvert(
+      'allowed_methods',
+      (v) => (v as List<dynamic>).map((e) => e as String).toList(),
+    ),
+    totp: $checkedConvert('totp', (v) => v as bool),
+    webauthn: $checkedConvert('webauthn', (v) => v as bool),
+  );
+  return val;
+}, fieldKeyMap: const {'allowedMethods': 'allowed_methods'});
 
 Map<String, dynamic> _$AuthRegisterResponseVariant2ToJson(
   AuthRegisterResponseVariant2 instance,

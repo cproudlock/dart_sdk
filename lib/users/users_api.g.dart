@@ -20,6 +20,25 @@ class _UsersApi implements UsersApi {
   final ParseErrorLogger? errorLogger;
 
   @override
+  Future<void> downloadDataHarvestArchive({required String harvestId}) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<void>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/harvest-downloads/${harvestId}',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    await _dio.fetch<void>(_options);
+  }
+
+  @override
   Future<UserPrivateResponse> getCurrentUser() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -96,33 +115,6 @@ class _UsersApi implements UsersApi {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     await _dio.fetch<void>(_options);
-  }
-
-  @override
-  Future<SuccessResponse> joinCanaryTesters() async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<SuccessResponse>(
-      Options(method: 'POST', headers: _headers, extra: _extra)
-          .compose(
-            _dio.options,
-            '/users/@me/canary-tester/join',
-            queryParameters: queryParameters,
-            data: _data,
-          )
-          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
-    );
-    final _result = await _dio.fetch<Map<String, Object?>>(_options);
-    late SuccessResponse _value;
-    try {
-      _value = SuccessResponse.fromJson(_result.data!);
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options, response: _result);
-      rethrow;
-    }
-    return _value;
   }
 
   @override

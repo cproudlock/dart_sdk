@@ -53,24 +53,19 @@ Map<String, dynamic> _$Object0ClientUploadedAttachmentRequestToJson(
 
 Object0ClientAttachmentRequest _$Object0ClientAttachmentRequestFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'Object0ClientAttachmentRequest',
-  json,
-  ($checkedConvert) {
-    final val = Object0ClientAttachmentRequest(
-      title: $checkedConvert('title', (v) => v as String?),
-      description: $checkedConvert('description', (v) => v as String?),
-      flags: $checkedConvert('flags', (v) => (v as num?)?.toInt()),
-      duration: $checkedConvert('duration', (v) => (v as num?)?.toInt()),
-      waveform: $checkedConvert('waveform', (v) => v as String?),
-      id: $checkedConvert('id', (v) => (v as num).toInt()),
-      filename: $checkedConvert('filename', (v) => v as String),
-      contentType: $checkedConvert('content_type', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {'contentType': 'content_type'},
-);
+) => $checkedCreate('Object0ClientAttachmentRequest', json, ($checkedConvert) {
+  final val = Object0ClientAttachmentRequest(
+    title: $checkedConvert('title', (v) => v as String?),
+    description: $checkedConvert('description', (v) => v as String?),
+    flags: $checkedConvert('flags', (v) => (v as num?)?.toInt()),
+    duration: $checkedConvert('duration', (v) => (v as num?)?.toInt()),
+    waveform: $checkedConvert('waveform', (v) => v as String?),
+    id: $checkedConvert('id', (v) => (v as num).toInt()),
+    filename: $checkedConvert('filename', (v) => v as String),
+    contentType: $checkedConvert('content_type', (v) => v as String?),
+  );
+  return val;
+}, fieldKeyMap: const {'contentType': 'content_type'});
 
 Map<String, dynamic> _$Object0ClientAttachmentRequestToJson(
   Object0ClientAttachmentRequest instance,

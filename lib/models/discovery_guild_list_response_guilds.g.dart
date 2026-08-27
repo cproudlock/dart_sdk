@@ -28,6 +28,7 @@ DiscoveryGuildListResponseGuilds _$DiscoveryGuildListResponseGuildsFromJson(
       ),
       verificationLevel: $checkedConvert('verification_level', (v) => v as num),
       icon: $checkedConvert('icon', (v) => v as String?),
+      banner: $checkedConvert('banner', (v) => v as String?),
       description: $checkedConvert('description', (v) => v as String?),
       primaryLanguage: $checkedConvert('primary_language', (v) => v as String?),
     );
@@ -49,6 +50,7 @@ Map<String, dynamic> _$DiscoveryGuildListResponseGuildsToJson(
   'id': instance.id,
   'name': instance.name,
   'icon': ?instance.icon,
+  'banner': ?instance.banner,
   'description': ?instance.description,
   'category_type': instance.categoryType,
   'primary_language': ?instance.primaryLanguage,

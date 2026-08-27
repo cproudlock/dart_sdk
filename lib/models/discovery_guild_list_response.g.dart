@@ -21,10 +21,24 @@ DiscoveryGuildListResponse _$DiscoveryGuildListResponseFromJson(
           .toList(),
     ),
     total: $checkedConvert('total', (v) => v as num),
+    categoryCounts: $checkedConvert(
+      'category_counts',
+      (v) => (v as List<dynamic>)
+          .map(
+            (e) => DiscoveryGuildListResponseCategoryCounts.fromJson(
+              e as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+    ),
   );
   return val;
-});
+}, fieldKeyMap: const {'categoryCounts': 'category_counts'});
 
 Map<String, dynamic> _$DiscoveryGuildListResponseToJson(
   DiscoveryGuildListResponse instance,
-) => <String, dynamic>{'guilds': instance.guilds, 'total': instance.total};
+) => <String, dynamic>{
+  'guilds': instance.guilds,
+  'total': instance.total,
+  'category_counts': instance.categoryCounts,
+};

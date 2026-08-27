@@ -382,6 +382,8 @@ class GuildCreateData {
     this.stickers = const [],
     this.joinedAt,
     this.memberCount,
+    this.unavailable = false,
+    this.hasCompletePayload = true,
   });
 
   factory GuildCreateData.fromJson(Map<String, dynamic> json) {
@@ -417,6 +419,8 @@ class GuildCreateData {
       ),
       joinedAt: json['joined_at'] as String?,
       memberCount: json['member_count'] as int?,
+      unavailable: json['unavailable'] as bool? ?? false,
+      hasCompletePayload: _hasCompletePayload(json),
     );
   }
 
@@ -430,6 +434,20 @@ class GuildCreateData {
   final List<GuildStickerResponse> stickers;
   final String? joinedAt;
   final int? memberCount;
+  final bool unavailable;
+  final bool hasCompletePayload;
+
+  bool get shouldTreatAsUnavailable =>
+      unavailable || !hasCompletePayload;
+
+  static bool _hasCompletePayload(Map<String, dynamic> json) {
+    for (final key in ['channels', 'members', 'roles', 'emojis']) {
+      if (json[key] is! List) {
+        return false;
+      }
+    }
+    return true;
+  }
 
   /// Extracts guild data, unwrapping `properties` if present.
   static Map<String, Object?> _guildData(Map<String, dynamic> raw) {

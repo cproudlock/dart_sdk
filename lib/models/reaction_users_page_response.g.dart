@@ -8,24 +8,19 @@ part of 'reaction_users_page_response.dart';
 
 ReactionUsersPageResponse _$ReactionUsersPageResponseFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'ReactionUsersPageResponse',
-  json,
-  ($checkedConvert) {
-    final val = ReactionUsersPageResponse(
-      items: $checkedConvert(
-        'items',
-        (v) => (v as List<dynamic>)
-            .map((e) => UserPartialResponse.fromJson(e as Map<String, dynamic>))
-            .toList(),
-      ),
-      hasMore: $checkedConvert('has_more', (v) => v as bool),
-      nextAfter: $checkedConvert('next_after', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {'hasMore': 'has_more', 'nextAfter': 'next_after'},
-);
+) => $checkedCreate('ReactionUsersPageResponse', json, ($checkedConvert) {
+  final val = ReactionUsersPageResponse(
+    items: $checkedConvert(
+      'items',
+      (v) => (v as List<dynamic>)
+          .map((e) => UserPartialResponse.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    ),
+    hasMore: $checkedConvert('has_more', (v) => v as bool),
+    nextAfter: $checkedConvert('next_after', (v) => v as String?),
+  );
+  return val;
+}, fieldKeyMap: const {'hasMore': 'has_more', 'nextAfter': 'next_after'});
 
 Map<String, dynamic> _$ReactionUsersPageResponseToJson(
   ReactionUsersPageResponse instance,

@@ -17,7 +17,7 @@ abstract class SearchApi {
 
   /// Search messages.
   ///
-  /// Searches for messages across guilds and channels accessible to the authenticated user.
+  /// Searches for messages across guilds and channels accessible to the authenticated user. Bots must supply a context guild or channel and may only use the current scope.
   ///
   /// [body] - Name not received - field will be skipped.
   @POST('/search/messages')

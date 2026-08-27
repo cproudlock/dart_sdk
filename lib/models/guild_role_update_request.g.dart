@@ -8,25 +8,20 @@ part of 'guild_role_update_request.dart';
 
 GuildRoleUpdateRequest _$GuildRoleUpdateRequestFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'GuildRoleUpdateRequest',
-  json,
-  ($checkedConvert) {
-    final val = GuildRoleUpdateRequest(
-      name: $checkedConvert('name', (v) => v as String?),
-      color: $checkedConvert('color', (v) => (v as num?)?.toInt()),
-      permissions: $checkedConvert('permissions', (v) => v as String?),
-      hoist: $checkedConvert('hoist', (v) => v as bool?),
-      hoistPosition: $checkedConvert(
-        'hoist_position',
-        (v) => (v as num?)?.toInt(),
-      ),
-      mentionable: $checkedConvert('mentionable', (v) => v as bool?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {'hoistPosition': 'hoist_position'},
-);
+) => $checkedCreate('GuildRoleUpdateRequest', json, ($checkedConvert) {
+  final val = GuildRoleUpdateRequest(
+    name: $checkedConvert('name', (v) => v as String?),
+    color: $checkedConvert('color', (v) => (v as num?)?.toInt()),
+    permissions: $checkedConvert('permissions', (v) => v as String?),
+    hoist: $checkedConvert('hoist', (v) => v as bool?),
+    hoistPosition: $checkedConvert(
+      'hoist_position',
+      (v) => (v as num?)?.toInt(),
+    ),
+    mentionable: $checkedConvert('mentionable', (v) => v as bool?),
+  );
+  return val;
+}, fieldKeyMap: const {'hoistPosition': 'hoist_position'});
 
 Map<String, dynamic> _$GuildRoleUpdateRequestToJson(
   GuildRoleUpdateRequest instance,

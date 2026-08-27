@@ -8,20 +8,15 @@ part of 'git_hub_webhook_discussion_user.dart';
 
 GitHubWebhookDiscussionUser _$GitHubWebhookDiscussionUserFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'GitHubWebhookDiscussionUser',
-  json,
-  ($checkedConvert) {
-    final val = GitHubWebhookDiscussionUser(
-      id: $checkedConvert('id', (v) => (v as num).toInt()),
-      login: $checkedConvert('login', (v) => v as String),
-      htmlUrl: $checkedConvert('html_url', (v) => v as String),
-      avatarUrl: $checkedConvert('avatar_url', (v) => v as String),
-    );
-    return val;
-  },
-  fieldKeyMap: const {'htmlUrl': 'html_url', 'avatarUrl': 'avatar_url'},
-);
+) => $checkedCreate('GitHubWebhookDiscussionUser', json, ($checkedConvert) {
+  final val = GitHubWebhookDiscussionUser(
+    id: $checkedConvert('id', (v) => (v as num).toInt()),
+    login: $checkedConvert('login', (v) => v as String),
+    htmlUrl: $checkedConvert('html_url', (v) => v as String),
+    avatarUrl: $checkedConvert('avatar_url', (v) => v as String),
+  );
+  return val;
+}, fieldKeyMap: const {'htmlUrl': 'html_url', 'avatarUrl': 'avatar_url'});
 
 Map<String, dynamic> _$GitHubWebhookDiscussionUserToJson(
   GitHubWebhookDiscussionUser instance,
