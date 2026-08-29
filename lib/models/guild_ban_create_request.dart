@@ -10,6 +10,7 @@ part 'guild_ban_create_request.g.dart';
 class GuildBanCreateRequest {
   const GuildBanCreateRequest({
     this.deleteMessageDays,
+    this.deleteMessageSeconds,
     this.reason,
     this.banDurationSeconds,
   });
@@ -17,9 +18,13 @@ class GuildBanCreateRequest {
   factory GuildBanCreateRequest.fromJson(Map<String, Object?> json) =>
       _$GuildBanCreateRequestFromJson(json);
 
-  /// Number of days of messages to delete from the banned user (0-7)
+  /// Number of days of messages to delete from the banned user (0-7). Deprecated in favor of delete_message_seconds.
   @JsonKey(includeIfNull: false, name: 'delete_message_days')
   final int? deleteMessageDays;
+
+  /// Number of seconds of messages to delete for the banned user (0-604800, default 0)
+  @JsonKey(includeIfNull: false, name: 'delete_message_seconds')
+  final int? deleteMessageSeconds;
 
   /// The reason for the ban (max 512 characters)
   @JsonKey(includeIfNull: false)
