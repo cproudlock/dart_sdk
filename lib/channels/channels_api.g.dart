@@ -570,87 +570,6 @@ class _ChannelsApi implements ChannelsApi {
   }
 
   @override
-  Future<ScheduledMessageResponseSchema> scheduleMessage({
-    required String channelId,
-    required String scheduledLocalAt,
-    required String timezone,
-    String? content,
-    List<RichEmbedRequest>? embeds,
-    List<Object1>? attachments,
-    MessageReferenceRequest? messageReference,
-    AllowedMentionsRequest? allowedMentions,
-    int? flags,
-    String? nonce,
-    String? favoriteMemeId,
-    List<String>? stickerIds,
-    bool? tts,
-  }) async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
-    final _data = FormData();
-    _data.fields.add(MapEntry('scheduled_local_at', scheduledLocalAt));
-    _data.fields.add(MapEntry('timezone', timezone));
-    if (content != null) {
-      _data.fields.add(MapEntry('content', content));
-    }
-    _data.fields.add(MapEntry('embeds', jsonEncode(embeds)));
-    _data.fields.add(MapEntry('attachments', jsonEncode(attachments)));
-    _data.fields.add(
-      MapEntry(
-        'message_reference',
-        jsonEncode(messageReference ?? <String, dynamic>{}),
-      ),
-    );
-    _data.fields.add(
-      MapEntry(
-        'allowed_mentions',
-        jsonEncode(allowedMentions ?? <String, dynamic>{}),
-      ),
-    );
-    if (flags != null) {
-      _data.fields.add(MapEntry('flags', flags.toString()));
-    }
-    if (nonce != null) {
-      _data.fields.add(MapEntry('nonce', nonce));
-    }
-    if (favoriteMemeId != null) {
-      _data.fields.add(MapEntry('favorite_meme_id', favoriteMemeId));
-    }
-    stickerIds?.forEach((i) {
-      _data.fields.add(MapEntry('sticker_ids', i));
-    });
-    if (tts != null) {
-      _data.fields.add(MapEntry('tts', tts.toString()));
-    }
-    final _options = _setStreamType<ScheduledMessageResponseSchema>(
-      Options(
-            method: 'POST',
-            headers: _headers,
-            extra: _extra,
-            contentType: 'multipart/form-data',
-          )
-          .compose(
-            _dio.options,
-            '/channels/${channelId}/messages/schedule',
-            queryParameters: queryParameters,
-            data: _data,
-          )
-          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
-    );
-    final _result = await _dio.fetch<Map<String, Object?>>(_options);
-    late ScheduledMessageResponseSchema _value;
-    try {
-      _value = ScheduledMessageResponseSchema.fromJson(_result.data!);
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options, response: _result);
-      rethrow;
-    }
-    return _value;
-  }
-
-  @override
   Future<MessageResponseSchema> getMessage({
     required String channelId,
     required String messageId,
@@ -688,8 +607,8 @@ class _ChannelsApi implements ChannelsApi {
     List<RichEmbedRequest>? embeds,
     AllowedMentionsRequest? allowedMentions,
     int? flags,
-    List<Object2>? attachments,
-    List<Object3>? messageSnapshots,
+    List<Object1>? attachments,
+    List<Object2>? messageSnapshots,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};

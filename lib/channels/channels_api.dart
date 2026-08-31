@@ -30,7 +30,6 @@ import '../models/message_response_schema.dart';
 import '../models/object0.dart';
 import '../models/object1.dart';
 import '../models/object2.dart';
-import '../models/object3.dart';
 import '../models/permission_overwrite_create_request.dart';
 import '../models/presigned_attachment_upload_request.dart';
 import '../models/presigned_attachment_upload_response.dart';
@@ -39,7 +38,6 @@ import '../models/reaction_users_list_response.dart';
 import '../models/reaction_users_page_response.dart';
 import '../models/rich_embed_request.dart';
 import '../models/rtc_region_response.dart';
-import '../models/scheduled_message_response_schema.dart';
 import '../models/snowflake_type.dart';
 import '../models/stream_preview_upload_body_schema.dart';
 import '../models/stream_preview_upload_url_body_schema.dart';
@@ -307,63 +305,6 @@ abstract class ChannelsApi {
     @Path('channel_id') required SnowflakeType channelId,
   });
 
-  /// Schedule a message to send later.
-  ///
-  /// Schedules a message to be sent at a specified time. Only available for regular user accounts. Requires permission to send messages in the target channel. Message is sent automatically at the scheduled time. Returns the scheduled message object with delivery time.
-  ///
-  /// [channelId] - The ID of the channel.
-  ///
-  /// [content] - Name not received - field will be skipped.
-  /// Name not received - field will be skipped.
-  ///
-  /// [embeds] - Array of embed objects to include in the message.
-  /// Name not received - field will be skipped.
-  ///
-  /// [attachments] - Array of attachment objects.
-  /// Name not received - field will be skipped.
-  ///
-  /// [messageReference] - Name not received - field will be skipped.
-  /// Name not received - field will be skipped.
-  ///
-  /// [allowedMentions] - Name not received - field will be skipped.
-  /// Name not received - field will be skipped.
-  ///
-  /// [flags] - Name not received - field will be skipped.
-  ///
-  /// [nonce] - Name not received - field will be skipped.
-  ///
-  /// [favoriteMemeId] - Name not received - field will be skipped.
-  /// Name not received - field will be skipped.
-  ///
-  /// [stickerIds] - Name not received - field will be skipped.
-  /// Name not received - field will be skipped.
-  ///
-  /// [tts] - Whether this is a text-to-speech message.
-  /// Name not received - field will be skipped.
-  ///
-  /// [scheduledLocalAt] - ISO 8601 timestamp expressed in the user local timezone for when the message should be delivered.
-  /// Name not received - field will be skipped.
-  ///
-  /// [timezone] - IANA timezone identifier the schedule_local_at value is anchored to.
-  /// Name not received - field will be skipped.
-  @MultiPart()
-  @POST('/channels/{channel_id}/messages/schedule')
-  Future<ScheduledMessageResponseSchema> scheduleMessage({
-    @Path('channel_id') required SnowflakeType channelId,
-    @Part(name: 'scheduled_local_at') required String scheduledLocalAt,
-    @Part(name: 'timezone') required String timezone,
-    @Part(name: 'content') MessageContentRequest? content,
-    @Part(name: 'embeds') List<RichEmbedRequest>? embeds,
-    @Part(name: 'attachments') List<Object1>? attachments,
-    @Part(name: 'message_reference') MessageReferenceRequest? messageReference,
-    @Part(name: 'allowed_mentions') AllowedMentionsRequest? allowedMentions,
-    @Part(name: 'flags') MessageFlags? flags,
-    @Part(name: 'nonce') MessageNonceRequest? nonce,
-    @Part(name: 'favorite_meme_id') SnowflakeType? favoriteMemeId,
-    @Part(name: 'sticker_ids') List<SnowflakeType>? stickerIds,
-    @Part(name: 'tts') bool? tts,
-  });
-
   /// Fetch a message.
   ///
   /// Retrieves a specific message by ID. User must have permission to view the channel and the message must exist. Returns full message details including content, author, reactions, and attachments.
@@ -410,8 +351,8 @@ abstract class ChannelsApi {
     @Part(name: 'embeds') List<RichEmbedRequest>? embeds,
     @Part(name: 'allowed_mentions') AllowedMentionsRequest? allowedMentions,
     @Part(name: 'flags') MessageFlags? flags,
-    @Part(name: 'attachments') List<Object2>? attachments,
-    @Part(name: 'message_snapshots') List<Object3>? messageSnapshots,
+    @Part(name: 'attachments') List<Object1>? attachments,
+    @Part(name: 'message_snapshots') List<Object2>? messageSnapshots,
   });
 
   /// Delete a message.

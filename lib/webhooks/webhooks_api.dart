@@ -16,7 +16,7 @@ import '../models/message_flags.dart';
 import '../models/message_nonce_request.dart';
 import '../models/message_reference_request.dart';
 import '../models/message_response_schema.dart';
-import '../models/object5.dart';
+import '../models/object3.dart';
 import '../models/rich_embed_request.dart';
 import '../models/slack_webhook_request.dart';
 import '../models/snowflake_type.dart';
@@ -190,7 +190,7 @@ abstract class WebhooksApi {
     @Query('wait') String? wait,
     @Part(name: 'content') MessageContentRequest? content,
     @Part(name: 'embeds') List<RichEmbedRequest>? embeds,
-    @Part(name: 'attachments') List<Object5>? attachments,
+    @Part(name: 'attachments') List<Object3>? attachments,
     @Part(name: 'message_reference') MessageReferenceRequest? messageReference,
     @Part(name: 'allowed_mentions') AllowedMentionsRequest? allowedMentions,
     @Part(name: 'flags') MessageFlags? flags,

@@ -2,13 +2,10 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_import, invalid_annotation_target, unnecessary_import
 
-import 'dart:convert';
-
 import 'package:dio/dio.dart' hide Headers;
 import 'package:retrofit/retrofit.dart';
 import 'package:retrofit/error_logger.dart';
 
-import '../models/allowed_mentions_request.dart';
 import '../models/bulk_delete_self_messages_request.dart';
 import '../models/bulk_ignore_friend_requests_request.dart';
 import '../models/bulk_ignore_friend_requests_response.dart';
@@ -44,15 +41,10 @@ import '../models/harvest_status_response_schema.dart';
 import '../models/harvest_status_response_schema_nullable.dart';
 import '../models/inbound_sms_challenge_start_response.dart';
 import '../models/mark_mentions_read_request.dart';
-import '../models/message_content_request.dart';
-import '../models/message_flags.dart';
 import '../models/message_list_response.dart';
-import '../models/message_nonce_request.dart';
-import '../models/message_reference_request.dart';
 import '../models/mfa_backup_codes_request.dart';
 import '../models/mfa_backup_codes_response.dart';
 import '../models/mobile_devices_list_response.dart';
-import '../models/object4.dart';
 import '../models/password_change_complete_request.dart';
 import '../models/password_change_complete_response.dart';
 import '../models/password_change_start_response.dart';
@@ -74,10 +66,8 @@ import '../models/register_mobile_device_response.dart';
 import '../models/relationship_nickname_update_request.dart';
 import '../models/relationship_response.dart';
 import '../models/relationship_type_put_request.dart';
-import '../models/rich_embed_request.dart';
 import '../models/save_message_request.dart';
 import '../models/saved_message_entry_list_response.dart';
-import '../models/scheduled_message_response_schema.dart';
 import '../models/snowflake_type.dart';
 import '../models/success_response.dart';
 import '../models/sudo_mfa_methods_response.dart';
@@ -848,89 +838,6 @@ abstract class UsersApi {
   @DELETE('/users/@me/saved-messages/{message_id}')
   Future<void> unsaveMessage({
     @Path('message_id') required SnowflakeType messageId,
-  });
-
-  /// List scheduled messages.
-  ///
-  /// Retrieves all scheduled messages for the current user. Returns list of messages that are scheduled to be sent at a future date and time.
-  @GET('/users/@me/scheduled-messages')
-  Future<List<ScheduledMessageResponseSchema>> listScheduledMessages();
-
-  /// Get scheduled message.
-  ///
-  /// Retrieves details of a specific scheduled message by ID. Returns the message content, scheduled send time, and status.
-  ///
-  /// [scheduledMessageId] - The scheduled message id.
-  @GET('/users/@me/scheduled-messages/{scheduled_message_id}')
-  Future<ScheduledMessageResponseSchema> getScheduledMessage({
-    @Path('scheduled_message_id') required String scheduledMessageId,
-  });
-
-  /// Cancel scheduled message.
-  ///
-  /// Cancels and deletes a scheduled message before it is sent. The message will not be delivered if cancelled.
-  ///
-  /// [scheduledMessageId] - The scheduled message id.
-  @DELETE('/users/@me/scheduled-messages/{scheduled_message_id}')
-  Future<void> cancelScheduledMessage({
-    @Path('scheduled_message_id') required String scheduledMessageId,
-  });
-
-  /// Update scheduled message.
-  ///
-  /// Updates an existing scheduled message before it is sent. Can modify message content, scheduled time, and timezone. Returns updated scheduled message details.
-  ///
-  /// [scheduledMessageId] - The scheduled message id.
-  ///
-  /// [content] - Name not received - field will be skipped.
-  /// Name not received - field will be skipped.
-  ///
-  /// [embeds] - Array of embed objects to include in the message.
-  /// Name not received - field will be skipped.
-  ///
-  /// [attachments] - Array of attachment objects.
-  /// Name not received - field will be skipped.
-  ///
-  /// [messageReference] - Name not received - field will be skipped.
-  /// Name not received - field will be skipped.
-  ///
-  /// [allowedMentions] - Name not received - field will be skipped.
-  /// Name not received - field will be skipped.
-  ///
-  /// [flags] - Name not received - field will be skipped.
-  ///
-  /// [nonce] - Name not received - field will be skipped.
-  ///
-  /// [favoriteMemeId] - Name not received - field will be skipped.
-  /// Name not received - field will be skipped.
-  ///
-  /// [stickerIds] - Name not received - field will be skipped.
-  /// Name not received - field will be skipped.
-  ///
-  /// [tts] - Whether this is a text-to-speech message.
-  /// Name not received - field will be skipped.
-  ///
-  /// [scheduledLocalAt] - ISO 8601 timestamp expressed in the user local timezone for when the message should be delivered.
-  /// Name not received - field will be skipped.
-  ///
-  /// [timezone] - IANA timezone identifier the schedule_local_at value is anchored to.
-  /// Name not received - field will be skipped.
-  @MultiPart()
-  @PATCH('/users/@me/scheduled-messages/{scheduled_message_id}')
-  Future<ScheduledMessageResponseSchema> updateScheduledMessage({
-    @Path('scheduled_message_id') required String scheduledMessageId,
-    @Part(name: 'scheduled_local_at') required String scheduledLocalAt,
-    @Part(name: 'timezone') required String timezone,
-    @Part(name: 'content') MessageContentRequest? content,
-    @Part(name: 'embeds') List<RichEmbedRequest>? embeds,
-    @Part(name: 'attachments') List<Object4>? attachments,
-    @Part(name: 'message_reference') MessageReferenceRequest? messageReference,
-    @Part(name: 'allowed_mentions') AllowedMentionsRequest? allowedMentions,
-    @Part(name: 'flags') MessageFlags? flags,
-    @Part(name: 'nonce') MessageNonceRequest? nonce,
-    @Part(name: 'favorite_meme_id') SnowflakeType? favoriteMemeId,
-    @Part(name: 'sticker_ids') List<SnowflakeType>? stickerIds,
-    @Part(name: 'tts') bool? tts,
   });
 
   /// Get current user settings.
