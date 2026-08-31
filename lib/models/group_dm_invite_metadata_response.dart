@@ -6,6 +6,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 import 'channel_partial_response.dart';
 import 'group_dm_invite_metadata_response_type_type.dart';
+import 'invite_metadata_response_schema.dart';
 import 'user_partial_response.dart';
 
 part 'group_dm_invite_metadata_response.g.dart';

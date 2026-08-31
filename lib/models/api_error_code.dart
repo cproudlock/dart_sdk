@@ -275,8 +275,6 @@ enum ApiErrorCode {
   invalidGrant('INVALID_GRANT'),
   @JsonValue('INVALID_HANDOFF_CODE')
   invalidHandoffCode('INVALID_HANDOFF_CODE'),
-  @JsonValue('INVALID_PACK_TYPE')
-  invalidPackType('INVALID_PACK_TYPE'),
   @JsonValue('INVALID_PERMISSIONS_INTEGER')
   invalidPermissionsInteger('INVALID_PERMISSIONS_INTEGER'),
   @JsonValue('INVALID_PERMISSIONS_NEGATIVE')
@@ -363,10 +361,6 @@ enum ApiErrorCode {
   newAccountGuildJoinRateLimited('NEW_ACCOUNT_GUILD_JOIN_RATE_LIMITED'),
   @JsonValue('MAX_INVITES')
   maxInvites('MAX_INVITES'),
-  @JsonValue('MAX_PACK_EXPRESSIONS')
-  maxPackExpressions('MAX_PACK_EXPRESSIONS'),
-  @JsonValue('MAX_PACKS')
-  maxPacks('MAX_PACKS'),
   @JsonValue('MAX_PINS_PER_CHANNEL')
   maxPinsPerChannel('MAX_PINS_PER_CHANNEL'),
   @JsonValue('MESSAGE_TOTAL_ATTACHMENT_SIZE_TOO_LARGE')
@@ -435,8 +429,6 @@ enum ApiErrorCode {
   nsfwContentAgeRestricted('NSFW_CONTENT_AGE_RESTRICTED'),
   @JsonValue('NSFW_EMOJI_STICKER_BLOCKED')
   nsfwEmojiStickerBlocked('NSFW_EMOJI_STICKER_BLOCKED'),
-  @JsonValue('PACK_ACCESS_DENIED')
-  packAccessDenied('PACK_ACCESS_DENIED'),
   @JsonValue('PASSKEY_AUTHENTICATION_FAILED')
   passkeyAuthenticationFailed('PASSKEY_AUTHENTICATION_FAILED'),
   @JsonValue('PASSKEYS_DISABLED')
@@ -609,8 +601,6 @@ enum ApiErrorCode {
   unknownMember('UNKNOWN_MEMBER'),
   @JsonValue('UNKNOWN_MESSAGE')
   unknownMessage('UNKNOWN_MESSAGE'),
-  @JsonValue('UNKNOWN_PACK')
-  unknownPack('UNKNOWN_PACK'),
   @JsonValue('UNKNOWN_REPORT')
   unknownReport('UNKNOWN_REPORT'),
   @JsonValue('UNKNOWN_ROLE')

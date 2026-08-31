@@ -6,57 +6,58 @@ part of 'invite_response_schema.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-InviteResponseSchemaGuildInviteResponse
-_$InviteResponseSchemaGuildInviteResponseFromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'InviteResponseSchemaGuildInviteResponse',
-      json,
-      ($checkedConvert) {
-        final val = InviteResponseSchemaGuildInviteResponse(
-          code: $checkedConvert('code', (v) => v as String),
-          type: $checkedConvert(
-            'type',
-            (v) => GuildInviteResponseTypeType.fromJson((v as num).toInt()),
-          ),
-          guild: $checkedConvert(
-            'guild',
-            (v) => GuildInviteResponseGuild.fromJson(v as Map<String, dynamic>),
-          ),
-          channel: $checkedConvert(
-            'channel',
-            (v) => ChannelPartialResponse.fromJson(v as Map<String, dynamic>),
-          ),
-          inviter: $checkedConvert(
-            'inviter',
-            (v) => v == null
-                ? null
-                : UserPartialResponse.fromJson(v as Map<String, dynamic>),
-          ),
-          memberCount: $checkedConvert(
-            'member_count',
-            (v) => (v as num).toInt(),
-          ),
-          presenceCount: $checkedConvert(
-            'presence_count',
-            (v) => (v as num).toInt(),
-          ),
-          expiresAt: $checkedConvert(
-            'expires_at',
-            (v) => v == null ? null : DateTime.parse(v as String),
-          ),
-          temporary: $checkedConvert('temporary', (v) => v as bool),
-        );
-        return val;
-      },
-      fieldKeyMap: const {
-        'memberCount': 'member_count',
-        'presenceCount': 'presence_count',
-        'expiresAt': 'expires_at',
-      },
-    );
+Map<String, dynamic> _$InviteResponseSchemaToJson(
+  InviteResponseSchema instance,
+) => <String, dynamic>{};
 
-Map<String, dynamic> _$InviteResponseSchemaGuildInviteResponseToJson(
-  InviteResponseSchemaGuildInviteResponse instance,
+InviteResponseSchema0 _$InviteResponseSchema0FromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate(
+  'InviteResponseSchema0',
+  json,
+  ($checkedConvert) {
+    final val = InviteResponseSchema0(
+      code: $checkedConvert('code', (v) => v as String),
+      type: $checkedConvert(
+        'type',
+        (v) => GuildInviteResponseTypeType.fromJson((v as num).toInt()),
+      ),
+      guild: $checkedConvert(
+        'guild',
+        (v) => GuildInviteResponseGuild.fromJson(v as Map<String, dynamic>),
+      ),
+      channel: $checkedConvert(
+        'channel',
+        (v) => ChannelPartialResponse.fromJson(v as Map<String, dynamic>),
+      ),
+      inviter: $checkedConvert(
+        'inviter',
+        (v) => v == null
+            ? null
+            : UserPartialResponse.fromJson(v as Map<String, dynamic>),
+      ),
+      memberCount: $checkedConvert('member_count', (v) => (v as num).toInt()),
+      presenceCount: $checkedConvert(
+        'presence_count',
+        (v) => (v as num).toInt(),
+      ),
+      expiresAt: $checkedConvert(
+        'expires_at',
+        (v) => v == null ? null : DateTime.parse(v as String),
+      ),
+      temporary: $checkedConvert('temporary', (v) => v as bool),
+    );
+    return val;
+  },
+  fieldKeyMap: const {
+    'memberCount': 'member_count',
+    'presenceCount': 'presence_count',
+    'expiresAt': 'expires_at',
+  },
+);
+
+Map<String, dynamic> _$InviteResponseSchema0ToJson(
+  InviteResponseSchema0 instance,
 ) => <String, dynamic>{
   'code': instance.code,
   'type': instance.type,
@@ -69,14 +70,13 @@ Map<String, dynamic> _$InviteResponseSchemaGuildInviteResponseToJson(
   'temporary': instance.temporary,
 };
 
-InviteResponseSchemaGroupDmInviteResponse
-_$InviteResponseSchemaGroupDmInviteResponseFromJson(
+InviteResponseSchema1 _$InviteResponseSchema1FromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate(
-  'InviteResponseSchemaGroupDmInviteResponse',
+  'InviteResponseSchema1',
   json,
   ($checkedConvert) {
-    final val = InviteResponseSchemaGroupDmInviteResponse(
+    final val = InviteResponseSchema1(
       code: $checkedConvert('code', (v) => v as String),
       type: $checkedConvert(
         'type',
@@ -104,55 +104,14 @@ _$InviteResponseSchemaGroupDmInviteResponseFromJson(
   fieldKeyMap: const {'memberCount': 'member_count', 'expiresAt': 'expires_at'},
 );
 
-Map<String, dynamic> _$InviteResponseSchemaGroupDmInviteResponseToJson(
-  InviteResponseSchemaGroupDmInviteResponse instance,
+Map<String, dynamic> _$InviteResponseSchema1ToJson(
+  InviteResponseSchema1 instance,
 ) => <String, dynamic>{
   'code': instance.code,
   'type': instance.type,
   'channel': instance.channel,
   'inviter': ?instance.inviter,
   'member_count': instance.memberCount,
-  'expires_at': ?instance.expiresAt?.toIso8601String(),
-  'temporary': instance.temporary,
-};
-
-InviteResponseSchemaPackInviteResponse
-_$InviteResponseSchemaPackInviteResponseFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('InviteResponseSchemaPackInviteResponse', json, (
-      $checkedConvert,
-    ) {
-      final val = InviteResponseSchemaPackInviteResponse(
-        code: $checkedConvert('code', (v) => v as String),
-        type: $checkedConvert(
-          'type',
-          (v) => PackInviteResponseTypeType.fromJson((v as num).toInt()),
-        ),
-        pack: $checkedConvert(
-          'pack',
-          (v) => PackInviteResponsePack.fromJson(v as Map<String, dynamic>),
-        ),
-        inviter: $checkedConvert(
-          'inviter',
-          (v) => v == null
-              ? null
-              : UserPartialResponse.fromJson(v as Map<String, dynamic>),
-        ),
-        expiresAt: $checkedConvert(
-          'expires_at',
-          (v) => v == null ? null : DateTime.parse(v as String),
-        ),
-        temporary: $checkedConvert('temporary', (v) => v as bool),
-      );
-      return val;
-    }, fieldKeyMap: const {'expiresAt': 'expires_at'});
-
-Map<String, dynamic> _$InviteResponseSchemaPackInviteResponseToJson(
-  InviteResponseSchemaPackInviteResponse instance,
-) => <String, dynamic>{
-  'code': instance.code,
-  'type': instance.type,
-  'pack': instance.pack,
-  'inviter': ?instance.inviter,
   'expires_at': ?instance.expiresAt?.toIso8601String(),
   'temporary': instance.temporary,
 };

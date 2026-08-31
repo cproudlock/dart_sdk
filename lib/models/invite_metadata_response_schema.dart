@@ -9,34 +9,46 @@ import 'guild_invite_metadata_response_guild.dart';
 import 'channel_partial_response.dart';
 import 'user_partial_response.dart';
 import 'group_dm_invite_metadata_response_type_type.dart';
-import 'pack_invite_metadata_response_type_type.dart';
-import 'pack_invite_metadata_response_pack.dart';
 
 part 'invite_metadata_response_schema.g.dart';
 
-class InviteMetadataResponseSchema {
-  final Map<String, dynamic> _json;
-
-  const InviteMetadataResponseSchema(this._json);
+@JsonSerializable(createFactory: false)
+sealed class InviteMetadataResponseSchema {
+  const InviteMetadataResponseSchema();
 
   factory InviteMetadataResponseSchema.fromJson(Map<String, dynamic> json) =>
-      InviteMetadataResponseSchema(json);
+      InviteMetadataResponseSchemaUnionDeserializer.tryDeserialize(json);
 
-  Map<String, dynamic> toJson() => _json;
+  Map<String, dynamic> toJson();
+}
 
-  InviteMetadataResponseSchemaGuildInviteMetadataResponse
-  toGuildInviteMetadataResponse() =>
-      InviteMetadataResponseSchemaGuildInviteMetadataResponse.fromJson(_json);
-  InviteMetadataResponseSchemaGroupDmInviteMetadataResponse
-  toGroupDmInviteMetadataResponse() =>
-      InviteMetadataResponseSchemaGroupDmInviteMetadataResponse.fromJson(_json);
-  InviteMetadataResponseSchemaPackInviteMetadataResponse
-  toPackInviteMetadataResponse() =>
-      InviteMetadataResponseSchemaPackInviteMetadataResponse.fromJson(_json);
+extension InviteMetadataResponseSchemaUnionDeserializer
+    on InviteMetadataResponseSchema {
+  static InviteMetadataResponseSchema tryDeserialize(
+    Map<String, dynamic> json, {
+    String key = 'type',
+    Map<Type, Object?>? mapping,
+  }) {
+    final mappingFallback = const <Type, Object?>{
+      InviteMetadataResponseSchema0: '0',
+      InviteMetadataResponseSchema1: '1',
+    };
+    final value = json[key];
+    final effective = mapping ?? mappingFallback;
+    return switch (value) {
+      _ when value == effective[InviteMetadataResponseSchema0] =>
+        InviteMetadataResponseSchema0.fromJson(json),
+      _ when value == effective[InviteMetadataResponseSchema1] =>
+        InviteMetadataResponseSchema1.fromJson(json),
+      _ => throw FormatException(
+        'Unknown discriminator value "${json[key]}" for InviteMetadataResponseSchema',
+      ),
+    };
+  }
 }
 
 @JsonSerializable()
-class InviteMetadataResponseSchemaGuildInviteMetadataResponse {
+class InviteMetadataResponseSchema0 extends InviteMetadataResponseSchema {
   final String code;
   final GuildInviteMetadataResponseTypeType type;
   final GuildInviteMetadataResponseGuild guild;
@@ -58,7 +70,7 @@ class InviteMetadataResponseSchemaGuildInviteMetadataResponse {
   @JsonKey(name: 'max_age')
   final int maxAge;
 
-  const InviteMetadataResponseSchemaGuildInviteMetadataResponse({
+  const InviteMetadataResponseSchema0({
     required this.code,
     required this.type,
     required this.guild,
@@ -74,16 +86,15 @@ class InviteMetadataResponseSchemaGuildInviteMetadataResponse {
     required this.maxAge,
   });
 
-  factory InviteMetadataResponseSchemaGuildInviteMetadataResponse.fromJson(
-    Map<String, dynamic> json,
-  ) => _$InviteMetadataResponseSchemaGuildInviteMetadataResponseFromJson(json);
+  factory InviteMetadataResponseSchema0.fromJson(Map<String, dynamic> json) =>
+      _$InviteMetadataResponseSchema0FromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$InviteMetadataResponseSchemaGuildInviteMetadataResponseToJson(this);
+  @override
+  Map<String, dynamic> toJson() => _$InviteMetadataResponseSchema0ToJson(this);
 }
 
 @JsonSerializable()
-class InviteMetadataResponseSchemaGroupDmInviteMetadataResponse {
+class InviteMetadataResponseSchema1 extends InviteMetadataResponseSchema {
   final String code;
   final GroupDmInviteMetadataResponseTypeType type;
   final ChannelPartialResponse channel;
@@ -100,7 +111,7 @@ class InviteMetadataResponseSchemaGroupDmInviteMetadataResponse {
   @JsonKey(name: 'max_uses')
   final int maxUses;
 
-  const InviteMetadataResponseSchemaGroupDmInviteMetadataResponse({
+  const InviteMetadataResponseSchema1({
     required this.code,
     required this.type,
     required this.channel,
@@ -113,47 +124,9 @@ class InviteMetadataResponseSchemaGroupDmInviteMetadataResponse {
     required this.maxUses,
   });
 
-  factory InviteMetadataResponseSchemaGroupDmInviteMetadataResponse.fromJson(
-    Map<String, dynamic> json,
-  ) =>
-      _$InviteMetadataResponseSchemaGroupDmInviteMetadataResponseFromJson(json);
+  factory InviteMetadataResponseSchema1.fromJson(Map<String, dynamic> json) =>
+      _$InviteMetadataResponseSchema1FromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$InviteMetadataResponseSchemaGroupDmInviteMetadataResponseToJson(this);
-}
-
-@JsonSerializable()
-class InviteMetadataResponseSchemaPackInviteMetadataResponse {
-  final String code;
-  final PackInviteMetadataResponseTypeType type;
-  final PackInviteMetadataResponsePack pack;
-  @JsonKey(includeIfNull: false)
-  final UserPartialResponse? inviter;
-  @JsonKey(includeIfNull: false, name: 'expires_at')
-  final DateTime? expiresAt;
-  final bool temporary;
-  @JsonKey(name: 'created_at')
-  final DateTime createdAt;
-  final int uses;
-  @JsonKey(name: 'max_uses')
-  final int maxUses;
-
-  const InviteMetadataResponseSchemaPackInviteMetadataResponse({
-    required this.code,
-    required this.type,
-    required this.pack,
-    required this.inviter,
-    required this.expiresAt,
-    required this.temporary,
-    required this.createdAt,
-    required this.uses,
-    required this.maxUses,
-  });
-
-  factory InviteMetadataResponseSchemaPackInviteMetadataResponse.fromJson(
-    Map<String, dynamic> json,
-  ) => _$InviteMetadataResponseSchemaPackInviteMetadataResponseFromJson(json);
-
-  Map<String, dynamic> toJson() =>
-      _$InviteMetadataResponseSchemaPackInviteMetadataResponseToJson(this);
+  @override
+  Map<String, dynamic> toJson() => _$InviteMetadataResponseSchema1ToJson(this);
 }
