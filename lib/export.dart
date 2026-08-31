@@ -426,6 +426,7 @@ export 'models/entrance_sound_play_request.dart';
 export 'models/webhook_update_request.dart';
 export 'models/webhook_token_response.dart';
 export 'models/webhook_token_update_request.dart';
+export 'models/webhook_message_request.dart';
 export 'models/git_hub_webhook.dart';
 export 'models/int64_type.dart';
 export 'models/instatus_webhook.dart';

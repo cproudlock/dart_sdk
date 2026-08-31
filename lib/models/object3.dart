@@ -4,121 +4,78 @@
 
 import 'package:json_annotation/json_annotation.dart';
 
-import 'message_attachment_flags.dart';
-import 'int32_type.dart';
 import 'non_negative_safe_integer_type.dart';
+import 'message_attachment_flags.dart';
 
 part 'object3.g.dart';
 
-/// Name not received and was auto-generated.
-class Object3 {
-  final Map<String, dynamic> _json;
-
-  const Object3(this._json);
-
-  factory Object3.fromJson(Map<String, dynamic> json) => Object3(json);
-
-  Map<String, dynamic> toJson() => _json;
-
-  Object3ClientUploadedAttachmentRequest toClientUploadedAttachmentRequest() =>
-      Object3ClientUploadedAttachmentRequest.fromJson(_json);
-  Object3Variant2 toVariant2() => Object3Variant2.fromJson(_json);
-}
-
 @JsonSerializable()
-class Object3ClientUploadedAttachmentRequest {
-  @JsonKey(includeIfNull: false)
-  final String? title;
-  @JsonKey(includeIfNull: false)
-  final String? description;
-  @JsonKey(includeIfNull: false)
-  final MessageAttachmentFlags? flags;
-  @JsonKey(includeIfNull: false)
-  final Int32Type? duration;
-  @JsonKey(includeIfNull: false)
-  final String? waveform;
-  final Int32Type id;
-  final String filename;
-  @JsonKey(name: 'upload_filename')
-  final String uploadFilename;
-  @JsonKey(name: 'file_size')
-  final NonNegativeSafeIntegerType fileSize;
-  @JsonKey(name: 'content_type')
-  final String contentType;
-
-  const Object3ClientUploadedAttachmentRequest({
-    required this.title,
-    required this.description,
-    required this.flags,
-    required this.duration,
-    required this.waveform,
-    required this.id,
-    required this.filename,
-    required this.uploadFilename,
-    required this.fileSize,
-    required this.contentType,
+class Object3 {
+  const Object3({
+    this.id,
+    this.filename,
+    this.description,
+    this.contentType,
+    this.size,
+    this.url,
+    this.proxyUrl,
+    this.height,
+    this.width,
+    this.ephemeral,
+    this.duration,
+    this.waveform,
+    this.flags,
   });
 
-  factory Object3ClientUploadedAttachmentRequest.fromJson(
-    Map<String, dynamic> json,
-  ) => _$Object3ClientUploadedAttachmentRequestFromJson(json);
+  factory Object3.fromJson(Map<String, Object?> json) =>
+      _$Object3FromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$Object3ClientUploadedAttachmentRequestToJson(this);
-}
-
-@JsonSerializable()
-class Object3Variant2 {
+  /// Attachment ID for referencing uploaded files
   final dynamic id;
+
+  /// Name of the file (1-1024 characters)
   @JsonKey(includeIfNull: false)
   final String? filename;
+
+  /// Description for the attachment (max 4096 characters)
   @JsonKey(includeIfNull: false)
   final String? description;
+
+  /// MIME type of the file
   @JsonKey(includeIfNull: false, name: 'content_type')
   final String? contentType;
-  @JsonKey(includeIfNull: false, name: 'upload_filename')
-  final dynamic uploadFilename;
-  @JsonKey(includeIfNull: false, name: 'file_size')
-  final dynamic fileSize;
   @JsonKey(includeIfNull: false)
   final NonNegativeSafeIntegerType? size;
+
+  /// URL of the attachment
   @JsonKey(includeIfNull: false)
   final String? url;
+
+  /// Proxied URL of the attachment
   @JsonKey(includeIfNull: false, name: 'proxy_url')
   final String? proxyUrl;
+
+  /// Height of the image/video in pixels
   @JsonKey(includeIfNull: false)
   final int? height;
+
+  /// Width of the image/video in pixels
   @JsonKey(includeIfNull: false)
   final int? width;
+
+  /// Whether this attachment is ephemeral
   @JsonKey(includeIfNull: false)
   final bool? ephemeral;
+
+  /// Duration of audio file in seconds
   @JsonKey(includeIfNull: false)
   final num? duration;
+
+  /// Base64-encoded bytearray of audio waveform
   @JsonKey(includeIfNull: false)
   final String? waveform;
   @JsonKey(includeIfNull: false)
   final MessageAttachmentFlags? flags;
 
-  const Object3Variant2({
-    required this.id,
-    required this.filename,
-    required this.description,
-    required this.contentType,
-    required this.uploadFilename,
-    required this.fileSize,
-    required this.size,
-    required this.url,
-    required this.proxyUrl,
-    required this.height,
-    required this.width,
-    required this.ephemeral,
-    required this.duration,
-    required this.waveform,
-    required this.flags,
-  });
-
-  factory Object3Variant2.fromJson(Map<String, dynamic> json) =>
-      _$Object3Variant2FromJson(json);
-
-  Map<String, dynamic> toJson() => _$Object3Variant2ToJson(this);
+  Map<String, Object?> toJson() => _$Object3ToJson(this);
 }

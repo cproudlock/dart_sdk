@@ -155,9 +155,6 @@ abstract class WebhooksApi {
   /// [embeds] - Array of embed objects to include in the message.
   /// Name not received - field will be skipped.
   ///
-  /// [attachments] - Array of attachment objects.
-  /// Name not received - field will be skipped.
-  ///
   /// [messageReference] - Name not received - field will be skipped.
   /// Name not received - field will be skipped.
   ///
@@ -182,6 +179,9 @@ abstract class WebhooksApi {
   ///
   /// [avatarUrl] - Name not received - field will be skipped.
   /// Name not received - field will be skipped.
+  ///
+  /// [attachments] - Array of multipart attachment metadata objects.
+  /// Name not received - field will be skipped.
   @MultiPart()
   @POST('/webhooks/{webhook_id}/{token}')
   Future<MessageResponseSchema> executeWebhook({
@@ -190,7 +190,6 @@ abstract class WebhooksApi {
     @Query('wait') String? wait,
     @Part(name: 'content') MessageContentRequest? content,
     @Part(name: 'embeds') List<RichEmbedRequest>? embeds,
-    @Part(name: 'attachments') List<Object3>? attachments,
     @Part(name: 'message_reference') MessageReferenceRequest? messageReference,
     @Part(name: 'allowed_mentions') AllowedMentionsRequest? allowedMentions,
     @Part(name: 'flags') MessageFlags? flags,
@@ -200,6 +199,7 @@ abstract class WebhooksApi {
     @Part(name: 'tts') bool? tts,
     @Part(name: 'username') String? username,
     @Part(name: 'avatar_url') String? avatarUrl,
+    @Part(name: 'attachments') List<Object3>? attachments,
   });
 
   /// Execute GitHub webhook.
