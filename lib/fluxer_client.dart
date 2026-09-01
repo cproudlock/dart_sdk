@@ -19,7 +19,6 @@ import 'gifts/gifts_api.dart';
 import 'guilds/guilds_api.dart';
 import 'users/users_api.dart';
 import 'geolocation/geolocation_api.dart';
-import 'packs/packs_api.dart';
 import 'premium/premium_api.dart';
 import 'billing/billing_api.dart';
 import 'read_states/read_states_api.dart';
@@ -57,7 +56,6 @@ class FluxerClient {
   GuildsApi? _guilds;
   UsersApi? _users;
   GeolocationApi? _geolocation;
-  PacksApi? _packs;
   PremiumApi? _premium;
   BillingApi? _billing;
   ReadStatesApi? _readStates;
@@ -105,8 +103,6 @@ class FluxerClient {
 
   GeolocationApi get geolocation =>
       _geolocation ??= GeolocationApi(_dio, baseUrl: _baseUrl);
-
-  PacksApi get packs => _packs ??= PacksApi(_dio, baseUrl: _baseUrl);
 
   PremiumApi get premium => _premium ??= PremiumApi(_dio, baseUrl: _baseUrl);
 

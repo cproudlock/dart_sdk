@@ -22,8 +22,9 @@ class Object1 {
 
   Object1ClientUploadedAttachmentRequest toClientUploadedAttachmentRequest() =>
       Object1ClientUploadedAttachmentRequest.fromJson(_json);
-  Object1ClientAttachmentRequest toClientAttachmentRequest() =>
-      Object1ClientAttachmentRequest.fromJson(_json);
+  Object1ClientAttachmentReferenceRequest
+  toClientAttachmentReferenceRequest() =>
+      Object1ClientAttachmentReferenceRequest.fromJson(_json);
 }
 
 @JsonSerializable()
@@ -69,7 +70,7 @@ class Object1ClientUploadedAttachmentRequest {
 }
 
 @JsonSerializable()
-class Object1ClientAttachmentRequest {
+class Object1ClientAttachmentReferenceRequest {
   @JsonKey(includeIfNull: false)
   final String? title;
   @JsonKey(includeIfNull: false)
@@ -80,12 +81,11 @@ class Object1ClientAttachmentRequest {
   final Int32Type? duration;
   @JsonKey(includeIfNull: false)
   final String? waveform;
-  final Int32Type id;
-  final String filename;
-  @JsonKey(includeIfNull: false, name: 'content_type')
-  final String? contentType;
+  final dynamic id;
+  @JsonKey(includeIfNull: false)
+  final String? filename;
 
-  const Object1ClientAttachmentRequest({
+  const Object1ClientAttachmentReferenceRequest({
     required this.title,
     required this.description,
     required this.flags,
@@ -93,11 +93,12 @@ class Object1ClientAttachmentRequest {
     required this.waveform,
     required this.id,
     required this.filename,
-    required this.contentType,
   });
 
-  factory Object1ClientAttachmentRequest.fromJson(Map<String, dynamic> json) =>
-      _$Object1ClientAttachmentRequestFromJson(json);
+  factory Object1ClientAttachmentReferenceRequest.fromJson(
+    Map<String, dynamic> json,
+  ) => _$Object1ClientAttachmentReferenceRequestFromJson(json);
 
-  Map<String, dynamic> toJson() => _$Object1ClientAttachmentRequestToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$Object1ClientAttachmentReferenceRequestToJson(this);
 }

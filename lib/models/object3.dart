@@ -4,19 +4,78 @@
 
 import 'package:json_annotation/json_annotation.dart';
 
-import 'object3_attachments.dart';
+import 'non_negative_safe_integer_type.dart';
+import 'message_attachment_flags.dart';
 
 part 'object3.g.dart';
 
 @JsonSerializable()
 class Object3 {
-  const Object3({this.attachments});
+  const Object3({
+    this.id,
+    this.filename,
+    this.description,
+    this.contentType,
+    this.size,
+    this.url,
+    this.proxyUrl,
+    this.height,
+    this.width,
+    this.ephemeral,
+    this.duration,
+    this.waveform,
+    this.flags,
+  });
 
   factory Object3.fromJson(Map<String, Object?> json) =>
       _$Object3FromJson(json);
 
+  /// Attachment ID for referencing uploaded files
+  final dynamic id;
+
+  /// Name of the file (1-1024 characters)
   @JsonKey(includeIfNull: false)
-  final List<Object3Attachments>? attachments;
+  final String? filename;
+
+  /// Description for the attachment (max 4096 characters)
+  @JsonKey(includeIfNull: false)
+  final String? description;
+
+  /// MIME type of the file
+  @JsonKey(includeIfNull: false, name: 'content_type')
+  final String? contentType;
+  @JsonKey(includeIfNull: false)
+  final NonNegativeSafeIntegerType? size;
+
+  /// URL of the attachment
+  @JsonKey(includeIfNull: false)
+  final String? url;
+
+  /// Proxied URL of the attachment
+  @JsonKey(includeIfNull: false, name: 'proxy_url')
+  final String? proxyUrl;
+
+  /// Height of the image/video in pixels
+  @JsonKey(includeIfNull: false)
+  final int? height;
+
+  /// Width of the image/video in pixels
+  @JsonKey(includeIfNull: false)
+  final int? width;
+
+  /// Whether this attachment is ephemeral
+  @JsonKey(includeIfNull: false)
+  final bool? ephemeral;
+
+  /// Duration of audio file in seconds
+  @JsonKey(includeIfNull: false)
+  final num? duration;
+
+  /// Base64-encoded bytearray of audio waveform
+  @JsonKey(includeIfNull: false)
+  final String? waveform;
+  @JsonKey(includeIfNull: false)
+  final MessageAttachmentFlags? flags;
 
   Map<String, Object?> toJson() => _$Object3ToJson(this);
 }

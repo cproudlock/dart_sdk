@@ -284,7 +284,6 @@ class _WebhooksApi implements WebhooksApi {
     String? wait,
     String? content,
     List<RichEmbedRequest>? embeds,
-    List<Object5>? attachments,
     MessageReferenceRequest? messageReference,
     AllowedMentionsRequest? allowedMentions,
     int? flags,
@@ -294,6 +293,7 @@ class _WebhooksApi implements WebhooksApi {
     bool? tts,
     String? username,
     String? avatarUrl,
+    List<Object3>? attachments,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'wait': wait};
@@ -304,7 +304,6 @@ class _WebhooksApi implements WebhooksApi {
       _data.fields.add(MapEntry('content', content));
     }
     _data.fields.add(MapEntry('embeds', jsonEncode(embeds)));
-    _data.fields.add(MapEntry('attachments', jsonEncode(attachments)));
     _data.fields.add(
       MapEntry(
         'message_reference',
@@ -338,6 +337,7 @@ class _WebhooksApi implements WebhooksApi {
     if (avatarUrl != null) {
       _data.fields.add(MapEntry('avatar_url', avatarUrl));
     }
+    _data.fields.add(MapEntry('attachments', jsonEncode(attachments)));
     final _options = _setStreamType<MessageResponseSchema>(
       Options(
             method: 'POST',

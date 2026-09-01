@@ -4,14 +4,14 @@
 
 import 'package:json_annotation/json_annotation.dart';
 
-part 'object3_attachments.g.dart';
+part 'object2_attachments.g.dart';
 
 @JsonSerializable()
-class Object3Attachments {
-  const Object3Attachments({required this.id, this.title, this.description});
+class Object2Attachments {
+  const Object2Attachments({required this.id, this.title, this.description});
 
-  factory Object3Attachments.fromJson(Map<String, Object?> json) =>
-      _$Object3AttachmentsFromJson(json);
+  factory Object2Attachments.fromJson(Map<String, Object?> json) =>
+      _$Object2AttachmentsFromJson(json);
 
   /// The identifier of the snapshot attachment
   final dynamic id;
@@ -24,5 +24,5 @@ class Object3Attachments {
   @JsonKey(includeIfNull: false)
   final String? description;
 
-  Map<String, Object?> toJson() => _$Object3AttachmentsToJson(this);
+  Map<String, Object?> toJson() => _$Object2AttachmentsToJson(this);
 }

@@ -51,24 +51,25 @@ Map<String, dynamic> _$Object1ClientUploadedAttachmentRequestToJson(
   'content_type': instance.contentType,
 };
 
-Object1ClientAttachmentRequest _$Object1ClientAttachmentRequestFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('Object1ClientAttachmentRequest', json, ($checkedConvert) {
-  final val = Object1ClientAttachmentRequest(
-    title: $checkedConvert('title', (v) => v as String?),
-    description: $checkedConvert('description', (v) => v as String?),
-    flags: $checkedConvert('flags', (v) => (v as num?)?.toInt()),
-    duration: $checkedConvert('duration', (v) => (v as num?)?.toInt()),
-    waveform: $checkedConvert('waveform', (v) => v as String?),
-    id: $checkedConvert('id', (v) => (v as num).toInt()),
-    filename: $checkedConvert('filename', (v) => v as String),
-    contentType: $checkedConvert('content_type', (v) => v as String?),
-  );
-  return val;
-}, fieldKeyMap: const {'contentType': 'content_type'});
+Object1ClientAttachmentReferenceRequest
+_$Object1ClientAttachmentReferenceRequestFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('Object1ClientAttachmentReferenceRequest', json, (
+      $checkedConvert,
+    ) {
+      final val = Object1ClientAttachmentReferenceRequest(
+        title: $checkedConvert('title', (v) => v as String?),
+        description: $checkedConvert('description', (v) => v as String?),
+        flags: $checkedConvert('flags', (v) => (v as num?)?.toInt()),
+        duration: $checkedConvert('duration', (v) => (v as num?)?.toInt()),
+        waveform: $checkedConvert('waveform', (v) => v as String?),
+        id: $checkedConvert('id', (v) => v),
+        filename: $checkedConvert('filename', (v) => v as String?),
+      );
+      return val;
+    });
 
-Map<String, dynamic> _$Object1ClientAttachmentRequestToJson(
-  Object1ClientAttachmentRequest instance,
+Map<String, dynamic> _$Object1ClientAttachmentReferenceRequestToJson(
+  Object1ClientAttachmentReferenceRequest instance,
 ) => <String, dynamic>{
   'title': ?instance.title,
   'description': ?instance.description,
@@ -76,6 +77,5 @@ Map<String, dynamic> _$Object1ClientAttachmentRequestToJson(
   'duration': ?instance.duration,
   'waveform': ?instance.waveform,
   'id': instance.id,
-  'filename': instance.filename,
-  'content_type': ?instance.contentType,
+  'filename': ?instance.filename,
 };

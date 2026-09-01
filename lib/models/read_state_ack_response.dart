@@ -10,10 +10,7 @@ part 'read_state_ack_response.g.dart';
 
 @JsonSerializable()
 class ReadStateAckResponse {
-  const ReadStateAckResponse({
-    required this.readStates,
-    required this.readStateProto,
-  });
+  const ReadStateAckResponse({required this.readStates});
 
   factory ReadStateAckResponse.fromJson(Map<String, Object?> json) =>
       _$ReadStateAckResponseFromJson(json);
@@ -21,10 +18,6 @@ class ReadStateAckResponse {
   /// Authoritative read states after applying the acknowledgement
   @JsonKey(name: 'read_states')
   final List<ReadStateResponse> readStates;
-
-  /// Authoritative read states after applying the acknowledgement, encoded as a base64 protobuf bundle
-  @JsonKey(name: 'read_state_proto')
-  final String readStateProto;
 
   Map<String, Object?> toJson() => _$ReadStateAckResponseToJson(this);
 }
