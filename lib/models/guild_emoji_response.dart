@@ -27,7 +27,7 @@ class GuildEmojiResponse {
   /// Whether this emoji is animated
   final bool animated;
 
-  /// Whether this emoji is classified as NSFW
+  /// Deprecated; always false. Retained for compatibility with older clients
   final bool nsfw;
 
   Map<String, Object?> toJson() => _$GuildEmojiResponseToJson(this);

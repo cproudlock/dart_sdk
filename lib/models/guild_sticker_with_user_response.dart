@@ -38,7 +38,7 @@ class GuildStickerWithUserResponse {
   /// Whether this sticker is animated
   final bool animated;
 
-  /// Whether this sticker is classified as NSFW
+  /// Deprecated; always false. Retained for compatibility with older clients
   final bool nsfw;
   final UserPartialResponse user;
 

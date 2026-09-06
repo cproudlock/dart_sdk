@@ -30,7 +30,7 @@ class GuildEmojiWithUserResponse {
   /// Whether this emoji is animated
   final bool animated;
 
-  /// Whether this emoji is classified as NSFW
+  /// Deprecated; always false. Retained for compatibility with older clients
   final bool nsfw;
   final UserPartialResponse user;
 

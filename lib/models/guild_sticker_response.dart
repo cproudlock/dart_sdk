@@ -35,7 +35,7 @@ class GuildStickerResponse {
   /// Whether this sticker is animated
   final bool animated;
 
-  /// Whether this sticker is classified as NSFW
+  /// Deprecated; always false. Retained for compatibility with older clients
   final bool nsfw;
 
   Map<String, Object?> toJson() => _$GuildStickerResponseToJson(this);

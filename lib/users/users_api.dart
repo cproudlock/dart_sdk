@@ -42,6 +42,11 @@ import '../models/harvest_status_response_schema_nullable.dart';
 import '../models/inbound_sms_challenge_start_response.dart';
 import '../models/mark_mentions_read_request.dart';
 import '../models/message_list_response.dart';
+import '../models/mfa_backup_codes_challenge_regenerate_request.dart';
+import '../models/mfa_backup_codes_challenge_resend_request.dart';
+import '../models/mfa_backup_codes_challenge_start_response.dart';
+import '../models/mfa_backup_codes_challenge_verify_request.dart';
+import '../models/mfa_backup_codes_challenge_verify_response.dart';
 import '../models/mfa_backup_codes_request.dart';
 import '../models/mfa_backup_codes_response.dart';
 import '../models/mobile_devices_list_response.dart';
@@ -51,6 +56,7 @@ import '../models/password_change_start_response.dart';
 import '../models/password_change_ticket_request.dart';
 import '../models/password_change_verify_request.dart';
 import '../models/password_change_verify_response.dart';
+import '../models/phone_gate_escape_preview_response.dart';
 import '../models/phone_send_verification_request.dart';
 import '../models/phone_send_verification_response.dart';
 import '../models/phone_verify_request.dart';
@@ -486,6 +492,46 @@ abstract class UsersApi {
     @Body() required MfaBackupCodesRequest body,
   });
 
+  /// Start backup codes challenge.
+  ///
+  /// Initiates the challenge required to view existing backup codes. Sends a verification code to the user's email address. Returns a ticket for use in the remaining challenge steps.
+  ///
+  /// [body] - Name not received - field will be skipped.
+  @POST('/users/@me/mfa/backup-codes/challenge')
+  Future<MfaBackupCodesChallengeStartResponse> startBackupCodesChallenge({
+    @Body() required EmptyBodyRequest body,
+  });
+
+  /// Regenerate backup codes with a verified challenge.
+  ///
+  /// Replaces the account backup codes using the proof token from a verified backup codes challenge. Old codes are invalidated.
+  ///
+  /// [body] - Name not received - field will be skipped.
+  @POST('/users/@me/mfa/backup-codes/challenge/regenerate')
+  Future<MfaBackupCodesResponse> regenerateBackupCodesChallenge({
+    @Body() required MfaBackupCodesChallengeRegenerateRequest body,
+  });
+
+  /// Resend backup codes challenge code.
+  ///
+  /// Resends the verification code for a backup codes challenge. Use if the original code was not received. Requires a valid backup codes challenge ticket.
+  ///
+  /// [body] - Name not received - field will be skipped.
+  @POST('/users/@me/mfa/backup-codes/challenge/resend')
+  Future<void> resendBackupCodesChallenge({
+    @Body() required MfaBackupCodesChallengeResendRequest body,
+  });
+
+  /// Verify backup codes challenge code.
+  ///
+  /// Verifies the email code sent during a backup codes challenge and returns the existing backup codes along with a proof token. The code is consumed on success and the proof token authorizes regeneration on the same ticket.
+  ///
+  /// [body] - Name not received - field will be skipped.
+  @POST('/users/@me/mfa/backup-codes/challenge/verify')
+  Future<MfaBackupCodesChallengeVerifyResponse> verifyBackupCodesChallenge({
+    @Body() required MfaBackupCodesChallengeVerifyRequest body,
+  });
+
   /// Disable TOTP multi-factor authentication.
   ///
   /// Disable TOTP multi-factor authentication on the current account. Requires sudo mode verification for security.
@@ -814,12 +860,29 @@ abstract class UsersApi {
     @Body() required RelationshipNicknameUpdateRequest body,
   });
 
+  /// Preview setting the deferred phone check aside.
+  ///
+  /// Reports whether this account can set a deferred phone verification requirement aside, and which communities would be left if it did. Returns available false with empty lists for any account outside that state.
+  @GET('/users/@me/required-actions/phone-gate-escape')
+  Future<PhoneGateEscapePreviewResponse> getPhoneGateEscape();
+
+  /// Set the deferred phone check aside.
+  ///
+  /// Leaves the communities that trigger the deferred phone verification check and restores the deferral, so the account works normally again. Communities the user owns are kept, and a run that hits the per-call community limit leaves what it can and can be repeated. Returns the updated private user object.
+  ///
+  /// [body] - Name not received - field will be skipped.
+  @POST('/users/@me/required-actions/phone-gate-escape')
+  Future<UserPrivateResponse> executePhoneGateEscape({
+    @Body() required EmptyBodyRequest body,
+  });
+
   /// List saved messages.
   ///
   /// Retrieves all messages saved by the current user. Messages are saved privately for easy reference. Returns paginated list of saved messages with metadata.
   @GET('/users/@me/saved-messages')
   Future<SavedMessageEntryListResponse> listSavedMessages({
     @Query('limit') String? limit,
+    @Query('before') SnowflakeType? before,
   });
 
   /// Save message.
