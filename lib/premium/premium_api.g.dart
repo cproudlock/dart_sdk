@@ -192,15 +192,9 @@ class _PremiumApi implements PremiumApi {
   }
 
   @override
-  Future<PriceIdsResponse> getPriceIds({
-    String? countryCode,
-    PricingModeEnum? pricingMode,
-  }) async {
+  Future<PriceIdsResponse> getPriceIds({String? countryCode}) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{
-      r'country_code': countryCode,
-      r'pricing_mode': pricingMode?.toJson(),
-    };
+    final queryParameters = <String, dynamic>{r'country_code': countryCode};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
@@ -265,6 +259,33 @@ class _PremiumApi implements PremiumApi {
     late PremiumStateResponse _value;
     try {
       _value = PremiumStateResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, response: _result);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<SwitchToListPriceResponse> switchSubscriptionToListPrice() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<SwitchToListPriceResponse>(
+      Options(method: 'POST', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/premium/switch-to-list-price',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late SwitchToListPriceResponse _value;
+    try {
+      _value = SwitchToListPriceResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;

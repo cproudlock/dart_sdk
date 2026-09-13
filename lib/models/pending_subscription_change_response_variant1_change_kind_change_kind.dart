@@ -4,36 +4,22 @@
 
 import 'package:json_annotation/json_annotation.dart';
 
-/// Currency of the charged amount
+/// Whether the pending change moves the billing cycle or only the price within the same cycle
 @JsonEnum()
-enum CurrentSubscriptionPriceResponseVariant1CurrencyCurrency {
-  @JsonValue('USD')
-  usd('USD'),
-  @JsonValue('EUR')
-  eur('EUR'),
-  @JsonValue('BRL')
-  brl('BRL'),
-  @JsonValue('DKK')
-  dkk('DKK'),
-  @JsonValue('INR')
-  inr('INR'),
-  @JsonValue('NOK')
-  nok('NOK'),
-  @JsonValue('PLN')
-  pln('PLN'),
-  @JsonValue('SEK')
-  sek('SEK'),
-
-  /// The name has been replaced because it contains a keyword. Original name: `TRY`.
-  @JsonValue('TRY')
-  valueTry('TRY'),
+enum PendingSubscriptionChangeResponseVariant1ChangeKindChangeKind {
+  @JsonValue('billing_cycle')
+  billingCycle('billing_cycle'),
+  @JsonValue('price')
+  price('price'),
 
   /// Default value for all unparsed values, allows backward compatibility when adding new values on the backend.
   $unknown(null);
 
-  const CurrentSubscriptionPriceResponseVariant1CurrencyCurrency(this.json);
+  const PendingSubscriptionChangeResponseVariant1ChangeKindChangeKind(
+    this.json,
+  );
 
-  factory CurrentSubscriptionPriceResponseVariant1CurrencyCurrency.fromJson(
+  factory PendingSubscriptionChangeResponseVariant1ChangeKindChangeKind.fromJson(
     String json,
   ) => values.firstWhere((e) => e.json == json, orElse: () => $unknown);
 
@@ -45,6 +31,6 @@ enum CurrentSubscriptionPriceResponseVariant1CurrencyCurrency {
   String toString() => json ?? super.toString();
 
   /// Returns all defined enum values excluding the $unknown value.
-  static List<CurrentSubscriptionPriceResponseVariant1CurrencyCurrency>
+  static List<PendingSubscriptionChangeResponseVariant1ChangeKindChangeKind>
   get $valuesDefined => values.where((value) => value != $unknown).toList();
 }

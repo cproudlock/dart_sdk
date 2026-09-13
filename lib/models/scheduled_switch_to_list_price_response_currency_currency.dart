@@ -4,9 +4,9 @@
 
 import 'package:json_annotation/json_annotation.dart';
 
-/// Currency for the prices
+/// Currency of both amounts
 @JsonEnum()
-enum PriceIdsResponseCurrencyCurrency {
+enum ScheduledSwitchToListPriceResponseCurrencyCurrency {
   @JsonValue('USD')
   usd('USD'),
   @JsonValue('EUR')
@@ -31,10 +31,11 @@ enum PriceIdsResponseCurrencyCurrency {
   /// Default value for all unparsed values, allows backward compatibility when adding new values on the backend.
   $unknown(null);
 
-  const PriceIdsResponseCurrencyCurrency(this.json);
+  const ScheduledSwitchToListPriceResponseCurrencyCurrency(this.json);
 
-  factory PriceIdsResponseCurrencyCurrency.fromJson(String json) =>
-      values.firstWhere((e) => e.json == json, orElse: () => $unknown);
+  factory ScheduledSwitchToListPriceResponseCurrencyCurrency.fromJson(
+    String json,
+  ) => values.firstWhere((e) => e.json == json, orElse: () => $unknown);
 
   final String? json;
 
@@ -44,6 +45,6 @@ enum PriceIdsResponseCurrencyCurrency {
   String toString() => json ?? super.toString();
 
   /// Returns all defined enum values excluding the $unknown value.
-  static List<PriceIdsResponseCurrencyCurrency> get $valuesDefined =>
-      values.where((value) => value != $unknown).toList();
+  static List<ScheduledSwitchToListPriceResponseCurrencyCurrency>
+  get $valuesDefined => values.where((value) => value != $unknown).toList();
 }

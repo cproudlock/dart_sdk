@@ -4,22 +4,20 @@
 
 import 'package:json_annotation/json_annotation.dart';
 
+/// The subscription cannot be moved to the current list price
 @JsonEnum()
-enum PricingModeEnum {
-  @JsonValue('localized')
-  localized('localized'),
-
-  /// The name has been replaced because it contains a keyword. Original name: `base`.
-  @JsonValue('base')
-  valueBase('base'),
+enum IneligibleSwitchToListPriceResponseStatusStatus {
+  @JsonValue('ineligible')
+  ineligible('ineligible'),
 
   /// Default value for all unparsed values, allows backward compatibility when adding new values on the backend.
   $unknown(null);
 
-  const PricingModeEnum(this.json);
+  const IneligibleSwitchToListPriceResponseStatusStatus(this.json);
 
-  factory PricingModeEnum.fromJson(String json) =>
-      values.firstWhere((e) => e.json == json, orElse: () => $unknown);
+  factory IneligibleSwitchToListPriceResponseStatusStatus.fromJson(
+    String json,
+  ) => values.firstWhere((e) => e.json == json, orElse: () => $unknown);
 
   final String? json;
 
@@ -29,6 +27,6 @@ enum PricingModeEnum {
   String toString() => json ?? super.toString();
 
   /// Returns all defined enum values excluding the $unknown value.
-  static List<PricingModeEnum> get $valuesDefined =>
-      values.where((value) => value != $unknown).toList();
+  static List<IneligibleSwitchToListPriceResponseStatusStatus>
+  get $valuesDefined => values.where((value) => value != $unknown).toList();
 }

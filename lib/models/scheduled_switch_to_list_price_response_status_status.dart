@@ -4,36 +4,18 @@
 
 import 'package:json_annotation/json_annotation.dart';
 
-/// Currency of the charged amount
+/// The switch was scheduled for the end of the current billing period
 @JsonEnum()
-enum CurrentSubscriptionPriceResponseVariant1CurrencyCurrency {
-  @JsonValue('USD')
-  usd('USD'),
-  @JsonValue('EUR')
-  eur('EUR'),
-  @JsonValue('BRL')
-  brl('BRL'),
-  @JsonValue('DKK')
-  dkk('DKK'),
-  @JsonValue('INR')
-  inr('INR'),
-  @JsonValue('NOK')
-  nok('NOK'),
-  @JsonValue('PLN')
-  pln('PLN'),
-  @JsonValue('SEK')
-  sek('SEK'),
-
-  /// The name has been replaced because it contains a keyword. Original name: `TRY`.
-  @JsonValue('TRY')
-  valueTry('TRY'),
+enum ScheduledSwitchToListPriceResponseStatusStatus {
+  @JsonValue('scheduled')
+  scheduled('scheduled'),
 
   /// Default value for all unparsed values, allows backward compatibility when adding new values on the backend.
   $unknown(null);
 
-  const CurrentSubscriptionPriceResponseVariant1CurrencyCurrency(this.json);
+  const ScheduledSwitchToListPriceResponseStatusStatus(this.json);
 
-  factory CurrentSubscriptionPriceResponseVariant1CurrencyCurrency.fromJson(
+  factory ScheduledSwitchToListPriceResponseStatusStatus.fromJson(
     String json,
   ) => values.firstWhere((e) => e.json == json, orElse: () => $unknown);
 
@@ -45,6 +27,6 @@ enum CurrentSubscriptionPriceResponseVariant1CurrencyCurrency {
   String toString() => json ?? super.toString();
 
   /// Returns all defined enum values excluding the $unknown value.
-  static List<CurrentSubscriptionPriceResponseVariant1CurrencyCurrency>
+  static List<ScheduledSwitchToListPriceResponseStatusStatus>
   get $valuesDefined => values.where((value) => value != $unknown).toList();
 }

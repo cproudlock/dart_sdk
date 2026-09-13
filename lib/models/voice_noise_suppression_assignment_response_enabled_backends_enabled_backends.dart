@@ -4,36 +4,31 @@
 
 import 'package:json_annotation/json_annotation.dart';
 
-/// Currency of the charged amount
 @JsonEnum()
-enum CurrentSubscriptionPriceResponseVariant1CurrencyCurrency {
-  @JsonValue('USD')
-  usd('USD'),
-  @JsonValue('EUR')
-  eur('EUR'),
-  @JsonValue('BRL')
-  brl('BRL'),
-  @JsonValue('DKK')
-  dkk('DKK'),
-  @JsonValue('INR')
-  inr('INR'),
-  @JsonValue('NOK')
-  nok('NOK'),
-  @JsonValue('PLN')
-  pln('PLN'),
-  @JsonValue('SEK')
-  sek('SEK'),
-
-  /// The name has been replaced because it contains a keyword. Original name: `TRY`.
-  @JsonValue('TRY')
-  valueTry('TRY'),
+enum VoiceNoiseSuppressionAssignmentResponseEnabledBackendsEnabledBackends {
+  @JsonValue('none')
+  none('none'),
+  @JsonValue('standard')
+  standard('standard'),
+  @JsonValue('gate')
+  gate('gate'),
+  @JsonValue('speex')
+  speex('speex'),
+  @JsonValue('rnnoise')
+  rnnoise('rnnoise'),
+  @JsonValue('gtcrn')
+  gtcrn('gtcrn'),
+  @JsonValue('deep_filter')
+  deepFilter('deep_filter'),
 
   /// Default value for all unparsed values, allows backward compatibility when adding new values on the backend.
   $unknown(null);
 
-  const CurrentSubscriptionPriceResponseVariant1CurrencyCurrency(this.json);
+  const VoiceNoiseSuppressionAssignmentResponseEnabledBackendsEnabledBackends(
+    this.json,
+  );
 
-  factory CurrentSubscriptionPriceResponseVariant1CurrencyCurrency.fromJson(
+  factory VoiceNoiseSuppressionAssignmentResponseEnabledBackendsEnabledBackends.fromJson(
     String json,
   ) => values.firstWhere((e) => e.json == json, orElse: () => $unknown);
 
@@ -45,6 +40,8 @@ enum CurrentSubscriptionPriceResponseVariant1CurrencyCurrency {
   String toString() => json ?? super.toString();
 
   /// Returns all defined enum values excluding the $unknown value.
-  static List<CurrentSubscriptionPriceResponseVariant1CurrencyCurrency>
+  static List<
+    VoiceNoiseSuppressionAssignmentResponseEnabledBackendsEnabledBackends
+  >
   get $valuesDefined => values.where((value) => value != $unknown).toList();
 }
