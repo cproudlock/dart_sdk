@@ -19,7 +19,7 @@ part 'channel_response.g.dart';
 
 const Object _omit = Object();
 
-@JsonSerializable()
+@JsonSerializable(constructor: '_')
 class ChannelResponse {
   const ChannelResponse({
     required this.id,
@@ -124,6 +124,64 @@ class ChannelResponse {
        _rateLimitPerUserPresent = !identical(rateLimitPerUser, _omit),
        nicks = identical(nicks, _omit) ? null : nicks as Map<String, String>?,
        _nicksPresent = !identical(nicks, _omit);
+
+  const ChannelResponse._({
+    required this.id,
+    required this.type,
+    this.guildId,
+    this.name,
+    this.topic,
+    this.url,
+    this.icon,
+    this.ownerId,
+    this.position,
+    this.parentId,
+    this.bitrate,
+    this.userLimit,
+    this.voiceConnectionLimit,
+    this.rtcRegion,
+    this.lastMessageId,
+    this.lastPinTimestamp,
+    this.permissionOverwrites,
+    this.recipients,
+    this.nsfw,
+    this.nsfwOverride,
+    this.contentWarningLevel,
+    this.contentWarningText,
+    this.rateLimitPerUser,
+    this.nicks,
+    this.threadMetadata,
+    this.memberCount,
+    this.messageCount,
+    this.pinned,
+    this.availableTags,
+    this.appliedTags,
+    this.defaultReactionEmoji,
+    this.defaultSortOrder,
+    this.defaultAutoArchiveDuration,
+    this.requireTag,
+  }) : _guildIdPresent = false,
+       _namePresent = false,
+       _topicPresent = false,
+       _urlPresent = false,
+       _iconPresent = false,
+       _ownerIdPresent = false,
+       _positionPresent = false,
+       _parentIdPresent = false,
+       _bitratePresent = false,
+       _userLimitPresent = false,
+       _voiceConnectionLimitPresent = false,
+       _rtcRegionPresent = false,
+       _lastMessageIdPresent = false,
+       _lastPinTimestampPresent = false,
+       _permissionOverwritesPresent = false,
+       _recipientsPresent = false,
+       _nsfwPresent = false,
+       _nsfwOverridePresent = false,
+       _contentWarningLevelPresent = false,
+       _contentWarningTextPresent = false,
+       _rateLimitPerUserPresent = false,
+       _nicksPresent = false;
   factory ChannelResponse.fromJson(Map<String, Object?> json) {
     final value = _$ChannelResponseFromJson(json);
     return ChannelResponse(
@@ -167,6 +225,16 @@ class ChannelResponse {
           ? value.rateLimitPerUser
           : _omit,
       nicks: json.containsKey('nicks') ? value.nicks : _omit,
+      threadMetadata: value.threadMetadata,
+      memberCount: value.memberCount,
+      messageCount: value.messageCount,
+      pinned: value.pinned,
+      availableTags: value.availableTags,
+      appliedTags: value.appliedTags,
+      defaultReactionEmoji: value.defaultReactionEmoji,
+      defaultSortOrder: value.defaultSortOrder,
+      defaultAutoArchiveDuration: value.defaultAutoArchiveDuration,
+      requireTag: value.requireTag,
     );
   }
 
