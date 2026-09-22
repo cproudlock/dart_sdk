@@ -17,6 +17,20 @@ enum ChannelType {
   groupDm(3),
   @JsonValue(4)
   guildCategory(4),
+
+  // Echowire: thread and forum channel types. Upstream's OpenAPI spec does not
+  // declare them, so a plain regeneration drops them and ChannelType.fromJson
+  // falls back to $unknown, whose `json` is null. The app's channelFromSdk
+  // stores `sdk.type.json ?? 0`, which would silently turn every forum and
+  // thread into a plain text channel and make isForum/isThread false
+  // everywhere. Guarded by test/shared/utils/channel_type_wire_preservation_test.dart
+  // in the app repo.
+  @JsonValue(11)
+  publicThread(11),
+  @JsonValue(12)
+  privateThread(12),
+  @JsonValue(15)
+  guildForum(15),
   @JsonValue(998)
   guildLink(998),
   @JsonValue(999)
