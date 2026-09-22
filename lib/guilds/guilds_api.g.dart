@@ -78,13 +78,14 @@ class _GuildsApi implements GuildsApi {
   @override
   Future<GuildResponse> updateGuild({
     required String guildId,
-    required GuildUpdateRequest body,
+    GuildUpdateRequest? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<GuildResponse>(
       Options(method: 'PATCH', headers: _headers, extra: _extra)
           .compose(
@@ -113,7 +114,7 @@ class _GuildsApi implements GuildsApi {
     String? before,
     String? after,
     String? userId,
-    AuditLogActionType? actionType,
+    AuditLogActionTypeInput? actionType,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -184,13 +185,14 @@ class _GuildsApi implements GuildsApi {
   Future<void> banGuildMember({
     required String guildId,
     required String userId,
-    required GuildBanCreateRequest body,
+    GuildBanCreateRequest? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<void>(
       Options(method: 'PUT', headers: _headers, extra: _extra)
           .compose(
@@ -315,13 +317,14 @@ class _GuildsApi implements GuildsApi {
   @override
   Future<void> deleteGuild({
     required String guildId,
-    required GuildDeleteRequest body,
+    GuildDeleteRequest? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<void>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
@@ -498,7 +501,7 @@ class _GuildsApi implements GuildsApi {
   Future<void> deleteGuildEmoji({
     required String guildId,
     required String emojiId,
-    String? purge,
+    String? purge = 'false',
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'purge': purge};
@@ -521,11 +524,11 @@ class _GuildsApi implements GuildsApi {
   @override
   Future<List<GuildMemberResponse>> listGuildMembers({
     required String guildId,
-    int? limit,
     String? after,
+    int? limit = 1,
   }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'limit': limit, r'after': after};
+    final queryParameters = <String, dynamic>{r'after': after, r'limit': limit};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
@@ -558,13 +561,14 @@ class _GuildsApi implements GuildsApi {
   @override
   Future<GuildMemberSearchResponse> searchGuildMembers({
     required String guildId,
-    required GuildMemberSearchRequest body,
+    GuildMemberSearchRequest? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<GuildMemberSearchResponse>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
@@ -618,13 +622,14 @@ class _GuildsApi implements GuildsApi {
   @override
   Future<GuildMemberResponse> updateCurrentGuildMember({
     required String guildId,
-    required MyGuildMemberUpdateRequest body,
+    MyGuildMemberUpdateRequest? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<GuildMemberResponse>(
       Options(method: 'PATCH', headers: _headers, extra: _extra)
           .compose(
@@ -680,13 +685,14 @@ class _GuildsApi implements GuildsApi {
   Future<GuildMemberResponse> updateGuildMember({
     required String guildId,
     required String userId,
-    required GuildMemberUpdateRequest body,
+    GuildMemberUpdateRequest? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<GuildMemberResponse>(
       Options(method: 'PATCH', headers: _headers, extra: _extra)
           .compose(
@@ -733,8 +739,8 @@ class _GuildsApi implements GuildsApi {
   @override
   Future<void> addGuildMemberRole({
     required String guildId,
-    required String userId,
     required String roleId,
+    required String userId,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -756,8 +762,8 @@ class _GuildsApi implements GuildsApi {
   @override
   Future<void> removeGuildMemberRole({
     required String guildId,
-    required String userId,
     required String roleId,
+    required String userId,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -908,13 +914,14 @@ class _GuildsApi implements GuildsApi {
   Future<GuildRoleResponse> updateGuildRole({
     required String guildId,
     required String roleId,
-    required GuildRoleUpdateRequest body,
+    GuildRoleUpdateRequest? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<GuildRoleResponse>(
       Options(method: 'PATCH', headers: _headers, extra: _extra)
           .compose(
@@ -1122,7 +1129,7 @@ class _GuildsApi implements GuildsApi {
   Future<void> deleteGuildSticker({
     required String guildId,
     required String stickerId,
-    String? purge,
+    String? purge = 'false',
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'purge': purge};
@@ -1145,7 +1152,7 @@ class _GuildsApi implements GuildsApi {
   @override
   Future<GuildResponse> transferGuildOwnership({
     required String guildId,
-    required GuildTransferOwnershipRequest body,
+    required GuildTransferOwnershipWithVerificationRequest body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -1205,13 +1212,14 @@ class _GuildsApi implements GuildsApi {
   @override
   Future<GuildVanityUrlUpdateResponse> updateGuildVanityUrl({
     required String guildId,
-    required GuildVanityUrlUpdateRequest body,
+    GuildVanityUrlUpdateRequest? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<GuildVanityUrlUpdateResponse>(
       Options(method: 'PATCH', headers: _headers, extra: _extra)
           .compose(
@@ -1235,17 +1243,17 @@ class _GuildsApi implements GuildsApi {
 
   @override
   Future<List<GuildResponse>> listGuilds({
+    int? limit = 200,
+    String? withCounts = 'false',
     String? before,
     String? after,
-    int? limit,
-    String? withCounts,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
-      r'before': before,
-      r'after': after,
       r'limit': limit,
       r'with_counts': withCounts,
+      r'before': before,
+      r'after': after,
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
@@ -1276,8 +1284,8 @@ class _GuildsApi implements GuildsApi {
   @override
   Future<void> leaveGuild({
     required String guildId,
-    required SudoVerificationSchema body,
-    String? deleteMessages,
+    SudoVerificationSchema? body,
+    String? deleteMessages = 'false',
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -1286,7 +1294,7 @@ class _GuildsApi implements GuildsApi {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<void>(
       Options(method: 'DELETE', headers: _headers, extra: _extra)
           .compose(
@@ -1303,13 +1311,14 @@ class _GuildsApi implements GuildsApi {
   @override
   Future<void> bulkDeleteMyMessagesInGuild({
     required String guildId,
-    required SudoVerificationSchema body,
+    SudoVerificationSchema? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<void>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(

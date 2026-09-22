@@ -11,7 +11,7 @@ GuildRolePositionsRequestItem _$GuildRolePositionsRequestItemFromJson(
 ) => $checkedCreate('GuildRolePositionsRequestItem', json, ($checkedConvert) {
   final val = GuildRolePositionsRequestItem(
     id: $checkedConvert('id', (v) => v as String),
-    position: $checkedConvert('position', (v) => (v as num?)?.toInt()),
+    position: $checkedConvert('position', (v) => v ?? _omit),
   );
   return val;
 });

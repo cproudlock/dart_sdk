@@ -12,9 +12,9 @@ ReportGuildRequest _$ReportGuildRequestFromJson(Map<String, dynamic> json) =>
         guildId: $checkedConvert('guild_id', (v) => v as String),
         category: $checkedConvert(
           'category',
-          (v) => ReportGuildRequestCategoryCategory.fromJson(v as String),
+          (v) => GuildReportCategory.fromJson(v as String),
         ),
-        inviteCode: $checkedConvert('invite_code', (v) => v as String?),
+        inviteCode: $checkedConvert('invite_code', (v) => v ?? _omit),
       );
       return val;
     }, fieldKeyMap: const {'guildId': 'guild_id', 'inviteCode': 'invite_code'});

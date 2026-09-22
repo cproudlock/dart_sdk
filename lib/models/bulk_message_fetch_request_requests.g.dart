@@ -12,9 +12,9 @@ BulkMessageFetchRequestRequests _$BulkMessageFetchRequestRequestsFromJson(
   final val = BulkMessageFetchRequestRequests(
     channelId: $checkedConvert('channel_id', (v) => v as String),
     limit: $checkedConvert('limit', (v) => (v as num).toInt()),
-    before: $checkedConvert('before', (v) => v as String?),
-    after: $checkedConvert('after', (v) => v as String?),
-    around: $checkedConvert('around', (v) => v as String?),
+    before: $checkedConvert('before', (v) => v ?? _omit),
+    after: $checkedConvert('after', (v) => v ?? _omit),
+    around: $checkedConvert('around', (v) => v ?? _omit),
   );
   return val;
 }, fieldKeyMap: const {'channelId': 'channel_id'});

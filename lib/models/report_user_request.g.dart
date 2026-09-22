@@ -12,9 +12,9 @@ ReportUserRequest _$ReportUserRequestFromJson(Map<String, dynamic> json) =>
         userId: $checkedConvert('user_id', (v) => v as String),
         category: $checkedConvert(
           'category',
-          (v) => ReportUserRequestCategoryCategory.fromJson(v as String),
+          (v) => UserReportCategory.fromJson(v as String),
         ),
-        guildId: $checkedConvert('guild_id', (v) => v as String?),
+        guildId: $checkedConvert('guild_id', (v) => v ?? _omit),
       );
       return val;
     }, fieldKeyMap: const {'userId': 'user_id', 'guildId': 'guild_id'});

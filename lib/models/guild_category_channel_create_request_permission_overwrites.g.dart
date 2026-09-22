@@ -22,8 +22,8 @@ _$GuildCategoryChannelCreateRequestPermissionOverwritesFromJson(
               (v as num).toInt(),
             ),
       ),
-      allow: $checkedConvert('allow', (v) => v as String?),
-      deny: $checkedConvert('deny', (v) => v as String?),
+      allow: $checkedConvert('allow', (v) => v ?? _omit),
+      deny: $checkedConvert('deny', (v) => v ?? _omit),
     );
     return val;
   },

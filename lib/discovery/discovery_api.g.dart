@@ -54,23 +54,23 @@ class _DiscoveryApi implements DiscoveryApi {
 
   @override
   Future<DiscoveryGuildListResponse> searchDiscoveryGuilds({
+    int? limit = 24,
+    int? offset = 0,
     String? query,
     int? category,
     String? language,
     String? tag,
     SortBy? sortBy,
-    int? limit,
-    int? offset,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
+      r'limit': limit,
+      r'offset': offset,
       r'query': query,
       r'category': category,
       r'language': language,
       r'tag': tag,
       r'sort_by': sortBy?.toJson(),
-      r'limit': limit,
-      r'offset': offset,
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
@@ -149,13 +149,14 @@ class _DiscoveryApi implements DiscoveryApi {
   @override
   Future<DiscoveryApplicationResponse> editDiscoveryApplication({
     required String guildId,
-    required DiscoveryApplicationPatchRequest body,
+    DiscoveryApplicationPatchRequest? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<DiscoveryApplicationResponse>(
       Options(method: 'PATCH', headers: _headers, extra: _extra)
           .compose(

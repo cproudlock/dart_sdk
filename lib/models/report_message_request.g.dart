@@ -14,7 +14,7 @@ ReportMessageRequest _$ReportMessageRequestFromJson(
     messageId: $checkedConvert('message_id', (v) => v as String),
     category: $checkedConvert(
       'category',
-      (v) => ReportMessageRequestCategoryCategory.fromJson(v as String),
+      (v) => MessageReportCategory.fromJson(v as String),
     ),
   );
   return val;

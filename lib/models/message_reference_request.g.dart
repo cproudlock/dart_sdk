@@ -14,22 +14,11 @@ MessageReferenceRequest _$MessageReferenceRequestFromJson(
   ($checkedConvert) {
     final val = MessageReferenceRequest(
       messageId: $checkedConvert('message_id', (v) => v as String),
-      channelId: $checkedConvert('channel_id', (v) => v as String?),
-      guildId: $checkedConvert('guild_id', (v) => v as String?),
-      type: $checkedConvert(
-        'type',
-        (v) => v == null
-            ? null
-            : MessageReferenceType.fromJson((v as num).toInt()),
-      ),
-      attachmentIds: $checkedConvert(
-        'attachment_ids',
-        (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
-      ),
-      embedIndices: $checkedConvert(
-        'embed_indices',
-        (v) => (v as List<dynamic>?)?.map((e) => (e as num).toInt()).toList(),
-      ),
+      channelId: $checkedConvert('channel_id', (v) => v ?? _omit),
+      guildId: $checkedConvert('guild_id', (v) => v ?? _omit),
+      type: $checkedConvert('type', (v) => v ?? _omit),
+      attachmentIds: $checkedConvert('attachment_ids', (v) => v ?? _omit),
+      embedIndices: $checkedConvert('embed_indices', (v) => v ?? _omit),
     );
     return val;
   },

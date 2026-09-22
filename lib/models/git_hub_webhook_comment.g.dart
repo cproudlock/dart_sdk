@@ -17,7 +17,7 @@ GitHubWebhookComment _$GitHubWebhookCommentFromJson(
       (v) => GitHubWebhookCommentUser.fromJson(v as Map<String, dynamic>),
     ),
     body: $checkedConvert('body', (v) => v as String),
-    commitId: $checkedConvert('commit_id', (v) => v as String?),
+    commitId: $checkedConvert('commit_id', (v) => v ?? _omit),
   );
   return val;
 }, fieldKeyMap: const {'htmlUrl': 'html_url', 'commitId': 'commit_id'});

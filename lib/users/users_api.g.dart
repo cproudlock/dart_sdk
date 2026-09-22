@@ -21,12 +21,12 @@ class _UsersApi implements UsersApi {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<void> downloadDataHarvestArchive({required String harvestId}) async {
+  Future<String> downloadDataHarvestArchive({required String harvestId}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<void>(
+    final _options = _setStreamType<String>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -36,7 +36,15 @@ class _UsersApi implements UsersApi {
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
-    await _dio.fetch<void>(_options);
+    final _result = await _dio.fetch<String>(_options);
+    late String _value;
+    try {
+      _value = _result.data!;
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, response: _result);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -68,13 +76,14 @@ class _UsersApi implements UsersApi {
 
   @override
   Future<UserPrivateResponse> updateCurrentUser({
-    required UserUpdateWithVerificationRequest body,
+    UserUpdateWithVerificationRequest? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<UserPrivateResponse>(
       Options(method: 'PATCH', headers: _headers, extra: _extra)
           .compose(
@@ -97,14 +106,13 @@ class _UsersApi implements UsersApi {
   }
 
   @override
-  Future<void> forgetAuthorizedIps({
-    required SudoVerificationSchema body,
-  }) async {
+  Future<void> forgetAuthorizedIps({SudoVerificationSchema? body}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<void>(
       Options(method: 'DELETE', headers: _headers, extra: _extra)
           .compose(
@@ -253,14 +261,13 @@ class _UsersApi implements UsersApi {
   }
 
   @override
-  Future<void> deleteCurrentUserAccount({
-    required SudoVerificationSchema body,
-  }) async {
+  Future<void> deleteCurrentUserAccount({SudoVerificationSchema? body}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<void>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
@@ -275,14 +282,13 @@ class _UsersApi implements UsersApi {
   }
 
   @override
-  Future<void> disableCurrentUserAccount({
-    required SudoVerificationSchema body,
-  }) async {
+  Future<void> disableCurrentUserAccount({SudoVerificationSchema? body}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<void>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
@@ -484,13 +490,14 @@ class _UsersApi implements UsersApi {
 
   @override
   Future<EmailChangeStartResponse> startEmailChange({
-    required EmptyBodyRequest body,
+    EmptyBodyRequest? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<EmailChangeStartResponse>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
@@ -735,13 +742,14 @@ class _UsersApi implements UsersApi {
 
   @override
   Future<UserGuildSettingsResponse> updateDmNotificationSettings({
-    required UserGuildSettingsUpdateRequest body,
+    UserGuildSettingsUpdateRequest? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<UserGuildSettingsResponse>(
       Options(method: 'PATCH', headers: _headers, extra: _extra)
           .compose(
@@ -766,13 +774,14 @@ class _UsersApi implements UsersApi {
   @override
   Future<UserGuildSettingsResponse> updateGuildSettingsForUser({
     required String guildId,
-    required UserGuildSettingsUpdateRequest body,
+    UserGuildSettingsUpdateRequest? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<UserGuildSettingsResponse>(
       Options(method: 'PATCH', headers: _headers, extra: _extra)
           .compose(
@@ -823,13 +832,14 @@ class _UsersApi implements UsersApi {
 
   @override
   Future<HarvestCreationResponseSchema> requestFilteredDataHarvest({
-    required HarvestSelfDataRequest body,
+    HarvestSelfDataRequest? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<HarvestCreationResponseSchema>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
@@ -938,19 +948,19 @@ class _UsersApi implements UsersApi {
 
   @override
   Future<List<MessageResponseSchema>> listMentionsForCurrentUser({
-    String? limit,
-    String? roles,
-    String? everyone,
-    String? guilds,
     String? before,
+    String? limit = '25',
+    String? roles = 'false',
+    String? everyone = 'false',
+    String? guilds = 'false',
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
+      r'before': before,
       r'limit': limit,
       r'roles': roles,
       r'everyone': everyone,
       r'guilds': guilds,
-      r'before': before,
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
@@ -1022,13 +1032,14 @@ class _UsersApi implements UsersApi {
 
   @override
   Future<void> bulkDeleteMyMessages({
-    required BulkDeleteSelfMessagesRequest body,
+    BulkDeleteSelfMessagesRequest? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<void>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
@@ -1044,13 +1055,14 @@ class _UsersApi implements UsersApi {
 
   @override
   Future<void> requestBulkMessageDeletion({
-    required SudoVerificationSchema body,
+    SudoVerificationSchema? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<void>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
@@ -1123,13 +1135,14 @@ class _UsersApi implements UsersApi {
 
   @override
   Future<MfaBackupCodesChallengeStartResponse> startBackupCodesChallenge({
-    required EmptyBodyRequest body,
+    EmptyBodyRequest? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<MfaBackupCodesChallengeStartResponse>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
@@ -1339,13 +1352,14 @@ class _UsersApi implements UsersApi {
 
   @override
   Future<WebAuthnChallengeResponse> getWebauthnRegistrationOptions({
-    required SudoVerificationSchema body,
+    SudoVerificationSchema? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<WebAuthnChallengeResponse>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
@@ -1393,13 +1407,14 @@ class _UsersApi implements UsersApi {
   @override
   Future<void> deleteWebauthnCredential({
     required String credentialId,
-    required SudoVerificationSchema body,
+    SudoVerificationSchema? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<void>(
       Options(method: 'DELETE', headers: _headers, extra: _extra)
           .compose(
@@ -1411,6 +1426,36 @@ class _UsersApi implements UsersApi {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     await _dio.fetch<void>(_options);
+  }
+
+  @override
+  Future<WebAuthnTwoFactorResponse> setWebauthnTwoFactor({
+    required WebAuthnTwoFactorRequest body,
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(body.toJson());
+    final _options = _setStreamType<WebAuthnTwoFactorResponse>(
+      Options(method: 'PUT', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/users/@me/mfa/webauthn/two-factor',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, Object?>>(_options);
+    late WebAuthnTwoFactorResponse _value;
+    try {
+      _value = WebAuthnTwoFactorResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, response: _result);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -1586,13 +1631,14 @@ class _UsersApi implements UsersApi {
   @override
   Future<void> setNoteOnUser({
     required String targetId,
-    required UserNoteUpdateRequest body,
+    UserNoteUpdateRequest? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<void>(
       Options(method: 'PUT', headers: _headers, extra: _extra)
           .compose(
@@ -1660,13 +1706,14 @@ class _UsersApi implements UsersApi {
 
   @override
   Future<PasswordChangeStartResponse> startPasswordChange({
-    required EmptyBodyRequest body,
+    EmptyBodyRequest? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<PasswordChangeStartResponse>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
@@ -2039,13 +2086,14 @@ class _UsersApi implements UsersApi {
 
   @override
   Future<BulkIgnoreFriendRequestsResponse> bulkIgnoreFriendRequests({
-    required BulkIgnoreFriendRequestsRequest body,
+    BulkIgnoreFriendRequestsRequest? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<BulkIgnoreFriendRequestsResponse>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
@@ -2070,13 +2118,14 @@ class _UsersApi implements UsersApi {
   @override
   Future<RelationshipResponse> sendFriendRequest({
     required String userId,
-    required FriendRequestCreateRequest body,
+    FriendRequestCreateRequest? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<RelationshipResponse>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
@@ -2101,13 +2150,14 @@ class _UsersApi implements UsersApi {
   @override
   Future<RelationshipResponse> acceptOrUpdateFriendRequest({
     required String userId,
-    required RelationshipTypePutRequest body,
+    RelationshipTypePutRequest? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<RelationshipResponse>(
       Options(method: 'PUT', headers: _headers, extra: _extra)
           .compose(
@@ -2208,13 +2258,14 @@ class _UsersApi implements UsersApi {
 
   @override
   Future<UserPrivateResponse> executePhoneGateEscape({
-    required EmptyBodyRequest body,
+    EmptyBodyRequest? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<UserPrivateResponse>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
@@ -2238,13 +2289,13 @@ class _UsersApi implements UsersApi {
 
   @override
   Future<List<SavedMessageEntryResponse>> listSavedMessages({
-    String? limit,
     String? before,
+    String? limit = '25',
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
-      r'limit': limit,
       r'before': before,
+      r'limit': limit,
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
@@ -2343,13 +2394,14 @@ class _UsersApi implements UsersApi {
 
   @override
   Future<UserSettingsResponse> updateCurrentUserSettings({
-    required UserSettingsUpdateRequest body,
+    UserSettingsUpdateRequest? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<UserSettingsResponse>(
       Options(method: 'PATCH', headers: _headers, extra: _extra)
           .compose(
@@ -2458,13 +2510,14 @@ class _UsersApi implements UsersApi {
 
   @override
   Future<UserPrivateResponse> acceptUpdatedTerms({
-    required EmptyBodyRequest body,
+    EmptyBodyRequest? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<UserPrivateResponse>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
@@ -2522,15 +2575,15 @@ class _UsersApi implements UsersApi {
   @override
   Future<UserProfileFullResponse> getUserProfile({
     required String targetId,
+    String? withMutualFriends = 'false',
+    String? withMutualGuilds = 'false',
     String? guildId,
-    String? withMutualFriends,
-    String? withMutualGuilds,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
-      r'guild_id': guildId,
       r'with_mutual_friends': withMutualFriends,
       r'with_mutual_guilds': withMutualGuilds,
+      r'guild_id': guildId,
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};

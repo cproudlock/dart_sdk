@@ -147,13 +147,14 @@ class _WebhooksApi implements WebhooksApi {
   @override
   Future<WebhookResponse> updateWebhook({
     required String webhookId,
-    required WebhookUpdateRequest body,
+    WebhookUpdateRequest? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<WebhookResponse>(
       Options(method: 'PATCH', headers: _headers, extra: _extra)
           .compose(
@@ -228,13 +229,14 @@ class _WebhooksApi implements WebhooksApi {
   Future<WebhookTokenResponse> updateWebhookWithToken({
     required String webhookId,
     required String token,
-    required WebhookTokenUpdateRequest body,
+    WebhookTokenUpdateRequest? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<WebhookTokenResponse>(
       Options(method: 'PATCH', headers: _headers, extra: _extra)
           .compose(
@@ -282,12 +284,10 @@ class _WebhooksApi implements WebhooksApi {
   Future<MessageResponseSchema> executeWebhook({
     required String webhookId,
     required String token,
-    String? wait,
     String? content,
     List<RichEmbedRequest>? embeds,
     MessageReferenceRequest? messageReference,
     AllowedMentionsRequest? allowedMentions,
-    int? flags,
     String? nonce,
     String? favoriteMemeId,
     List<String>? stickerIds,
@@ -295,6 +295,8 @@ class _WebhooksApi implements WebhooksApi {
     String? username,
     String? avatarUrl,
     List<Object3>? attachments,
+    String? wait = 'false',
+    int? flags = 0,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'wait': wait};
@@ -317,9 +319,6 @@ class _WebhooksApi implements WebhooksApi {
         jsonEncode(allowedMentions ?? <String, dynamic>{}),
       ),
     );
-    if (flags != null) {
-      _data.fields.add(MapEntry('flags', flags.toString()));
-    }
     if (nonce != null) {
       _data.fields.add(MapEntry('nonce', nonce));
     }
@@ -339,6 +338,9 @@ class _WebhooksApi implements WebhooksApi {
       _data.fields.add(MapEntry('avatar_url', avatarUrl));
     }
     _data.fields.add(MapEntry('attachments', jsonEncode(attachments)));
+    if (flags != null) {
+      _data.fields.add(MapEntry('flags', flags.toString()));
+    }
     final _options = _setStreamType<MessageResponseSchema>(
       Options(
             method: 'POST',
@@ -393,13 +395,14 @@ class _WebhooksApi implements WebhooksApi {
   Future<void> executeInstatusWebhook({
     required String webhookId,
     required String token,
-    required InstatusWebhook body,
+    InstatusWebhook? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<void>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
@@ -449,13 +452,14 @@ class _WebhooksApi implements WebhooksApi {
     required String webhookId,
     required String token,
     required String messageId,
-    required WebhookMessageEditRequest body,
+    WebhookMessageEditRequest? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<MessageResponseSchema>(
       Options(method: 'PATCH', headers: _headers, extra: _extra)
           .compose(
@@ -504,13 +508,14 @@ class _WebhooksApi implements WebhooksApi {
   Future<String> executeSlackWebhook({
     required String webhookId,
     required String token,
-    required SlackWebhookRequest body,
+    SlackWebhookRequest? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<String>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(

@@ -23,13 +23,14 @@ class _InvitesApi implements InvitesApi {
   @override
   Future<InviteMetadataResponseSchema> createChannelInvite({
     required String channelId,
-    required ChannelInviteCreateRequest body,
+    ChannelInviteCreateRequest? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<InviteMetadataResponseSchema>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(

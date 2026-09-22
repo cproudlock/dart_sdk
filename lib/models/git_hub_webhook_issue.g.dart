@@ -17,7 +17,7 @@ GitHubWebhookIssue _$GitHubWebhookIssueFromJson(Map<String, dynamic> json) =>
           (v) => GitHubWebhookIssueUser.fromJson(v as Map<String, dynamic>),
         ),
         title: $checkedConvert('title', (v) => v as String),
-        body: $checkedConvert('body', (v) => v as String?),
+        body: $checkedConvert('body', (v) => v ?? _omit),
       );
       return val;
     }, fieldKeyMap: const {'htmlUrl': 'html_url'});

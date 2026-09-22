@@ -80,13 +80,14 @@ class _ChannelsApi implements ChannelsApi {
   @override
   Future<ChannelResponse> updateChannel({
     required String channelId,
-    required ChannelUpdateRequest body,
+    ChannelUpdateRequestBody? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<ChannelResponse>(
       Options(method: 'PATCH', headers: _headers, extra: _extra)
           .compose(
@@ -111,9 +112,9 @@ class _ChannelsApi implements ChannelsApi {
   @override
   Future<void> deleteChannel({
     required String channelId,
-    required SudoVerificationSchema body,
-    String? silent,
-    String? deleteMessages,
+    SudoVerificationSchema? body,
+    String? silent = 'false',
+    String? deleteMessages = 'false',
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -123,7 +124,7 @@ class _ChannelsApi implements ChannelsApi {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<void>(
       Options(method: 'DELETE', headers: _headers, extra: _extra)
           .compose(
@@ -454,13 +455,14 @@ class _ChannelsApi implements ChannelsApi {
   @override
   Future<void> updateCallRegion({
     required String channelId,
-    required CallUpdateBodySchema body,
+    CallUpdateBodySchema? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<void>(
       Options(method: 'PATCH', headers: _headers, extra: _extra)
           .compose(
@@ -496,13 +498,14 @@ class _ChannelsApi implements ChannelsApi {
   @override
   Future<void> ringCallRecipients({
     required String channelId,
-    required CallRingBodySchema body,
+    CallRingBodySchema? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<void>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
@@ -519,13 +522,14 @@ class _ChannelsApi implements ChannelsApi {
   @override
   Future<void> stopRingingCallRecipients({
     required String channelId,
-    required CallRingBodySchema body,
+    CallRingBodySchema? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<void>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
@@ -542,17 +546,17 @@ class _ChannelsApi implements ChannelsApi {
   @override
   Future<List<MessageResponseSchema>> listMessages({
     required String channelId,
-    String? limit,
     String? before,
     String? after,
     String? around,
+    String? limit = '50',
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
-      r'limit': limit,
       r'before': before,
       r'after': after,
       r'around': around,
+      r'limit': limit,
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
@@ -586,12 +590,12 @@ class _ChannelsApi implements ChannelsApi {
   @override
   Future<MessageResponseSchema> sendMessage({
     required String channelId,
+    int? flags = 0,
     String? content,
     List<RichEmbedRequest>? embeds,
     List<Object0>? attachments,
     MessageReferenceRequest? messageReference,
     AllowedMentionsRequest? allowedMentions,
-    int? flags,
     String? nonce,
     String? favoriteMemeId,
     List<String>? stickerIds,
@@ -602,6 +606,9 @@ class _ChannelsApi implements ChannelsApi {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = FormData();
+    if (flags != null) {
+      _data.fields.add(MapEntry('flags', flags.toString()));
+    }
     if (content != null) {
       _data.fields.add(MapEntry('content', content));
     }
@@ -619,9 +626,6 @@ class _ChannelsApi implements ChannelsApi {
         jsonEncode(allowedMentions ?? <String, dynamic>{}),
       ),
     );
-    if (flags != null) {
-      _data.fields.add(MapEntry('flags', flags.toString()));
-    }
     if (nonce != null) {
       _data.fields.add(MapEntry('nonce', nonce));
     }
@@ -705,13 +709,14 @@ class _ChannelsApi implements ChannelsApi {
   @override
   Future<void> bulkDeleteMyMessagesInChannel({
     required String channelId,
-    required SudoVerificationSchema body,
+    SudoVerificationSchema? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<void>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
@@ -729,12 +734,12 @@ class _ChannelsApi implements ChannelsApi {
   Future<ChannelPinsResponse> listPinnedMessages({
     required String channelId,
     int? limit,
-    DateTime? before,
+    String? before,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'limit': limit,
-      r'before': before?.toIso8601String(),
+      r'before': before,
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
@@ -761,14 +766,14 @@ class _ChannelsApi implements ChannelsApi {
   }
 
   @override
-  Future<PurgePersonalNotesMessagesResponse> purgePersonalNotesMessages({
+  Future<MessagePurgeResponse> purgePersonalNotesMessages({
     required String channelId,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<PurgePersonalNotesMessagesResponse>(
+    final _options = _setStreamType<MessagePurgeResponse>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -779,9 +784,9 @@ class _ChannelsApi implements ChannelsApi {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, Object?>>(_options);
-    late PurgePersonalNotesMessagesResponse _value;
+    late MessagePurgeResponse _value;
     try {
-      _value = PurgePersonalNotesMessagesResponse.fromJson(_result.data!);
+      _value = MessagePurgeResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
@@ -904,13 +909,14 @@ class _ChannelsApi implements ChannelsApi {
   Future<void> acknowledgeMessage({
     required String channelId,
     required String messageId,
-    required MessageAckRequest body,
+    MessageAckRequest? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<void>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
@@ -1276,9 +1282,9 @@ class _ChannelsApi implements ChannelsApi {
   Future<void> removeGroupDmRecipient({
     required String channelId,
     required String userId,
-    required SudoVerificationSchema body,
-    String? silent,
-    String? deleteMessages,
+    SudoVerificationSchema? body,
+    String? silent = 'false',
+    String? deleteMessages = 'false',
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -1288,7 +1294,7 @@ class _ChannelsApi implements ChannelsApi {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<void>(
       Options(method: 'DELETE', headers: _headers, extra: _extra)
           .compose(
@@ -1385,12 +1391,12 @@ class _ChannelsApi implements ChannelsApi {
   }
 
   @override
-  Future<void> getStreamPreview({required String streamKey}) async {
+  Future<String> getStreamPreview({required String streamKey}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<void>(
+    final _options = _setStreamType<String>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -1400,7 +1406,15 @@ class _ChannelsApi implements ChannelsApi {
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
-    await _dio.fetch<void>(_options);
+    final _result = await _dio.fetch<String>(_options);
+    late String _value;
+    try {
+      _value = _result.data!;
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, response: _result);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -1479,13 +1493,14 @@ class _ChannelsApi implements ChannelsApi {
   @override
   Future<void> updateStreamRegion({
     required String streamKey,
-    required StreamUpdateBodySchema body,
+    StreamUpdateBodySchema? body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
+    _data.addAll(body?.toJson() ?? <String, dynamic>{});
     final _options = _setStreamType<void>(
       Options(method: 'PATCH', headers: _headers, extra: _extra)
           .compose(

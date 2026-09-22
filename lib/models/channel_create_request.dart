@@ -6,7 +6,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 import 'snowflake_type.dart';
 import 'guild_text_channel_create_request_permission_overwrites.dart';
-import 'content_warning_level.dart';
+import 'content_warning_level_input.dart';
 import 'guild_text_channel_create_request_type_type.dart';
 import 'guild_voice_channel_create_request_permission_overwrites.dart';
 import 'guild_voice_channel_create_request_type_type.dart';
@@ -89,12 +89,11 @@ class ChannelCreateRequest0 extends ChannelCreateRequest {
   permissionOverwrites;
   @JsonKey(includeIfNull: false, name: 'rate_limit_per_user')
   final int? rateLimitPerUser;
-  @JsonKey(includeIfNull: false)
-  final bool? nsfw;
+  final bool nsfw;
   @JsonKey(includeIfNull: false, name: 'nsfw_override')
   final bool? nsfwOverride;
   @JsonKey(includeIfNull: false, name: 'content_warning_level')
-  final ContentWarningLevel? contentWarningLevel;
+  final ContentWarningLevelInput? contentWarningLevel;
   @JsonKey(includeIfNull: false, name: 'content_warning_text')
   final String? contentWarningText;
   final GuildTextChannelCreateRequestTypeType type;
@@ -143,12 +142,11 @@ class ChannelCreateRequest2 extends ChannelCreateRequest {
   permissionOverwrites;
   @JsonKey(includeIfNull: false, name: 'rate_limit_per_user')
   final int? rateLimitPerUser;
-  @JsonKey(includeIfNull: false)
-  final bool? nsfw;
+  final bool nsfw;
   @JsonKey(includeIfNull: false, name: 'nsfw_override')
   final bool? nsfwOverride;
   @JsonKey(includeIfNull: false, name: 'content_warning_level')
-  final ContentWarningLevel? contentWarningLevel;
+  final ContentWarningLevelInput? contentWarningLevel;
   @JsonKey(includeIfNull: false, name: 'content_warning_text')
   final String? contentWarningText;
   final GuildVoiceChannelCreateRequestTypeType type;
@@ -197,12 +195,11 @@ class ChannelCreateRequest4 extends ChannelCreateRequest {
   permissionOverwrites;
   @JsonKey(includeIfNull: false, name: 'rate_limit_per_user')
   final int? rateLimitPerUser;
-  @JsonKey(includeIfNull: false)
-  final bool? nsfw;
+  final bool nsfw;
   @JsonKey(includeIfNull: false, name: 'nsfw_override')
   final bool? nsfwOverride;
   @JsonKey(includeIfNull: false, name: 'content_warning_level')
-  final ContentWarningLevel? contentWarningLevel;
+  final ContentWarningLevelInput? contentWarningLevel;
   @JsonKey(includeIfNull: false, name: 'content_warning_text')
   final String? contentWarningText;
   final GuildCategoryChannelCreateRequestTypeType type;
@@ -251,12 +248,11 @@ class ChannelCreateRequest998 extends ChannelCreateRequest {
   permissionOverwrites;
   @JsonKey(includeIfNull: false, name: 'rate_limit_per_user')
   final int? rateLimitPerUser;
-  @JsonKey(includeIfNull: false)
-  final bool? nsfw;
+  final bool nsfw;
   @JsonKey(includeIfNull: false, name: 'nsfw_override')
   final bool? nsfwOverride;
   @JsonKey(includeIfNull: false, name: 'content_warning_level')
-  final ContentWarningLevel? contentWarningLevel;
+  final ContentWarningLevelInput? contentWarningLevel;
   @JsonKey(includeIfNull: false, name: 'content_warning_text')
   final String? contentWarningText;
   final GuildLinkChannelCreateRequestTypeType type;

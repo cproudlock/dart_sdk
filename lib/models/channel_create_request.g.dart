@@ -40,12 +40,13 @@ ChannelCreateRequest0 _$ChannelCreateRequest0FromJson(
         'rate_limit_per_user',
         (v) => (v as num?)?.toInt(),
       ),
-      nsfw: $checkedConvert('nsfw', (v) => v as bool?),
+      nsfw: $checkedConvert('nsfw', (v) => v as bool),
       nsfwOverride: $checkedConvert('nsfw_override', (v) => v as bool?),
       contentWarningLevel: $checkedConvert(
         'content_warning_level',
-        (v) =>
-            v == null ? null : ContentWarningLevel.fromJson((v as num).toInt()),
+        (v) => v == null
+            ? null
+            : ContentWarningLevelInput.fromJson((v as num).toInt()),
       ),
       contentWarningText: $checkedConvert(
         'content_warning_text',
@@ -83,7 +84,7 @@ Map<String, dynamic> _$ChannelCreateRequest0ToJson(
   'voice_connection_limit': ?instance.voiceConnectionLimit,
   'permission_overwrites': ?instance.permissionOverwrites,
   'rate_limit_per_user': ?instance.rateLimitPerUser,
-  'nsfw': ?instance.nsfw,
+  'nsfw': instance.nsfw,
   'nsfw_override': ?instance.nsfwOverride,
   'content_warning_level': ?instance.contentWarningLevel,
   'content_warning_text': ?instance.contentWarningText,
@@ -122,12 +123,13 @@ ChannelCreateRequest2 _$ChannelCreateRequest2FromJson(
         'rate_limit_per_user',
         (v) => (v as num?)?.toInt(),
       ),
-      nsfw: $checkedConvert('nsfw', (v) => v as bool?),
+      nsfw: $checkedConvert('nsfw', (v) => v as bool),
       nsfwOverride: $checkedConvert('nsfw_override', (v) => v as bool?),
       contentWarningLevel: $checkedConvert(
         'content_warning_level',
-        (v) =>
-            v == null ? null : ContentWarningLevel.fromJson((v as num).toInt()),
+        (v) => v == null
+            ? null
+            : ContentWarningLevelInput.fromJson((v as num).toInt()),
       ),
       contentWarningText: $checkedConvert(
         'content_warning_text',
@@ -165,7 +167,7 @@ Map<String, dynamic> _$ChannelCreateRequest2ToJson(
   'voice_connection_limit': ?instance.voiceConnectionLimit,
   'permission_overwrites': ?instance.permissionOverwrites,
   'rate_limit_per_user': ?instance.rateLimitPerUser,
-  'nsfw': ?instance.nsfw,
+  'nsfw': instance.nsfw,
   'nsfw_override': ?instance.nsfwOverride,
   'content_warning_level': ?instance.contentWarningLevel,
   'content_warning_text': ?instance.contentWarningText,
@@ -204,12 +206,13 @@ ChannelCreateRequest4 _$ChannelCreateRequest4FromJson(
         'rate_limit_per_user',
         (v) => (v as num?)?.toInt(),
       ),
-      nsfw: $checkedConvert('nsfw', (v) => v as bool?),
+      nsfw: $checkedConvert('nsfw', (v) => v as bool),
       nsfwOverride: $checkedConvert('nsfw_override', (v) => v as bool?),
       contentWarningLevel: $checkedConvert(
         'content_warning_level',
-        (v) =>
-            v == null ? null : ContentWarningLevel.fromJson((v as num).toInt()),
+        (v) => v == null
+            ? null
+            : ContentWarningLevelInput.fromJson((v as num).toInt()),
       ),
       contentWarningText: $checkedConvert(
         'content_warning_text',
@@ -248,7 +251,7 @@ Map<String, dynamic> _$ChannelCreateRequest4ToJson(
   'voice_connection_limit': ?instance.voiceConnectionLimit,
   'permission_overwrites': ?instance.permissionOverwrites,
   'rate_limit_per_user': ?instance.rateLimitPerUser,
-  'nsfw': ?instance.nsfw,
+  'nsfw': instance.nsfw,
   'nsfw_override': ?instance.nsfwOverride,
   'content_warning_level': ?instance.contentWarningLevel,
   'content_warning_text': ?instance.contentWarningText,
@@ -286,12 +289,13 @@ ChannelCreateRequest998 _$ChannelCreateRequest998FromJson(
         'rate_limit_per_user',
         (v) => (v as num?)?.toInt(),
       ),
-      nsfw: $checkedConvert('nsfw', (v) => v as bool?),
+      nsfw: $checkedConvert('nsfw', (v) => v as bool),
       nsfwOverride: $checkedConvert('nsfw_override', (v) => v as bool?),
       contentWarningLevel: $checkedConvert(
         'content_warning_level',
-        (v) =>
-            v == null ? null : ContentWarningLevel.fromJson((v as num).toInt()),
+        (v) => v == null
+            ? null
+            : ContentWarningLevelInput.fromJson((v as num).toInt()),
       ),
       contentWarningText: $checkedConvert(
         'content_warning_text',
@@ -329,7 +333,7 @@ Map<String, dynamic> _$ChannelCreateRequest998ToJson(
   'voice_connection_limit': ?instance.voiceConnectionLimit,
   'permission_overwrites': ?instance.permissionOverwrites,
   'rate_limit_per_user': ?instance.rateLimitPerUser,
-  'nsfw': ?instance.nsfw,
+  'nsfw': instance.nsfw,
   'nsfw_override': ?instance.nsfwOverride,
   'content_warning_level': ?instance.contentWarningLevel,
   'content_warning_text': ?instance.contentWarningText,
