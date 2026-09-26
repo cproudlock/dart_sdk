@@ -6,36 +6,16 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'git_hub_webhook_commits_author.g.dart';
 
-const Object _omit = Object();
-
-@JsonSerializable(constructor: '_')
+@JsonSerializable()
 class GitHubWebhookCommitsAuthor {
-  const GitHubWebhookCommitsAuthor({
-    required this.name,
-    Object? username = _omit,
-  }) : username = identical(username, _omit) ? null : username as String?,
-       _usernamePresent = !identical(username, _omit);
+  const GitHubWebhookCommitsAuthor({required this.name, this.username});
 
-  const GitHubWebhookCommitsAuthor._({required this.name, this.username})
-    : _usernamePresent = false;
-  factory GitHubWebhookCommitsAuthor.fromJson(Map<String, Object?> json) {
-    final value = _$GitHubWebhookCommitsAuthorFromJson(json);
-    return GitHubWebhookCommitsAuthor(
-      name: value.name,
-      username: json.containsKey('username') ? value.username : _omit,
-    );
-  }
+  factory GitHubWebhookCommitsAuthor.fromJson(Map<String, Object?> json) =>
+      _$GitHubWebhookCommitsAuthorFromJson(json);
 
   @JsonKey(includeIfNull: false)
   final String? username;
   final String name;
-  final bool _usernamePresent;
 
-  Map<String, Object?> toJson() {
-    final json = _$GitHubWebhookCommitsAuthorToJson(this);
-    if (_usernamePresent) {
-      json.putIfAbsent('username', () => username);
-    }
-    return json;
-  }
+  Map<String, Object?> toJson() => _$GitHubWebhookCommitsAuthorToJson(this);
 }

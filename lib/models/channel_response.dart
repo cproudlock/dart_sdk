@@ -17,89 +17,9 @@ import 'user_partial_response.dart';
 
 part 'channel_response.g.dart';
 
-const Object _omit = Object();
-
-@JsonSerializable(constructor: '_')
+@JsonSerializable()
 class ChannelResponse {
   const ChannelResponse({
-    required this.id,
-    required this.type,
-    this.guildId,
-    Object? name = _omit,
-    Object? topic = _omit,
-    Object? url = _omit,
-    Object? icon = _omit,
-    Object? ownerId = _omit,
-    this.position,
-    Object? parentId = _omit,
-    Object? bitrate = _omit,
-    Object? userLimit = _omit,
-    Object? voiceConnectionLimit = _omit,
-    Object? rtcRegion = _omit,
-    Object? lastMessageId = _omit,
-    Object? lastPinTimestamp = _omit,
-    this.permissionOverwrites,
-    this.recipients,
-    this.nsfw,
-    Object? nsfwOverride = _omit,
-    this.contentWarningLevel,
-    Object? contentWarningText = _omit,
-    this.rateLimitPerUser,
-    this.nicks,
-    this.threadMetadata,
-    this.memberCount,
-    this.messageCount,
-    this.pinned,
-    this.availableTags,
-    this.appliedTags,
-    this.defaultReactionEmoji,
-    this.defaultSortOrder,
-    this.defaultAutoArchiveDuration,
-    this.requireTag,
-  }) : name = identical(name, _omit) ? null : name as String?,
-       _namePresent = !identical(name, _omit),
-       topic = identical(topic, _omit) ? null : topic as String?,
-       _topicPresent = !identical(topic, _omit),
-       url = identical(url, _omit) ? null : url as String?,
-       _urlPresent = !identical(url, _omit),
-       icon = identical(icon, _omit) ? null : icon as String?,
-       _iconPresent = !identical(icon, _omit),
-       ownerId = identical(ownerId, _omit)
-           ? null
-           : ownerId as SnowflakeStringType?,
-       _ownerIdPresent = !identical(ownerId, _omit),
-       parentId = identical(parentId, _omit)
-           ? null
-           : parentId as SnowflakeStringType?,
-       _parentIdPresent = !identical(parentId, _omit),
-       bitrate = identical(bitrate, _omit) ? null : bitrate as Int32Type?,
-       _bitratePresent = !identical(bitrate, _omit),
-       userLimit = identical(userLimit, _omit) ? null : userLimit as Int32Type?,
-       _userLimitPresent = !identical(userLimit, _omit),
-       voiceConnectionLimit = identical(voiceConnectionLimit, _omit)
-           ? null
-           : voiceConnectionLimit as Int32Type?,
-       _voiceConnectionLimitPresent = !identical(voiceConnectionLimit, _omit),
-       rtcRegion = identical(rtcRegion, _omit) ? null : rtcRegion as String?,
-       _rtcRegionPresent = !identical(rtcRegion, _omit),
-       lastMessageId = identical(lastMessageId, _omit)
-           ? null
-           : lastMessageId as SnowflakeStringType?,
-       _lastMessageIdPresent = !identical(lastMessageId, _omit),
-       lastPinTimestamp = identical(lastPinTimestamp, _omit)
-           ? null
-           : lastPinTimestamp as DateTime?,
-       _lastPinTimestampPresent = !identical(lastPinTimestamp, _omit),
-       nsfwOverride = identical(nsfwOverride, _omit)
-           ? null
-           : nsfwOverride as bool?,
-       _nsfwOverridePresent = !identical(nsfwOverride, _omit),
-       contentWarningText = identical(contentWarningText, _omit)
-           ? null
-           : contentWarningText as String?,
-       _contentWarningTextPresent = !identical(contentWarningText, _omit);
-
-  const ChannelResponse._({
     required this.id,
     required this.type,
     this.guildId,
@@ -124,6 +44,7 @@ class ChannelResponse {
     this.contentWarningText,
     this.rateLimitPerUser,
     this.nicks,
+    // Echowire: thread and forum fields, hand-maintained below.
     this.threadMetadata,
     this.memberCount,
     this.messageCount,
@@ -134,69 +55,10 @@ class ChannelResponse {
     this.defaultSortOrder,
     this.defaultAutoArchiveDuration,
     this.requireTag,
-  }) : _namePresent = false,
-       _topicPresent = false,
-       _urlPresent = false,
-       _iconPresent = false,
-       _ownerIdPresent = false,
-       _parentIdPresent = false,
-       _bitratePresent = false,
-       _userLimitPresent = false,
-       _voiceConnectionLimitPresent = false,
-       _rtcRegionPresent = false,
-       _lastMessageIdPresent = false,
-       _lastPinTimestampPresent = false,
-       _nsfwOverridePresent = false,
-       _contentWarningTextPresent = false;
-  factory ChannelResponse.fromJson(Map<String, Object?> json) {
-    final value = _$ChannelResponseFromJson(json);
-    return ChannelResponse(
-      id: value.id,
-      type: value.type,
-      guildId: value.guildId,
-      name: json.containsKey('name') ? value.name : _omit,
-      topic: json.containsKey('topic') ? value.topic : _omit,
-      url: json.containsKey('url') ? value.url : _omit,
-      icon: json.containsKey('icon') ? value.icon : _omit,
-      ownerId: json.containsKey('owner_id') ? value.ownerId : _omit,
-      position: value.position,
-      parentId: json.containsKey('parent_id') ? value.parentId : _omit,
-      bitrate: json.containsKey('bitrate') ? value.bitrate : _omit,
-      userLimit: json.containsKey('user_limit') ? value.userLimit : _omit,
-      voiceConnectionLimit: json.containsKey('voice_connection_limit')
-          ? value.voiceConnectionLimit
-          : _omit,
-      rtcRegion: json.containsKey('rtc_region') ? value.rtcRegion : _omit,
-      lastMessageId: json.containsKey('last_message_id')
-          ? value.lastMessageId
-          : _omit,
-      lastPinTimestamp: json.containsKey('last_pin_timestamp')
-          ? value.lastPinTimestamp
-          : _omit,
-      permissionOverwrites: value.permissionOverwrites,
-      recipients: value.recipients,
-      nsfw: value.nsfw,
-      nsfwOverride: json.containsKey('nsfw_override')
-          ? value.nsfwOverride
-          : _omit,
-      contentWarningLevel: value.contentWarningLevel,
-      contentWarningText: json.containsKey('content_warning_text')
-          ? value.contentWarningText
-          : _omit,
-      rateLimitPerUser: value.rateLimitPerUser,
-      nicks: value.nicks,
-      threadMetadata: value.threadMetadata,
-      memberCount: value.memberCount,
-      messageCount: value.messageCount,
-      pinned: value.pinned,
-      availableTags: value.availableTags,
-      appliedTags: value.appliedTags,
-      defaultReactionEmoji: value.defaultReactionEmoji,
-      defaultSortOrder: value.defaultSortOrder,
-      defaultAutoArchiveDuration: value.defaultAutoArchiveDuration,
-      requireTag: value.requireTag,
-    );
-  }
+  });
+
+  factory ChannelResponse.fromJson(Map<String, Object?> json) =>
+      _$ChannelResponseFromJson(json);
 
   /// The unique identifier (snowflake) for this channel
   final SnowflakeStringType id;
@@ -336,65 +198,6 @@ class ChannelResponse {
   /// Whether a forum post must have at least one tag
   @JsonKey(includeIfNull: false, name: 'require_tag')
   final bool? requireTag;
-  final bool _namePresent;
-  final bool _topicPresent;
-  final bool _urlPresent;
-  final bool _iconPresent;
-  final bool _ownerIdPresent;
-  final bool _parentIdPresent;
-  final bool _bitratePresent;
-  final bool _userLimitPresent;
-  final bool _voiceConnectionLimitPresent;
-  final bool _rtcRegionPresent;
-  final bool _lastMessageIdPresent;
-  final bool _lastPinTimestampPresent;
-  final bool _nsfwOverridePresent;
-  final bool _contentWarningTextPresent;
 
-  Map<String, Object?> toJson() {
-    final json = _$ChannelResponseToJson(this);
-    if (_namePresent) {
-      json.putIfAbsent('name', () => name);
-    }
-    if (_topicPresent) {
-      json.putIfAbsent('topic', () => topic);
-    }
-    if (_urlPresent) {
-      json.putIfAbsent('url', () => url);
-    }
-    if (_iconPresent) {
-      json.putIfAbsent('icon', () => icon);
-    }
-    if (_ownerIdPresent) {
-      json.putIfAbsent('owner_id', () => ownerId);
-    }
-    if (_parentIdPresent) {
-      json.putIfAbsent('parent_id', () => parentId);
-    }
-    if (_bitratePresent) {
-      json.putIfAbsent('bitrate', () => bitrate);
-    }
-    if (_userLimitPresent) {
-      json.putIfAbsent('user_limit', () => userLimit);
-    }
-    if (_voiceConnectionLimitPresent) {
-      json.putIfAbsent('voice_connection_limit', () => voiceConnectionLimit);
-    }
-    if (_rtcRegionPresent) {
-      json.putIfAbsent('rtc_region', () => rtcRegion);
-    }
-    if (_lastMessageIdPresent) {
-      json.putIfAbsent('last_message_id', () => lastMessageId);
-    }
-    if (_lastPinTimestampPresent) {
-      json.putIfAbsent('last_pin_timestamp', () => lastPinTimestamp);
-    }
-    if (_nsfwOverridePresent) {
-      json.putIfAbsent('nsfw_override', () => nsfwOverride);
-    }
-    if (_contentWarningTextPresent) {
-      json.putIfAbsent('content_warning_text', () => contentWarningText);
-    }
-    return json;
-  }
+  Map<String, Object?> toJson() => _$ChannelResponseToJson(this);
 }

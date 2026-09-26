@@ -10,9 +10,7 @@ import 'user_partial_response.dart';
 
 part 'application_public_response.g.dart';
 
-const Object _omit = Object();
-
-@JsonSerializable(constructor: '_')
+@JsonSerializable()
 class ApplicationPublicResponse {
   const ApplicationPublicResponse({
     required this.id,
@@ -23,37 +21,11 @@ class ApplicationPublicResponse {
     required this.scopes,
     required this.botPublic,
     required this.bot,
-    Object? currentUser = _omit,
-  }) : currentUser = identical(currentUser, _omit)
-           ? null
-           : currentUser as UserPartialResponse?,
-       _currentUserPresent = !identical(currentUser, _omit);
-
-  const ApplicationPublicResponse._({
-    required this.id,
-    required this.name,
-    required this.icon,
-    required this.description,
-    required this.redirectUris,
-    required this.scopes,
-    required this.botPublic,
-    required this.bot,
     this.currentUser,
-  }) : _currentUserPresent = false;
-  factory ApplicationPublicResponse.fromJson(Map<String, Object?> json) {
-    final value = _$ApplicationPublicResponseFromJson(json);
-    return ApplicationPublicResponse(
-      id: value.id,
-      name: value.name,
-      icon: value.icon,
-      description: value.description,
-      redirectUris: value.redirectUris,
-      scopes: value.scopes,
-      botPublic: value.botPublic,
-      bot: value.bot,
-      currentUser: json.containsKey('current_user') ? value.currentUser : _omit,
-    );
-  }
+  });
+
+  factory ApplicationPublicResponse.fromJson(Map<String, Object?> json) =>
+      _$ApplicationPublicResponseFromJson(json);
 
   /// The unique identifier of the application
   final SnowflakeStringType id;
@@ -87,13 +59,6 @@ class ApplicationPublicResponse {
   /// Partial user data for the authenticated requester, when a session token is present
   @JsonKey(includeIfNull: false, name: 'current_user')
   final UserPartialResponse? currentUser;
-  final bool _currentUserPresent;
 
-  Map<String, Object?> toJson() {
-    final json = _$ApplicationPublicResponseToJson(this);
-    if (_currentUserPresent) {
-      json.putIfAbsent('current_user', () => currentUser);
-    }
-    return json;
-  }
+  Map<String, Object?> toJson() => _$ApplicationPublicResponseToJson(this);
 }
