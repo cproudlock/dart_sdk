@@ -5,6 +5,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
 import 'snowflake_string_type.dart';
+import 'webhook_type.dart';
 
 part 'webhook_token_response.g.dart';
 
@@ -15,6 +16,7 @@ class WebhookTokenResponse {
     required this.guildId,
     required this.channelId,
     required this.name,
+    required this.type,
     required this.token,
     this.avatar,
   });
@@ -39,6 +41,7 @@ class WebhookTokenResponse {
   /// The hash of the webhook avatar image
   @JsonKey(includeIfNull: false)
   final String? avatar;
+  final WebhookType type;
 
   /// The secure token used to execute the webhook
   final String token;

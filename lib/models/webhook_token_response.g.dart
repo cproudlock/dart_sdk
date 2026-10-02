@@ -14,6 +14,10 @@ WebhookTokenResponse _$WebhookTokenResponseFromJson(
     guildId: $checkedConvert('guild_id', (v) => v as String),
     channelId: $checkedConvert('channel_id', (v) => v as String),
     name: $checkedConvert('name', (v) => v as String),
+    type: $checkedConvert(
+      'type',
+      (v) => WebhookType.fromJson((v as num).toInt()),
+    ),
     token: $checkedConvert('token', (v) => v as String),
     avatar: $checkedConvert('avatar', (v) => v as String?),
   );
@@ -28,5 +32,6 @@ Map<String, dynamic> _$WebhookTokenResponseToJson(
   'channel_id': instance.channelId,
   'name': instance.name,
   'avatar': ?instance.avatar,
+  'type': instance.type,
   'token': instance.token,
 };

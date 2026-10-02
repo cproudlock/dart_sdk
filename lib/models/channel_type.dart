@@ -17,6 +17,8 @@ enum ChannelType {
   groupDm(3),
   @JsonValue(4)
   guildCategory(4),
+  @JsonValue(5)
+  guildAnnouncement(5),
 
   // Echowire: thread and forum channel types. Upstream's OpenAPI spec does not
   // declare them, so a plain regeneration drops them and ChannelType.fromJson

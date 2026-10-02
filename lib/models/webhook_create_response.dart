@@ -1,0 +1,55 @@
+// coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, unused_import, invalid_annotation_target, unnecessary_import
+
+import 'package:json_annotation/json_annotation.dart';
+
+import 'snowflake_string_type.dart';
+import 'user_partial_response.dart';
+import 'webhook_type.dart';
+
+part 'webhook_create_response.g.dart';
+
+@JsonSerializable()
+class WebhookCreateResponse {
+  const WebhookCreateResponse({
+    required this.id,
+    required this.guildId,
+    required this.channelId,
+    required this.name,
+    required this.type,
+    required this.token,
+    required this.user,
+    this.avatar,
+  });
+
+  factory WebhookCreateResponse.fromJson(Map<String, Object?> json) =>
+      _$WebhookCreateResponseFromJson(json);
+
+  /// The unique identifier (snowflake) for the webhook
+  final SnowflakeStringType id;
+
+  /// The ID of the guild this webhook belongs to
+  @JsonKey(name: 'guild_id')
+  final SnowflakeStringType guildId;
+
+  /// The ID of the channel this webhook posts to
+  @JsonKey(name: 'channel_id')
+  final SnowflakeStringType channelId;
+
+  /// The display name of the webhook
+  final String name;
+
+  /// The hash of the webhook avatar image
+  @JsonKey(includeIfNull: false)
+  final String? avatar;
+  final WebhookType type;
+
+  /// The secure token used to execute the webhook
+  final String token;
+
+  /// The user who created the webhook
+  final UserPartialResponse user;
+
+  Map<String, Object?> toJson() => _$WebhookCreateResponseToJson(this);
+}

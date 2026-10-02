@@ -157,7 +157,7 @@ abstract class UsersApi {
 
   /// Create private channel.
   ///
-  /// Creates a new private channel (direct message) between the current user and one or more recipients. Group DM creation requires CAPTCHA verification. Returns the newly created channel object.
+  /// Creates a new private channel (direct message) between the current user and one or more recipients. Group DM creation requires a solved captcha challenge (X-Captcha-Token). Returns the newly created channel object.
   ///
   /// [body] - Name not received - field will be skipped.
   @POST('/users/@me/channels')
@@ -779,13 +779,13 @@ abstract class UsersApi {
 
   /// Start an inbound SMS challenge.
   ///
-  /// For very-high-risk registrations the platform requires the user to text a one-time code to the platform's number, instead of receiving a code from the platform. This endpoint generates the code and the destination number to display.
+  /// When an account must verify its phone number inbound, the user texts a one-time code to the platform's number instead of receiving one. This endpoint generates the code and the destination number to display.
   @POST('/users/@me/phone/inbound-challenge')
   Future<InboundSmsChallengeStartResponse> startInboundPhoneChallenge();
 
   /// Send phone verification code.
   ///
-  /// Send a one-time code on the requested channel. Defaults to the first available channel from server policy. Pass channel="sms" to request SMS (only honoured for SMS-allowlisted destinations) or channel="inbound_challenge" to receive challenge details to text in. Expensive outbound destinations always downgrade to an inbound challenge.
+  /// Send a one-time code on the requested channel. Defaults to the first available channel from server policy. Pass channel="sms" to request SMS (only honoured for SMS-allowlisted destinations) or channel="inbound_challenge" to receive challenge details to text in. Expensive outbound destinations always downgrade to an inbound challenge. Requires a solved captcha challenge (X-Captcha-Token) when the phone verification service asks for one.
   ///
   /// [body] - Name not received - field will be skipped.
   @POST('/users/@me/phone/send-verification')
@@ -932,13 +932,13 @@ abstract class UsersApi {
 
   /// Preview setting the deferred phone check aside.
   ///
-  /// Reports whether this account can set a deferred phone verification requirement aside, and which communities would be left if it did. Returns available false with empty lists for any account outside that state.
+  /// Reports whether this account can set a due phone verification requirement aside. The community lists are always empty.
   @GET('/users/@me/required-actions/phone-gate-escape')
   Future<PhoneGateEscapePreviewResponse> getPhoneGateEscape();
 
   /// Set the deferred phone check aside.
   ///
-  /// Leaves the communities that trigger the deferred phone verification check and restores the deferral, so the account works normally again. Communities the user owns are kept, and a run that hits the per-call community limit leaves what it can and can be repeated. Returns the updated private user object.
+  /// Defers a due phone verification requirement again, so the account works normally without leaving any community. Returns the updated private user object.
   ///
   /// [body] - Name not received - field will be skipped.
   @POST('/users/@me/required-actions/phone-gate-escape')

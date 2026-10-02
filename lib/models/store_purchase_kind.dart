@@ -5,28 +5,18 @@
 import 'package:json_annotation/json_annotation.dart';
 
 @JsonEnum()
-enum VoiceNoiseSuppressionBackendSchema {
-  @JsonValue('none')
-  none('none'),
-  @JsonValue('standard')
-  standard('standard'),
-  @JsonValue('gate')
-  gate('gate'),
-  @JsonValue('speex')
-  speex('speex'),
-  @JsonValue('rnnoise')
-  rnnoise('rnnoise'),
-  @JsonValue('gtcrn')
-  gtcrn('gtcrn'),
-  @JsonValue('deep_filter')
-  deepFilter('deep_filter'),
+enum StorePurchaseKind {
+  @JsonValue('subscription')
+  subscription('subscription'),
+  @JsonValue('gift')
+  gift('gift'),
 
   /// Default value for all unparsed values, allows backward compatibility when adding new values on the backend.
   $unknown(null);
 
-  const VoiceNoiseSuppressionBackendSchema(this.json);
+  const StorePurchaseKind(this.json);
 
-  factory VoiceNoiseSuppressionBackendSchema.fromJson(String json) =>
+  factory StorePurchaseKind.fromJson(String json) =>
       values.firstWhere((e) => e.json == json, orElse: () => $unknown);
 
   final String? json;
@@ -37,6 +27,6 @@ enum VoiceNoiseSuppressionBackendSchema {
   String toString() => json ?? super.toString();
 
   /// Returns all defined enum values excluding the $unknown value.
-  static List<VoiceNoiseSuppressionBackendSchema> get $valuesDefined =>
+  static List<StorePurchaseKind> get $valuesDefined =>
       values.where((value) => value != $unknown).toList();
 }

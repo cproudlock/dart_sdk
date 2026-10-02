@@ -184,8 +184,6 @@ class UserUpdateWithVerificationRequest {
   /// Account password for sudo verification
   @JsonKey(includeIfNull: false)
   final PasswordType? password;
-
-  /// Staff-only bitfield controlling who can see the profile timezone. Ignored for non-staff users.
   @JsonKey(includeIfNull: false, name: 'timezone_privacy_flags')
   final ProfileFieldPrivacyFlags? timezonePrivacyFlags;
 
