@@ -20,14 +20,14 @@ ThreadMetadataResponse _$ThreadMetadataResponseFromJson(
       ),
       archiveTimestamp: $checkedConvert(
         'archive_timestamp',
-        (v) => v == null ? null : DateTime.parse(v as String),
+        (v) => DateTime.parse(v as String),
       ),
-      locked: $checkedConvert('locked', (v) => v as bool?),
-      invitable: $checkedConvert('invitable', (v) => v as bool?),
+      locked: $checkedConvert('locked', (v) => v as bool),
       createTimestamp: $checkedConvert(
         'create_timestamp',
-        (v) => v == null ? null : DateTime.parse(v as String),
+        (v) => DateTime.parse(v as String),
       ),
+      invitable: $checkedConvert('invitable', (v) => v as bool?),
     );
     return val;
   },
@@ -43,8 +43,8 @@ Map<String, dynamic> _$ThreadMetadataResponseToJson(
 ) => <String, dynamic>{
   'archived': instance.archived,
   'auto_archive_duration': instance.autoArchiveDuration,
-  'archive_timestamp': ?instance.archiveTimestamp?.toIso8601String(),
-  'locked': ?instance.locked,
+  'archive_timestamp': instance.archiveTimestamp.toIso8601String(),
+  'locked': instance.locked,
   'invitable': ?instance.invitable,
-  'create_timestamp': ?instance.createTimestamp?.toIso8601String(),
+  'create_timestamp': instance.createTimestamp.toIso8601String(),
 };

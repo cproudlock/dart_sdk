@@ -11,14 +11,18 @@ ForumTagResponse _$ForumTagResponseFromJson(Map<String, dynamic> json) =>
       final val = ForumTagResponse(
         id: $checkedConvert('id', (v) => v as String),
         name: $checkedConvert('name', (v) => v as String),
+        moderated: $checkedConvert('moderated', (v) => v as bool),
+        emojiId: $checkedConvert('emoji_id', (v) => v as String?),
         emojiName: $checkedConvert('emoji_name', (v) => v as String?),
       );
       return val;
-    }, fieldKeyMap: const {'emojiName': 'emoji_name'});
+    }, fieldKeyMap: const {'emojiId': 'emoji_id', 'emojiName': 'emoji_name'});
 
 Map<String, dynamic> _$ForumTagResponseToJson(ForumTagResponse instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
+      'moderated': instance.moderated,
+      'emoji_id': instance.emojiId,
       'emoji_name': instance.emojiName,
     };

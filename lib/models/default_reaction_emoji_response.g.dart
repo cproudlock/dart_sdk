@@ -19,6 +19,6 @@ DefaultReactionEmojiResponse _$DefaultReactionEmojiResponseFromJson(
 Map<String, dynamic> _$DefaultReactionEmojiResponseToJson(
   DefaultReactionEmojiResponse instance,
 ) => <String, dynamic>{
-  'emoji_id': ?instance.emojiId,
-  'emoji_name': ?instance.emojiName,
+  'emoji_id': instance.emojiId,
+  'emoji_name': instance.emojiName,
 };
