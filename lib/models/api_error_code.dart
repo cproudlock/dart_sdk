@@ -33,8 +33,6 @@ enum ApiErrorCode {
   aclsMustBeNonEmpty('ACLS_MUST_BE_NON_EMPTY'),
   @JsonValue('ADMIN_API_KEY_NOT_FOUND')
   adminApiKeyNotFound('ADMIN_API_KEY_NOT_FOUND'),
-  @JsonValue('APPLICATION_NOT_OWNED')
-  applicationNotOwned('APPLICATION_NOT_OWNED'),
   @JsonValue('ALREADY_FRIENDS')
   alreadyFriends('ALREADY_FRIENDS'),
   @JsonValue('BOTS_CANNOT_CREATE_GUILDS')
@@ -181,6 +179,8 @@ enum ApiErrorCode {
   reportEmailVerificationRequired('REPORT_EMAIL_VERIFICATION_REQUIRED'),
   @JsonValue('REGISTRATION_CLOSED')
   registrationClosed('REGISTRATION_CLOSED'),
+  @JsonValue('REGISTRATION_CREDENTIALS_REQUIRED')
+  registrationCredentialsRequired('REGISTRATION_CREDENTIALS_REQUIRED'),
   @JsonValue('REGISTRATION_PENDING_APPROVAL')
   registrationPendingApproval('REGISTRATION_PENDING_APPROVAL'),
   @JsonValue('REGISTRATION_REJECTED')
