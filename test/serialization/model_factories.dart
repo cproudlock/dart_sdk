@@ -427,6 +427,15 @@ tolerantModelFactories = <String, Object Function(Map<String, Object?>)>{
   'InviteResponseSchemaGuildInviteResponse':
       InviteResponseSchemaGuildInviteResponse.fromJson,
   'IpAuthorizationPollResponse': IpAuthorizationPollResponse.fromJson,
+  'LibredeskWebhook': LibredeskWebhook.fromJson,
+  'LibredeskWebhookPayload': LibredeskWebhookPayload.fromJson,
+  'LibredeskWebhookPayloadAttachments':
+      LibredeskWebhookPayloadAttachments.fromJson,
+  'LibredeskWebhookPayloadAuthor': LibredeskWebhookPayloadAuthor.fromJson,
+  'LibredeskWebhookPayloadContact': LibredeskWebhookPayloadContact.fromJson,
+  'LibredeskWebhookPayloadConversation':
+      LibredeskWebhookPayloadConversation.fromJson,
+  'LibredeskWebhookPayloadMeta': LibredeskWebhookPayloadMeta.fromJson,
   'ListPriceSwitchState': ListPriceSwitchState.fromJson,
   'LoginRequest': LoginRequest.fromJson,
   'LogoutAuthSessionsWithVerificationRequest':
