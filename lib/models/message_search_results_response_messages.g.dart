@@ -14,8 +14,11 @@ _$MessageSearchResultsResponseMessagesFromJson(
   json,
   ($checkedConvert) {
     final val = MessageSearchResultsResponseMessages(
-      id: $checkedConvert('id', (v) => v as String? ?? ''),
-      channelId: $checkedConvert('channel_id', (v) => v as String? ?? ''),
+      id: $checkedConvert('id', (v) => v as SnowflakeStringType? ?? ''),
+      channelId: $checkedConvert(
+        'channel_id',
+        (v) => v as SnowflakeStringType? ?? '',
+      ),
       author: $checkedConvert(
         'author',
         (v) => v == null
@@ -55,7 +58,10 @@ _$MessageSearchResultsResponseMessagesFromJson(
         'mention_roles',
         (v) => (v as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
       ),
-      webhookId: $checkedConvert('webhook_id', (v) => v as String?),
+      webhookId: $checkedConvert(
+        'webhook_id',
+        (v) => v as SnowflakeStringType?,
+      ),
       editedTimestamp: $checkedConvert(
         'edited_timestamp',
         (v) => v == null ? null : DateTime.parse(v as String),

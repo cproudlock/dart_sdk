@@ -14,7 +14,7 @@ ForumThreadMessageRequest _$ForumThreadMessageRequestFromJson(
   ($checkedConvert) {
     final val = ForumThreadMessageRequest(
       flags: $checkedConvert('flags', (v) => (v as num?)?.toInt() ?? 0),
-      content: $checkedConvert('content', (v) => v as String?),
+      content: $checkedConvert('content', (v) => v as MessageContentRequest?),
       embeds: $checkedConvert(
         'embeds',
         (v) => (v as List<dynamic>?)
@@ -39,7 +39,7 @@ ForumThreadMessageRequest _$ForumThreadMessageRequestFromJson(
       ),
       stickerIds: $checkedConvert(
         'sticker_ids',
-        (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
+        (v) => (v as List<dynamic>?)?.map((e) => e as SnowflakeType).toList(),
       ),
     );
     return val;
