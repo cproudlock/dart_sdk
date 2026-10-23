@@ -13,7 +13,7 @@ ThreadChannelResponse _$ThreadChannelResponseFromJson(
   json,
   ($checkedConvert) {
     final val = ThreadChannelResponse(
-      id: $checkedConvert('id', (v) => v as String? ?? ''),
+      id: $checkedConvert('id', (v) => v as SnowflakeStringType? ?? ''),
       type: $checkedConvert(
         'type',
         (v) => v == null
@@ -24,10 +24,10 @@ ThreadChannelResponse _$ThreadChannelResponseFromJson(
       topic: $checkedConvert('topic', (v) => v as String?),
       url: $checkedConvert('url', (v) => v as String?),
       icon: $checkedConvert('icon', (v) => v as String?),
-      ownerId: $checkedConvert('owner_id', (v) => v as String?),
-      guildId: $checkedConvert('guild_id', (v) => v as String?),
+      ownerId: $checkedConvert('owner_id', (v) => v as SnowflakeStringType?),
+      guildId: $checkedConvert('guild_id', (v) => v as SnowflakeStringType?),
       position: $checkedConvert('position', (v) => (v as num?)?.toInt()),
-      parentId: $checkedConvert('parent_id', (v) => v as String?),
+      parentId: $checkedConvert('parent_id', (v) => v as SnowflakeStringType?),
       bitrate: $checkedConvert('bitrate', (v) => (v as num?)?.toInt()),
       userLimit: $checkedConvert('user_limit', (v) => (v as num?)?.toInt()),
       voiceConnectionLimit: $checkedConvert(
@@ -36,7 +36,10 @@ ThreadChannelResponse _$ThreadChannelResponseFromJson(
       ),
       name: $checkedConvert('name', (v) => v as String?),
       rtcP2p: $checkedConvert('rtc_p2p', (v) => v as bool?),
-      lastMessageId: $checkedConvert('last_message_id', (v) => v as String?),
+      lastMessageId: $checkedConvert(
+        'last_message_id',
+        (v) => v as SnowflakeStringType?,
+      ),
       lastPinTimestamp: $checkedConvert(
         'last_pin_timestamp',
         (v) => v == null ? null : DateTime.parse(v as String),
@@ -95,7 +98,9 @@ ThreadChannelResponse _$ThreadChannelResponseFromJson(
       ),
       appliedTags: $checkedConvert(
         'applied_tags',
-        (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
+        (v) => (v as List<dynamic>?)
+            ?.map((e) => e as SnowflakeStringType)
+            .toList(),
       ),
       messageCount: $checkedConvert(
         'message_count',
@@ -108,7 +113,9 @@ ThreadChannelResponse _$ThreadChannelResponseFromJson(
       memberCount: $checkedConvert('member_count', (v) => (v as num?)?.toInt()),
       memberIdsPreview: $checkedConvert(
         'member_ids_preview',
-        (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
+        (v) => (v as List<dynamic>?)
+            ?.map((e) => e as SnowflakeStringType)
+            .toList(),
       ),
       member: $checkedConvert(
         'member',

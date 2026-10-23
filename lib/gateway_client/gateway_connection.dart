@@ -728,8 +728,7 @@ class GatewayConnection {
     }
   }
 
-  void _onError(Object error) {
-    _reportError(error);
+  void _onError(Object _) {
     _scheduleReconnect();
   }
 

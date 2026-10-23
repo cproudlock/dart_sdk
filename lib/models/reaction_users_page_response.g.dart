@@ -21,7 +21,7 @@ ReactionUsersPageResponse _$ReactionUsersPageResponseFromJson(
           [],
     ),
     hasMore: $checkedConvert('has_more', (v) => v as bool? ?? false),
-    nextAfter: $checkedConvert('next_after', (v) => v as String?),
+    nextAfter: $checkedConvert('next_after', (v) => v as SnowflakeStringType?),
   );
   return val;
 }, fieldKeyMap: const {'hasMore': 'has_more', 'nextAfter': 'next_after'});

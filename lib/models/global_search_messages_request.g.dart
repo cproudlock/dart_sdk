@@ -15,19 +15,22 @@ GlobalSearchMessagesRequest _$GlobalSearchMessagesRequestFromJson(
     final val = GlobalSearchMessagesRequest(
       authorId: $checkedConvert(
         'author_id',
-        (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
+        (v) => (v as List<dynamic>?)?.map((e) => e as SnowflakeType).toList(),
       ),
-      contextGuildId: $checkedConvert('context_guild_id', (v) => v as String?),
+      contextGuildId: $checkedConvert(
+        'context_guild_id',
+        (v) => v as SnowflakeType?,
+      ),
       cursor: $checkedConvert(
         'cursor',
         (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
       ),
-      maxId: $checkedConvert('max_id', (v) => v as String?),
-      minId: $checkedConvert('min_id', (v) => v as String?),
+      maxId: $checkedConvert('max_id', (v) => v as SnowflakeType?),
+      minId: $checkedConvert('min_id', (v) => v as SnowflakeType?),
       content: $checkedConvert('content', (v) => v as String?),
       contextChannelId: $checkedConvert(
         'context_channel_id',
-        (v) => v as String?,
+        (v) => v as SnowflakeType?,
       ),
       exactPhrases: $checkedConvert(
         'exact_phrases',
@@ -35,11 +38,11 @@ GlobalSearchMessagesRequest _$GlobalSearchMessagesRequestFromJson(
       ),
       channelId: $checkedConvert(
         'channel_id',
-        (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
+        (v) => (v as List<dynamic>?)?.map((e) => e as SnowflakeType).toList(),
       ),
       excludeChannelId: $checkedConvert(
         'exclude_channel_id',
-        (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
+        (v) => (v as List<dynamic>?)?.map((e) => e as SnowflakeType).toList(),
       ),
       authorType: $checkedConvert(
         'author_type',
@@ -59,15 +62,15 @@ GlobalSearchMessagesRequest _$GlobalSearchMessagesRequestFromJson(
       ),
       excludeAuthorId: $checkedConvert(
         'exclude_author_id',
-        (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
+        (v) => (v as List<dynamic>?)?.map((e) => e as SnowflakeType).toList(),
       ),
       mentions: $checkedConvert(
         'mentions',
-        (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
+        (v) => (v as List<dynamic>?)?.map((e) => e as SnowflakeType).toList(),
       ),
       excludeMentions: $checkedConvert(
         'exclude_mentions',
-        (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
+        (v) => (v as List<dynamic>?)?.map((e) => e as SnowflakeType).toList(),
       ),
       mentionEveryone: $checkedConvert('mention_everyone', (v) => v as bool?),
       pinned: $checkedConvert('pinned', (v) => v as bool?),
@@ -105,7 +108,7 @@ GlobalSearchMessagesRequest _$GlobalSearchMessagesRequestFromJson(
       ),
       channelIds: $checkedConvert(
         'channel_ids',
-        (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
+        (v) => (v as List<dynamic>?)?.map((e) => e as SnowflakeType).toList(),
       ),
       excludeLinkHostname: $checkedConvert(
         'exclude_link_hostname',

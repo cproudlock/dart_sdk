@@ -330,7 +330,7 @@ abstract class ChannelsApi {
 
   /// Bulk delete my messages in channel.
   ///
-  /// Deletes every message the caller has authored in the specified channel. Requires sudo mode verification. Returns 202 Accepted once matching messages have been removed.
+  /// Deletes every message the caller has authored in the specified channel and in its threads, active and archived. When the channel is a thread, only that thread is cleared. Requires sudo mode verification. Returns 202 Accepted once matching messages have been removed.
   ///
   /// [channelId] - The ID of the channel.
   ///
