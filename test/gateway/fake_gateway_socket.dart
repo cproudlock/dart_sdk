@@ -74,6 +74,10 @@ class FakeGatewaySocket implements WebSocketChannel {
     await _incoming.close();
   }
 
+  void serverSocketError(Object error, [StackTrace? stackTrace]) {
+    _incoming.addError(error, stackTrace ?? StackTrace.empty);
+  }
+
   @override
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
