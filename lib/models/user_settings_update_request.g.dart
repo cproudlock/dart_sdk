@@ -13,7 +13,7 @@ UserSettingsUpdateRequest _$UserSettingsUpdateRequestFromJson(
   json,
   ($checkedConvert) {
     final val = UserSettingsUpdateRequest._(
-      gifAutoPlay: $checkedConvert('gif_auto_play', (v) => v as bool?),
+      renderEmbeds: $checkedConvert('render_embeds', (v) => v as bool?),
       status: $checkedConvert(
         'status',
         (v) => v == null ? null : UserStatusType.fromJson(v as String),
@@ -62,8 +62,8 @@ UserSettingsUpdateRequest _$UserSettingsUpdateRequestFromJson(
         'inline_embed_media',
         (v) => v as bool?,
       ),
+      gifAutoPlay: $checkedConvert('gif_auto_play', (v) => v as bool?),
       flags: $checkedConvert('flags', (v) => (v as num?)?.toInt()),
-      renderEmbeds: $checkedConvert('render_embeds', (v) => v as bool?),
       renderReactions: $checkedConvert('render_reactions', (v) => v as bool?),
       animateEmoji: $checkedConvert('animate_emoji', (v) => v as bool?),
       animateStickers: $checkedConvert(
@@ -109,15 +109,10 @@ UserSettingsUpdateRequest _$UserSettingsUpdateRequestFromJson(
             ? null
             : CustomStatusPayload.fromJson(v as Map<String, dynamic>),
       ),
-      syncedPreferencesValue: $checkedConvert(
-        'synced_preferences',
+      afkTimeout: $checkedConvert('afk_timeout', (v) => (v as num?)?.toInt()),
+      syncedPreferencesBaseHash: $checkedConvert(
+        'synced_preferences_base_hash',
         (v) => v as String?,
-      ),
-      timeFormat: $checkedConvert(
-        'time_format',
-        (v) => v == null
-            ? null
-            : TimeFormatTypesInput.fromJson((v as num).toInt()),
       ),
       developerMode: $checkedConvert('developer_mode', (v) => v as bool?),
       trustedDomains: $checkedConvert(
@@ -172,12 +167,21 @@ UserSettingsUpdateRequest _$UserSettingsUpdateRequestFromJson(
         'privacy_setup_version',
         (v) => (v as num?)?.toInt(),
       ),
-      afkTimeout: $checkedConvert('afk_timeout', (v) => (v as num?)?.toInt()),
+      syncedPreferencesValue: $checkedConvert(
+        'synced_preferences',
+        (v) => v as String?,
+      ),
+      timeFormat: $checkedConvert(
+        'time_format',
+        (v) => v == null
+            ? null
+            : TimeFormatTypesInput.fromJson((v as num).toInt()),
+      ),
     );
     return val;
   },
   fieldKeyMap: const {
-    'gifAutoPlay': 'gif_auto_play',
+    'renderEmbeds': 'render_embeds',
     'statusResetsAtValue': 'status_resets_at',
     'statusResetsToValue': 'status_resets_to',
     'guildPositions': 'guild_positions',
@@ -187,7 +191,7 @@ UserSettingsUpdateRequest _$UserSettingsUpdateRequestFromJson(
     'botDefaultGuildsRestricted': 'bot_default_guilds_restricted',
     'inlineAttachmentMedia': 'inline_attachment_media',
     'inlineEmbedMedia': 'inline_embed_media',
-    'renderEmbeds': 'render_embeds',
+    'gifAutoPlay': 'gif_auto_play',
     'renderReactions': 'render_reactions',
     'animateEmoji': 'animate_emoji',
     'animateStickers': 'animate_stickers',
@@ -198,8 +202,8 @@ UserSettingsUpdateRequest _$UserSettingsUpdateRequestFromJson(
     'groupDmAddPermissionFlags': 'group_dm_add_permission_flags',
     'guildFolders': 'guild_folders',
     'customStatusValue': 'custom_status',
-    'syncedPreferencesValue': 'synced_preferences',
-    'timeFormat': 'time_format',
+    'afkTimeout': 'afk_timeout',
+    'syncedPreferencesBaseHash': 'synced_preferences_base_hash',
     'developerMode': 'developer_mode',
     'trustedDomains': 'trusted_domains',
     'defaultHideMutedChannels': 'default_hide_muted_channels',
@@ -214,7 +218,8 @@ UserSettingsUpdateRequest _$UserSettingsUpdateRequestFromJson(
     'profilePrivacy': 'profile_privacy',
     'defaultShareVoiceActivity': 'default_share_voice_activity',
     'privacySetupVersion': 'privacy_setup_version',
-    'afkTimeout': 'afk_timeout',
+    'syncedPreferencesValue': 'synced_preferences',
+    'timeFormat': 'time_format',
   },
 );
 
@@ -258,6 +263,7 @@ Map<String, dynamic> _$UserSettingsUpdateRequestToJson(
   'profile_privacy': ?instance.profilePrivacy,
   'default_share_voice_activity': ?instance.defaultShareVoiceActivity,
   'privacy_setup_version': ?instance.privacySetupVersion,
+  'synced_preferences_base_hash': ?instance.syncedPreferencesBaseHash,
   'status_resets_at': ?instance.statusResetsAtValue,
   'status_resets_to': ?instance.statusResetsToValue,
   'custom_status': ?instance.customStatusValue,
