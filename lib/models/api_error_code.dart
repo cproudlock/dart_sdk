@@ -493,6 +493,8 @@ enum ApiErrorCode {
   donationMagicLinkUsed('DONATION_MAGIC_LINK_USED'),
   @JsonValue('SUDO_MODE_REQUIRED')
   sudoModeRequired('SUDO_MODE_REQUIRED'),
+  @JsonValue('SYNCED_PREFERENCES_CONFLICT')
+  syncedPreferencesConflict('SYNCED_PREFERENCES_CONFLICT'),
   @JsonValue('TAG_ALREADY_TAKEN')
   tagAlreadyTaken('TAG_ALREADY_TAKEN'),
   @JsonValue('TEMPORARY_INVITE_REQUIRES_PRESENCE')
