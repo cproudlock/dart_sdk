@@ -23,6 +23,7 @@ class DiscoveryGuildListResponseGuilds {
     this.banner,
     this.description,
     this.primaryLanguage,
+    this.visitsEnabled,
   });
 
   factory DiscoveryGuildListResponseGuilds.fromJson(
@@ -76,6 +77,10 @@ class DiscoveryGuildListResponseGuilds {
   /// Verification level
   @JsonKey(name: 'verification_level', defaultValue: 0)
   final num verificationLevel;
+
+  /// Whether opening this listing starts a visit instead of a join for the requesting user. Omitted for a caller outside the guild visits experiment
+  @JsonKey(includeIfNull: false, name: 'visits_enabled')
+  final bool? visitsEnabled;
 
   Map<String, Object?> toJson() =>
       _$DiscoveryGuildListResponseGuildsToJson(this);

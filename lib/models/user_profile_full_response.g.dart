@@ -54,6 +54,18 @@ UserProfileFullResponse _$UserProfileFullResponseFromJson(
         'premium_lifetime_sequence',
         (v) => (v as num?)?.toInt(),
       ),
+      profileBadges: $checkedConvert(
+        'profile_badges',
+        (v) => (v as List<dynamic>?)
+            ?.map(
+              (e) => ProfileBadgeResponse.fromJson(e as Map<String, dynamic>),
+            )
+            .toList(),
+      ),
+      operatorPassSince: $checkedConvert(
+        'operator_pass_since',
+        (v) => v as String?,
+      ),
       mutualFriends: $checkedConvert(
         'mutual_friends',
         (v) => (v as List<dynamic>?)
@@ -90,6 +102,8 @@ UserProfileFullResponse _$UserProfileFullResponseFromJson(
     'premiumType': 'premium_type',
     'premiumSince': 'premium_since',
     'premiumLifetimeSequence': 'premium_lifetime_sequence',
+    'profileBadges': 'profile_badges',
+    'operatorPassSince': 'operator_pass_since',
     'mutualFriends': 'mutual_friends',
     'mutualGuilds': 'mutual_guilds',
     'connectedAccounts': 'connected_accounts',
@@ -107,6 +121,8 @@ Map<String, dynamic> _$UserProfileFullResponseToJson(
   'premium_type': ?instance.premiumType,
   'premium_since': ?instance.premiumSince,
   'premium_lifetime_sequence': ?instance.premiumLifetimeSequence,
+  'profile_badges': ?instance.profileBadges,
+  'operator_pass_since': ?instance.operatorPassSince,
   'mutual_friends': ?instance.mutualFriends,
   'mutual_guilds': ?instance.mutualGuilds,
   'connected_accounts': ?instance.connectedAccounts,

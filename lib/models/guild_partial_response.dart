@@ -28,6 +28,7 @@ class GuildPartialResponse {
     this.embedSplash,
     this.embedSplashWidth,
     this.embedSplashHeight,
+    this.visitsEnabled,
   });
 
   factory GuildPartialResponse.fromJson(Map<String, Object?> json) =>
@@ -93,6 +94,10 @@ class GuildPartialResponse {
   /// Array of guild feature flags
   @JsonKey(defaultValue: <String>[])
   final List<GuildFeatureSchema> features;
+
+  /// Whether opening this invite starts a visit instead of a join for the requesting user. Omitted for a caller outside the guild visits experiment
+  @JsonKey(includeIfNull: false, name: 'visits_enabled')
+  final bool? visitsEnabled;
 
   Map<String, Object?> toJson() => _$GuildPartialResponseToJson(this);
 }

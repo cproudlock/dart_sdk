@@ -13,6 +13,13 @@ GuildResponse _$GuildResponseFromJson(
   json,
   ($checkedConvert) {
     final val = GuildResponse(
+      explicitContentFilter: $checkedConvert(
+        'explicit_content_filter',
+        (v) => v == null
+            ? GuildExplicitContentFilter.$unknown
+            : GuildExplicitContentFilter.fromJson((v as num).toInt()),
+      ),
+      name: $checkedConvert('name', (v) => v as String? ?? ''),
       features: $checkedConvert(
         'features',
         (v) =>
@@ -20,11 +27,6 @@ GuildResponse _$GuildResponseFromJson(
                 ?.map((e) => e as GuildFeatureSchema)
                 .toList() ??
             [],
-      ),
-      name: $checkedConvert('name', (v) => v as String? ?? ''),
-      ownerId: $checkedConvert(
-        'owner_id',
-        (v) => v as SnowflakeStringType? ?? '',
       ),
       splashCardAlignment: $checkedConvert(
         'splash_card_alignment',
@@ -35,34 +37,31 @@ GuildResponse _$GuildResponseFromJson(
               ),
       ),
       id: $checkedConvert('id', (v) => v as SnowflakeStringType? ?? ''),
-      contentWarningLevel: $checkedConvert(
-        'content_warning_level',
-        (v) => v == null
-            ? ContentWarningLevel.$unknown
-            : ContentWarningLevel.fromJson((v as num).toInt()),
+      ownerId: $checkedConvert(
+        'owner_id',
+        (v) => v as SnowflakeStringType? ?? '',
       ),
-      disabledOperations: $checkedConvert(
-        'disabled_operations',
-        (v) => (v as num?)?.toInt() ?? 0,
-      ),
-      nsfw: $checkedConvert('nsfw', (v) => v as bool? ?? false),
       nsfwLevel: $checkedConvert(
         'nsfw_level',
         (v) => v == null
             ? NsfwLevel.$unknown
             : NsfwLevel.fromJson((v as num).toInt()),
       ),
-      defaultMessageNotifications: $checkedConvert(
-        'default_message_notifications',
-        (v) => v == null
-            ? DefaultMessageNotifications.$unknown
-            : DefaultMessageNotifications.fromJson((v as num).toInt()),
+      disabledOperations: $checkedConvert(
+        'disabled_operations',
+        (v) => (v as num?)?.toInt() ?? 0,
       ),
       mfaLevel: $checkedConvert(
         'mfa_level',
         (v) => v == null
             ? GuildMfaLevel.$unknown
             : GuildMfaLevel.fromJson((v as num).toInt()),
+      ),
+      defaultMessageNotifications: $checkedConvert(
+        'default_message_notifications',
+        (v) => v == null
+            ? DefaultMessageNotifications.$unknown
+            : DefaultMessageNotifications.fromJson((v as num).toInt()),
       ),
       verificationLevel: $checkedConvert(
         'verification_level',
@@ -78,17 +77,21 @@ GuildResponse _$GuildResponseFromJson(
         'system_channel_flags',
         (v) => (v as num?)?.toInt() ?? 0,
       ),
-      explicitContentFilter: $checkedConvert(
-        'explicit_content_filter',
+      contentWarningLevel: $checkedConvert(
+        'content_warning_level',
         (v) => v == null
-            ? GuildExplicitContentFilter.$unknown
-            : GuildExplicitContentFilter.fromJson((v as num).toInt()),
+            ? ContentWarningLevel.$unknown
+            : ContentWarningLevel.fromJson((v as num).toInt()),
       ),
+      nsfw: $checkedConvert('nsfw', (v) => v as bool? ?? false),
       systemChannelId: $checkedConvert(
         'system_channel_id',
         (v) => v as SnowflakeStringType?,
       ),
-      vanityUrlCode: $checkedConvert('vanity_url_code', (v) => v as String?),
+      embedSplashHeight: $checkedConvert(
+        'embed_splash_height',
+        (v) => (v as num?)?.toInt(),
+      ),
       rulesChannelId: $checkedConvert(
         'rules_channel_id',
         (v) => v as SnowflakeStringType?,
@@ -97,27 +100,27 @@ GuildResponse _$GuildResponseFromJson(
         'afk_channel_id',
         (v) => v as SnowflakeStringType?,
       ),
-      embedSplashHeight: $checkedConvert(
-        'embed_splash_height',
-        (v) => (v as num?)?.toInt(),
-      ),
-      splash: $checkedConvert('splash', (v) => v as String?),
       embedSplashWidth: $checkedConvert(
         'embed_splash_width',
         (v) => (v as num?)?.toInt(),
       ),
+      vanityUrlCode: $checkedConvert('vanity_url_code', (v) => v as String?),
       embedSplash: $checkedConvert('embed_splash', (v) => v as String?),
       splashHeight: $checkedConvert(
         'splash_height',
         (v) => (v as num?)?.toInt(),
       ),
-      splashWidth: $checkedConvert('splash_width', (v) => (v as num?)?.toInt()),
+      splash: $checkedConvert('splash', (v) => v as String?),
       bannerHeight: $checkedConvert(
         'banner_height',
         (v) => (v as num?)?.toInt(),
       ),
-      threadsActive: $checkedConvert('threads_active', (v) => v as bool?),
       bannerWidth: $checkedConvert('banner_width', (v) => (v as num?)?.toInt()),
+      contentWarningText: $checkedConvert(
+        'content_warning_text',
+        (v) => v as String?,
+      ),
+      visiting: $checkedConvert('visiting', (v) => v as bool?),
       banner: $checkedConvert('banner', (v) => v as String?),
       icon: $checkedConvert('icon', (v) => v as String?),
       messageHistoryCutoff: $checkedConvert(
@@ -161,43 +164,41 @@ GuildResponse _$GuildResponseFromJson(
         'approximate_presence_count',
         (v) => (v as num?)?.toInt(),
       ),
-      contentWarningText: $checkedConvert(
-        'content_warning_text',
-        (v) => v as String?,
-      ),
+      threadsActive: $checkedConvert('threads_active', (v) => v as bool?),
+      splashWidth: $checkedConvert('splash_width', (v) => (v as num?)?.toInt()),
     );
     return val;
   },
   fieldKeyMap: const {
-    'ownerId': 'owner_id',
+    'explicitContentFilter': 'explicit_content_filter',
     'splashCardAlignment': 'splash_card_alignment',
-    'contentWarningLevel': 'content_warning_level',
-    'disabledOperations': 'disabled_operations',
+    'ownerId': 'owner_id',
     'nsfwLevel': 'nsfw_level',
-    'defaultMessageNotifications': 'default_message_notifications',
+    'disabledOperations': 'disabled_operations',
     'mfaLevel': 'mfa_level',
+    'defaultMessageNotifications': 'default_message_notifications',
     'verificationLevel': 'verification_level',
     'afkTimeout': 'afk_timeout',
     'systemChannelFlags': 'system_channel_flags',
-    'explicitContentFilter': 'explicit_content_filter',
+    'contentWarningLevel': 'content_warning_level',
     'systemChannelId': 'system_channel_id',
-    'vanityUrlCode': 'vanity_url_code',
+    'embedSplashHeight': 'embed_splash_height',
     'rulesChannelId': 'rules_channel_id',
     'afkChannelId': 'afk_channel_id',
-    'embedSplashHeight': 'embed_splash_height',
     'embedSplashWidth': 'embed_splash_width',
+    'vanityUrlCode': 'vanity_url_code',
     'embedSplash': 'embed_splash',
     'splashHeight': 'splash_height',
-    'splashWidth': 'splash_width',
     'bannerHeight': 'banner_height',
-    'threadsActive': 'threads_active',
     'bannerWidth': 'banner_width',
+    'contentWarningText': 'content_warning_text',
     'messageHistoryCutoff': 'message_history_cutoff',
     'memberCount': 'member_count',
     'onlineCount': 'online_count',
     'approximateMemberCount': 'approximate_member_count',
     'approximatePresenceCount': 'approximate_presence_count',
-    'contentWarningText': 'content_warning_text',
+    'threadsActive': 'threads_active',
+    'splashWidth': 'splash_width',
   },
 );
 
@@ -245,4 +246,5 @@ Map<String, dynamic> _$GuildResponseToJson(
   'approximate_member_count': ?instance.approximateMemberCount,
   'approximate_presence_count': ?instance.approximatePresenceCount,
   'threads_active': ?instance.threadsActive,
+  'visiting': ?instance.visiting,
 };

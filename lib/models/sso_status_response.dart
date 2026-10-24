@@ -12,6 +12,7 @@ class SsoStatusResponse {
     required this.enabled,
     required this.enforced,
     required this.displayName,
+    required this.buttonLabel,
     required this.redirectUri,
   });
 
@@ -29,6 +30,10 @@ class SsoStatusResponse {
   /// Display name of the SSO provider
   @JsonKey(includeIfNull: true, name: 'display_name')
   final String? displayName;
+
+  /// Text for the SSO sign-in button, or null when the client shows its default label
+  @JsonKey(includeIfNull: true, name: 'button_label')
+  final String? buttonLabel;
 
   /// OAuth redirect URI for SSO
   @JsonKey(name: 'redirect_uri', defaultValue: '')

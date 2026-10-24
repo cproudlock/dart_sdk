@@ -5,6 +5,9 @@ import 'package:fluxer_dart/export.dart';
 
 final Map<String, Object Function(Map<String, Object?>)>
 tolerantModelFactories = <String, Object Function(Map<String, Object?>)>{
+  'AccountHandoffRedeemRequest': AccountHandoffRedeemRequest.fromJson,
+  'AccountHandoffRequest': AccountHandoffRequest.fromJson,
+  'AccountHandoffResponse': AccountHandoffResponse.fromJson,
   'ActiveThreadsResponse': ActiveThreadsResponse.fromJson,
   'AllowedMentionsRequest': AllowedMentionsRequest.fromJson,
   'AlreadyScheduledSwitchToListPriceResponse':
@@ -25,10 +28,11 @@ tolerantModelFactories = <String, Object Function(Map<String, Object?>)>{
       AuthLoginResponseAuthTokenWithUserIdResponse.fromJson,
   'AuthLoginResponseVariant2': AuthLoginResponseVariant2.fromJson,
   'AuthRegisterResponse': AuthRegisterResponse.fromJson,
+  'AuthRegisterResponseAuthRegisterSuccessResponse':
+      AuthRegisterResponseAuthRegisterSuccessResponse.fromJson,
   'AuthRegisterResponseAuthRegistrationPendingApprovalResponse':
       AuthRegisterResponseAuthRegistrationPendingApprovalResponse.fromJson,
-  'AuthRegisterResponseAuthTokenWithUserIdResponse':
-      AuthRegisterResponseAuthTokenWithUserIdResponse.fromJson,
+  'AuthRegisterSuccessResponse': AuthRegisterSuccessResponse.fromJson,
   'AuthRegistrationPendingApprovalResponse':
       AuthRegistrationPendingApprovalResponse.fromJson,
   'AuthSessionLocation': AuthSessionLocation.fromJson,
@@ -59,6 +63,7 @@ tolerantModelFactories = <String, Object Function(Map<String, Object?>)>{
       CancelledPasskeyBridgeLoginRedeemResponse.fromJson,
   'CancelledPasskeyBridgeSudoRedeemResponse':
       CancelledPasskeyBridgeSudoRedeemResponse.fromJson,
+  'CaptchaChallengeResponse': CaptchaChallengeResponse.fromJson,
   'ChangeSubscriptionRequest': ChangeSubscriptionRequest.fromJson,
   'ChannelFollowRequest': ChannelFollowRequest.fromJson,
   'ChannelFollowerStatsResponse': ChannelFollowerStatsResponse.fromJson,
@@ -117,6 +122,12 @@ tolerantModelFactories = <String, Object Function(Map<String, Object?>)>{
   'ChannelUpdateRequestBodyVariant6': ChannelUpdateRequestBodyVariant6.fromJson,
   'ChannelUpdateThreadParentRequestBody':
       ChannelUpdateThreadParentRequestBody.fromJson,
+  'ClaimAccountRequest': ClaimAccountRequest.fromJson,
+  'ClaimAccountResponse': ClaimAccountResponse.fromJson,
+  'ClaimAccountResponseConfirmEmailClaimAccountResponse':
+      ClaimAccountResponseConfirmEmailClaimAccountResponse.fromJson,
+  'ClaimAccountResponseNoneClaimAccountResponse':
+      ClaimAccountResponseNoneClaimAccountResponse.fromJson,
   'ClaimAppStoreTransactionRequest': ClaimAppStoreTransactionRequest.fromJson,
   'ClaimGooglePlayPurchaseRequest': ClaimGooglePlayPurchaseRequest.fromJson,
   'ClientAttachmentReferenceRequest': ClientAttachmentReferenceRequest.fromJson,
@@ -134,6 +145,7 @@ tolerantModelFactories = <String, Object Function(Map<String, Object?>)>{
       CompletedPasskeyBridgeLoginRedeemResponse.fromJson,
   'CompletedPasskeyBridgeSudoRedeemResponse':
       CompletedPasskeyBridgeSudoRedeemResponse.fromJson,
+  'ConfirmEmailClaimAccountResponse': ConfirmEmailClaimAccountResponse.fromJson,
   'ConnectionResponse': ConnectionResponse.fromJson,
   'ConnectionVerificationResponse': ConnectionVerificationResponse.fromJson,
   'CreateCheckoutSessionRequest': CreateCheckoutSessionRequest.fromJson,
@@ -149,6 +161,8 @@ tolerantModelFactories = <String, Object Function(Map<String, Object?>)>{
       CurrentSubscriptionPriceResponseVariant1.fromJson,
   'CustomStatusPayload': CustomStatusPayload.fromJson,
   'CustomStatusResponse': CustomStatusResponse.fromJson,
+  'DateOfBirthUpdateRequest': DateOfBirthUpdateRequest.fromJson,
+  'DateOfBirthUpdateResponse': DateOfBirthUpdateResponse.fromJson,
   'DefaultReactionEmojiRequest': DefaultReactionEmojiRequest.fromJson,
   'DefaultReactionEmojiResponse': DefaultReactionEmojiResponse.fromJson,
   'DisableTotpRequest': DisableTotpRequest.fromJson,
@@ -194,8 +208,19 @@ tolerantModelFactories = <String, Object Function(Map<String, Object?>)>{
   'EmailChangeVerifyOriginalRequest': EmailChangeVerifyOriginalRequest.fromJson,
   'EmailChangeVerifyOriginalResponse':
       EmailChangeVerifyOriginalResponse.fromJson,
+  'EmailCodeSendRequest': EmailCodeSendRequest.fromJson,
+  'EmailCodeSendResponse': EmailCodeSendResponse.fromJson,
+  'EmailCodeVerifyRequest': EmailCodeVerifyRequest.fromJson,
+  'EmailCodeVerifyResponse': EmailCodeVerifyResponse.fromJson,
+  'EmailCodeVerifyResponseAuthRegisterSuccessResponse':
+      EmailCodeVerifyResponseAuthRegisterSuccessResponse.fromJson,
+  'EmailCodeVerifyResponseAuthRegistrationPendingApprovalResponse':
+      EmailCodeVerifyResponseAuthRegistrationPendingApprovalResponse.fromJson,
+  'EmailCodeVerifyResponseVariant2': EmailCodeVerifyResponseVariant2.fromJson,
   'EmailRevertRequest': EmailRevertRequest.fromJson,
   'EmailTokenResponse': EmailTokenResponse.fromJson,
+  'EmailVerificationCodeResponse': EmailVerificationCodeResponse.fromJson,
+  'EmailVerificationConfirmRequest': EmailVerificationConfirmRequest.fromJson,
   'EmbedAuthorResponse': EmbedAuthorResponse.fromJson,
   'EmbedFieldResponse': EmbedFieldResponse.fromJson,
   'EmbedFooterResponse': EmbedFooterResponse.fromJson,
@@ -311,6 +336,7 @@ tolerantModelFactories = <String, Object Function(Map<String, Object?>)>{
   'GuildEmojiResponse': GuildEmojiResponse.fromJson,
   'GuildEmojiUpdateRequest': GuildEmojiUpdateRequest.fromJson,
   'GuildEmojiWithUserResponse': GuildEmojiWithUserResponse.fromJson,
+  'GuildEntryResult': GuildEntryResult.fromJson,
   'GuildExpressionSourceGuildResponse':
       GuildExpressionSourceGuildResponse.fromJson,
   'GuildForumChannelCreateRequest': GuildForumChannelCreateRequest.fromJson,
@@ -358,6 +384,9 @@ tolerantModelFactories = <String, Object Function(Map<String, Object?>)>{
   'GuildVanityUrlResponse': GuildVanityUrlResponse.fromJson,
   'GuildVanityUrlUpdateRequest': GuildVanityUrlUpdateRequest.fromJson,
   'GuildVanityUrlUpdateResponse': GuildVanityUrlUpdateResponse.fromJson,
+  'GuildVisitResponse': GuildVisitResponse.fromJson,
+  'GuildVisitStartResponse': GuildVisitStartResponse.fromJson,
+  'GuildVisitsAssignmentResponse': GuildVisitsAssignmentResponse.fromJson,
   'GuildVoiceChannelCreateRequest': GuildVoiceChannelCreateRequest.fromJson,
   'GuildVoiceChannelCreateRequestPermissionOverwrites':
       GuildVoiceChannelCreateRequestPermissionOverwrites.fromJson,
@@ -379,6 +408,9 @@ tolerantModelFactories = <String, Object Function(Map<String, Object?>)>{
       HarvestStatusResponseSchemaNullable.fromJson,
   'HarvestStatusResponseSchemaNullableVariant1':
       HarvestStatusResponseSchemaNullableVariant1.fromJson,
+  'IdentifyRequest': IdentifyRequest.fromJson,
+  'IdentifyResponse': IdentifyResponse.fromJson,
+  'IdentifyResponseRegistration': IdentifyResponseRegistration.fromJson,
   'IneligibleSwitchToListPriceResponse':
       IneligibleSwitchToListPriceResponse.fromJson,
   'InstanceAccountIdentityResponse': InstanceAccountIdentityResponse.fromJson,
@@ -396,10 +428,12 @@ tolerantModelFactories = <String, Object Function(Map<String, Object?>)>{
   'InstanceEndpointsSchema': InstanceEndpointsSchema.fromJson,
   'InstanceFeaturesSchema': InstanceFeaturesSchema.fromJson,
   'InstanceGifSchema': InstanceGifSchema.fromJson,
+  'InstanceNoticeSchema': InstanceNoticeSchema.fromJson,
   'InstancePushSchema': InstancePushSchema.fromJson,
   'InstanceRegistrationSchema': InstanceRegistrationSchema.fromJson,
   'InstanceServicesSchema': InstanceServicesSchema.fromJson,
   'InstanceSetupSchema': InstanceSetupSchema.fromJson,
+  'InstanceSetupTokenCheckRequest': InstanceSetupTokenCheckRequest.fromJson,
   'InstanceSsoSchema': InstanceSsoSchema.fromJson,
   'InstatusWebhook': InstatusWebhook.fromJson,
   'InstatusWebhookComponent': InstatusWebhookComponent.fromJson,
@@ -499,6 +533,7 @@ tolerantModelFactories = <String, Object Function(Map<String, Object?>)>{
   'MultipartPresignedAttachmentUploadResponseItemParts':
       MultipartPresignedAttachmentUploadResponseItemParts.fromJson,
   'MyGuildMemberUpdateRequest': MyGuildMemberUpdateRequest.fromJson,
+  'NoneClaimAccountResponse': NoneClaimAccountResponse.fromJson,
   'OAuth2ApplicationsMeResponse': OAuth2ApplicationsMeResponse.fromJson,
   'OAuth2ApplicationsMeResponseApplicationListResponse':
       OAuth2ApplicationsMeResponseApplicationListResponse.fromJson,
@@ -529,6 +564,44 @@ tolerantModelFactories = <String, Object Function(Map<String, Object?>)>{
   'Object2Attachments': Object2Attachments.fromJson,
   'Object3': Object3.fromJson,
   'OkResponse': OkResponse.fromJson,
+  'OperatorPassAltchaChallenge': OperatorPassAltchaChallenge.fromJson,
+  'OperatorPassAltchaChallengeParameters':
+      OperatorPassAltchaChallengeParameters.fromJson,
+  'OperatorPassCheckoutRequest': OperatorPassCheckoutRequest.fromJson,
+  'OperatorPassCheckoutResponse': OperatorPassCheckoutResponse.fromJson,
+  'OperatorPassDonationOptionsResponse':
+      OperatorPassDonationOptionsResponse.fromJson,
+  'OperatorPassHolderResponse': OperatorPassHolderResponse.fromJson,
+  'OperatorPassLatestReleaseResponse':
+      OperatorPassLatestReleaseResponse.fromJson,
+  'OperatorPassListingResponse': OperatorPassListingResponse.fromJson,
+  'OperatorPassListingUpdateRequest': OperatorPassListingUpdateRequest.fromJson,
+  'OperatorPassOfferAcceptRequest': OperatorPassOfferAcceptRequest.fromJson,
+  'OperatorPassOfferCreateRequest': OperatorPassOfferCreateRequest.fromJson,
+  'OperatorPassOfferResponse': OperatorPassOfferResponse.fromJson,
+  'OperatorPassOfferUserResponse': OperatorPassOfferUserResponse.fromJson,
+  'OperatorPassPassesResponse': OperatorPassPassesResponse.fromJson,
+  'OperatorPassPurchaseResponse': OperatorPassPurchaseResponse.fromJson,
+  'OperatorPassReleaseResponse': OperatorPassReleaseResponse.fromJson,
+  'OperatorPassStateResponse': OperatorPassStateResponse.fromJson,
+  'OperatorPassUnitResponse': OperatorPassUnitResponse.fromJson,
+  'OperatorPassWaitlistChallengeResponse':
+      OperatorPassWaitlistChallengeResponse.fromJson,
+  'OperatorPassWaitlistConfirmRequest':
+      OperatorPassWaitlistConfirmRequest.fromJson,
+  'OperatorPassWaitlistConfirmResponse':
+      OperatorPassWaitlistConfirmResponse.fromJson,
+  'OperatorPassWaitlistFollowupRequest':
+      OperatorPassWaitlistFollowupRequest.fromJson,
+  'OperatorPassWaitlistRequest': OperatorPassWaitlistRequest.fromJson,
+  'OperatorPassWaitlistResponse': OperatorPassWaitlistResponse.fromJson,
+  'OperatorPassWaitlistUnsubscribeResponse':
+      OperatorPassWaitlistUnsubscribeResponse.fromJson,
+  'OperatorPassWallOperatorResponse': OperatorPassWallOperatorResponse.fromJson,
+  'OperatorPassWallResponse': OperatorPassWallResponse.fromJson,
+  'OperatorPassWithdrawRequest': OperatorPassWithdrawRequest.fromJson,
+  'OperatorPassWithdrawalRuleResponse':
+      OperatorPassWithdrawalRuleResponse.fromJson,
   'OriginHandoffCreateRequest': OriginHandoffCreateRequest.fromJson,
   'OriginHandoffCreateResponse': OriginHandoffCreateResponse.fromJson,
   'OriginHandoffRedeemRequest': OriginHandoffRedeemRequest.fromJson,
@@ -595,6 +668,10 @@ tolerantModelFactories = <String, Object Function(Map<String, Object?>)>{
       PresignedAttachmentUploadResponseItemSinglepartPresignedAttachmentUploadResponseItem
           .fromJson,
   'PriceIdsResponse': PriceIdsResponse.fromJson,
+  'ProfileBadgePreviewRequest': ProfileBadgePreviewRequest.fromJson,
+  'ProfileBadgePreviewResponse': ProfileBadgePreviewResponse.fromJson,
+  'ProfileBadgeResponse': ProfileBadgeResponse.fromJson,
+  'ProfileBadgeResponseDetails': ProfileBadgeResponseDetails.fromJson,
   'PushRotateRequest': PushRotateRequest.fromJson,
   'PushRotateRequestKeys': PushRotateRequestKeys.fromJson,
   'PushSubscribeRequest': PushSubscribeRequest.fromJson,
@@ -662,6 +739,7 @@ tolerantModelFactories = <String, Object Function(Map<String, Object?>)>{
   'SelfServeRefundEligibilityResponse':
       SelfServeRefundEligibilityResponse.fromJson,
   'SelfServeRefundResponse': SelfServeRefundResponse.fromJson,
+  'SignInLinkRequest': SignInLinkRequest.fromJson,
   'SinglepartPresignedAttachmentUploadResponseItem':
       SinglepartPresignedAttachmentUploadResponseItem.fromJson,
   'SlackWebhookRequest': SlackWebhookRequest.fromJson,
@@ -670,6 +748,8 @@ tolerantModelFactories = <String, Object Function(Map<String, Object?>)>{
       SlackWebhookRequestAttachmentsFields.fromJson,
   'SsoCompleteRequest': SsoCompleteRequest.fromJson,
   'SsoCompleteResponse': SsoCompleteResponse.fromJson,
+  'SsoCompleteResponseVariant1': SsoCompleteResponseVariant1.fromJson,
+  'SsoCompleteResponseVariant2': SsoCompleteResponseVariant2.fromJson,
   'SsoStartRequest': SsoStartRequest.fromJson,
   'SsoStartResponse': SsoStartResponse.fromJson,
   'SsoStatusResponse': SsoStatusResponse.fromJson,
@@ -699,6 +779,7 @@ tolerantModelFactories = <String, Object Function(Map<String, Object?>)>{
       StreamPreviewUploadUrlResponseSchema.fromJson,
   'StreamUpdateBodySchema': StreamUpdateBodySchema.fromJson,
   'SuccessResponse': SuccessResponse.fromJson,
+  'SudoEmailCodeResponse': SudoEmailCodeResponse.fromJson,
   'SudoMfaMethodsResponse': SudoMfaMethodsResponse.fromJson,
   'SudoVerificationSchema': SudoVerificationSchema.fromJson,
   'SwitchToListPriceResponse': SwitchToListPriceResponse.fromJson,

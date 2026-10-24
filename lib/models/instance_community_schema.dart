@@ -14,6 +14,7 @@ class InstanceCommunitySchema {
     required this.singleCommunityGuildId,
     required this.directMessagesDisabled,
     required this.guildCreateAccess,
+    this.friendsDisabled,
   });
 
   factory InstanceCommunitySchema.fromJson(Map<String, Object?> json) =>
@@ -27,9 +28,13 @@ class InstanceCommunitySchema {
   @JsonKey(includeIfNull: true, name: 'single_community_guild_id')
   final String? singleCommunityGuildId;
 
-  /// Whether direct messages and friend requests are disabled instance-wide
+  /// Whether direct messages are disabled instance-wide
   @JsonKey(name: 'direct_messages_disabled', defaultValue: false)
   final bool directMessagesDisabled;
+
+  /// Whether friend requests are disabled instance-wide. Missing means direct_messages_disabled decides
+  @JsonKey(includeIfNull: false, name: 'friends_disabled')
+  final bool? friendsDisabled;
 
   /// Whether every account can create communities. When false, only admins and accounts granted the feature_guild_create limit can
   @JsonKey(name: 'guild_create_access', defaultValue: false)

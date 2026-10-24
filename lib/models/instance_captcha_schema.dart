@@ -4,7 +4,7 @@
 
 import 'package:json_annotation/json_annotation.dart';
 
-import 'instance_captcha_provider_schema.dart';
+import 'captcha_provider_schema.dart';
 
 part 'instance_captcha_schema.g.dart';
 
@@ -17,8 +17,8 @@ class InstanceCaptchaSchema {
       _$InstanceCaptchaSchemaFromJson(json);
 
   /// Captcha provider (altcha or none)
-  @JsonKey(defaultValue: InstanceCaptchaProviderSchema.$unknown)
-  final InstanceCaptchaProviderSchema provider;
+  @JsonKey(defaultValue: CaptchaProviderSchema.$unknown)
+  final CaptchaProviderSchema provider;
 
   Map<String, Object?> toJson() => _$InstanceCaptchaSchemaToJson(this);
 }

@@ -8,6 +8,7 @@ import 'domain_migration_assignment_response.dart';
 import 'channel_threads_assignment_response.dart';
 import 'plutonium_page_assignment_response.dart';
 import 'voice_p2p_assignment_response.dart';
+import 'guild_visits_assignment_response.dart';
 
 part 'experiment_assignments_response_assignments.g.dart';
 
@@ -18,6 +19,7 @@ class ExperimentAssignmentsResponseAssignments {
     this.channelThreads,
     this.plutoniumPage,
     this.voiceP2p,
+    this.guildVisits,
   });
 
   factory ExperimentAssignmentsResponseAssignments.fromJson(
@@ -32,6 +34,8 @@ class ExperimentAssignmentsResponseAssignments {
   final PlutoniumPageAssignmentResponse? plutoniumPage;
   @JsonKey(includeIfNull: false, name: 'voice_p2p')
   final VoiceP2pAssignmentResponse? voiceP2p;
+  @JsonKey(includeIfNull: false, name: 'guild_visits')
+  final GuildVisitsAssignmentResponse? guildVisits;
 
   Map<String, Object?> toJson() =>
       _$ExperimentAssignmentsResponseAssignmentsToJson(this);

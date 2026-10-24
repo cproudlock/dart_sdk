@@ -32,6 +32,9 @@ class UserUpdateWithVerificationRequest {
     this.premiumBadgeMasked,
     this.premiumBadgeTimestampHidden,
     this.premiumBadgeSequenceHidden,
+    this.operatorPassBadgeHidden,
+    this.operatorPassBadgeTimestampHidden,
+    this.operatorPassBadgeCountHidden,
     this.premiumEnabledOverride,
     this.hasDismissedPremiumOnboarding,
     this.hasUnreadGiftInventory,
@@ -39,6 +42,8 @@ class UserUpdateWithVerificationRequest {
     this.emailToken,
     this.mfaMethod,
     this.mfaCode,
+    this.emailCodeTicket,
+    this.emailCode,
     this.webauthnResponse,
     this.webauthnChallenge,
     JsonNullable<String> globalName = const JsonNullable<String>.undefined(),
@@ -91,6 +96,9 @@ class UserUpdateWithVerificationRequest {
     this.premiumBadgeMasked,
     this.premiumBadgeTimestampHidden,
     this.premiumBadgeSequenceHidden,
+    this.operatorPassBadgeHidden,
+    this.operatorPassBadgeTimestampHidden,
+    this.operatorPassBadgeCountHidden,
     this.premiumEnabledOverride,
     this.hasDismissedPremiumOnboarding,
     this.hasUnreadGiftInventory,
@@ -98,6 +106,8 @@ class UserUpdateWithVerificationRequest {
     this.emailToken,
     this.mfaMethod,
     this.mfaCode,
+    this.emailCodeTicket,
+    this.emailCode,
     this.webauthnResponse,
     this.webauthnChallenge,
   }) : globalName = const JsonNullable<String>.undefined(),
@@ -153,6 +163,9 @@ class UserUpdateWithVerificationRequest {
       premiumBadgeMasked: value.premiumBadgeMasked,
       premiumBadgeTimestampHidden: value.premiumBadgeTimestampHidden,
       premiumBadgeSequenceHidden: value.premiumBadgeSequenceHidden,
+      operatorPassBadgeHidden: value.operatorPassBadgeHidden,
+      operatorPassBadgeTimestampHidden: value.operatorPassBadgeTimestampHidden,
+      operatorPassBadgeCountHidden: value.operatorPassBadgeCountHidden,
       premiumEnabledOverride: value.premiumEnabledOverride,
       hasDismissedPremiumOnboarding: value.hasDismissedPremiumOnboarding,
       hasUnreadGiftInventory: value.hasUnreadGiftInventory,
@@ -160,6 +173,8 @@ class UserUpdateWithVerificationRequest {
       emailToken: value.emailToken,
       mfaMethod: value.mfaMethod,
       mfaCode: value.mfaCode,
+      emailCodeTicket: value.emailCodeTicket,
+      emailCode: value.emailCode,
       webauthnResponse: value.webauthnResponse,
       webauthnChallenge: value.webauthnChallenge,
     );
@@ -203,6 +218,18 @@ class UserUpdateWithVerificationRequest {
   @JsonKey(includeIfNull: false, name: 'premium_badge_sequence_hidden')
   final bool? premiumBadgeSequenceHidden;
 
+  /// Whether to hide the Operator Pass badge from other people. Either value replaces the default
+  @JsonKey(includeIfNull: false, name: 'operator_pass_badge_hidden')
+  final bool? operatorPassBadgeHidden;
+
+  /// Whether to hide from other people the month and year the Operator Pass was first held
+  @JsonKey(includeIfNull: false, name: 'operator_pass_badge_timestamp_hidden')
+  final bool? operatorPassBadgeTimestampHidden;
+
+  /// Whether to hide from other people how many Operator Passes are held, on the badge and the Operators' wall
+  @JsonKey(includeIfNull: false, name: 'operator_pass_badge_count_hidden')
+  final bool? operatorPassBadgeCountHidden;
+
   /// Override premium enabled state
   @JsonKey(includeIfNull: false, name: 'premium_enabled_override')
   final bool? premiumEnabledOverride;
@@ -230,6 +257,14 @@ class UserUpdateWithVerificationRequest {
   /// MFA verification code from an authenticator app
   @JsonKey(includeIfNull: false, name: 'mfa_code')
   final String? mfaCode;
+
+  /// Ticket from POST /users/@me/sudo/email-code, sent with mfa_method email_code
+  @JsonKey(includeIfNull: false, name: 'email_code_ticket')
+  final String? emailCodeTicket;
+
+  /// The 6-digit code from the email, sent with mfa_method email_code
+  @JsonKey(includeIfNull: false, name: 'email_code')
+  final String? emailCode;
 
   /// WebAuthn authentication response
   @JsonKey(includeIfNull: false, name: 'webauthn_response')

@@ -22,6 +22,11 @@ EmailChangeApplyRequest _$EmailChangeApplyRequestFromJson(
             : EmailChangeApplyRequestMfaMethodMfaMethod.fromJson(v as String),
       ),
       mfaCode: $checkedConvert('mfa_code', (v) => v as String?),
+      emailCodeTicket: $checkedConvert(
+        'email_code_ticket',
+        (v) => v as String?,
+      ),
+      emailCode: $checkedConvert('email_code', (v) => v as String?),
       webauthnResponse: $checkedConvert(
         'webauthn_response',
         (v) => v == null
@@ -41,6 +46,8 @@ EmailChangeApplyRequest _$EmailChangeApplyRequestFromJson(
     'emailToken': 'email_token',
     'mfaMethod': 'mfa_method',
     'mfaCode': 'mfa_code',
+    'emailCodeTicket': 'email_code_ticket',
+    'emailCode': 'email_code',
     'webauthnResponse': 'webauthn_response',
     'webauthnChallenge': 'webauthn_challenge',
   },
@@ -53,6 +60,8 @@ Map<String, dynamic> _$EmailChangeApplyRequestToJson(
   'password': ?instance.password,
   'mfa_method': ?instance.mfaMethod,
   'mfa_code': ?instance.mfaCode,
+  'email_code_ticket': ?instance.emailCodeTicket,
+  'email_code': ?instance.emailCode,
   'webauthn_response': ?instance.webauthnResponse,
   'webauthn_challenge': ?instance.webauthnChallenge,
 };

@@ -5,6 +5,11 @@
 import 'package:json_annotation/json_annotation.dart';
 
 import 'account_identity_mode_schema.dart';
+import 'effective_verification_basis_schema.dart';
+import 'email_delivery_state_schema.dart';
+import 'guild_join_gate_schema.dart';
+import 'instant_account_availability_schema.dart';
+import 'interaction_tier_mode_schema.dart';
 import 'tag_style_schema.dart';
 
 part 'instance_features_schema.g.dart';
@@ -21,12 +26,20 @@ class InstanceFeaturesSchema {
     required this.presignedAttachmentUploads,
     required this.emailsEnabled,
     required this.phoneVerificationEnabled,
-    this.desktopModulesEnabled,
     this.discoveryEnabled,
+    this.desktopModulesEnabled,
     this.accountDeletionGracePeriodHours,
-    this.maxBackgroundGatewayConnections,
     this.accountIdentity,
     this.tagStyle,
+    this.identifierFirst,
+    this.instantAccounts,
+    this.emailCodes,
+    this.dateOfBirthStep,
+    this.instantAccountAvailability,
+    this.interactionTier,
+    this.guildJoinGate,
+    this.emailDeliveryState,
+    this.verificationBasis,
   });
 
   factory InstanceFeaturesSchema.fromJson(Map<String, Object?> json) =>
@@ -64,21 +77,17 @@ class InstanceFeaturesSchema {
   @JsonKey(name: 'phone_verification_enabled', defaultValue: false)
   final bool phoneVerificationEnabled;
 
+  /// Whether the Explore community directory is available. Missing means true
+  @JsonKey(includeIfNull: false, name: 'discovery_enabled')
+  final bool? discoveryEnabled;
+
   /// Whether desktop clients may load downloadable modules
   @JsonKey(includeIfNull: false, name: 'desktop_modules_enabled')
   final bool? desktopModulesEnabled;
 
-  /// Whether community discovery is enabled
-  @JsonKey(includeIfNull: false, name: 'discovery_enabled')
-  final bool? discoveryEnabled;
-
   /// Hours between a deletion request and the permanent deletion of the account
   @JsonKey(includeIfNull: false, name: 'account_deletion_grace_period_hours')
   final int? accountDeletionGracePeriodHours;
-
-  /// Maximum gateway connections a client may keep open for background accounts
-  @JsonKey(includeIfNull: false, name: 'max_background_gateway_connections')
-  final int? maxBackgroundGatewayConnections;
 
   /// How people sign in on this instance. Clients treat a missing value as email
   @JsonKey(includeIfNull: false, name: 'account_identity')
@@ -87,6 +96,42 @@ class InstanceFeaturesSchema {
   /// How usernames are tagged. Clients treat a missing value as random
   @JsonKey(includeIfNull: false, name: 'tag_style')
   final TagStyleSchema? tagStyle;
+
+  /// Whether clients show the single sign-in entry that starts with an email. Missing means false
+  @JsonKey(includeIfNull: false, name: 'identifier_first')
+  final bool? identifierFirst;
+
+  /// Whether accounts can be created without an email, from a display name. Missing means false
+  @JsonKey(includeIfNull: false, name: 'instant_accounts')
+  final bool? instantAccounts;
+
+  /// Whether the instance can send sign-in and verification codes by email. Missing means false
+  @JsonKey(includeIfNull: false, name: 'email_codes')
+  final bool? emailCodes;
+
+  /// Whether accounts enter their date of birth in a step after they are created, so sign-up never asks for it. Missing means false
+  @JsonKey(includeIfNull: false, name: 'date_of_birth_step')
+  final bool? dateOfBirthStep;
+
+  /// Whether accounts can be created from just a display name through public sign-up, and why not. Missing means instant_accounts decides
+  @JsonKey(includeIfNull: false, name: 'instant_account_availability')
+  final InstantAccountAvailabilitySchema? instantAccountAvailability;
+
+  /// Which limits apply to accounts that have not finished setting up. Missing means legacy
+  @JsonKey(includeIfNull: false, name: 'interaction_tier')
+  final InteractionTierModeSchema? interactionTier;
+
+  /// When joining a community needs a finished account while interaction_tier is enforced. Missing means always
+  @JsonKey(includeIfNull: false, name: 'guild_join_gate')
+  final GuildJoinGateSchema? guildJoinGate;
+
+  /// Whether the instance sends email, and why not. Missing means emails_enabled decides
+  @JsonKey(includeIfNull: false, name: 'email_delivery_state')
+  final EmailDeliveryStateSchema? emailDeliveryState;
+
+  /// What an account needs to finish setting up right now. Missing means confirmed_email while emails_enabled, otherwise local_credential
+  @JsonKey(includeIfNull: false, name: 'verification_basis')
+  final EffectiveVerificationBasisSchema? verificationBasis;
 
   Map<String, Object?> toJson() => _$InstanceFeaturesSchemaToJson(this);
 }

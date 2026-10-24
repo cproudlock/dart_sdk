@@ -131,6 +131,8 @@ enum ApiErrorCode {
   discoveryNotDiscoverable('DISCOVERY_NOT_DISCOVERABLE'),
   @JsonValue('DISCRIMINATOR_REQUIRED')
   discriminatorRequired('DISCRIMINATOR_REQUIRED'),
+  @JsonValue('EMAIL_DELIVERY_OFF')
+  emailDeliveryOff('EMAIL_DELIVERY_OFF'),
   @JsonValue('EMAIL_SERVICE_NOT_TESTABLE')
   emailServiceNotTestable('EMAIL_SERVICE_NOT_TESTABLE'),
   @JsonValue('EMAIL_UNAVAILABLE_ON_INSTANCE')
@@ -183,12 +185,16 @@ enum ApiErrorCode {
   publishedMessageEditRateLimited('PUBLISHED_MESSAGE_EDIT_RATE_LIMITED'),
   @JsonValue('PURCHASE_EMAIL_VERIFICATION_REQUIRED')
   purchaseEmailVerificationRequired('PURCHASE_EMAIL_VERIFICATION_REQUIRED'),
+  @JsonValue('PURCHASE_RECEIPT_EMAIL_REQUIRED')
+  purchaseReceiptEmailRequired('PURCHASE_RECEIPT_EMAIL_REQUIRED'),
   @JsonValue('REACTION_EMAIL_VERIFICATION_REQUIRED')
   reactionEmailVerificationRequired('REACTION_EMAIL_VERIFICATION_REQUIRED'),
   @JsonValue('REPORT_EMAIL_VERIFICATION_REQUIRED')
   reportEmailVerificationRequired('REPORT_EMAIL_VERIFICATION_REQUIRED'),
   @JsonValue('REGISTRATION_CLOSED')
   registrationClosed('REGISTRATION_CLOSED'),
+  @JsonValue('REGISTRATION_CREDENTIAL_REQUIRED')
+  registrationCredentialRequired('REGISTRATION_CREDENTIAL_REQUIRED'),
   @JsonValue('REGISTRATION_CREDENTIALS_REQUIRED')
   registrationCredentialsRequired('REGISTRATION_CREDENTIALS_REQUIRED'),
   @JsonValue('REGISTRATION_PENDING_APPROVAL')
@@ -481,6 +487,8 @@ enum ApiErrorCode {
   stripeWebhookSignatureMissing('STRIPE_WEBHOOK_SIGNATURE_MISSING'),
   @JsonValue('DIRECT_MESSAGES_DISABLED')
   directMessagesDisabled('DIRECT_MESSAGES_DISABLED'),
+  @JsonValue('FRIENDS_DISABLED')
+  friendsDisabled('FRIENDS_DISABLED'),
   @JsonValue('NEW_CONVERSATIONS_LIMITED')
   newConversationsLimited('NEW_CONVERSATIONS_LIMITED'),
   @JsonValue('DONATION_AMOUNT_INVALID')
@@ -491,8 +499,86 @@ enum ApiErrorCode {
   donationMagicLinkInvalid('DONATION_MAGIC_LINK_INVALID'),
   @JsonValue('DONATION_MAGIC_LINK_USED')
   donationMagicLinkUsed('DONATION_MAGIC_LINK_USED'),
+  @JsonValue('OPERATOR_PASS_WAIVER_REQUIRED')
+  operatorPassWaiverRequired('OPERATOR_PASS_WAIVER_REQUIRED'),
+  @JsonValue('OPERATOR_PASS_AGE_CONFIRMATION_REQUIRED')
+  operatorPassAgeConfirmationRequired(
+    'OPERATOR_PASS_AGE_CONFIRMATION_REQUIRED',
+  ),
+  @JsonValue('OPERATOR_PASS_OFFER_UNAVAILABLE')
+  operatorPassOfferUnavailable('OPERATOR_PASS_OFFER_UNAVAILABLE'),
+  @JsonValue('OPERATOR_PASS_OFFER_BUSY')
+  operatorPassOfferBusy('OPERATOR_PASS_OFFER_BUSY'),
+  @JsonValue('OPERATOR_PASS_RECIPIENT_NOT_FRIEND')
+  operatorPassRecipientNotFriend('OPERATOR_PASS_RECIPIENT_NOT_FRIEND'),
+  @JsonValue('OPERATOR_PASS_NOT_TRANSFERABLE')
+  operatorPassNotTransferable('OPERATOR_PASS_NOT_TRANSFERABLE'),
+  @JsonValue('OPERATOR_PASS_LAST_PASS_CONFIRMATION_REQUIRED')
+  operatorPassLastPassConfirmationRequired(
+    'OPERATOR_PASS_LAST_PASS_CONFIRMATION_REQUIRED',
+  ),
+  @JsonValue('UNKNOWN_OPERATOR_PASS_OFFER')
+  unknownOperatorPassOffer('UNKNOWN_OPERATOR_PASS_OFFER'),
+  @JsonValue('UNKNOWN_OPERATOR_PASS_UNIT')
+  unknownOperatorPassUnit('UNKNOWN_OPERATOR_PASS_UNIT'),
+  @JsonValue('OPERATOR_PASS_COUNTRY_UNAVAILABLE')
+  operatorPassCountryUnavailable('OPERATOR_PASS_COUNTRY_UNAVAILABLE'),
+  @JsonValue('OPERATOR_PASS_WALL_NAME_REQUIRED')
+  operatorPassWallNameRequired('OPERATOR_PASS_WALL_NAME_REQUIRED'),
+  @JsonValue('OPERATOR_PASS_NOT_HELD')
+  operatorPassNotHeld('OPERATOR_PASS_NOT_HELD'),
+  @JsonValue('UNKNOWN_OPERATOR_PASS_WALL_ENTRY')
+  unknownOperatorPassWallEntry('UNKNOWN_OPERATOR_PASS_WALL_ENTRY'),
+  @JsonValue('OPERATOR_PASS_RELEASE_ALREADY_PUBLISHED')
+  operatorPassReleaseAlreadyPublished(
+    'OPERATOR_PASS_RELEASE_ALREADY_PUBLISHED',
+  ),
+  @JsonValue('OPERATOR_PASS_RELEASE_NOT_READY')
+  operatorPassReleaseNotReady('OPERATOR_PASS_RELEASE_NOT_READY'),
+  @JsonValue('UNKNOWN_OPERATOR_PASS_RELEASE_ENTRY')
+  unknownOperatorPassReleaseEntry('UNKNOWN_OPERATOR_PASS_RELEASE_ENTRY'),
+  @JsonValue('OPERATOR_PASS_NOT_ON_SALE')
+  operatorPassNotOnSale('OPERATOR_PASS_NOT_ON_SALE'),
+  @JsonValue('OPERATOR_PASS_PRICE_CHANGED')
+  operatorPassPriceChanged('OPERATOR_PASS_PRICE_CHANGED'),
+  @JsonValue('OPERATOR_PASS_WAITLIST_CLOSED')
+  operatorPassWaitlistClosed('OPERATOR_PASS_WAITLIST_CLOSED'),
+  @JsonValue('OPERATOR_PASS_WAITLIST_FOLLOWUP_INVALID')
+  operatorPassWaitlistFollowupInvalid(
+    'OPERATOR_PASS_WAITLIST_FOLLOWUP_INVALID',
+  ),
+  @JsonValue('OPERATOR_PASS_WAITLIST_FOLLOWUP_TOKEN_INVALID')
+  operatorPassWaitlistFollowupTokenInvalid(
+    'OPERATOR_PASS_WAITLIST_FOLLOWUP_TOKEN_INVALID',
+  ),
+  @JsonValue('OPERATOR_PASS_WAITLIST_TOKEN_EXPIRED')
+  operatorPassWaitlistTokenExpired('OPERATOR_PASS_WAITLIST_TOKEN_EXPIRED'),
+  @JsonValue('OPERATOR_PASS_WAITLIST_TOKEN_INVALID')
+  operatorPassWaitlistTokenInvalid('OPERATOR_PASS_WAITLIST_TOKEN_INVALID'),
+  @JsonValue('OPERATOR_PASS_REMOVAL_LIMITED_FIRST')
+  operatorPassRemovalLimitedFirst('OPERATOR_PASS_REMOVAL_LIMITED_FIRST'),
+  @JsonValue('OPERATOR_PASS_REMOVAL_NOTICE_REQUIRED')
+  operatorPassRemovalNoticeRequired('OPERATOR_PASS_REMOVAL_NOTICE_REQUIRED'),
+  @JsonValue('OPERATOR_PASS_REMOVED')
+  operatorPassRemoved('OPERATOR_PASS_REMOVED'),
+  @JsonValue('OPERATOR_PASS_TERMS_NOT_ACCEPTED')
+  operatorPassTermsNotAccepted('OPERATOR_PASS_TERMS_NOT_ACCEPTED'),
+  @JsonValue('OPERATOR_PASS_WITHDRAWAL_UNAVAILABLE')
+  operatorPassWithdrawalUnavailable('OPERATOR_PASS_WITHDRAWAL_UNAVAILABLE'),
+  @JsonValue('PAYMENT_DISPUTE_EXEMPT')
+  paymentDisputeExempt('PAYMENT_DISPUTE_EXEMPT'),
+  @JsonValue('PAYMENT_DISPUTE_REVIEW_CLOSED')
+  paymentDisputeReviewClosed('PAYMENT_DISPUTE_REVIEW_CLOSED'),
+  @JsonValue('PAYMENT_DISPUTE_WARNING_TOO_LATE')
+  paymentDisputeWarningTooLate('PAYMENT_DISPUTE_WARNING_TOO_LATE'),
+  @JsonValue('UNKNOWN_PAYMENT_DISPUTE_REVIEW')
+  unknownPaymentDisputeReview('UNKNOWN_PAYMENT_DISPUTE_REVIEW'),
+  @JsonValue('UNKNOWN_OPERATOR_PASS_PURCHASE')
+  unknownOperatorPassPurchase('UNKNOWN_OPERATOR_PASS_PURCHASE'),
   @JsonValue('SUDO_MODE_REQUIRED')
   sudoModeRequired('SUDO_MODE_REQUIRED'),
+  @JsonValue('SYNCED_PREFERENCES_CONFLICT')
+  syncedPreferencesConflict('SYNCED_PREFERENCES_CONFLICT'),
   @JsonValue('TAG_ALREADY_TAKEN')
   tagAlreadyTaken('TAG_ALREADY_TAKEN'),
   @JsonValue('TEMPORARY_INVITE_REQUIRES_PRESENCE')
@@ -507,8 +593,8 @@ enum ApiErrorCode {
   threadArchived('THREAD_ARCHIVED'),
   @JsonValue('THREAD_LOCKED')
   threadLocked('THREAD_LOCKED'),
-  @JsonValue('TWO_FA_NOT_ENABLED')
-  twoFaNotEnabled('TWO_FA_NOT_ENABLED'),
+  @JsonValue('TWO_FA_ALREADY_ENABLED')
+  twoFaAlreadyEnabled('TWO_FA_ALREADY_ENABLED'),
   @JsonValue('TWO_FACTOR_REQUIRED')
   twoFactorRequired('TWO_FACTOR_REQUIRED'),
   @JsonValue('UNAUTHORIZED')
@@ -633,8 +719,46 @@ enum ApiErrorCode {
   voiceChannelFull('VOICE_CHANNEL_FULL'),
   @JsonValue('WEBAUTHN_CREDENTIAL_LIMIT_REACHED')
   webauthnCredentialLimitReached('WEBAUTHN_CREDENTIAL_LIMIT_REACHED'),
-  @JsonValue('AGE_VERIFICATION_ALREADY_VERIFIED')
-  ageVerificationAlreadyVerified('AGE_VERIFICATION_ALREADY_VERIFIED'),
+  @JsonValue('ACCOUNT_VERIFICATION_REQUIRED')
+  accountVerificationRequired('ACCOUNT_VERIFICATION_REQUIRED'),
+  @JsonValue('DATE_OF_BIRTH_REQUIRED')
+  dateOfBirthRequired('DATE_OF_BIRTH_REQUIRED'),
+  @JsonValue('DATE_OF_BIRTH_ALREADY_SET')
+  dateOfBirthAlreadySet('DATE_OF_BIRTH_ALREADY_SET'),
+  @JsonValue('ACCOUNT_BELOW_MINIMUM_AGE')
+  accountBelowMinimumAge('ACCOUNT_BELOW_MINIMUM_AGE'),
+  @JsonValue('UNKNOWN_SIGN_IN_TICKET')
+  unknownSignInTicket('UNKNOWN_SIGN_IN_TICKET'),
+  @JsonValue('INVALID_SIGN_IN_CODE')
+  invalidSignInCode('INVALID_SIGN_IN_CODE'),
+  @JsonValue('SIGN_IN_CODE_EXPIRED')
+  signInCodeExpired('SIGN_IN_CODE_EXPIRED'),
+  @JsonValue('EMAIL_CODE_RESEND_COOLDOWN')
+  emailCodeResendCooldown('EMAIL_CODE_RESEND_COOLDOWN'),
+  @JsonValue('EMAIL_CODES_UNAVAILABLE')
+  emailCodesUnavailable('EMAIL_CODES_UNAVAILABLE'),
+  @JsonValue('PASSWORD_SIGN_IN_REQUIRED')
+  passwordSignInRequired('PASSWORD_SIGN_IN_REQUIRED'),
+  @JsonValue('SUDO_SECOND_FACTOR_REQUIRED')
+  sudoSecondFactorRequired('SUDO_SECOND_FACTOR_REQUIRED'),
+  @JsonValue('INSTANT_ACCOUNTS_DISABLED')
+  instantAccountsDisabled('INSTANT_ACCOUNTS_DISABLED'),
+  @JsonValue('UNKNOWN_ACCOUNT_HANDOFF')
+  unknownAccountHandoff('UNKNOWN_ACCOUNT_HANDOFF'),
+  @JsonValue('INVALID_ACCOUNT_HANDOFF_NONCE')
+  invalidAccountHandoffNonce('INVALID_ACCOUNT_HANDOFF_NONCE'),
+  @JsonValue('ACCOUNT_ALREADY_CLAIMED')
+  accountAlreadyClaimed('ACCOUNT_ALREADY_CLAIMED'),
+  @JsonValue('USE_CLAIM_ROUTE')
+  useClaimRoute('USE_CLAIM_ROUTE'),
+  @JsonValue('PASSWORD_REQUIRED_TO_CLAIM')
+  passwordRequiredToClaim('PASSWORD_REQUIRED_TO_CLAIM'),
+  @JsonValue('GUILD_VISITS_DISABLED')
+  guildVisitsDisabled('GUILD_VISITS_DISABLED'),
+  @JsonValue('GUILD_VISIT_AGE_RESTRICTED')
+  guildVisitAgeRestricted('GUILD_VISIT_AGE_RESTRICTED'),
+  @JsonValue('GUILD_VISIT_NOT_FOUND')
+  guildVisitNotFound('GUILD_VISIT_NOT_FOUND'),
 
   /// Default value for all unparsed values, allows backward compatibility when adding new values on the backend.
   $unknown(null);

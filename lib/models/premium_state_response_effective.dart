@@ -22,6 +22,7 @@ class PremiumStateResponseEffective {
     required this.premiumGraceEndsAt,
     required this.premiumEnabledOverride,
     required this.premiumPurchaseDisabled,
+    required this.paymentDisputeOpen,
     required this.premiumPerksDisabled,
     required this.selfHosted,
     required this.bot,
@@ -70,6 +71,10 @@ class PremiumStateResponseEffective {
   /// Whether premium purchase is disabled for this account
   @JsonKey(name: 'premium_purchase_disabled', defaultValue: false)
   final bool premiumPurchaseDisabled;
+
+  /// Whether a payment dispute this account made is open, which blocks every purchase until it closes
+  @JsonKey(name: 'payment_dispute_open', defaultValue: false)
+  final bool paymentDisputeOpen;
 
   /// Whether the user temporarily disabled premium perks
   @JsonKey(name: 'premium_perks_disabled', defaultValue: false)

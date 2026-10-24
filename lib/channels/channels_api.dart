@@ -544,7 +544,7 @@ abstract class ChannelsApi {
 
   /// Add reaction to message.
   ///
-  /// Adds an emoji reaction to a message. Each user can react once with each emoji. Cannot be used from unclaimed accounts outside personal notes. Returns 204 No Content on success.
+  /// Adds an emoji reaction to a message. Each user can react once with each emoji. Outside personal notes, needs an account with a confirmed email address. Returns 204 No Content on success.
   ///
   /// [channelId] - The ID of the channel.
   ///

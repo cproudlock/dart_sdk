@@ -27,7 +27,7 @@ part 'user_settings_update_request.g.dart';
 @JsonSerializable(constructor: '_')
 class UserSettingsUpdateRequest {
   UserSettingsUpdateRequest({
-    this.gifAutoPlay,
+    this.renderEmbeds,
     this.status,
     this.theme,
     this.guildPositions,
@@ -38,8 +38,8 @@ class UserSettingsUpdateRequest {
     this.botDefaultGuildsRestricted,
     this.inlineAttachmentMedia,
     this.inlineEmbedMedia,
+    this.gifAutoPlay,
     this.flags,
-    this.renderEmbeds,
     this.renderReactions,
     this.animateEmoji,
     this.animateStickers,
@@ -48,8 +48,8 @@ class UserSettingsUpdateRequest {
     this.friendSourceFlags,
     this.incomingCallFlags,
     this.groupDmAddPermissionFlags,
-    this.privacySetupVersion,
-    this.afkTimeout,
+    this.guildFolders,
+    this.syncedPreferencesBaseHash,
     this.timeFormat,
     this.developerMode,
     this.trustedDomains,
@@ -60,7 +60,8 @@ class UserSettingsUpdateRequest {
     this.suppressUnprivilegedSelfMentions,
     this.profilePrivacy,
     this.defaultShareVoiceActivity,
-    this.guildFolders,
+    this.privacySetupVersion,
+    this.afkTimeout,
     JsonNullable<String> statusResetsAt =
         const JsonNullable<String>.undefined(),
     JsonNullable<UserStatusType> statusResetsTo =
@@ -97,7 +98,7 @@ class UserSettingsUpdateRequest {
        _syncedPreferencesPresent = syncedPreferences.isPresent;
 
   const UserSettingsUpdateRequest._({
-    this.gifAutoPlay,
+    this.renderEmbeds,
     this.status,
     this.statusResetsAtValue,
     this.statusResetsToValue,
@@ -110,8 +111,8 @@ class UserSettingsUpdateRequest {
     this.botDefaultGuildsRestricted,
     this.inlineAttachmentMedia,
     this.inlineEmbedMedia,
+    this.gifAutoPlay,
     this.flags,
-    this.renderEmbeds,
     this.renderReactions,
     this.animateEmoji,
     this.animateStickers,
@@ -122,8 +123,8 @@ class UserSettingsUpdateRequest {
     this.groupDmAddPermissionFlags,
     this.guildFolders,
     this.customStatusValue,
-    this.syncedPreferencesValue,
-    this.timeFormat,
+    this.afkTimeout,
+    this.syncedPreferencesBaseHash,
     this.developerMode,
     this.trustedDomains,
     this.defaultHideMutedChannels,
@@ -136,7 +137,8 @@ class UserSettingsUpdateRequest {
     this.profilePrivacy,
     this.defaultShareVoiceActivity,
     this.privacySetupVersion,
-    this.afkTimeout,
+    this.syncedPreferencesValue,
+    this.timeFormat,
   }) : statusResetsAt = const JsonNullable<String>.undefined(),
        _statusResetsAtPresent = false,
        statusResetsTo = const JsonNullable<UserStatusType>.undefined(),
@@ -157,7 +159,7 @@ class UserSettingsUpdateRequest {
   factory UserSettingsUpdateRequest.fromJson(Map<String, Object?> json) {
     final value = _$UserSettingsUpdateRequestFromJson(json);
     return UserSettingsUpdateRequest(
-      gifAutoPlay: value.gifAutoPlay,
+      renderEmbeds: value.renderEmbeds,
       status: value.status,
       statusResetsAt: json.containsKey('status_resets_at')
           ? JsonNullable<String>.of(value.statusResetsAtValue)
@@ -174,8 +176,8 @@ class UserSettingsUpdateRequest {
       botDefaultGuildsRestricted: value.botDefaultGuildsRestricted,
       inlineAttachmentMedia: value.inlineAttachmentMedia,
       inlineEmbedMedia: value.inlineEmbedMedia,
+      gifAutoPlay: value.gifAutoPlay,
       flags: value.flags,
-      renderEmbeds: value.renderEmbeds,
       renderReactions: value.renderReactions,
       animateEmoji: value.animateEmoji,
       animateStickers: value.animateStickers,
@@ -188,10 +190,8 @@ class UserSettingsUpdateRequest {
       customStatus: json.containsKey('custom_status')
           ? JsonNullable<CustomStatusPayload>.of(value.customStatusValue)
           : const JsonNullable<CustomStatusPayload>.undefined(),
-      syncedPreferences: json.containsKey('synced_preferences')
-          ? JsonNullable<String>.of(value.syncedPreferencesValue)
-          : const JsonNullable<String>.undefined(),
-      timeFormat: value.timeFormat,
+      afkTimeout: value.afkTimeout,
+      syncedPreferencesBaseHash: value.syncedPreferencesBaseHash,
       developerMode: value.developerMode,
       trustedDomains: value.trustedDomains,
       defaultHideMutedChannels: value.defaultHideMutedChannels,
@@ -216,7 +216,10 @@ class UserSettingsUpdateRequest {
       profilePrivacy: value.profilePrivacy,
       defaultShareVoiceActivity: value.defaultShareVoiceActivity,
       privacySetupVersion: value.privacySetupVersion,
-      afkTimeout: value.afkTimeout,
+      syncedPreferences: json.containsKey('synced_preferences')
+          ? JsonNullable<String>.of(value.syncedPreferencesValue)
+          : const JsonNullable<String>.undefined(),
+      timeFormat: value.timeFormat,
     );
   }
 
@@ -341,6 +344,10 @@ class UserSettingsUpdateRequest {
   /// Version of the privacy setup the user just reviewed. The server also records privacy_setup_completed_at as the current time.
   @JsonKey(includeIfNull: false, name: 'privacy_setup_version')
   final int? privacySetupVersion;
+
+  /// Lowercase hex SHA-256 of the decoded bytes of the synced_preferences snapshot this update was built on, as last returned by the server. An empty snapshot hashes as zero bytes. When it does not match the stored snapshot, nothing is written and the request fails with SYNCED_PREFERENCES_CONFLICT. Only checked when synced_preferences is present.
+  @JsonKey(includeIfNull: false, name: 'synced_preferences_base_hash')
+  final String? syncedPreferencesBaseHash;
   @JsonKey(includeFromJson: false, includeToJson: false)
   final JsonNullable<String> statusResetsAt;
   @JsonKey(includeIfNull: false, name: 'status_resets_at')

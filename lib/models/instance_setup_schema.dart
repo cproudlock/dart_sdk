@@ -4,6 +4,8 @@
 
 import 'package:json_annotation/json_annotation.dart';
 
+import 'account_identity_lock_reason_schema.dart';
+
 part 'instance_setup_schema.g.dart';
 
 /// Initial setup state for self-hosted instances
@@ -13,6 +15,7 @@ class InstanceSetupSchema {
     required this.configured,
     required this.adminUrl,
     this.accountIdentityLocked,
+    this.accountIdentityLockReason,
     this.setupTokenRequired,
   });
 
@@ -30,6 +33,10 @@ class InstanceSetupSchema {
   /// Present only while a self-hosted instance is unconfigured. True when the sign-in method can no longer change
   @JsonKey(includeIfNull: false, name: 'account_identity_locked')
   final bool? accountIdentityLocked;
+
+  /// Present only while a self-hosted instance is unconfigured. Why the sign-in method can no longer change, or null while it still can
+  @JsonKey(includeIfNull: false, name: 'account_identity_lock_reason')
+  final AccountIdentityLockReasonSchema? accountIdentityLockReason;
 
   /// Present only while a self-hosted instance is unconfigured. True when registration needs the setup token
   @JsonKey(includeIfNull: false, name: 'setup_token_required')

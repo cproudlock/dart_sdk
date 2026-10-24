@@ -23,6 +23,8 @@ class BulkDeleteSelfMessagesRequest {
     this.password,
     this.mfaMethod,
     this.mfaCode,
+    this.emailCodeTicket,
+    this.emailCode,
     this.webauthnResponse,
     this.webauthnChallenge,
     this.scope = BulkDeleteSelfMessagesScope.selected,
@@ -48,6 +50,8 @@ class BulkDeleteSelfMessagesRequest {
     this.password,
     this.mfaMethod,
     this.mfaCode,
+    this.emailCodeTicket,
+    this.emailCode,
     this.webauthnResponse,
     this.webauthnChallenge,
     this.scope = BulkDeleteSelfMessagesScope.selected,
@@ -77,6 +81,8 @@ class BulkDeleteSelfMessagesRequest {
       password: value.password,
       mfaMethod: value.mfaMethod,
       mfaCode: value.mfaCode,
+      emailCodeTicket: value.emailCodeTicket,
+      emailCode: value.emailCode,
       webauthnResponse: value.webauthnResponse,
       webauthnChallenge: value.webauthnChallenge,
       scope: value.scope,
@@ -127,6 +133,14 @@ class BulkDeleteSelfMessagesRequest {
   /// MFA verification code from an authenticator app
   @JsonKey(includeIfNull: false, name: 'mfa_code')
   final String? mfaCode;
+
+  /// Ticket from POST /users/@me/sudo/email-code, sent with mfa_method email_code
+  @JsonKey(includeIfNull: false, name: 'email_code_ticket')
+  final String? emailCodeTicket;
+
+  /// The 6-digit code from the email, sent with mfa_method email_code
+  @JsonKey(includeIfNull: false, name: 'email_code')
+  final String? emailCode;
 
   /// WebAuthn authentication response
   @JsonKey(includeIfNull: false, name: 'webauthn_response')

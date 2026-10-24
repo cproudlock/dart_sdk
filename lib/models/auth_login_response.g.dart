@@ -21,9 +21,10 @@ _$AuthLoginResponseAuthTokenWithUserIdResponseFromJson(
           ? _$missingUserPartialResponse()
           : UserPartialResponse.fromJson(v as Map<String, dynamic>),
     ),
+    deviceProof: $checkedConvert('device_proof', (v) => v as String?),
   );
   return val;
-}, fieldKeyMap: const {'userId': 'user_id'});
+}, fieldKeyMap: const {'userId': 'user_id', 'deviceProof': 'device_proof'});
 
 Map<String, dynamic> _$AuthLoginResponseAuthTokenWithUserIdResponseToJson(
   AuthLoginResponseAuthTokenWithUserIdResponse instance,
@@ -31,6 +32,7 @@ Map<String, dynamic> _$AuthLoginResponseAuthTokenWithUserIdResponseToJson(
   'token': instance.token,
   'user_id': instance.userId,
   'user': instance.user,
+  'device_proof': ?instance.deviceProof,
 };
 
 AuthLoginResponseVariant2 _$AuthLoginResponseVariant2FromJson(

@@ -15,6 +15,7 @@ InstanceSsoSchema _$InstanceSsoSchemaFromJson(Map<String, dynamic> json) =>
           enabled: $checkedConvert('enabled', (v) => v as bool? ?? false),
           enforced: $checkedConvert('enforced', (v) => v as bool? ?? false),
           displayName: $checkedConvert('display_name', (v) => v as String?),
+          buttonLabel: $checkedConvert('button_label', (v) => v as String?),
           redirectUri: $checkedConvert(
             'redirect_uri',
             (v) => v as String? ?? '',
@@ -25,6 +26,7 @@ InstanceSsoSchema _$InstanceSsoSchemaFromJson(Map<String, dynamic> json) =>
       },
       fieldKeyMap: const {
         'displayName': 'display_name',
+        'buttonLabel': 'button_label',
         'redirectUri': 'redirect_uri',
       },
     );
@@ -34,6 +36,7 @@ Map<String, dynamic> _$InstanceSsoSchemaToJson(InstanceSsoSchema instance) =>
       'enabled': instance.enabled,
       'enforced': instance.enforced,
       'display_name': instance.displayName,
+      'button_label': instance.buttonLabel,
       'redirect_uri': instance.redirectUri,
       'available': ?instance.available,
     };

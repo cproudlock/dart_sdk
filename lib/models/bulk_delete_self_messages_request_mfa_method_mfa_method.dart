@@ -11,6 +11,8 @@ enum BulkDeleteSelfMessagesRequestMfaMethodMfaMethod {
   totp('totp'),
   @JsonValue('webauthn')
   webAuthn('webauthn'),
+  @JsonValue('email_code')
+  emailCode('email_code'),
 
   /// Default value for all unparsed values, allows backward compatibility when adding new values on the backend.
   $unknown(null);

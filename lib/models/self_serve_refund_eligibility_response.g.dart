@@ -39,6 +39,10 @@ SelfServeRefundEligibilityResponse _$SelfServeRefundEligibilityResponseFromJson(
         'cancels_subscription',
         (v) => v as bool? ?? false,
       ),
+      provider: $checkedConvert(
+        'provider',
+        (v) => v == null ? null : SelfServeRefundProvider.fromJson(v as String),
+      ),
     );
     return val;
   },
@@ -64,4 +68,5 @@ Map<String, dynamic> _$SelfServeRefundEligibilityResponseToJson(
   'refund_window_expires_at': instance.refundWindowExpiresAt,
   'cooldown_expires_at': instance.cooldownExpiresAt,
   'cancels_subscription': instance.cancelsSubscription,
+  'provider': instance.provider,
 };

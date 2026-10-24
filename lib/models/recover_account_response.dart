@@ -33,6 +33,8 @@ class RecoverAccountResponseVariant1 {
   final SnowflakeStringType userId;
   @JsonKey(defaultValue: _$missingUserPartialResponse)
   final UserPartialResponse user;
+  @JsonKey(includeIfNull: false, name: 'device_proof')
+  final String? deviceProof;
   @JsonKey(name: 'recovery_key', defaultValue: '')
   final String recoveryKey;
   @JsonKey(name: 'recovery_kit_created_at', defaultValue: _$missingDateTime)
@@ -42,6 +44,7 @@ class RecoverAccountResponseVariant1 {
     required this.token,
     required this.userId,
     required this.user,
+    this.deviceProof,
     required this.recoveryKey,
     required this.recoveryKitCreatedAt,
   });

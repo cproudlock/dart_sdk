@@ -6,13 +6,13 @@ part of 'auth_register_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-AuthRegisterResponseAuthTokenWithUserIdResponse
-_$AuthRegisterResponseAuthTokenWithUserIdResponseFromJson(
+AuthRegisterResponseAuthRegisterSuccessResponse
+_$AuthRegisterResponseAuthRegisterSuccessResponseFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('AuthRegisterResponseAuthTokenWithUserIdResponse', json, (
+) => $checkedCreate('AuthRegisterResponseAuthRegisterSuccessResponse', json, (
   $checkedConvert,
 ) {
-  final val = AuthRegisterResponseAuthTokenWithUserIdResponse(
+  final val = AuthRegisterResponseAuthRegisterSuccessResponse(
     token: $checkedConvert('token', (v) => v as String? ?? ''),
     userId: $checkedConvert('user_id', (v) => v as SnowflakeStringType? ?? ''),
     user: $checkedConvert(
@@ -21,16 +21,25 @@ _$AuthRegisterResponseAuthTokenWithUserIdResponseFromJson(
           ? _$missingUserPartialResponse()
           : UserPartialResponse.fromJson(v as Map<String, dynamic>),
     ),
+    deviceProof: $checkedConvert('device_proof', (v) => v as String?),
+    entry: $checkedConvert(
+      'entry',
+      (v) => v == null
+          ? null
+          : GuildEntryResult.fromJson(v as Map<String, dynamic>),
+    ),
   );
   return val;
-}, fieldKeyMap: const {'userId': 'user_id'});
+}, fieldKeyMap: const {'userId': 'user_id', 'deviceProof': 'device_proof'});
 
-Map<String, dynamic> _$AuthRegisterResponseAuthTokenWithUserIdResponseToJson(
-  AuthRegisterResponseAuthTokenWithUserIdResponse instance,
+Map<String, dynamic> _$AuthRegisterResponseAuthRegisterSuccessResponseToJson(
+  AuthRegisterResponseAuthRegisterSuccessResponse instance,
 ) => <String, dynamic>{
   'token': instance.token,
   'user_id': instance.userId,
   'user': instance.user,
+  'device_proof': ?instance.deviceProof,
+  'entry': ?instance.entry,
 };
 
 AuthRegisterResponseAuthRegistrationPendingApprovalResponse
