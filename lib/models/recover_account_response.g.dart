@@ -24,6 +24,7 @@ RecoverAccountResponseVariant1 _$RecoverAccountResponseVariant1FromJson(
             ? _$missingUserPartialResponse()
             : UserPartialResponse.fromJson(v as Map<String, dynamic>),
       ),
+      deviceProof: $checkedConvert('device_proof', (v) => v as String?),
       recoveryKey: $checkedConvert('recovery_key', (v) => v as String? ?? ''),
       recoveryKitCreatedAt: $checkedConvert(
         'recovery_kit_created_at',
@@ -34,6 +35,7 @@ RecoverAccountResponseVariant1 _$RecoverAccountResponseVariant1FromJson(
   },
   fieldKeyMap: const {
     'userId': 'user_id',
+    'deviceProof': 'device_proof',
     'recoveryKey': 'recovery_key',
     'recoveryKitCreatedAt': 'recovery_kit_created_at',
   },
@@ -45,6 +47,7 @@ Map<String, dynamic> _$RecoverAccountResponseVariant1ToJson(
   'token': instance.token,
   'user_id': instance.userId,
   'user': instance.user,
+  'device_proof': ?instance.deviceProof,
   'recovery_key': instance.recoveryKey,
   'recovery_kit_created_at': instance.recoveryKitCreatedAt.toIso8601String(),
 };

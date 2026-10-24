@@ -12,6 +12,8 @@ enum StorePurchaseBlockedReason {
   existingSubscription('existing_subscription'),
   @JsonValue('purchase_disabled')
   purchaseDisabled('purchase_disabled'),
+  @JsonValue('payment_dispute_open')
+  paymentDisputeOpen('payment_dispute_open'),
 
   /// Default value for all unparsed values, allows backward compatibility when adding new values on the backend.
   $unknown(null);

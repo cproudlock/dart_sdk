@@ -7,6 +7,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'connection_response.dart';
 import 'guild_member_response.dart';
 import 'int32_type.dart';
+import 'profile_badge_list_response.dart';
 import 'signed_int32_type.dart';
 import 'user_partial_response.dart';
 import 'user_premium_types.dart';
@@ -27,6 +28,8 @@ class UserProfileFullResponse {
     this.premiumType,
     this.premiumSince,
     this.premiumLifetimeSequence,
+    this.profileBadges,
+    this.operatorPassSince,
     this.mutualFriends,
     this.mutualGuilds,
     this.connectedAccounts,
@@ -55,17 +58,25 @@ class UserProfileFullResponse {
   @JsonKey(includeIfNull: false, name: 'guild_member_profile')
   final UserProfileFullResponseGuildMemberProfile? guildMemberProfile;
 
-  /// The type of premium subscription
+  /// The type of premium subscription. Deprecated for badge display, use profile_badges
   @JsonKey(includeIfNull: false, name: 'premium_type')
   final UserPremiumTypes? premiumType;
 
-  /// ISO8601 timestamp of when premium was activated
+  /// ISO8601 timestamp of when premium was activated. Deprecated for badge display, use profile_badges
   @JsonKey(includeIfNull: false, name: 'premium_since')
   final String? premiumSince;
 
-  /// Sequence number for lifetime premium
+  /// Sequence number for lifetime premium. Deprecated for badge display, use profile_badges
   @JsonKey(includeIfNull: false, name: 'premium_lifetime_sequence')
   final Int32Type? premiumLifetimeSequence;
+
+  /// Profile badges in display order. Empty when there is nothing to show. Older servers omit it
+  @JsonKey(includeIfNull: false, name: 'profile_badges')
+  final ProfileBadgeListResponse? profileBadges;
+
+  /// ISO8601 timestamp of when the user got the Operator Pass, or null when absent or hidden. Older servers omit it
+  @JsonKey(includeIfNull: false, name: 'operator_pass_since')
+  final String? operatorPassSince;
 
   /// Array of mutual friends
   @JsonKey(includeIfNull: false, name: 'mutual_friends')
@@ -83,7 +94,7 @@ class UserProfileFullResponse {
   @JsonKey(includeIfNull: true, name: 'timezone_offset')
   final SignedInt32Type? timezoneOffset;
 
-  /// True when the target user has restricted their profile and the viewer does not meet the visibility tier; bio, pronouns, badges, and connected accounts have been stripped.
+  /// True when the target user has restricted their profile and the viewer does not meet the visibility tier. Bio, pronouns, connected accounts, and the premium and Operator Pass badges have been stripped. Staff, partner, and bug hunter badges remain.
   @JsonKey(includeIfNull: false, name: 'profile_limited')
   final bool? profileLimited;
 

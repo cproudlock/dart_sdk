@@ -99,7 +99,7 @@ class RegisterRequest {
   @JsonKey(includeIfNull: false, name: 'date_of_birth')
   final String? dateOfBirth;
 
-  /// Whether user consents to terms of service
+  /// Whether the person submitted the step that says creating the account accepts the terms of service. Must be true when the instance publishes terms or a privacy policy
   final bool consent;
 
   /// Initial UI theme preference for the new account

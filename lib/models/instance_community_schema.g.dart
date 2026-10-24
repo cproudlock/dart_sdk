@@ -29,6 +29,7 @@ InstanceCommunitySchema _$InstanceCommunitySchemaFromJson(
         'guild_create_access',
         (v) => v as bool? ?? false,
       ),
+      friendsDisabled: $checkedConvert('friends_disabled', (v) => v as bool?),
     );
     return val;
   },
@@ -37,6 +38,7 @@ InstanceCommunitySchema _$InstanceCommunitySchemaFromJson(
     'singleCommunityGuildId': 'single_community_guild_id',
     'directMessagesDisabled': 'direct_messages_disabled',
     'guildCreateAccess': 'guild_create_access',
+    'friendsDisabled': 'friends_disabled',
   },
 );
 
@@ -46,5 +48,6 @@ Map<String, dynamic> _$InstanceCommunitySchemaToJson(
   'single_community': instance.singleCommunity,
   'single_community_guild_id': instance.singleCommunityGuildId,
   'direct_messages_disabled': instance.directMessagesDisabled,
+  'friends_disabled': ?instance.friendsDisabled,
   'guild_create_access': instance.guildCreateAccess,
 };

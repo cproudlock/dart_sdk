@@ -48,6 +48,10 @@ PremiumStateResponseEffective _$PremiumStateResponseEffectiveFromJson(
         'premium_purchase_disabled',
         (v) => v as bool? ?? false,
       ),
+      paymentDisputeOpen: $checkedConvert(
+        'payment_dispute_open',
+        (v) => v as bool? ?? false,
+      ),
       premiumPerksDisabled: $checkedConvert(
         'premium_perks_disabled',
         (v) => v as bool? ?? false,
@@ -68,6 +72,7 @@ PremiumStateResponseEffective _$PremiumStateResponseEffectiveFromJson(
     'premiumGraceEndsAt': 'premium_grace_ends_at',
     'premiumEnabledOverride': 'premium_enabled_override',
     'premiumPurchaseDisabled': 'premium_purchase_disabled',
+    'paymentDisputeOpen': 'payment_dispute_open',
     'premiumPerksDisabled': 'premium_perks_disabled',
     'selfHosted': 'self_hosted',
   },
@@ -86,6 +91,7 @@ Map<String, dynamic> _$PremiumStateResponseEffectiveToJson(
   'premium_grace_ends_at': instance.premiumGraceEndsAt,
   'premium_enabled_override': instance.premiumEnabledOverride,
   'premium_purchase_disabled': instance.premiumPurchaseDisabled,
+  'payment_dispute_open': instance.paymentDisputeOpen,
   'premium_perks_disabled': instance.premiumPerksDisabled,
   'self_hosted': instance.selfHosted,
   'bot': instance.bot,

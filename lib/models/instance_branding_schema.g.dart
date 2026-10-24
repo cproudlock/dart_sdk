@@ -19,6 +19,7 @@ InstanceBrandingSchema _$InstanceBrandingSchemaFromJson(
       logoUrl: $checkedConvert('logo_url', (v) => v as String?),
       wordmarkUrl: $checkedConvert('wordmark_url', (v) => v as String?),
       faviconUrl: $checkedConvert('favicon_url', (v) => v as String?),
+      faviconDarkUrl: $checkedConvert('favicon_dark_url', (v) => v as String?),
       themeColor: $checkedConvert('theme_color', (v) => v as String?),
       statusPageUrl: $checkedConvert('status_page_url', (v) => v as String?),
       statusPageIncidentHistoryUrl: $checkedConvert(
@@ -30,6 +31,15 @@ InstanceBrandingSchema _$InstanceBrandingSchemaFromJson(
         (v) => v as String? ?? '',
       ),
       premiumInfoUrl: $checkedConvert('premium_info_url', (v) => v as String?),
+      signInBackdropUrl: $checkedConvert(
+        'sign_in_backdrop_url',
+        (v) => v as String?,
+      ),
+      customCss: $checkedConvert('custom_css', (v) => v as String?),
+      uploadLimitMessage: $checkedConvert(
+        'upload_limit_message',
+        (v) => v as String?,
+      ),
     );
     return val;
   },
@@ -40,11 +50,15 @@ InstanceBrandingSchema _$InstanceBrandingSchemaFromJson(
     'logoUrl': 'logo_url',
     'wordmarkUrl': 'wordmark_url',
     'faviconUrl': 'favicon_url',
+    'faviconDarkUrl': 'favicon_dark_url',
     'themeColor': 'theme_color',
     'statusPageUrl': 'status_page_url',
     'statusPageIncidentHistoryUrl': 'status_page_incident_history_url',
     'premiumProductName': 'premium_product_name',
     'premiumInfoUrl': 'premium_info_url',
+    'signInBackdropUrl': 'sign_in_backdrop_url',
+    'customCss': 'custom_css',
+    'uploadLimitMessage': 'upload_limit_message',
   },
 );
 
@@ -57,9 +71,13 @@ Map<String, dynamic> _$InstanceBrandingSchemaToJson(
   'logo_url': instance.logoUrl,
   'wordmark_url': instance.wordmarkUrl,
   'favicon_url': instance.faviconUrl,
+  'favicon_dark_url': instance.faviconDarkUrl,
   'theme_color': instance.themeColor,
   'status_page_url': instance.statusPageUrl,
   'status_page_incident_history_url': instance.statusPageIncidentHistoryUrl,
   'premium_product_name': instance.premiumProductName,
   'premium_info_url': instance.premiumInfoUrl,
+  'sign_in_backdrop_url': instance.signInBackdropUrl,
+  'custom_css': instance.customCss,
+  'upload_limit_message': instance.uploadLimitMessage,
 };

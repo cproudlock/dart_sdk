@@ -34,11 +34,14 @@ class AuthLoginResponseAuthTokenWithUserIdResponse {
   final SnowflakeStringType userId;
   @JsonKey(defaultValue: _$missingUserPartialResponse)
   final UserPartialResponse user;
+  @JsonKey(includeIfNull: false, name: 'device_proof')
+  final String? deviceProof;
 
   const AuthLoginResponseAuthTokenWithUserIdResponse({
     required this.token,
     required this.userId,
     required this.user,
+    this.deviceProof,
   });
 
   factory AuthLoginResponseAuthTokenWithUserIdResponse.fromJson(

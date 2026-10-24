@@ -34,6 +34,7 @@ DiscoveryGuildListResponseGuilds _$DiscoveryGuildListResponseGuildsFromJson(
       banner: $checkedConvert('banner', (v) => v as String?),
       description: $checkedConvert('description', (v) => v as String?),
       primaryLanguage: $checkedConvert('primary_language', (v) => v as String?),
+      visitsEnabled: $checkedConvert('visits_enabled', (v) => v as bool?),
     );
     return val;
   },
@@ -44,6 +45,7 @@ DiscoveryGuildListResponseGuilds _$DiscoveryGuildListResponseGuildsFromJson(
     'onlineCount': 'online_count',
     'verificationLevel': 'verification_level',
     'primaryLanguage': 'primary_language',
+    'visitsEnabled': 'visits_enabled',
   },
 );
 
@@ -62,4 +64,5 @@ Map<String, dynamic> _$DiscoveryGuildListResponseGuildsToJson(
   'online_count': instance.onlineCount,
   'features': instance.features,
   'verification_level': instance.verificationLevel,
+  'visits_enabled': ?instance.visitsEnabled,
 };

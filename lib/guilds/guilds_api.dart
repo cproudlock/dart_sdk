@@ -61,7 +61,7 @@ abstract class GuildsApi {
 
   /// Create guild.
   ///
-  /// Only claimed, email-verified non-bot users can create guilds. A self-hosted instance can restrict creation to admins and users granted the feature_guild_create limit.
+  /// Only verified accounts that are not bots can create guilds. A self-hosted instance can restrict creation to admins and users granted the feature_guild_create limit.
   ///
   /// [body] - Name not received - field will be skipped.
   @POST('/guilds')
@@ -69,7 +69,7 @@ abstract class GuildsApi {
 
   /// Get guild information.
   ///
-  /// User must be a member of the guild to access this endpoint. Requires guilds OAuth scope if using bearer token.
+  /// User must be a member of the guild, or visiting it, to access this endpoint. Someone visiting gets channels that @everyone can see, without members, and visiting set to true. Requires guilds OAuth scope if using bearer token.
   ///
   /// [guildId] - The ID of the guild.
   @GET('/guilds/{guild_id}')
@@ -156,7 +156,7 @@ abstract class GuildsApi {
 
   /// List guild channels.
   ///
-  /// List guild channels. Returns all channels in the guild that the user has access to view.
+  /// List guild channels. Returns all channels in the guild that the user has access to view. Someone visiting the guild gets the channels that @everyone can see, with only the @everyone permission overwrite.
   ///
   /// [guildId] - The ID of the guild.
   @GET('/guilds/{guild_id}/channels')

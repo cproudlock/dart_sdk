@@ -13,6 +13,7 @@ import '../models/discovery_category_list_response.dart';
 import '../models/discovery_channel_preview_response.dart';
 import '../models/discovery_guild_list_response.dart';
 import '../models/discovery_status_response.dart';
+import '../models/guild_visit_start_response.dart';
 import '../models/snowflake_type.dart';
 import '../models/sort_by.dart';
 
@@ -76,6 +77,16 @@ abstract class DiscoveryApi {
   /// [guildId] - The ID of the guild.
   @POST('/discovery/guilds/{guild_id}/join')
   Future<void> joinDiscoveryGuild({
+    @Path('guild_id') required SnowflakeType guildId,
+  });
+
+  /// Visit a discoverable guild.
+  ///
+  /// Opens a guild listed in discovery without joining it. Works like visiting through an invite, and answers with Unknown Guild when the guild is not listed.
+  ///
+  /// [guildId] - The ID of the guild.
+  @POST('/discovery/guilds/{guild_id}/visit')
+  Future<GuildVisitStartResponse> visitDiscoveryGuild({
     @Path('guild_id') required SnowflakeType guildId,
   });
 

@@ -6,6 +6,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 import 'snowflake_string_type.dart';
 import 'user_partial_response.dart';
+import 'guild_entry_result.dart';
 
 part 'auth_register_response.g.dart';
 
@@ -19,9 +20,9 @@ class AuthRegisterResponse {
 
   Map<String, dynamic> toJson() => _json;
 
-  AuthRegisterResponseAuthTokenWithUserIdResponse
-  toAuthTokenWithUserIdResponse() =>
-      AuthRegisterResponseAuthTokenWithUserIdResponse.fromJson(_json);
+  AuthRegisterResponseAuthRegisterSuccessResponse
+  toAuthRegisterSuccessResponse() =>
+      AuthRegisterResponseAuthRegisterSuccessResponse.fromJson(_json);
   AuthRegisterResponseAuthRegistrationPendingApprovalResponse
   toAuthRegistrationPendingApprovalResponse() =>
       AuthRegisterResponseAuthRegistrationPendingApprovalResponse.fromJson(
@@ -30,26 +31,32 @@ class AuthRegisterResponse {
 }
 
 @JsonSerializable()
-class AuthRegisterResponseAuthTokenWithUserIdResponse {
+class AuthRegisterResponseAuthRegisterSuccessResponse {
   @JsonKey(defaultValue: '')
   final String token;
   @JsonKey(name: 'user_id', defaultValue: '')
   final SnowflakeStringType userId;
   @JsonKey(defaultValue: _$missingUserPartialResponse)
   final UserPartialResponse user;
+  @JsonKey(includeIfNull: false, name: 'device_proof')
+  final String? deviceProof;
+  @JsonKey(includeIfNull: false)
+  final GuildEntryResult? entry;
 
-  const AuthRegisterResponseAuthTokenWithUserIdResponse({
+  const AuthRegisterResponseAuthRegisterSuccessResponse({
     required this.token,
     required this.userId,
     required this.user,
+    this.deviceProof,
+    this.entry,
   });
 
-  factory AuthRegisterResponseAuthTokenWithUserIdResponse.fromJson(
+  factory AuthRegisterResponseAuthRegisterSuccessResponse.fromJson(
     Map<String, dynamic> json,
-  ) => _$AuthRegisterResponseAuthTokenWithUserIdResponseFromJson(json);
+  ) => _$AuthRegisterResponseAuthRegisterSuccessResponseFromJson(json);
 
   Map<String, dynamic> toJson() =>
-      _$AuthRegisterResponseAuthTokenWithUserIdResponseToJson(this);
+      _$AuthRegisterResponseAuthRegisterSuccessResponseToJson(this);
 }
 
 @JsonSerializable()

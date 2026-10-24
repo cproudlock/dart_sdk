@@ -12,6 +12,7 @@ import 'instance_community_schema.dart';
 import 'instance_endpoints_schema.dart';
 import 'instance_features_schema.dart';
 import 'instance_gif_schema.dart';
+import 'instance_notice_schema.dart';
 import 'instance_push_schema.dart';
 import 'instance_registration_schema.dart';
 import 'instance_services_schema.dart';
@@ -37,6 +38,7 @@ class WellKnownFluxerResponse {
     required this.appPublic,
     this.codename,
     this.agePolicy,
+    this.notice,
     this.domainMigration,
   });
 
@@ -78,6 +80,10 @@ class WellKnownFluxerResponse {
   final InstanceAppPublicSchema appPublic;
   @JsonKey(includeIfNull: false, name: 'age_policy')
   final InstanceAgePolicySchema? agePolicy;
+
+  /// Notice from the instance administrator, or null when there is none
+  @JsonKey(includeIfNull: false)
+  final InstanceNoticeSchema? notice;
 
   /// Web domain migration switch and anonymous rollout, only acted on by official instance clients
   @JsonKey(includeIfNull: false, name: 'domain_migration')

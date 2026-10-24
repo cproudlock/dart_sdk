@@ -27,34 +27,34 @@ part 'guild_response.g.dart';
 @JsonSerializable()
 class GuildResponse {
   const GuildResponse({
-    required this.features,
+    required this.explicitContentFilter,
     required this.name,
-    required this.ownerId,
+    required this.features,
     required this.splashCardAlignment,
     required this.id,
-    required this.contentWarningLevel,
-    required this.disabledOperations,
-    required this.nsfw,
+    required this.ownerId,
     required this.nsfwLevel,
-    required this.defaultMessageNotifications,
+    required this.disabledOperations,
     required this.mfaLevel,
+    required this.defaultMessageNotifications,
     required this.verificationLevel,
     required this.afkTimeout,
     required this.systemChannelFlags,
-    required this.explicitContentFilter,
+    required this.contentWarningLevel,
+    required this.nsfw,
     this.systemChannelId,
-    this.vanityUrlCode,
+    this.embedSplashHeight,
     this.rulesChannelId,
     this.afkChannelId,
-    this.embedSplashHeight,
-    this.splash,
     this.embedSplashWidth,
+    this.vanityUrlCode,
     this.embedSplash,
     this.splashHeight,
-    this.splashWidth,
+    this.splash,
     this.bannerHeight,
-    this.threadsActive,
     this.bannerWidth,
+    this.contentWarningText,
+    this.visiting,
     this.banner,
     this.icon,
     this.messageHistoryCutoff,
@@ -67,7 +67,8 @@ class GuildResponse {
     this.onlineCount,
     this.approximateMemberCount,
     this.approximatePresenceCount,
-    this.contentWarningText,
+    this.threadsActive,
+    this.splashWidth,
   });
 
   factory GuildResponse.fromJson(Map<String, Object?> json) =>
@@ -241,6 +242,10 @@ class GuildResponse {
   /// Present and true when threads, forum and media channels are active in this guild for the requesting client. Only set on the current user guild list
   @JsonKey(includeIfNull: false, name: 'threads_active')
   final bool? threadsActive;
+
+  /// Present and true when the requesting user is visiting the guild without being a member
+  @JsonKey(includeIfNull: false)
+  final bool? visiting;
 
   Map<String, Object?> toJson() => _$GuildResponseToJson(this);
 }

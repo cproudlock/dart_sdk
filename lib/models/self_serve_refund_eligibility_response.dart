@@ -5,6 +5,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
 import 'self_serve_refund_ineligibility_reason.dart';
+import 'self_serve_refund_provider.dart';
 
 part 'self_serve_refund_eligibility_response.g.dart';
 
@@ -20,6 +21,7 @@ class SelfServeRefundEligibilityResponse {
     required this.refundWindowExpiresAt,
     required this.cooldownExpiresAt,
     required this.cancelsSubscription,
+    required this.provider,
   });
 
   factory SelfServeRefundEligibilityResponse.fromJson(
@@ -61,6 +63,10 @@ class SelfServeRefundEligibilityResponse {
   /// Whether issuing the refund will also cancel the active subscription
   @JsonKey(name: 'cancels_subscription', defaultValue: false)
   final bool cancelsSubscription;
+
+  /// Who took the payment for the purchase considered for refund
+  @JsonKey(includeIfNull: true)
+  final SelfServeRefundProvider? provider;
 
   Map<String, Object?> toJson() =>
       _$SelfServeRefundEligibilityResponseToJson(this);

@@ -7,6 +7,7 @@ import 'package:retrofit/retrofit.dart';
 import 'package:retrofit/error_logger.dart';
 
 import '../models/channel_invite_create_request.dart';
+import '../models/guild_visit_start_response.dart';
 import '../models/invite_metadata_list_response.dart';
 import '../models/invite_metadata_response_schema.dart';
 import '../models/invite_response_schema.dart';
@@ -78,4 +79,14 @@ abstract class InvitesApi {
   /// [inviteCode] - The unique invite code.
   @DELETE('/invites/{invite_code}')
   Future<void> deleteInvite({@Path('invite_code') required String inviteCode});
+
+  /// Visit the guild of an invite.
+  ///
+  /// Opens the guild behind an invite without joining it. The visitor can read the channels that @everyone can see, but cannot post, react or see the member list, and other members see no change. Answers with member set to true and no visit when the user is already a member. Visiting does not use up a limited invite. Joining later from the visit uses one.
+  ///
+  /// [inviteCode] - The unique invite code.
+  @POST('/invites/{invite_code}/visit')
+  Future<GuildVisitStartResponse> visitInviteGuild({
+    @Path('invite_code') required String inviteCode,
+  });
 }

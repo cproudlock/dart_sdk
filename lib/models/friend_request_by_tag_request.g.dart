@@ -13,7 +13,7 @@ FriendRequestByTagRequest _$FriendRequestByTagRequestFromJson(
     username: $checkedConvert('username', (v) => v as UsernameType? ?? ''),
     discriminator: $checkedConvert(
       'discriminator',
-      (v) => v as DiscriminatorType? ?? '',
+      (v) => v as DiscriminatorType?,
     ),
   );
   return val;
@@ -23,5 +23,5 @@ Map<String, dynamic> _$FriendRequestByTagRequestToJson(
   FriendRequestByTagRequest instance,
 ) => <String, dynamic>{
   'username': instance.username,
-  'discriminator': instance.discriminator,
+  'discriminator': ?instance.discriminator,
 };

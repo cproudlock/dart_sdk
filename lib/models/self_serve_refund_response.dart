@@ -4,6 +4,8 @@
 
 import 'package:json_annotation/json_annotation.dart';
 
+import 'self_serve_refund_provider.dart';
+
 part 'self_serve_refund_response.g.dart';
 
 @JsonSerializable()
@@ -18,6 +20,7 @@ class SelfServeRefundResponse {
     required this.currency,
     required this.subscriptionId,
     required this.status,
+    required this.provider,
   });
 
   factory SelfServeRefundResponse.fromJson(Map<String, Object?> json) =>
@@ -32,13 +35,13 @@ class SelfServeRefundResponse {
   @JsonKey(includeIfNull: true, name: 'refund_id')
   final String? refundId;
 
-  /// Amount actually refunded so far, in the currency minor unit; 0 until the provider confirms success
-  @JsonKey(name: 'refunded_amount_cents', defaultValue: 0)
-  final int refundedAmountCents;
-  @JsonKey(name: 'invoice_amount_paid_cents', defaultValue: 0)
-  final int invoiceAmountPaidCents;
-  @JsonKey(defaultValue: '')
-  final String currency;
+  /// Amount actually refunded so far, in the currency minor unit; 0 until the provider confirms success, null when the store does not report it
+  @JsonKey(includeIfNull: true, name: 'refunded_amount_cents')
+  final int? refundedAmountCents;
+  @JsonKey(includeIfNull: true, name: 'invoice_amount_paid_cents')
+  final int? invoiceAmountPaidCents;
+  @JsonKey(includeIfNull: true)
+  final String? currency;
 
   /// Subscription that was cancelled along with the refund, when applicable
   @JsonKey(includeIfNull: true, name: 'subscription_id')
@@ -47,6 +50,10 @@ class SelfServeRefundResponse {
   /// Provider status of the refund (e.g. pending, succeeded, failed); money only moved once succeeded
   @JsonKey(includeIfNull: true)
   final String? status;
+
+  /// Who took the payment that was refunded
+  @JsonKey(defaultValue: SelfServeRefundProvider.$unknown)
+  final SelfServeRefundProvider provider;
 
   Map<String, Object?> toJson() => _$SelfServeRefundResponseToJson(this);
 }

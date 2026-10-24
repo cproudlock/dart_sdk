@@ -55,10 +55,4 @@ abstract class BillingApi {
   /// Handles incoming Stripe webhook events for payment processing and subscription management.
   @POST('/stripe/webhook')
   Future<WebhookReceivedResponse> processStripeWebhook();
-
-  /// Create age verification session.
-  ///
-  /// Creates a Stripe checkout session in setup mode to verify the user holds a credit card for UK adult age verification.
-  @POST('/users/@me/age-verification')
-  Future<UrlResponse> createAgeVerificationSession();
 }

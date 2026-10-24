@@ -22,15 +22,21 @@ SelfServeRefundResponse _$SelfServeRefundResponseFromJson(
       refundId: $checkedConvert('refund_id', (v) => v as String?),
       refundedAmountCents: $checkedConvert(
         'refunded_amount_cents',
-        (v) => (v as num?)?.toInt() ?? 0,
+        (v) => (v as num?)?.toInt(),
       ),
       invoiceAmountPaidCents: $checkedConvert(
         'invoice_amount_paid_cents',
-        (v) => (v as num?)?.toInt() ?? 0,
+        (v) => (v as num?)?.toInt(),
       ),
-      currency: $checkedConvert('currency', (v) => v as String? ?? ''),
+      currency: $checkedConvert('currency', (v) => v as String?),
       subscriptionId: $checkedConvert('subscription_id', (v) => v as String?),
       status: $checkedConvert('status', (v) => v as String?),
+      provider: $checkedConvert(
+        'provider',
+        (v) => v == null
+            ? SelfServeRefundProvider.$unknown
+            : SelfServeRefundProvider.fromJson(v as String),
+      ),
     );
     return val;
   },
@@ -57,4 +63,5 @@ Map<String, dynamic> _$SelfServeRefundResponseToJson(
   'currency': instance.currency,
   'subscription_id': instance.subscriptionId,
   'status': instance.status,
+  'provider': instance.provider,
 };
