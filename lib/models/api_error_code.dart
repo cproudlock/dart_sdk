@@ -185,8 +185,6 @@ enum ApiErrorCode {
   publishedMessageEditRateLimited('PUBLISHED_MESSAGE_EDIT_RATE_LIMITED'),
   @JsonValue('PURCHASE_EMAIL_VERIFICATION_REQUIRED')
   purchaseEmailVerificationRequired('PURCHASE_EMAIL_VERIFICATION_REQUIRED'),
-  @JsonValue('PURCHASE_RECEIPT_EMAIL_REQUIRED')
-  purchaseReceiptEmailRequired('PURCHASE_RECEIPT_EMAIL_REQUIRED'),
   @JsonValue('REACTION_EMAIL_VERIFICATION_REQUIRED')
   reactionEmailVerificationRequired('REACTION_EMAIL_VERIFICATION_REQUIRED'),
   @JsonValue('REPORT_EMAIL_VERIFICATION_REQUIRED')
@@ -493,6 +491,8 @@ enum ApiErrorCode {
   directMessagesDisabled('DIRECT_MESSAGES_DISABLED'),
   @JsonValue('FRIENDS_DISABLED')
   friendsDisabled('FRIENDS_DISABLED'),
+  @JsonValue('PERSONAL_NOTES_DISABLED')
+  personalNotesDisabled('PERSONAL_NOTES_DISABLED'),
   @JsonValue('NEW_CONVERSATIONS_LIMITED')
   newConversationsLimited('NEW_CONVERSATIONS_LIMITED'),
   @JsonValue('DONATION_AMOUNT_INVALID')

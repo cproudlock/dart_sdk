@@ -15,6 +15,7 @@ class InstanceCommunitySchema {
     required this.directMessagesDisabled,
     required this.guildCreateAccess,
     this.friendsDisabled,
+    this.personalNotesEnabled,
   });
 
   factory InstanceCommunitySchema.fromJson(Map<String, Object?> json) =>
@@ -35,6 +36,10 @@ class InstanceCommunitySchema {
   /// Whether friend requests are disabled instance-wide. Missing means direct_messages_disabled decides
   @JsonKey(includeIfNull: false, name: 'friends_disabled')
   final bool? friendsDisabled;
+
+  /// Whether people can use personal notes. Missing means they can
+  @JsonKey(includeIfNull: false, name: 'personal_notes_enabled')
+  final bool? personalNotesEnabled;
 
   /// Whether every account can create communities. When false, only admins and accounts granted the feature_guild_create limit can
   @JsonKey(name: 'guild_create_access', defaultValue: false)
