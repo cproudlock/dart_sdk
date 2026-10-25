@@ -231,6 +231,10 @@ enum ApiErrorCode {
   guildTemplateInvalid('GUILD_TEMPLATE_INVALID'),
   @JsonValue('GUILD_VERIFICATION_REQUIRED')
   guildVerificationRequired('GUILD_VERIFICATION_REQUIRED'),
+  @JsonValue('HANDOFF_ATTEMPTS_EXCEEDED')
+  handoffAttemptsExceeded('HANDOFF_ATTEMPTS_EXCEEDED'),
+  @JsonValue('HANDOFF_CODE_ALREADY_USED')
+  handoffCodeAlreadyUsed('HANDOFF_CODE_ALREADY_USED'),
   @JsonValue('HANDOFF_CODE_EXPIRED')
   handoffCodeExpired('HANDOFF_CODE_EXPIRED'),
   @JsonValue('HARVEST_EXPIRED')
