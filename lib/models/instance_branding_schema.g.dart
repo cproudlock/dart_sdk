@@ -40,6 +40,10 @@ InstanceBrandingSchema _$InstanceBrandingSchemaFromJson(
         'upload_limit_message',
         (v) => v as String?,
       ),
+      trustedDomains: $checkedConvert(
+        'trusted_domains',
+        (v) => (v as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
+      ),
     );
     return val;
   },
@@ -59,6 +63,7 @@ InstanceBrandingSchema _$InstanceBrandingSchemaFromJson(
     'signInBackdropUrl': 'sign_in_backdrop_url',
     'customCss': 'custom_css',
     'uploadLimitMessage': 'upload_limit_message',
+    'trustedDomains': 'trusted_domains',
   },
 );
 
@@ -80,4 +85,5 @@ Map<String, dynamic> _$InstanceBrandingSchemaToJson(
   'sign_in_backdrop_url': instance.signInBackdropUrl,
   'custom_css': instance.customCss,
   'upload_limit_message': instance.uploadLimitMessage,
+  'trusted_domains': instance.trustedDomains,
 };

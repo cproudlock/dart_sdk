@@ -25,6 +25,7 @@ class InstanceBrandingSchema {
     required this.signInBackdropUrl,
     required this.customCss,
     required this.uploadLimitMessage,
+    required this.trustedDomains,
   });
 
   factory InstanceBrandingSchema.fromJson(Map<String, Object?> json) =>
@@ -89,6 +90,10 @@ class InstanceBrandingSchema {
   /// Optional Markdown a self-hosted instance shows when a file is over the upload limit, in place of the default note
   @JsonKey(includeIfNull: true, name: 'upload_limit_message')
   final String? uploadLimitMessage;
+
+  /// Extra domains a self-hosted instance trusts, so links to them open without a warning. Each entry is a hostname, or a hostname with a *. prefix that also covers its subdomains
+  @JsonKey(name: 'trusted_domains', defaultValue: <String>[])
+  final List<String> trustedDomains;
 
   Map<String, Object?> toJson() => _$InstanceBrandingSchemaToJson(this);
 }
