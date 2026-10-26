@@ -6,6 +6,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 import 'channel_response.dart';
 import 'content_warning_level.dart';
+import 'custom_badge_id_list_response.dart';
 import 'default_message_notifications.dart';
 import 'guild_emoji_response.dart';
 import 'guild_explicit_content_filter.dart';
@@ -27,27 +28,28 @@ part 'guild_response.g.dart';
 @JsonSerializable()
 class GuildResponse {
   const GuildResponse({
-    required this.explicitContentFilter,
+    required this.badgeIds,
     required this.name,
-    required this.features,
+    required this.ownerId,
     required this.splashCardAlignment,
     required this.id,
-    required this.ownerId,
+    required this.nsfw,
     required this.nsfwLevel,
     required this.disabledOperations,
     required this.mfaLevel,
     required this.defaultMessageNotifications,
     required this.verificationLevel,
+    required this.explicitContentFilter,
+    required this.features,
     required this.afkTimeout,
-    required this.systemChannelFlags,
     required this.contentWarningLevel,
-    required this.nsfw,
+    required this.systemChannelFlags,
     this.systemChannelId,
-    this.embedSplashHeight,
     this.rulesChannelId,
     this.afkChannelId,
-    this.embedSplashWidth,
     this.vanityUrlCode,
+    this.embedSplashHeight,
+    this.embedSplashWidth,
     this.embedSplash,
     this.splashHeight,
     this.splash,
@@ -158,6 +160,10 @@ class GuildResponse {
   /// Array of guild feature flags
   @JsonKey(defaultValue: <String>[])
   final List<GuildFeatureSchema> features;
+
+  /// IDs of the custom badges assigned to the community. Look them up in guild_badges of the instance discovery document and skip IDs that are not there
+  @JsonKey(name: 'badge_ids', defaultValue: <String>[])
+  final CustomBadgeIdListResponse badgeIds;
 
   /// Required verification level for members to participate
   @JsonKey(

@@ -4,6 +4,7 @@
 
 import 'package:json_annotation/json_annotation.dart';
 
+import 'custom_badge_id_list_response.dart';
 import 'guild_feature_schema.dart';
 import 'guild_partial_response_splash_card_alignment_splash_card_alignment.dart';
 import 'int32_type.dart';
@@ -18,6 +19,7 @@ class GuildPartialResponse {
     required this.name,
     required this.splashCardAlignment,
     required this.features,
+    required this.badgeIds,
     this.icon,
     this.banner,
     this.bannerWidth,
@@ -94,6 +96,10 @@ class GuildPartialResponse {
   /// Array of guild feature flags
   @JsonKey(defaultValue: <String>[])
   final List<GuildFeatureSchema> features;
+
+  /// IDs of the custom badges assigned to the community. Look them up in guild_badges of the instance discovery document and skip IDs that are not there
+  @JsonKey(name: 'badge_ids', defaultValue: <String>[])
+  final CustomBadgeIdListResponse badgeIds;
 
   /// Whether opening this invite starts a visit instead of a join for the requesting user. Omitted for a caller outside the guild visits experiment
   @JsonKey(includeIfNull: false, name: 'visits_enabled')

@@ -10,6 +10,7 @@ import 'base64_image_type.dart';
 import 'color_type.dart';
 import 'discriminator_type.dart';
 import 'email_type.dart';
+import 'hidden_profile_badges_type.dart';
 import 'mention_reply_preferences_input.dart';
 import 'password_type.dart';
 import 'profile_field_privacy_flags.dart';
@@ -28,6 +29,7 @@ class UserUpdateWithVerificationRequest {
     this.newPassword,
     this.password,
     this.timezonePrivacyFlags,
+    this.hiddenProfileBadges,
     this.premiumBadgeHidden,
     this.premiumBadgeMasked,
     this.premiumBadgeTimestampHidden,
@@ -92,6 +94,7 @@ class UserUpdateWithVerificationRequest {
     this.accentColorValue,
     this.timezoneValue,
     this.timezonePrivacyFlags,
+    this.hiddenProfileBadges,
     this.premiumBadgeHidden,
     this.premiumBadgeMasked,
     this.premiumBadgeTimestampHidden,
@@ -159,6 +162,7 @@ class UserUpdateWithVerificationRequest {
           ? JsonNullable<String>.of(value.timezoneValue)
           : const JsonNullable<String>.undefined(),
       timezonePrivacyFlags: value.timezonePrivacyFlags,
+      hiddenProfileBadges: value.hiddenProfileBadges,
       premiumBadgeHidden: value.premiumBadgeHidden,
       premiumBadgeMasked: value.premiumBadgeMasked,
       premiumBadgeTimestampHidden: value.premiumBadgeTimestampHidden,
@@ -201,8 +205,10 @@ class UserUpdateWithVerificationRequest {
   final PasswordType? password;
   @JsonKey(includeIfNull: false, name: 'timezone_privacy_flags')
   final ProfileFieldPrivacyFlags? timezonePrivacyFlags;
+  @JsonKey(includeIfNull: false, name: 'hidden_profile_badges')
+  final HiddenProfileBadgesType? hiddenProfileBadges;
 
-  /// Whether to hide the premium badge
+  /// Deprecated, use hidden_profile_badges. true adds plutonium, visionary and premium to the list, and false removes them
   @JsonKey(includeIfNull: false, name: 'premium_badge_hidden')
   final bool? premiumBadgeHidden;
 
@@ -214,11 +220,11 @@ class UserUpdateWithVerificationRequest {
   @JsonKey(includeIfNull: false, name: 'premium_badge_timestamp_hidden')
   final bool? premiumBadgeTimestampHidden;
 
-  /// Whether to hide premium badge sequence
+  /// Deprecated, use hidden_profile_badges. true adds visionary_number to the list, and false removes it
   @JsonKey(includeIfNull: false, name: 'premium_badge_sequence_hidden')
   final bool? premiumBadgeSequenceHidden;
 
-  /// Whether to hide the Operator Pass badge from other people. Either value replaces the default
+  /// Deprecated, use hidden_profile_badges. true adds operator_pass to the list, and false removes it
   @JsonKey(includeIfNull: false, name: 'operator_pass_badge_hidden')
   final bool? operatorPassBadgeHidden;
 

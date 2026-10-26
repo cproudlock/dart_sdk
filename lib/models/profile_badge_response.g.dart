@@ -13,9 +13,11 @@ ProfileBadgeResponse _$ProfileBadgeResponseFromJson(
   json,
   ($checkedConvert) {
     final val = ProfileBadgeResponse(
+      key: $checkedConvert('key', (v) => v as String? ?? ''),
       kind: $checkedConvert('kind', (v) => v as String? ?? ''),
       label: $checkedConvert('label', (v) => v as String? ?? ''),
       asset: $checkedConvert('asset', (v) => v as HexString16Type?),
+      assetUrl: $checkedConvert('asset_url', (v) => v as String?),
       aspectRatio: $checkedConvert('aspect_ratio', (v) => v as num?),
       caption: $checkedConvert('caption', (v) => v as String?),
       href: $checkedConvert('href', (v) => v as String?),
@@ -32,6 +34,7 @@ ProfileBadgeResponse _$ProfileBadgeResponseFromJson(
     return val;
   },
   fieldKeyMap: const {
+    'assetUrl': 'asset_url',
     'aspectRatio': 'aspect_ratio',
     'smallAsset': 'small_asset',
     'accessibleLabel': 'accessible_label',
@@ -41,9 +44,11 @@ ProfileBadgeResponse _$ProfileBadgeResponseFromJson(
 Map<String, dynamic> _$ProfileBadgeResponseToJson(
   ProfileBadgeResponse instance,
 ) => <String, dynamic>{
+  'key': instance.key,
   'kind': instance.kind,
   'label': instance.label,
   'asset': instance.asset,
+  'asset_url': instance.assetUrl,
   'small_asset': ?instance.smallAsset,
   'aspect_ratio': instance.aspectRatio,
   'caption': instance.caption,

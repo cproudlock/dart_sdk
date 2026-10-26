@@ -66,6 +66,10 @@ UserProfileFullResponse _$UserProfileFullResponseFromJson(
         'operator_pass_since',
         (v) => v as String?,
       ),
+      hiddenProfileBadgeCount: $checkedConvert(
+        'hidden_profile_badge_count',
+        (v) => (v as num?)?.toInt(),
+      ),
       mutualFriends: $checkedConvert(
         'mutual_friends',
         (v) => (v as List<dynamic>?)
@@ -104,6 +108,7 @@ UserProfileFullResponse _$UserProfileFullResponseFromJson(
     'premiumLifetimeSequence': 'premium_lifetime_sequence',
     'profileBadges': 'profile_badges',
     'operatorPassSince': 'operator_pass_since',
+    'hiddenProfileBadgeCount': 'hidden_profile_badge_count',
     'mutualFriends': 'mutual_friends',
     'mutualGuilds': 'mutual_guilds',
     'connectedAccounts': 'connected_accounts',
@@ -123,6 +128,7 @@ Map<String, dynamic> _$UserProfileFullResponseToJson(
   'premium_lifetime_sequence': ?instance.premiumLifetimeSequence,
   'profile_badges': ?instance.profileBadges,
   'operator_pass_since': ?instance.operatorPassSince,
+  'hidden_profile_badge_count': ?instance.hiddenProfileBadgeCount,
   'mutual_friends': ?instance.mutualFriends,
   'mutual_guilds': ?instance.mutualGuilds,
   'connected_accounts': ?instance.connectedAccounts,

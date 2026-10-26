@@ -323,6 +323,8 @@ enum ApiErrorCode {
   ipBanLinkedToDecision('IP_BAN_LINKED_TO_DECISION'),
   @JsonValue('MAX_APPLICATIONS')
   maxApplications('MAX_APPLICATIONS'),
+  @JsonValue('MAX_BADGES')
+  maxBadges('MAX_BADGES'),
   @JsonValue('MAX_BOOKMARKS')
   maxBookmarks('MAX_BOOKMARKS'),
   @JsonValue('MAX_ACTIVE_THREADS')
@@ -643,6 +645,8 @@ enum ApiErrorCode {
   unclaimedAccountCannotSubmitReports(
     'UNCLAIMED_ACCOUNT_CANNOT_SUBMIT_REPORTS',
   ),
+  @JsonValue('UNKNOWN_BADGE')
+  unknownBadge('UNKNOWN_BADGE'),
   @JsonValue('UNKNOWN_CHANNEL')
   unknownChannel('UNKNOWN_CHANNEL'),
   @JsonValue('UNKNOWN_EMOJI')

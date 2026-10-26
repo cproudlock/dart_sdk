@@ -13,20 +13,18 @@ GuildResponse _$GuildResponseFromJson(
   json,
   ($checkedConvert) {
     final val = GuildResponse(
-      explicitContentFilter: $checkedConvert(
-        'explicit_content_filter',
-        (v) => v == null
-            ? GuildExplicitContentFilter.$unknown
-            : GuildExplicitContentFilter.fromJson((v as num).toInt()),
-      ),
-      name: $checkedConvert('name', (v) => v as String? ?? ''),
-      features: $checkedConvert(
-        'features',
+      badgeIds: $checkedConvert(
+        'badge_ids',
         (v) =>
             (v as List<dynamic>?)
-                ?.map((e) => e as GuildFeatureSchema)
+                ?.map((e) => e as SnowflakeStringType)
                 .toList() ??
             [],
+      ),
+      name: $checkedConvert('name', (v) => v as String? ?? ''),
+      ownerId: $checkedConvert(
+        'owner_id',
+        (v) => v as SnowflakeStringType? ?? '',
       ),
       splashCardAlignment: $checkedConvert(
         'splash_card_alignment',
@@ -37,10 +35,7 @@ GuildResponse _$GuildResponseFromJson(
               ),
       ),
       id: $checkedConvert('id', (v) => v as SnowflakeStringType? ?? ''),
-      ownerId: $checkedConvert(
-        'owner_id',
-        (v) => v as SnowflakeStringType? ?? '',
-      ),
+      nsfw: $checkedConvert('nsfw', (v) => v as bool? ?? false),
       nsfwLevel: $checkedConvert(
         'nsfw_level',
         (v) => v == null
@@ -69,12 +64,22 @@ GuildResponse _$GuildResponseFromJson(
             ? GuildVerificationLevel.$unknown
             : GuildVerificationLevel.fromJson((v as num).toInt()),
       ),
+      explicitContentFilter: $checkedConvert(
+        'explicit_content_filter',
+        (v) => v == null
+            ? GuildExplicitContentFilter.$unknown
+            : GuildExplicitContentFilter.fromJson((v as num).toInt()),
+      ),
+      features: $checkedConvert(
+        'features',
+        (v) =>
+            (v as List<dynamic>?)
+                ?.map((e) => e as GuildFeatureSchema)
+                .toList() ??
+            [],
+      ),
       afkTimeout: $checkedConvert(
         'afk_timeout',
-        (v) => (v as num?)?.toInt() ?? 0,
-      ),
-      systemChannelFlags: $checkedConvert(
-        'system_channel_flags',
         (v) => (v as num?)?.toInt() ?? 0,
       ),
       contentWarningLevel: $checkedConvert(
@@ -83,14 +88,13 @@ GuildResponse _$GuildResponseFromJson(
             ? ContentWarningLevel.$unknown
             : ContentWarningLevel.fromJson((v as num).toInt()),
       ),
-      nsfw: $checkedConvert('nsfw', (v) => v as bool? ?? false),
+      systemChannelFlags: $checkedConvert(
+        'system_channel_flags',
+        (v) => (v as num?)?.toInt() ?? 0,
+      ),
       systemChannelId: $checkedConvert(
         'system_channel_id',
         (v) => v as SnowflakeStringType?,
-      ),
-      embedSplashHeight: $checkedConvert(
-        'embed_splash_height',
-        (v) => (v as num?)?.toInt(),
       ),
       rulesChannelId: $checkedConvert(
         'rules_channel_id',
@@ -100,11 +104,15 @@ GuildResponse _$GuildResponseFromJson(
         'afk_channel_id',
         (v) => v as SnowflakeStringType?,
       ),
+      vanityUrlCode: $checkedConvert('vanity_url_code', (v) => v as String?),
+      embedSplashHeight: $checkedConvert(
+        'embed_splash_height',
+        (v) => (v as num?)?.toInt(),
+      ),
       embedSplashWidth: $checkedConvert(
         'embed_splash_width',
         (v) => (v as num?)?.toInt(),
       ),
-      vanityUrlCode: $checkedConvert('vanity_url_code', (v) => v as String?),
       embedSplash: $checkedConvert('embed_splash', (v) => v as String?),
       splashHeight: $checkedConvert(
         'splash_height',
@@ -170,23 +178,24 @@ GuildResponse _$GuildResponseFromJson(
     return val;
   },
   fieldKeyMap: const {
-    'explicitContentFilter': 'explicit_content_filter',
-    'splashCardAlignment': 'splash_card_alignment',
+    'badgeIds': 'badge_ids',
     'ownerId': 'owner_id',
+    'splashCardAlignment': 'splash_card_alignment',
     'nsfwLevel': 'nsfw_level',
     'disabledOperations': 'disabled_operations',
     'mfaLevel': 'mfa_level',
     'defaultMessageNotifications': 'default_message_notifications',
     'verificationLevel': 'verification_level',
+    'explicitContentFilter': 'explicit_content_filter',
     'afkTimeout': 'afk_timeout',
-    'systemChannelFlags': 'system_channel_flags',
     'contentWarningLevel': 'content_warning_level',
+    'systemChannelFlags': 'system_channel_flags',
     'systemChannelId': 'system_channel_id',
-    'embedSplashHeight': 'embed_splash_height',
     'rulesChannelId': 'rules_channel_id',
     'afkChannelId': 'afk_channel_id',
-    'embedSplashWidth': 'embed_splash_width',
     'vanityUrlCode': 'vanity_url_code',
+    'embedSplashHeight': 'embed_splash_height',
+    'embedSplashWidth': 'embed_splash_width',
     'embedSplash': 'embed_splash',
     'splashHeight': 'splash_height',
     'bannerHeight': 'banner_height',
@@ -226,6 +235,7 @@ Map<String, dynamic> _$GuildResponseToJson(
   'afk_channel_id': ?instance.afkChannelId,
   'afk_timeout': instance.afkTimeout,
   'features': instance.features,
+  'badge_ids': instance.badgeIds,
   'verification_level': instance.verificationLevel,
   'mfa_level': instance.mfaLevel,
   'nsfw_level': instance.nsfwLevel,
