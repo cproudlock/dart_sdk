@@ -8,6 +8,7 @@ import 'package:retrofit/error_logger.dart';
 
 import '../models/instance_account_identity_response.dart';
 import '../models/instance_account_identity_update_request.dart';
+import '../models/instance_setup_token_check_request.dart';
 import '../models/well_known_fluxer_response.dart';
 
 part 'instance_api.g.dart';
@@ -30,5 +31,15 @@ abstract class InstanceApi {
   @PUT('/instance/setup/account-identity')
   Future<InstanceAccountIdentityResponse> setInstanceAccountIdentity({
     @Body() required InstanceAccountIdentityUpdateRequest body,
+  });
+
+  /// Check the setup token of a new instance.
+  ///
+  /// Checks a setup token before the setup wizard asks for anything else. It returns 204 when the token is correct, and also when the instance no longer needs one. A missing or wrong token fails with the same field codes as registration and counts toward the same allowance of wrong tokens. The check never uses up the token.
+  ///
+  /// [body] - Name not received - field will be skipped.
+  @POST('/instance/setup/token-checks')
+  Future<void> checkInstanceSetupToken({
+    @Body() required InstanceSetupTokenCheckRequest body,
   });
 }

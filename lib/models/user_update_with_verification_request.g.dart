@@ -51,6 +51,18 @@ UserUpdateWithVerificationRequest _$UserUpdateWithVerificationRequestFromJson(
         'premium_badge_sequence_hidden',
         (v) => v as bool?,
       ),
+      operatorPassBadgeHidden: $checkedConvert(
+        'operator_pass_badge_hidden',
+        (v) => v as bool?,
+      ),
+      operatorPassBadgeTimestampHidden: $checkedConvert(
+        'operator_pass_badge_timestamp_hidden',
+        (v) => v as bool?,
+      ),
+      operatorPassBadgeCountHidden: $checkedConvert(
+        'operator_pass_badge_count_hidden',
+        (v) => v as bool?,
+      ),
       premiumEnabledOverride: $checkedConvert(
         'premium_enabled_override',
         (v) => v as bool?,
@@ -79,6 +91,11 @@ UserUpdateWithVerificationRequest _$UserUpdateWithVerificationRequestFromJson(
               ),
       ),
       mfaCode: $checkedConvert('mfa_code', (v) => v as String?),
+      emailCodeTicket: $checkedConvert(
+        'email_code_ticket',
+        (v) => v as String?,
+      ),
+      emailCode: $checkedConvert('email_code', (v) => v as String?),
       webauthnResponse: $checkedConvert(
         'webauthn_response',
         (v) => v == null
@@ -108,6 +125,9 @@ UserUpdateWithVerificationRequest _$UserUpdateWithVerificationRequestFromJson(
     'premiumBadgeMasked': 'premium_badge_masked',
     'premiumBadgeTimestampHidden': 'premium_badge_timestamp_hidden',
     'premiumBadgeSequenceHidden': 'premium_badge_sequence_hidden',
+    'operatorPassBadgeHidden': 'operator_pass_badge_hidden',
+    'operatorPassBadgeTimestampHidden': 'operator_pass_badge_timestamp_hidden',
+    'operatorPassBadgeCountHidden': 'operator_pass_badge_count_hidden',
     'premiumEnabledOverride': 'premium_enabled_override',
     'hasDismissedPremiumOnboarding': 'has_dismissed_premium_onboarding',
     'hasUnreadGiftInventory': 'has_unread_gift_inventory',
@@ -115,6 +135,8 @@ UserUpdateWithVerificationRequest _$UserUpdateWithVerificationRequestFromJson(
     'emailToken': 'email_token',
     'mfaMethod': 'mfa_method',
     'mfaCode': 'mfa_code',
+    'emailCodeTicket': 'email_code_ticket',
+    'emailCode': 'email_code',
     'webauthnResponse': 'webauthn_response',
     'webauthnChallenge': 'webauthn_challenge',
   },
@@ -133,6 +155,10 @@ Map<String, dynamic> _$UserUpdateWithVerificationRequestToJson(
   'premium_badge_masked': ?instance.premiumBadgeMasked,
   'premium_badge_timestamp_hidden': ?instance.premiumBadgeTimestampHidden,
   'premium_badge_sequence_hidden': ?instance.premiumBadgeSequenceHidden,
+  'operator_pass_badge_hidden': ?instance.operatorPassBadgeHidden,
+  'operator_pass_badge_timestamp_hidden':
+      ?instance.operatorPassBadgeTimestampHidden,
+  'operator_pass_badge_count_hidden': ?instance.operatorPassBadgeCountHidden,
   'premium_enabled_override': ?instance.premiumEnabledOverride,
   'has_dismissed_premium_onboarding': ?instance.hasDismissedPremiumOnboarding,
   'has_unread_gift_inventory': ?instance.hasUnreadGiftInventory,
@@ -140,6 +166,8 @@ Map<String, dynamic> _$UserUpdateWithVerificationRequestToJson(
   'email_token': ?instance.emailToken,
   'mfa_method': ?instance.mfaMethod,
   'mfa_code': ?instance.mfaCode,
+  'email_code_ticket': ?instance.emailCodeTicket,
+  'email_code': ?instance.emailCode,
   'webauthn_response': ?instance.webauthnResponse,
   'webauthn_challenge': ?instance.webauthnChallenge,
   'global_name': ?instance.globalNameValue,

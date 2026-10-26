@@ -146,6 +146,35 @@ class _DiscoveryApi implements DiscoveryApi {
   }
 
   @override
+  Future<GuildVisitStartResponse> visitDiscoveryGuild({
+    required String guildId,
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<GuildVisitStartResponse>(
+      Options(method: 'POST', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/discovery/guilds/${guildId}/visit',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, Object?>>(_options);
+    late GuildVisitStartResponse _value;
+    try {
+      _value = GuildVisitStartResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, response: _result);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
   Future<DiscoveryApplicationResponse> applyForDiscovery({
     required String guildId,
     required DiscoveryApplicationRequest body,

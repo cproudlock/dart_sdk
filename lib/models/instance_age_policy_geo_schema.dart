@@ -15,7 +15,6 @@ class InstanceAgePolicyGeoSchema {
     required this.countryCode,
     required this.regionCode,
     required this.action,
-    required this.cardVerificationAvailable,
   });
 
   factory InstanceAgePolicyGeoSchema.fromJson(Map<String, Object?> json) =>
@@ -32,10 +31,6 @@ class InstanceAgePolicyGeoSchema {
   /// Whether the region restricts or blocks access
   @JsonKey(defaultValue: InstanceAgePolicyActionSchema.$unknown)
   final InstanceAgePolicyActionSchema action;
-
-  /// Whether card age verification is available in the region
-  @JsonKey(name: 'card_verification_available', defaultValue: false)
-  final bool cardVerificationAvailable;
 
   Map<String, Object?> toJson() => _$InstanceAgePolicyGeoSchemaToJson(this);
 }

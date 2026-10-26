@@ -42,17 +42,13 @@ InstanceFeaturesSchema _$InstanceFeaturesSchemaFromJson(
         'phone_verification_enabled',
         (v) => v as bool? ?? false,
       ),
+      discoveryEnabled: $checkedConvert('discovery_enabled', (v) => v as bool?),
       desktopModulesEnabled: $checkedConvert(
         'desktop_modules_enabled',
         (v) => v as bool?,
       ),
-      discoveryEnabled: $checkedConvert('discovery_enabled', (v) => v as bool?),
       accountDeletionGracePeriodHours: $checkedConvert(
         'account_deletion_grace_period_hours',
-        (v) => (v as num?)?.toInt(),
-      ),
-      maxBackgroundGatewayConnections: $checkedConvert(
-        'max_background_gateway_connections',
         (v) => (v as num?)?.toInt(),
       ),
       accountIdentity: $checkedConvert(
@@ -63,6 +59,36 @@ InstanceFeaturesSchema _$InstanceFeaturesSchemaFromJson(
       tagStyle: $checkedConvert(
         'tag_style',
         (v) => v == null ? null : TagStyleSchema.fromJson(v as String),
+      ),
+      identifierFirst: $checkedConvert('identifier_first', (v) => v as bool?),
+      instantAccounts: $checkedConvert('instant_accounts', (v) => v as bool?),
+      emailCodes: $checkedConvert('email_codes', (v) => v as bool?),
+      dateOfBirthStep: $checkedConvert('date_of_birth_step', (v) => v as bool?),
+      instantAccountAvailability: $checkedConvert(
+        'instant_account_availability',
+        (v) => v == null
+            ? null
+            : InstantAccountAvailabilitySchema.fromJson(v as String),
+      ),
+      interactionTier: $checkedConvert(
+        'interaction_tier',
+        (v) =>
+            v == null ? null : InteractionTierModeSchema.fromJson(v as String),
+      ),
+      guildJoinGate: $checkedConvert(
+        'guild_join_gate',
+        (v) => v == null ? null : GuildJoinGateSchema.fromJson(v as String),
+      ),
+      emailDeliveryState: $checkedConvert(
+        'email_delivery_state',
+        (v) =>
+            v == null ? null : EmailDeliveryStateSchema.fromJson(v as String),
+      ),
+      verificationBasis: $checkedConvert(
+        'verification_basis',
+        (v) => v == null
+            ? null
+            : EffectiveVerificationBasisSchema.fromJson(v as String),
       ),
     );
     return val;
@@ -76,12 +102,20 @@ InstanceFeaturesSchema _$InstanceFeaturesSchemaFromJson(
     'presignedAttachmentUploads': 'presigned_attachment_uploads',
     'emailsEnabled': 'emails_enabled',
     'phoneVerificationEnabled': 'phone_verification_enabled',
-    'desktopModulesEnabled': 'desktop_modules_enabled',
     'discoveryEnabled': 'discovery_enabled',
+    'desktopModulesEnabled': 'desktop_modules_enabled',
     'accountDeletionGracePeriodHours': 'account_deletion_grace_period_hours',
-    'maxBackgroundGatewayConnections': 'max_background_gateway_connections',
     'accountIdentity': 'account_identity',
     'tagStyle': 'tag_style',
+    'identifierFirst': 'identifier_first',
+    'instantAccounts': 'instant_accounts',
+    'emailCodes': 'email_codes',
+    'dateOfBirthStep': 'date_of_birth_step',
+    'instantAccountAvailability': 'instant_account_availability',
+    'interactionTier': 'interaction_tier',
+    'guildJoinGate': 'guild_join_gate',
+    'emailDeliveryState': 'email_delivery_state',
+    'verificationBasis': 'verification_basis',
   },
 );
 
@@ -96,12 +130,19 @@ Map<String, dynamic> _$InstanceFeaturesSchemaToJson(
   'presigned_attachment_uploads': instance.presignedAttachmentUploads,
   'emails_enabled': instance.emailsEnabled,
   'phone_verification_enabled': instance.phoneVerificationEnabled,
-  'desktop_modules_enabled': ?instance.desktopModulesEnabled,
   'discovery_enabled': ?instance.discoveryEnabled,
+  'desktop_modules_enabled': ?instance.desktopModulesEnabled,
   'account_deletion_grace_period_hours':
       ?instance.accountDeletionGracePeriodHours,
-  'max_background_gateway_connections':
-      ?instance.maxBackgroundGatewayConnections,
   'account_identity': ?instance.accountIdentity,
   'tag_style': ?instance.tagStyle,
+  'identifier_first': ?instance.identifierFirst,
+  'instant_accounts': ?instance.instantAccounts,
+  'email_codes': ?instance.emailCodes,
+  'date_of_birth_step': ?instance.dateOfBirthStep,
+  'instant_account_availability': ?instance.instantAccountAvailability,
+  'interaction_tier': ?instance.interactionTier,
+  'guild_join_gate': ?instance.guildJoinGate,
+  'email_delivery_state': ?instance.emailDeliveryState,
+  'verification_basis': ?instance.verificationBasis,
 };

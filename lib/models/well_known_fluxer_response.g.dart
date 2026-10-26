@@ -90,6 +90,12 @@ WellKnownFluxerResponse _$WellKnownFluxerResponseFromJson(
             ? null
             : InstanceAgePolicySchema.fromJson(v as Map<String, dynamic>),
       ),
+      notice: $checkedConvert(
+        'notice',
+        (v) => v == null
+            ? null
+            : InstanceNoticeSchema.fromJson(v as Map<String, dynamic>),
+      ),
       domainMigration: $checkedConvert(
         'domain_migration',
         (v) => v == null
@@ -126,5 +132,6 @@ Map<String, dynamic> _$WellKnownFluxerResponseToJson(
   'push': instance.push,
   'app_public': instance.appPublic,
   'age_policy': ?instance.agePolicy,
+  'notice': ?instance.notice,
   'domain_migration': ?instance.domainMigration,
 };

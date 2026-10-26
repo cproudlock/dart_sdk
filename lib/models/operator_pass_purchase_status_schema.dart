@@ -4,19 +4,30 @@
 
 import 'package:json_annotation/json_annotation.dart';
 
+/// Operator Pass purchase status
 @JsonEnum()
-enum InstanceCaptchaProviderSchema {
-  @JsonValue('altcha')
-  altcha('altcha'),
-  @JsonValue('none')
-  none('none'),
+enum OperatorPassPurchaseStatusSchema {
+  @JsonValue('pending')
+  pending('pending'),
+  @JsonValue('completed')
+  completed('completed'),
+  @JsonValue('withdrawn')
+  withdrawn('withdrawn'),
+  @JsonValue('refunded')
+  refunded('refunded'),
+  @JsonValue('disputed')
+  disputed('disputed'),
+  @JsonValue('dispute_lost')
+  disputeLost('dispute_lost'),
+  @JsonValue('duplicate_refunded')
+  duplicateRefunded('duplicate_refunded'),
 
   /// Default value for all unparsed values, allows backward compatibility when adding new values on the backend.
   $unknown(null);
 
-  const InstanceCaptchaProviderSchema(this.json);
+  const OperatorPassPurchaseStatusSchema(this.json);
 
-  factory InstanceCaptchaProviderSchema.fromJson(String json) =>
+  factory OperatorPassPurchaseStatusSchema.fromJson(String json) =>
       values.firstWhere((e) => e.json == json, orElse: () => $unknown);
 
   final String? json;
@@ -27,6 +38,6 @@ enum InstanceCaptchaProviderSchema {
   String toString() => json ?? super.toString();
 
   /// Returns all defined enum values excluding the $unknown value.
-  static List<InstanceCaptchaProviderSchema> get $valuesDefined =>
+  static List<OperatorPassPurchaseStatusSchema> get $valuesDefined =>
       values.where((value) => value != $unknown).toList();
 }

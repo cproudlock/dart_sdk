@@ -13,6 +13,8 @@ class SudoMfaMethodsResponse {
     required this.webauthn,
     required this.backupCodes,
     required this.hasMfa,
+    this.emailCode,
+    this.password,
   });
 
   factory SudoMfaMethodsResponse.fromJson(Map<String, Object?> json) =>
@@ -33,6 +35,14 @@ class SudoMfaMethodsResponse {
   /// Whether the account can satisfy a sudo mode challenge
   @JsonKey(name: 'has_mfa', defaultValue: false)
   final bool hasMfa;
+
+  /// Whether a code sent to the confirmed email address can verify the account, for accounts without MFA
+  @JsonKey(includeIfNull: false, name: 'email_code')
+  final bool? emailCode;
+
+  /// Whether the account password can verify the account
+  @JsonKey(includeIfNull: false)
+  final bool? password;
 
   Map<String, Object?> toJson() => _$SudoMfaMethodsResponseToJson(this);
 }

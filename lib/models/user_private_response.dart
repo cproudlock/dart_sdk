@@ -4,6 +4,8 @@
 
 import 'package:json_annotation/json_annotation.dart';
 
+import 'account_tier_schema.dart';
+import 'account_verification_need_schema.dart';
 import 'int32_type.dart';
 import 'mention_reply_preferences.dart';
 import 'profile_field_privacy_flags.dart';
@@ -18,27 +20,33 @@ part 'user_private_response.g.dart';
 @JsonSerializable()
 class UserPrivateResponse {
   const UserPrivateResponse({
-    required this.requiredActions,
+    required this.banner,
     required this.username,
     required this.discriminator,
     required this.globalName,
     required this.avatar,
     required this.avatarColor,
+    required this.privacyAgreedAt,
+    required this.termsAgreedAt,
     required this.flags,
-    required this.pronouns,
+    required this.pendingBulkMessageDeletion,
     required this.isStaff,
     required this.acls,
     required this.traits,
     required this.email,
+    required this.unreadGiftInventoryCount,
     required this.hasVerifiedPhone,
     required this.bio,
-    required this.id,
+    required this.pronouns,
     required this.accentColor,
-    required this.banner,
+    required this.hasUnreadGiftInventory,
+    required this.hasEverPurchased,
+    required this.id,
     required this.bannerColor,
     required this.mfaEnabled,
+    required this.hasDismissedPremiumOnboarding,
     required this.verified,
-    required this.premiumBadgeHidden,
+    required this.nsfwAllowed,
     required this.premiumType,
     required this.premiumSince,
     required this.premiumUntil,
@@ -47,31 +55,35 @@ class UserPrivateResponse {
     required this.premiumLifetimeSequence,
     required this.premiumGraceEndsAt,
     required this.premiumDiscriminator,
-    required this.privacyAgreedAt,
+    required this.premiumBadgeHidden,
     required this.premiumBadgeMasked,
     required this.premiumBadgeTimestampHidden,
     required this.premiumBadgeSequenceHidden,
     required this.premiumPurchaseDisabled,
     required this.premiumEnabledOverride,
+    required this.requiredActions,
+    required this.lastVoiceActivitySharingChangeAt,
     required this.premiumPerksDisabled,
     required this.passwordLastChangedAt,
-    required this.lastVoiceActivitySharingChangeAt,
-    required this.hasEverPurchased,
-    required this.pendingBulkMessageDeletion,
-    required this.unreadGiftInventoryCount,
-    required this.termsAgreedAt,
-    required this.hasDismissedPremiumOnboarding,
-    required this.hasUnreadGiftInventory,
-    required this.nsfwAllowed,
-    this.mentionFlags,
+    this.operatorPassSince,
+    this.operatorPassBadgeTimestampHidden,
+    this.operatorPassBadgeHidden,
+    this.profileRestricted,
+    this.accountLimited,
     this.authenticatorTypes,
     this.timezonePrivacyFlags,
     this.timezone,
     this.emailBounced,
-    this.system,
+    this.mentionFlags,
     this.ageVerifiedAdult,
+    this.system,
     this.bot,
-    this.accountLimited,
+    this.claimed,
+    this.accountTier,
+    this.verificationNeed,
+    this.hasPassword,
+    this.dateOfBirthRequired,
+    this.operatorPassBadgeCountHidden,
   });
 
   factory UserPrivateResponse.fromJson(Map<String, Object?> json) =>
@@ -241,6 +253,22 @@ class UserPrivateResponse {
   @JsonKey(name: 'premium_perks_disabled', defaultValue: false)
   final bool premiumPerksDisabled;
 
+  /// Whether the Operator Pass badge is hidden from other people. Only present on the current user response. Older servers omit it
+  @JsonKey(includeIfNull: false, name: 'operator_pass_badge_hidden')
+  final bool? operatorPassBadgeHidden;
+
+  /// Whether the month and year the Operator Pass was first held are hidden from other people. Only present on the current user response. Older servers omit it
+  @JsonKey(includeIfNull: false, name: 'operator_pass_badge_timestamp_hidden')
+  final bool? operatorPassBadgeTimestampHidden;
+
+  /// Whether the number of Operator Passes held is hidden from other people, on the badge and the Operators' wall. Only present on the current user response. Older servers omit it
+  @JsonKey(includeIfNull: false, name: 'operator_pass_badge_count_hidden')
+  final bool? operatorPassBadgeCountHidden;
+
+  /// ISO8601 timestamp of when the account got the Operator Pass, or null without one. Only present on the current user response.
+  @JsonKey(includeIfNull: false, name: 'operator_pass_since')
+  final String? operatorPassSince;
+
   /// ISO8601 timestamp of the last password change
   @JsonKey(includeIfNull: true, name: 'password_last_changed_at')
   final String? passwordLastChangedAt;
@@ -278,7 +306,7 @@ class UserPrivateResponse {
   final UserPrivateResponsePendingBulkMessageDeletion?
   pendingBulkMessageDeletion;
 
-  /// Whether the user has verified their age as an adult via credit card verification
+  /// Whether the user has verified their age as an adult
   @JsonKey(includeIfNull: false, name: 'age_verified_adult')
   final bool? ageVerifiedAdult;
 
@@ -286,9 +314,33 @@ class UserPrivateResponse {
   @JsonKey(includeIfNull: true, name: 'terms_agreed_at')
   final String? termsAgreedAt;
 
-  /// ISO8601 timestamp of when the user last agreed to the privacy policy
+  /// ISO8601 timestamp of when the user was last shown the current privacy policy. People are informed of it, they do not agree to it
   @JsonKey(includeIfNull: true, name: 'privacy_agreed_at')
   final String? privacyAgreedAt;
+
+  /// Whether the account can be signed in to again from another device: an email on instances that sign in with an email, a password otherwise
+  @JsonKey(includeIfNull: false)
+  final bool? claimed;
+
+  /// How far the account has got with setting up a way to sign in. Clients that do not get it derive it from claimed and verified
+  @JsonKey(includeIfNull: false, name: 'account_tier')
+  final AccountTierSchema? accountTier;
+
+  /// What the account still has to do before it can use everything, null once it is verified
+  @JsonKey(includeIfNull: false, name: 'verification_need')
+  final AccountVerificationNeedSchema? verificationNeed;
+
+  /// Whether the account has a password
+  @JsonKey(includeIfNull: false, name: 'has_password')
+  final bool? hasPassword;
+
+  /// Whether the account still has to enter its date of birth, which clients ask for before anything else
+  @JsonKey(includeIfNull: false, name: 'date_of_birth_required')
+  final bool? dateOfBirthRequired;
+
+  /// Whether other people see only the username and tag of this account until it has a confirmed email address
+  @JsonKey(includeIfNull: false, name: 'profile_restricted')
+  final bool? profileRestricted;
 
   Map<String, Object?> toJson() => _$UserPrivateResponseToJson(this);
 }

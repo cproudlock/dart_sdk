@@ -18,6 +18,12 @@ InstanceSetupSchema _$InstanceSetupSchemaFromJson(Map<String, dynamic> json) =>
             'account_identity_locked',
             (v) => v as bool?,
           ),
+          accountIdentityLockReason: $checkedConvert(
+            'account_identity_lock_reason',
+            (v) => v == null
+                ? null
+                : AccountIdentityLockReasonSchema.fromJson(v as String),
+          ),
           setupTokenRequired: $checkedConvert(
             'setup_token_required',
             (v) => v as bool?,
@@ -28,6 +34,7 @@ InstanceSetupSchema _$InstanceSetupSchemaFromJson(Map<String, dynamic> json) =>
       fieldKeyMap: const {
         'adminUrl': 'admin_url',
         'accountIdentityLocked': 'account_identity_locked',
+        'accountIdentityLockReason': 'account_identity_lock_reason',
         'setupTokenRequired': 'setup_token_required',
       },
     );
@@ -38,5 +45,6 @@ Map<String, dynamic> _$InstanceSetupSchemaToJson(
   'configured': instance.configured,
   'admin_url': instance.adminUrl,
   'account_identity_locked': ?instance.accountIdentityLocked,
+  'account_identity_lock_reason': ?instance.accountIdentityLockReason,
   'setup_token_required': ?instance.setupTokenRequired,
 };

@@ -15,6 +15,7 @@ class AuthTokenWithUserIdResponse {
     required this.token,
     required this.userId,
     required this.user,
+    this.deviceProof,
   });
 
   factory AuthTokenWithUserIdResponse.fromJson(Map<String, Object?> json) =>
@@ -31,6 +32,10 @@ class AuthTokenWithUserIdResponse {
   /// Partial user data for the authenticated account
   @JsonKey(defaultValue: _$missingUserPartialResponse)
   final UserPartialResponse user;
+
+  /// Opaque value to keep beside this account and send on later sign-ins from this device. It is not a credential
+  @JsonKey(includeIfNull: false, name: 'device_proof')
+  final String? deviceProof;
 
   Map<String, Object?> toJson() => _$AuthTokenWithUserIdResponseToJson(this);
 }

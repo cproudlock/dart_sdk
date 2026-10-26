@@ -11,7 +11,11 @@ import '../models/bulk_ignore_friend_requests_request.dart';
 import '../models/bulk_ignore_friend_requests_response.dart';
 import '../models/channel_list_response.dart';
 import '../models/channel_response.dart';
+import '../models/claim_account_request.dart';
+import '../models/claim_account_response.dart';
 import '../models/create_private_channel_request.dart';
+import '../models/date_of_birth_update_request.dart';
+import '../models/date_of_birth_update_response.dart';
 import '../models/disable_totp_request.dart';
 import '../models/discriminator_type.dart';
 import '../models/email_change_apply_request.dart';
@@ -25,6 +29,8 @@ import '../models/email_change_verify_new_request.dart';
 import '../models/email_change_verify_original_request.dart';
 import '../models/email_change_verify_original_response.dart';
 import '../models/email_token_response.dart';
+import '../models/email_verification_code_response.dart';
+import '../models/email_verification_confirm_request.dart';
 import '../models/empty_body_request.dart';
 import '../models/enable_mfa_totp_request.dart';
 import '../models/entrance_sound_library_response.dart';
@@ -35,6 +41,8 @@ import '../models/entrance_sound_upload_request.dart';
 import '../models/friend_request_by_tag_request.dart';
 import '../models/friend_request_create_request.dart';
 import '../models/gift_code_metadata_list_response.dart';
+import '../models/guild_response.dart';
+import '../models/guild_visit_list_response.dart';
 import '../models/harvest_archive_response.dart';
 import '../models/harvest_creation_response_schema.dart';
 import '../models/harvest_download_url_response.dart';
@@ -65,6 +73,8 @@ import '../models/password_change_verify_request.dart';
 import '../models/password_change_verify_response.dart';
 import '../models/preload_messages_request.dart';
 import '../models/preload_messages_response.dart';
+import '../models/profile_badge_preview_request.dart';
+import '../models/profile_badge_preview_response.dart';
 import '../models/push_rotate_request.dart';
 import '../models/push_subscribe_request.dart';
 import '../models/push_subscribe_response.dart';
@@ -81,6 +91,7 @@ import '../models/save_message_request.dart';
 import '../models/saved_message_entry_list_response.dart';
 import '../models/snowflake_type.dart';
 import '../models/success_response.dart';
+import '../models/sudo_email_code_response.dart';
 import '../models/sudo_mfa_methods_response.dart';
 import '../models/sudo_verification_schema.dart';
 import '../models/unregister_mobile_device_request.dart';
@@ -129,7 +140,7 @@ abstract class UsersApi {
 
   /// Get current user profile.
   ///
-  /// Retrieves the current authenticated user's profile information, including account details and settings. OAuth2 bearer tokens require identify scope, and email is returned only when the email scope is also present. Bearer tokens receive a reduced response: sensitive fields such as MFA status, authenticator types, ACLs, traits, premium billing details, and password metadata are omitted. Session and bot tokens return the full user object with all private fields.
+  /// Retrieves the current authenticated user's profile information, including account details and settings. OAuth2 bearer tokens require identify scope, and email is returned only when the email scope is also present. Bearer tokens receive a reduced response with only identity and profile fields. Session and bot tokens return the full user object with all private fields.
   @GET('/users/@me')
   Future<UserPrivateResponse> getCurrentUser();
 
@@ -195,6 +206,26 @@ abstract class UsersApi {
   @DELETE('/users/@me/channels/{channel_id}/pin')
   Future<void> unpinDirectMessageChannel({
     @Path('channel_id') required SnowflakeType channelId,
+  });
+
+  /// Claim an account created without credentials.
+  ///
+  /// Claims an account created without credentials. On email instances it adds an email address, and optionally a password. When the instance sends email, the address is stored at once and waits for confirmation with the emailed code, and next_step is confirm_email. When it does not, the account needs a password or an existing passkey, and next_step is none. An address stored on another account, confirmed or not, answers EMAIL_ALREADY_IN_USE. On username instances it sets a password, and next_step is none.
+  ///
+  /// [body] - Name not received - field will be skipped.
+  @POST('/users/@me/claim')
+  Future<ClaimAccountResponse> claimAccount({
+    @Body() ClaimAccountRequest? body,
+  });
+
+  /// Set date of birth.
+  ///
+  /// Sets the date of birth once, for accounts that do not have one yet. It cannot be changed afterwards. The minimum age depends on the country the request comes from. Below it, the account is closed and deleted after 72 hours. Returns the updated account and the community to open next, when an invite was used at sign-up.
+  ///
+  /// [body] - Name not received - field will be skipped.
+  @PUT('/users/@me/date-of-birth')
+  Future<DateOfBirthUpdateResponse> setUserDateOfBirth({
+    @Body() required DateOfBirthUpdateRequest body,
   });
 
   /// Delete current user account.
@@ -315,6 +346,22 @@ abstract class UsersApi {
     @Body() required EmailChangeVerifyOriginalRequest body,
   });
 
+  /// Confirm the email address with a code.
+  ///
+  /// Confirms the email address with the emailed code.
+  ///
+  /// [body] - Name not received - field will be skipped.
+  @POST('/users/@me/email-verification/confirm')
+  Future<UserPrivateResponse> confirmEmailVerification({
+    @Body() required EmailVerificationConfirmRequest body,
+  });
+
+  /// Send an email confirmation code.
+  ///
+  /// Emails a 6-digit code to confirm the email address on the account.
+  @POST('/users/@me/email-verification/send')
+  Future<EmailVerificationCodeResponse> sendEmailVerificationCode();
+
   /// Set the active entrance sound for a scope.
   ///
   /// Assigns one of the user's library sounds to a scope (global, guilds, dms, or guild:<id>). Pass sound_id null to clear.
@@ -365,6 +412,32 @@ abstract class UsersApi {
   /// Lists all gift codes created by the authenticated user.
   @GET('/users/@me/gifts')
   Future<GiftCodeMetadataListResponse> listUserGifts();
+
+  /// List guild visits.
+  ///
+  /// Lists the guilds the current user is visiting, most recently opened first. A visit ends on its own after 14 days without being opened, or when the invite that started it is deleted or expires.
+  @GET('/users/@me/guild-visits')
+  Future<GuildVisitListResponse> listMyGuildVisits();
+
+  /// Stop visiting a guild.
+  ///
+  /// Ends a visit. Every session of the user gets Guild Delete for the guild. Answers 204 even when there was no visit.
+  ///
+  /// [guildId] - The ID of the guild.
+  @DELETE('/users/@me/guild-visits/{guild_id}')
+  Future<void> leaveGuildVisit({
+    @Path('guild_id') required SnowflakeType guildId,
+  });
+
+  /// Join a visited guild.
+  ///
+  /// Turns a visit into membership, with the same checks as joining through the invite or discovery listing that started the visit. The sessions of the user switch the guild to membership in place.
+  ///
+  /// [guildId] - The ID of the guild.
+  @POST('/users/@me/guild-visits/{guild_id}/join')
+  Future<GuildResponse> joinVisitedGuild({
+    @Path('guild_id') required SnowflakeType guildId,
+  });
 
   /// Update DM notification settings.
   ///
@@ -475,7 +548,7 @@ abstract class UsersApi {
 
   /// Delete my messages with optional filters.
   ///
-  /// Immediately deletes messages the caller has authored, subject to optional date-range and per-context filters (DMs, group DMs, guilds, with optional guild exclusions; or an inaccessible-only mode for contexts the caller is no longer a member of). Requires sudo mode verification. The deletion runs asynchronously; the caller receives a system DM with totals when it completes.
+  /// Immediately deletes messages the caller has authored, subject to optional date-range and per-context filters (DMs, group DMs, guilds, with optional guild exclusions; or an inaccessible-only mode for contexts the caller is no longer a member of). Requires sudo mode verification. The deletion runs asynchronously. When it completes, the caller gets the totals in a system DM, or by email when the instance has direct messages turned off and sends email.
   ///
   /// [body] - Name not received - field will be skipped.
   @POST('/users/@me/messages/bulk-delete-mine')
@@ -751,7 +824,7 @@ abstract class UsersApi {
 
   /// Complete password change.
   ///
-  /// Completes the password change after email verification. Requires the verification proof and new password. Invalidates all existing sessions and returns the replacement session token.
+  /// Completes the password change after email verification. Requires the verification proof and new password, and sudo mode verification with the second factor when the account has two-factor authentication. Invalidates all existing sessions and returns the replacement session token.
   ///
   /// [body] - Name not received - field will be skipped.
   @POST('/users/@me/password-change/complete')
@@ -804,6 +877,16 @@ abstract class UsersApi {
   /// Staff-only endpoint that clears premium status and related premium metadata for the current user account.
   @POST('/users/@me/premium/reset')
   Future<void> resetCurrentUserPremiumState();
+
+  /// Preview profile badges.
+  ///
+  /// Returns the current user's profile badges as other people would see them with the given badge settings applied. Settings left out keep their saved values. Nothing is saved. Labels are localized for the current user.
+  ///
+  /// [body] - Name not received - field will be skipped.
+  @POST('/users/@me/profile-badges/preview')
+  Future<ProfileBadgePreviewResponse> previewProfileBadges({
+    @Body() ProfileBadgePreviewRequest? body,
+  });
 
   /// Rotate a push notification subscription.
   ///
@@ -989,6 +1072,12 @@ abstract class UsersApi {
     @Body() required VoiceActivitySharingUpdateRequest body,
   });
 
+  /// Send a code to confirm it is you.
+  ///
+  /// Emails a 6-digit code to the confirmed address, for accounts without two-factor authentication. Accounts with two-factor authentication get 400 SUDO_SECOND_FACTOR_REQUIRED and confirm with that factor instead. Send it back with mfa_method email_code, email_code_ticket and email_code to enter sudo mode.
+  @POST('/users/@me/sudo/email-code')
+  Future<SudoEmailCodeResponse> sendSudoEmailCode();
+
   /// List sudo multi-factor authentication methods.
   ///
   /// Retrieve all available MFA methods for sudo mode verification (TOTP, WebAuthn). Requires authentication.
@@ -1001,9 +1090,9 @@ abstract class UsersApi {
   @POST('/users/@me/sudo/webauthn/authentication-options')
   Future<WebAuthnChallengeResponse> getSudoWebauthnAuthenticationOptions();
 
-  /// Accept updated terms of service and privacy policy.
+  /// Accept updated terms of service.
   ///
-  /// Records that the user has read and agreed to the current terms of service and privacy policy. Returns the updated private user object.
+  /// Records that the user agreed to the current terms of service and was shown the current privacy policy. Returns the updated private user object.
   ///
   /// [body] - Name not received - field will be skipped.
   @POST('/users/@me/terms-acceptance')

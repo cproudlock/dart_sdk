@@ -54,6 +54,7 @@ GuildPartialResponse _$GuildPartialResponseFromJson(
         'embed_splash_height',
         (v) => (v as num?)?.toInt(),
       ),
+      visitsEnabled: $checkedConvert('visits_enabled', (v) => v as bool?),
     );
     return val;
   },
@@ -66,6 +67,7 @@ GuildPartialResponse _$GuildPartialResponseFromJson(
     'embedSplash': 'embed_splash',
     'embedSplashWidth': 'embed_splash_width',
     'embedSplashHeight': 'embed_splash_height',
+    'visitsEnabled': 'visits_enabled',
   },
 );
 
@@ -86,4 +88,5 @@ Map<String, dynamic> _$GuildPartialResponseToJson(
   'embed_splash_width': ?instance.embedSplashWidth,
   'embed_splash_height': ?instance.embedSplashHeight,
   'features': instance.features,
+  'visits_enabled': ?instance.visitsEnabled,
 };

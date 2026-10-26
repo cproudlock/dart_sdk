@@ -6,11 +6,20 @@ import 'package:dio/dio.dart' hide Headers;
 import 'package:retrofit/retrofit.dart';
 import 'package:retrofit/error_logger.dart';
 
+import '../models/account_handoff_redeem_request.dart';
+import '../models/account_handoff_request.dart';
+import '../models/account_handoff_response.dart';
 import '../models/auth_login_response.dart';
 import '../models/auth_register_response.dart';
+import '../models/auth_register_success_response.dart';
 import '../models/auth_sessions_response.dart';
 import '../models/auth_token_with_user_id_response.dart';
 import '../models/authorize_ip_request.dart';
+import '../models/captcha_challenge_response.dart';
+import '../models/email_code_send_request.dart';
+import '../models/email_code_send_response.dart';
+import '../models/email_code_verify_request.dart';
+import '../models/email_code_verify_response.dart';
 import '../models/email_revert_request.dart';
 import '../models/forgot_password_request.dart';
 import '../models/handoff_cancel_request.dart';
@@ -21,6 +30,8 @@ import '../models/handoff_initiate_request.dart';
 import '../models/handoff_initiate_response.dart';
 import '../models/handoff_status_request.dart';
 import '../models/handoff_status_response.dart';
+import '../models/identify_request.dart';
+import '../models/identify_response.dart';
 import '../models/ip_authorization_poll_response.dart';
 import '../models/login_request.dart';
 import '../models/logout_auth_sessions_with_verification_request.dart';
@@ -41,6 +52,7 @@ import '../models/recover_account_request.dart';
 import '../models/recover_account_response.dart';
 import '../models/register_request.dart';
 import '../models/reset_password_request.dart';
+import '../models/sign_in_link_request.dart';
 import '../models/sso_complete_request.dart';
 import '../models/sso_complete_response.dart';
 import '../models/sso_start_request.dart';
@@ -69,6 +81,26 @@ abstract class AuthApi {
   /// [body] - Name not received - field will be skipped.
   @POST('/auth/authorize-ip')
   Future<void> authorizeIpAddress({@Body() required AuthorizeIpRequest body});
+
+  /// Send a sign-in or sign-up code.
+  ///
+  /// Emails a 6-digit code for the address behind an identify ticket. The code signs in to an existing account without a password or creates a new one. An account with a password answers PASSWORD_SIGN_IN_REQUIRED and gets no email. Sign-ups always need a solved captcha challenge (X-Captcha-Token), and sign-ins need one after several codes for the same address. A bounced address answers the same and gets no email. On a new self-hosted instance it fails with SETUP_TOKEN_REQUIRED until the first admin account exists.
+  ///
+  /// [body] - Name not received - field will be skipped.
+  @POST('/auth/email-code/send')
+  Future<EmailCodeSendResponse> sendEmailCode({
+    @Body() required EmailCodeSendRequest body,
+  });
+
+  /// Finish signing in or signing up with a code.
+  ///
+  /// Checks the emailed code. For an existing account without a password this signs in, or returns an MFA ticket when the account has two-factor authentication. An account with a password answers PASSWORD_SIGN_IN_REQUIRED. When the code confirms an address that was not confirmed yet, it also ends every other session of the account, forgets its authorized IPs and revokes its OAuth2 grants. For a new address this creates the account with a confirmed email and signs in. Each code allows 5 tries. After many wrong codes for one address, or across the instance, it needs a solved captcha challenge (X-Captcha-Token).
+  ///
+  /// [body] - Name not received - field will be skipped.
+  @POST('/auth/email-code/verify')
+  Future<EmailCodeVerifyResponse> verifyEmailCode({
+    @Body() required EmailCodeVerifyRequest body,
+  });
 
   /// Revert email change.
   ///
@@ -162,6 +194,14 @@ abstract class AuthApi {
     @Body() required HandoffStatusRequest body,
   });
 
+  /// Start signing in or signing up.
+  ///
+  /// Looks up whether an account uses this email address (or username on username instances) and returns a ticket for the next step. It says whether the account exists and whether it signs in with its password or with an email code. Answers take at least 300 ms. Heavy use from one network or for one address asks for a solved captcha challenge (X-Captcha-Token) whose cost grows with use.
+  ///
+  /// [body] - Name not received - field will be skipped.
+  @POST('/auth/identify')
+  Future<IdentifyResponse> identifyAccount({@Body() IdentifyRequest? body});
+
   /// Poll IP authorization.
   ///
   /// Poll the status of an IP authorization request. Use the ticket parameter to check if verification has been completed.
@@ -220,7 +260,7 @@ abstract class AuthApi {
 
   /// Logout account.
   ///
-  /// Invalidate the current authentication token and end the session. The auth token in the Authorization header will no longer be valid. A bot token has no session to end, so the call answers 204 and the token stays valid.
+  /// Invalidate the current authentication token and end the session. The auth token in the Authorization header will no longer be valid. A bot token has no session to end, so the call answers 204 and the token stays valid. Ending the last session of an account that cannot sign in again, because it has no email, password or passkey, schedules that account for deletion after 24 hours.
   @POST('/auth/logout')
   Future<void> logoutUser();
 
@@ -312,11 +352,37 @@ abstract class AuthApi {
 
   /// Register account.
   ///
-  /// Create a new user account. Email instances take an email and password, and the account must verify its email before logging in. Username instances take a username and password, and an email sent by an older client is discarded. Requires a solved captcha challenge (X-Captcha-Token).
+  /// Create a new user account. A body without an email and a password creates an account without an email from global_name: the username is derived from the display name and given a tag, and the account signs in on this device only until it is claimed (an email on email instances, a password on username instances). On email instances an email sent here is stored on the account and waits for confirmation. An address stored on another account, confirmed or not, answers EMAIL_ALREADY_IN_USE. Username instances take a username and password, and an email sent by an older client is discarded. The date of birth can be left out where the instance collects it, and the app then asks for it before anything else. Requires a solved captcha challenge (X-Captcha-Token), which costs more after recent sign-ups without an email from the same network.
   ///
   /// [body] - Name not received - field will be skipped.
   @POST('/auth/register')
   Future<AuthRegisterResponse> registerAccount({@Body() RegisterRequest? body});
+
+  /// Start an account from the website.
+  ///
+  /// Checks the display name and returns a single-use code that the web app redeems within 15 minutes. No account exists yet: the web app creates it on redeem, when the person submits the step whose notice says that creating the account accepts the terms of service. Only the website server may call it, and it passes the visitor IP. Requires a solved captcha challenge (X-Captcha-Token) whose cost grows with recent sign-ups. On a new self-hosted instance it fails with SETUP_TOKEN_REQUIRED until the first admin account exists.
+  ///
+  /// [body] - Name not received - field will be skipped.
+  @POST('/auth/register/handoff')
+  Future<AccountHandoffResponse> createAccountHandoff({
+    @Body() required AccountHandoffRequest body,
+  });
+
+  /// Get the captcha challenge for creating an account from the website.
+  ///
+  /// Returns the captcha challenge that creating an account without an email from the website needs right now for this visitor. Only the website server may call it.
+  @GET('/auth/register/handoff/challenge')
+  Future<CaptchaChallengeResponse> getAccountHandoffChallenge();
+
+  /// Create the account started on the website.
+  ///
+  /// Redeems the code from create account handoff together with the nonce whose hash was sent then, creates the account with the agreement and display name given here (the display name sent with the handoff when none is given), and starts a session for the client that redeems it. The web app and the native apps can redeem it. Where the instance collects dates of birth, the account then sets one through the date of birth step. The code works once, and a wrong nonce also uses it up. A missing agreement or a display name that is not allowed answers before the code is used. It never ends or replaces another session.
+  ///
+  /// [body] - Name not received - field will be skipped.
+  @POST('/auth/register/handoff/redeem')
+  Future<AuthRegisterSuccessResponse> redeemAccountHandoff({
+    @Body() required AccountHandoffRedeemRequest body,
+  });
 
   /// Reset password.
   ///
@@ -352,6 +418,16 @@ abstract class AuthApi {
   @POST('/auth/sessions/logout')
   Future<void> logoutAllSessions({
     @Body() required LogoutAuthSessionsWithVerificationRequest body,
+  });
+
+  /// Redeem sign-in link.
+  ///
+  /// Sign in with the token from a one-time sign-in link that the instance operator created for an admin account. Authorizes the IP address of the request and returns an authentication token. The token works once and expires after 15 minutes.
+  ///
+  /// [body] - Name not received - field will be skipped.
+  @POST('/auth/sign-in-link')
+  Future<AuthTokenWithUserIdResponse> redeemSignInLink({
+    @Body() required SignInLinkRequest body,
   });
 
   /// Complete SSO.
