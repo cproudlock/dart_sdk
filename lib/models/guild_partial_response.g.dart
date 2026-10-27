@@ -32,6 +32,14 @@ GuildPartialResponse _$GuildPartialResponseFromJson(
                 .toList() ??
             [],
       ),
+      badgeIds: $checkedConvert(
+        'badge_ids',
+        (v) =>
+            (v as List<dynamic>?)
+                ?.map((e) => e as SnowflakeStringType)
+                .toList() ??
+            [],
+      ),
       icon: $checkedConvert('icon', (v) => v as String?),
       banner: $checkedConvert('banner', (v) => v as String?),
       bannerWidth: $checkedConvert('banner_width', (v) => (v as num?)?.toInt()),
@@ -60,6 +68,7 @@ GuildPartialResponse _$GuildPartialResponseFromJson(
   },
   fieldKeyMap: const {
     'splashCardAlignment': 'splash_card_alignment',
+    'badgeIds': 'badge_ids',
     'bannerWidth': 'banner_width',
     'bannerHeight': 'banner_height',
     'splashWidth': 'splash_width',
@@ -88,5 +97,6 @@ Map<String, dynamic> _$GuildPartialResponseToJson(
   'embed_splash_width': ?instance.embedSplashWidth,
   'embed_splash_height': ?instance.embedSplashHeight,
   'features': instance.features,
+  'badge_ids': instance.badgeIds,
   'visits_enabled': ?instance.visitsEnabled,
 };

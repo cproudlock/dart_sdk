@@ -12,9 +12,11 @@ part 'profile_badge_response.g.dart';
 @JsonSerializable()
 class ProfileBadgeResponse {
   const ProfileBadgeResponse({
+    required this.key,
     required this.kind,
     required this.label,
     required this.asset,
+    required this.assetUrl,
     required this.aspectRatio,
     required this.caption,
     required this.href,
@@ -27,7 +29,11 @@ class ProfileBadgeResponse {
   factory ProfileBadgeResponse.fromJson(Map<String, Object?> json) =>
       _$ProfileBadgeResponseFromJson(json);
 
-  /// Stable badge key. Known values: staff, partner, bug_hunter, operator_pass, visionary, visionary_number, plutonium, and premium on self-hosted instances. Clients must render unknown values from the other fields.
+  /// Stable identity of the badge. It equals kind for built-in badges and is custom:{id} for custom badges, so use it as the list key
+  @JsonKey(defaultValue: '')
+  final String key;
+
+  /// Badge type. Known values: staff, partner, bug_hunter, operator_pass, visionary, visionary_number, plutonium, custom, and premium on self-hosted instances. Clients must render unknown values from the other fields.
   @JsonKey(defaultValue: '')
   final String kind;
 
@@ -35,9 +41,13 @@ class ProfileBadgeResponse {
   @JsonKey(defaultValue: '')
   final String label;
 
-  /// Badge image hash. The image is served at {static_cdn}/badges/{asset}.webp. Null for text badges
+  /// Badge image hash. The image is served at {static_cdn}/badges/{asset}.webp. Null for text badges and for badges with asset_url
   @JsonKey(includeIfNull: true)
   final HexString16Type? asset;
+
+  /// Absolute image URL for a badge whose image is not a static badge hash, such as a custom badge. Null otherwise
+  @JsonKey(includeIfNull: true, name: 'asset_url')
+  final String? assetUrl;
 
   /// Image hash drawn for 20 pixels and smaller, served like asset. Use it instead of asset at those sizes. Absent when asset reads well small
   @JsonKey(includeIfNull: false, name: 'small_asset')

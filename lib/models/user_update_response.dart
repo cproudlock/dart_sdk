@@ -20,7 +20,7 @@ part 'user_update_response.g.dart';
 @JsonSerializable()
 class UserUpdateResponse {
   const UserUpdateResponse({
-    required this.banner,
+    required this.bannerColor,
     required this.username,
     required this.discriminator,
     required this.globalName,
@@ -41,8 +41,8 @@ class UserUpdateResponse {
     required this.accentColor,
     required this.hasEverPurchased,
     required this.hasDismissedPremiumOnboarding,
+    required this.banner,
     required this.id,
-    required this.bannerColor,
     required this.mfaEnabled,
     required this.nsfwAllowed,
     required this.verified,
@@ -55,6 +55,7 @@ class UserUpdateResponse {
     required this.premiumLifetimeSequence,
     required this.premiumGraceEndsAt,
     required this.premiumDiscriminator,
+    required this.hiddenProfileBadges,
     required this.premiumBadgeHidden,
     required this.premiumBadgeMasked,
     required this.premiumBadgeTimestampHidden,
@@ -227,7 +228,11 @@ class UserUpdateResponse {
   @JsonKey(name: 'premium_discriminator', defaultValue: false)
   final bool premiumDiscriminator;
 
-  /// Whether the premium badge is hidden on the profile
+  /// Keys of the badges hidden from other people, as in the key field of a profile badge
+  @JsonKey(name: 'hidden_profile_badges', defaultValue: <String>[])
+  final List<String> hiddenProfileBadges;
+
+  /// Deprecated, use hidden_profile_badges. Whether the premium badge held is in that list
   @JsonKey(name: 'premium_badge_hidden', defaultValue: false)
   final bool premiumBadgeHidden;
 
@@ -239,7 +244,7 @@ class UserUpdateResponse {
   @JsonKey(name: 'premium_badge_timestamp_hidden', defaultValue: false)
   final bool premiumBadgeTimestampHidden;
 
-  /// Whether the lifetime sequence number is hidden
+  /// Deprecated, use hidden_profile_badges. Whether visionary_number is in that list
   @JsonKey(name: 'premium_badge_sequence_hidden', defaultValue: false)
   final bool premiumBadgeSequenceHidden;
 
@@ -255,7 +260,7 @@ class UserUpdateResponse {
   @JsonKey(name: 'premium_perks_disabled', defaultValue: false)
   final bool premiumPerksDisabled;
 
-  /// Whether the Operator Pass badge is hidden from other people. Only present on the current user response. Older servers omit it
+  /// Deprecated, use hidden_profile_badges. Whether operator_pass is in that list. Only present on the current user response. Older servers omit it
   @JsonKey(includeIfNull: false, name: 'operator_pass_badge_hidden')
   final bool? operatorPassBadgeHidden;
 

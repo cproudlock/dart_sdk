@@ -35,6 +35,10 @@ UserUpdateWithVerificationRequest _$UserUpdateWithVerificationRequestFromJson(
         'timezone_privacy_flags',
         (v) => (v as num?)?.toInt(),
       ),
+      hiddenProfileBadges: $checkedConvert(
+        'hidden_profile_badges',
+        (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
+      ),
       premiumBadgeHidden: $checkedConvert(
         'premium_badge_hidden',
         (v) => v as bool?,
@@ -121,6 +125,7 @@ UserUpdateWithVerificationRequest _$UserUpdateWithVerificationRequestFromJson(
     'accentColorValue': 'accent_color',
     'timezoneValue': 'timezone',
     'timezonePrivacyFlags': 'timezone_privacy_flags',
+    'hiddenProfileBadges': 'hidden_profile_badges',
     'premiumBadgeHidden': 'premium_badge_hidden',
     'premiumBadgeMasked': 'premium_badge_masked',
     'premiumBadgeTimestampHidden': 'premium_badge_timestamp_hidden',
@@ -151,6 +156,7 @@ Map<String, dynamic> _$UserUpdateWithVerificationRequestToJson(
   'new_password': ?instance.newPassword,
   'password': ?instance.password,
   'timezone_privacy_flags': ?instance.timezonePrivacyFlags,
+  'hidden_profile_badges': ?instance.hiddenProfileBadges,
   'premium_badge_hidden': ?instance.premiumBadgeHidden,
   'premium_badge_masked': ?instance.premiumBadgeMasked,
   'premium_badge_timestamp_hidden': ?instance.premiumBadgeTimestampHidden,

@@ -185,8 +185,6 @@ enum ApiErrorCode {
   publishedMessageEditRateLimited('PUBLISHED_MESSAGE_EDIT_RATE_LIMITED'),
   @JsonValue('PURCHASE_EMAIL_VERIFICATION_REQUIRED')
   purchaseEmailVerificationRequired('PURCHASE_EMAIL_VERIFICATION_REQUIRED'),
-  @JsonValue('PURCHASE_RECEIPT_EMAIL_REQUIRED')
-  purchaseReceiptEmailRequired('PURCHASE_RECEIPT_EMAIL_REQUIRED'),
   @JsonValue('REACTION_EMAIL_VERIFICATION_REQUIRED')
   reactionEmailVerificationRequired('REACTION_EMAIL_VERIFICATION_REQUIRED'),
   @JsonValue('REPORT_EMAIL_VERIFICATION_REQUIRED')
@@ -325,6 +323,8 @@ enum ApiErrorCode {
   ipBanLinkedToDecision('IP_BAN_LINKED_TO_DECISION'),
   @JsonValue('MAX_APPLICATIONS')
   maxApplications('MAX_APPLICATIONS'),
+  @JsonValue('MAX_BADGES')
+  maxBadges('MAX_BADGES'),
   @JsonValue('MAX_BOOKMARKS')
   maxBookmarks('MAX_BOOKMARKS'),
   @JsonValue('MAX_ACTIVE_THREADS')
@@ -493,6 +493,8 @@ enum ApiErrorCode {
   directMessagesDisabled('DIRECT_MESSAGES_DISABLED'),
   @JsonValue('FRIENDS_DISABLED')
   friendsDisabled('FRIENDS_DISABLED'),
+  @JsonValue('PERSONAL_NOTES_DISABLED')
+  personalNotesDisabled('PERSONAL_NOTES_DISABLED'),
   @JsonValue('NEW_CONVERSATIONS_LIMITED')
   newConversationsLimited('NEW_CONVERSATIONS_LIMITED'),
   @JsonValue('DONATION_AMOUNT_INVALID')
@@ -643,6 +645,8 @@ enum ApiErrorCode {
   unclaimedAccountCannotSubmitReports(
     'UNCLAIMED_ACCOUNT_CANNOT_SUBMIT_REPORTS',
   ),
+  @JsonValue('UNKNOWN_BADGE')
+  unknownBadge('UNKNOWN_BADGE'),
   @JsonValue('UNKNOWN_CHANNEL')
   unknownChannel('UNKNOWN_CHANNEL'),
   @JsonValue('UNKNOWN_EMOJI')

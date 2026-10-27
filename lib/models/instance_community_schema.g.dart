@@ -30,6 +30,10 @@ InstanceCommunitySchema _$InstanceCommunitySchemaFromJson(
         (v) => v as bool? ?? false,
       ),
       friendsDisabled: $checkedConvert('friends_disabled', (v) => v as bool?),
+      personalNotesEnabled: $checkedConvert(
+        'personal_notes_enabled',
+        (v) => v as bool?,
+      ),
     );
     return val;
   },
@@ -39,6 +43,7 @@ InstanceCommunitySchema _$InstanceCommunitySchemaFromJson(
     'directMessagesDisabled': 'direct_messages_disabled',
     'guildCreateAccess': 'guild_create_access',
     'friendsDisabled': 'friends_disabled',
+    'personalNotesEnabled': 'personal_notes_enabled',
   },
 );
 
@@ -49,5 +54,6 @@ Map<String, dynamic> _$InstanceCommunitySchemaToJson(
   'single_community_guild_id': instance.singleCommunityGuildId,
   'direct_messages_disabled': instance.directMessagesDisabled,
   'friends_disabled': ?instance.friendsDisabled,
+  'personal_notes_enabled': ?instance.personalNotesEnabled,
   'guild_create_access': instance.guildCreateAccess,
 };

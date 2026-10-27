@@ -26,6 +26,14 @@ DiscoveryGuildListResponseGuilds _$DiscoveryGuildListResponseGuildsFromJson(
         'features',
         (v) => (v as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
       ),
+      badgeIds: $checkedConvert(
+        'badge_ids',
+        (v) =>
+            (v as List<dynamic>?)
+                ?.map((e) => e as SnowflakeStringType)
+                .toList() ??
+            [],
+      ),
       verificationLevel: $checkedConvert(
         'verification_level',
         (v) => v as num? ?? 0,
@@ -43,6 +51,7 @@ DiscoveryGuildListResponseGuilds _$DiscoveryGuildListResponseGuildsFromJson(
     'customTags': 'custom_tags',
     'memberCount': 'member_count',
     'onlineCount': 'online_count',
+    'badgeIds': 'badge_ids',
     'verificationLevel': 'verification_level',
     'primaryLanguage': 'primary_language',
     'visitsEnabled': 'visits_enabled',
@@ -63,6 +72,7 @@ Map<String, dynamic> _$DiscoveryGuildListResponseGuildsToJson(
   'member_count': instance.memberCount,
   'online_count': instance.onlineCount,
   'features': instance.features,
+  'badge_ids': instance.badgeIds,
   'verification_level': instance.verificationLevel,
   'visits_enabled': ?instance.visitsEnabled,
 };

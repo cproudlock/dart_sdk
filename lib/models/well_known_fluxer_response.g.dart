@@ -104,6 +104,15 @@ WellKnownFluxerResponse _$WellKnownFluxerResponseFromJson(
                 v as Map<String, dynamic>,
               ),
       ),
+      guildBadges: $checkedConvert(
+        'guild_badges',
+        (v) => (v as List<dynamic>?)
+            ?.map(
+              (e) =>
+                  InstanceGuildBadgeSchema.fromJson(e as Map<String, dynamic>),
+            )
+            .toList(),
+      ),
     );
     return val;
   },
@@ -112,6 +121,7 @@ WellKnownFluxerResponse _$WellKnownFluxerResponseFromJson(
     'appPublic': 'app_public',
     'agePolicy': 'age_policy',
     'domainMigration': 'domain_migration',
+    'guildBadges': 'guild_badges',
   },
 );
 
@@ -134,4 +144,5 @@ Map<String, dynamic> _$WellKnownFluxerResponseToJson(
   'age_policy': ?instance.agePolicy,
   'notice': ?instance.notice,
   'domain_migration': ?instance.domainMigration,
+  'guild_badges': ?instance.guildBadges,
 };

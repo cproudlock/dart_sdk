@@ -30,6 +30,7 @@ class UserProfileFullResponse {
     this.premiumLifetimeSequence,
     this.profileBadges,
     this.operatorPassSince,
+    this.hiddenProfileBadgeCount,
     this.mutualFriends,
     this.mutualGuilds,
     this.connectedAccounts,
@@ -77,6 +78,10 @@ class UserProfileFullResponse {
   /// ISO8601 timestamp of when the user got the Operator Pass, or null when absent or hidden. Older servers omit it
   @JsonKey(includeIfNull: false, name: 'operator_pass_since')
   final String? operatorPassSince;
+
+  /// How many of the badges you hold are hidden from other people. Only present on your own profile
+  @JsonKey(includeIfNull: false, name: 'hidden_profile_badge_count')
+  final int? hiddenProfileBadgeCount;
 
   /// Array of mutual friends
   @JsonKey(includeIfNull: false, name: 'mutual_friends')

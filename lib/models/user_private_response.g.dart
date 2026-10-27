@@ -13,7 +13,7 @@ UserPrivateResponse _$UserPrivateResponseFromJson(
   json,
   ($checkedConvert) {
     final val = UserPrivateResponse(
-      banner: $checkedConvert('banner', (v) => v as String?),
+      bannerColor: $checkedConvert('banner_color', (v) => (v as num?)?.toInt()),
       username: $checkedConvert('username', (v) => v as String? ?? ''),
       discriminator: $checkedConvert(
         'discriminator',
@@ -65,8 +65,8 @@ UserPrivateResponse _$UserPrivateResponseFromJson(
         'has_ever_purchased',
         (v) => v as bool? ?? false,
       ),
+      banner: $checkedConvert('banner', (v) => v as String?),
       id: $checkedConvert('id', (v) => v as SnowflakeStringType? ?? ''),
-      bannerColor: $checkedConvert('banner_color', (v) => (v as num?)?.toInt()),
       mfaEnabled: $checkedConvert('mfa_enabled', (v) => v as bool? ?? false),
       hasDismissedPremiumOnboarding: $checkedConvert(
         'has_dismissed_premium_onboarding',
@@ -99,6 +99,10 @@ UserPrivateResponse _$UserPrivateResponseFromJson(
       premiumDiscriminator: $checkedConvert(
         'premium_discriminator',
         (v) => v as bool? ?? false,
+      ),
+      hiddenProfileBadges: $checkedConvert(
+        'hidden_profile_badges',
+        (v) => (v as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
       ),
       premiumBadgeHidden: $checkedConvert(
         'premium_badge_hidden',
@@ -205,6 +209,7 @@ UserPrivateResponse _$UserPrivateResponseFromJson(
     return val;
   },
   fieldKeyMap: const {
+    'bannerColor': 'banner_color',
     'globalName': 'global_name',
     'avatarColor': 'avatar_color',
     'privacyAgreedAt': 'privacy_agreed_at',
@@ -216,7 +221,6 @@ UserPrivateResponse _$UserPrivateResponseFromJson(
     'accentColor': 'accent_color',
     'hasUnreadGiftInventory': 'has_unread_gift_inventory',
     'hasEverPurchased': 'has_ever_purchased',
-    'bannerColor': 'banner_color',
     'mfaEnabled': 'mfa_enabled',
     'hasDismissedPremiumOnboarding': 'has_dismissed_premium_onboarding',
     'nsfwAllowed': 'nsfw_allowed',
@@ -228,6 +232,7 @@ UserPrivateResponse _$UserPrivateResponseFromJson(
     'premiumLifetimeSequence': 'premium_lifetime_sequence',
     'premiumGraceEndsAt': 'premium_grace_ends_at',
     'premiumDiscriminator': 'premium_discriminator',
+    'hiddenProfileBadges': 'hidden_profile_badges',
     'premiumBadgeHidden': 'premium_badge_hidden',
     'premiumBadgeMasked': 'premium_badge_masked',
     'premiumBadgeTimestampHidden': 'premium_badge_timestamp_hidden',
@@ -294,6 +299,7 @@ Map<String, dynamic> _$UserPrivateResponseToJson(
   'premium_lifetime_sequence': instance.premiumLifetimeSequence,
   'premium_grace_ends_at': instance.premiumGraceEndsAt,
   'premium_discriminator': instance.premiumDiscriminator,
+  'hidden_profile_badges': instance.hiddenProfileBadges,
   'premium_badge_hidden': instance.premiumBadgeHidden,
   'premium_badge_masked': instance.premiumBadgeMasked,
   'premium_badge_timestamp_hidden': instance.premiumBadgeTimestampHidden,

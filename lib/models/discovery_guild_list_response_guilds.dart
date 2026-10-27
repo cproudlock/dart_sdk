@@ -5,6 +5,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
 import 'snowflake_string_type.dart';
+import 'custom_badge_id_list_response.dart';
 
 part 'discovery_guild_list_response_guilds.g.dart';
 
@@ -18,6 +19,7 @@ class DiscoveryGuildListResponseGuilds {
     required this.memberCount,
     required this.onlineCount,
     required this.features,
+    required this.badgeIds,
     required this.verificationLevel,
     this.icon,
     this.banner,
@@ -73,6 +75,10 @@ class DiscoveryGuildListResponseGuilds {
   /// Guild feature flags
   @JsonKey(defaultValue: <String>[])
   final List<String> features;
+
+  /// IDs of the custom badges assigned to the community
+  @JsonKey(name: 'badge_ids', defaultValue: <String>[])
+  final CustomBadgeIdListResponse badgeIds;
 
   /// Verification level
   @JsonKey(name: 'verification_level', defaultValue: 0)

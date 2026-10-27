@@ -12,6 +12,7 @@ import 'instance_community_schema.dart';
 import 'instance_endpoints_schema.dart';
 import 'instance_features_schema.dart';
 import 'instance_gif_schema.dart';
+import 'instance_guild_badge_schema.dart';
 import 'instance_notice_schema.dart';
 import 'instance_push_schema.dart';
 import 'instance_registration_schema.dart';
@@ -40,6 +41,7 @@ class WellKnownFluxerResponse {
     this.agePolicy,
     this.notice,
     this.domainMigration,
+    this.guildBadges,
   });
 
   factory WellKnownFluxerResponse.fromJson(Map<String, Object?> json) =>
@@ -88,6 +90,10 @@ class WellKnownFluxerResponse {
   /// Web domain migration switch and anonymous rollout, only acted on by official instance clients
   @JsonKey(includeIfNull: false, name: 'domain_migration')
   final DomainMigrationDiscoveryResponse? domainMigration;
+
+  /// Custom badges that communities on this instance can show next to their name, in display order
+  @JsonKey(includeIfNull: false, name: 'guild_badges')
+  final List<InstanceGuildBadgeSchema>? guildBadges;
 
   Map<String, Object?> toJson() => _$WellKnownFluxerResponseToJson(this);
 }
