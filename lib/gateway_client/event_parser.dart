@@ -365,6 +365,7 @@ class EventParser {
         'CALL_UPDATE' => _parseCallUpdate(data),
         'CALL_DELETE' => CallDeleteEvent(
           channelId: data['channel_id'] as String,
+          unavailable: data['unavailable'] as bool? ?? false,
         ),
         'ENTRANCE_SOUND_PLAY' => EntranceSoundPlayEvent(
           userId: data['user_id'] as String,

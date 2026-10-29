@@ -776,9 +776,10 @@ class CallUpdateEvent extends GatewayEvent {
 }
 
 class CallDeleteEvent extends GatewayEvent {
-  const CallDeleteEvent({required this.channelId});
+  const CallDeleteEvent({required this.channelId, this.unavailable = false});
 
   final String channelId;
+  final bool unavailable;
 }
 
 class RelationshipAddEvent extends GatewayEvent {

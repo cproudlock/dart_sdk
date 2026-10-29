@@ -1633,6 +1633,17 @@ void main() {
       expect(event, isA<CallDeleteEvent>());
       final e = event as CallDeleteEvent;
       expect(e.channelId, 'ch1');
+      expect(e.unavailable, isFalse);
+    });
+
+    test('CALL_DELETE when the call becomes unavailable', () {
+      final data = <String, Object?>{'channel_id': 'ch1', 'unavailable': true};
+      final event = parser.parse('CALL_DELETE', data);
+
+      expect(event, isA<CallDeleteEvent>());
+      final e = event as CallDeleteEvent;
+      expect(e.channelId, 'ch1');
+      expect(e.unavailable, isTrue);
     });
   });
 
