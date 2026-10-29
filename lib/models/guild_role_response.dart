@@ -20,8 +20,9 @@ class GuildRoleResponse {
     required this.permissions,
     required this.hoist,
     required this.mentionable,
+    required this.icon,
+    required this.unicodeEmoji,
     this.hoistPosition,
-    this.unicodeEmoji,
   });
 
   factory GuildRoleResponse.fromJson(Map<String, Object?> json) =>
@@ -59,8 +60,12 @@ class GuildRoleResponse {
   @JsonKey(defaultValue: false)
   final bool mentionable;
 
-  /// The unicode emoji for this role
-  @JsonKey(includeIfNull: false, name: 'unicode_emoji')
+  /// The hash of the role icon image, or null
+  @JsonKey(includeIfNull: true)
+  final String? icon;
+
+  /// The Unicode emoji used as the role icon, or null
+  @JsonKey(includeIfNull: true, name: 'unicode_emoji')
   final String? unicodeEmoji;
 
   Map<String, Object?> toJson() => _$GuildRoleResponseToJson(this);

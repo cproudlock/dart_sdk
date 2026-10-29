@@ -23,17 +23,18 @@ GuildRoleResponse _$GuildRoleResponseFromJson(
       ),
       hoist: $checkedConvert('hoist', (v) => v as bool? ?? false),
       mentionable: $checkedConvert('mentionable', (v) => v as bool? ?? false),
+      icon: $checkedConvert('icon', (v) => v as String?),
+      unicodeEmoji: $checkedConvert('unicode_emoji', (v) => v as String?),
       hoistPosition: $checkedConvert(
         'hoist_position',
         (v) => (v as num?)?.toInt(),
       ),
-      unicodeEmoji: $checkedConvert('unicode_emoji', (v) => v as String?),
     );
     return val;
   },
   fieldKeyMap: const {
-    'hoistPosition': 'hoist_position',
     'unicodeEmoji': 'unicode_emoji',
+    'hoistPosition': 'hoist_position',
   },
 );
 
@@ -47,5 +48,6 @@ Map<String, dynamic> _$GuildRoleResponseToJson(GuildRoleResponse instance) =>
       'permissions': instance.permissions,
       'hoist': instance.hoist,
       'mentionable': instance.mentionable,
-      'unicode_emoji': ?instance.unicodeEmoji,
+      'icon': instance.icon,
+      'unicode_emoji': instance.unicodeEmoji,
     };
