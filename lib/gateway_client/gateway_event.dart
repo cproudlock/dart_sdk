@@ -806,10 +806,10 @@ class InviteCreateEvent extends GatewayEvent {
 }
 
 class InviteDeleteEvent extends GatewayEvent {
-  const InviteDeleteEvent({required this.code, required this.guildId});
+  const InviteDeleteEvent({required this.code, this.guildId});
 
   final String code;
-  final String guildId;
+  final String? guildId;
 }
 
 class SavedMessageCreateEvent extends GatewayEvent {

@@ -1659,6 +1659,16 @@ void main() {
       expect(e.code, 'abc123');
       expect(e.guildId, 'g1');
     });
+
+    test('INVITE_DELETE for a group DM invite', () {
+      final data = <String, Object?>{'code': 'abc123', 'channel_id': 'ch1'};
+      final event = parser.parse('INVITE_DELETE', data);
+
+      expect(event, isA<InviteDeleteEvent>());
+      final e = event as InviteDeleteEvent;
+      expect(e.code, 'abc123');
+      expect(e.guildId, isNull);
+    });
   });
 
   group('Saved messages & mentions', () {

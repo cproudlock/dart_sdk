@@ -386,7 +386,7 @@ class EventParser {
         'INVITE_CREATE' => InviteCreateEvent(data: data),
         'INVITE_DELETE' => InviteDeleteEvent(
           code: data['code'] as String,
-          guildId: data['guild_id'] as String,
+          guildId: data['guild_id'] as String?,
         ),
 
         'SAVED_MESSAGE_CREATE' => SavedMessageCreateEvent(
