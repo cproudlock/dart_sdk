@@ -36,6 +36,19 @@ void main() {
       expect(credentials[1].lastUsedAt, '2026-01-03T00:00:00Z');
     });
 
+    test('SESSIONS_REPLACE maps a JSON array to a typed event', () {
+      final event = parser.parseList('SESSIONS_REPLACE', [
+        {
+          'session_id': 'all',
+          'status': 'online',
+          'afk': false,
+          'mobile': false,
+        },
+      ]);
+
+      expect(event, isA<SessionsReplaceEvent>());
+    });
+
     test('returns null for an unrecognized array event type', () {
       expect(parser.parseList('SOMETHING_ELSE', const []), isNull);
     });

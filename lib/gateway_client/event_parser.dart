@@ -408,7 +408,6 @@ class EventParser {
         'FAVORITE_MEME_DELETE' => FavoriteMemeDeleteEvent(
           id: _snowflakeId(data['id'] ?? data['meme_id']) ?? '',
         ),
-        'SESSIONS_REPLACE' => const SessionsReplaceEvent(),
 
         _ => UnknownGatewayEvent(eventType: eventType, data: data),
       };
@@ -436,6 +435,7 @@ class EventParser {
         'USER_PINNED_DMS_UPDATE' => UserPinnedDmsUpdateEvent(
           pinnedDmChannelIds: data.map((dynamic id) => id.toString()).toList(),
         ),
+        'SESSIONS_REPLACE' => const SessionsReplaceEvent(),
         _ => null,
       };
     } catch (_) {

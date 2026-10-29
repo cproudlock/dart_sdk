@@ -1744,13 +1744,6 @@ void main() {
       final e = event as FavoriteMemeDeleteEvent;
       expect(e.id, 'meme2');
     });
-
-    test('SESSIONS_REPLACE → SessionsReplaceEvent', () {
-      final data = <String, dynamic>{};
-      final event = parser.parse('SESSIONS_REPLACE', data);
-
-      expect(event, isA<SessionsReplaceEvent>());
-    });
   });
 
   group('Unknown / fallback', () {
