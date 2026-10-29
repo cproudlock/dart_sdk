@@ -753,6 +753,7 @@ tolerantModelFactories = <String, Object Function(Map<String, Object?>)>{
   'SsoCompleteResponse': SsoCompleteResponse.fromJson,
   'SsoCompleteResponseVariant1': SsoCompleteResponseVariant1.fromJson,
   'SsoCompleteResponseVariant2': SsoCompleteResponseVariant2.fromJson,
+  'SsoCompleteResponseVariant3': SsoCompleteResponseVariant3.fromJson,
   'SsoStartRequest': SsoStartRequest.fromJson,
   'SsoStartResponse': SsoStartResponse.fromJson,
   'SsoStatusResponse': SsoStatusResponse.fromJson,

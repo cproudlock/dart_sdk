@@ -4,14 +4,39 @@
 
 import 'package:json_annotation/json_annotation.dart';
 
+import 'json_nullable.dart';
+
 part 'sso_complete_request.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(constructor: '_')
 class SsoCompleteRequest {
-  const SsoCompleteRequest({required this.code, required this.state});
+  SsoCompleteRequest({
+    required this.code,
+    required this.state,
+    JsonNullable<String> clientBinding = const JsonNullable<String>.undefined(),
+  }) : clientBinding = clientBinding,
+       clientBindingValue = clientBinding.value,
+       _clientBindingPresent = clientBinding.isPresent;
 
-  factory SsoCompleteRequest.fromJson(Map<String, Object?> json) =>
-      _$SsoCompleteRequestFromJson(json);
+  const SsoCompleteRequest._({
+    required this.code,
+    required this.state,
+    this.clientBindingValue,
+  }) : clientBinding = const JsonNullable<String>.undefined(),
+       _clientBindingPresent = false;
+  factory SsoCompleteRequest.patch(Map<String, Object?> json) =>
+      SsoCompleteRequest.fromJson(json);
+
+  factory SsoCompleteRequest.fromJson(Map<String, Object?> json) {
+    final value = _$SsoCompleteRequestFromJson(json);
+    return SsoCompleteRequest(
+      code: value.code,
+      state: value.state,
+      clientBinding: json.containsKey('client_binding')
+          ? JsonNullable<String>.of(value.clientBindingValue)
+          : const JsonNullable<String>.undefined(),
+    );
+  }
 
   /// Authorization code from the SSO provider
   @JsonKey(defaultValue: '')
@@ -20,6 +45,17 @@ class SsoCompleteRequest {
   /// State parameter for CSRF protection
   @JsonKey(defaultValue: '')
   final String state;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  final JsonNullable<String> clientBinding;
+  @JsonKey(includeIfNull: false, name: 'client_binding')
+  final String? clientBindingValue;
+  final bool _clientBindingPresent;
 
-  Map<String, Object?> toJson() => _$SsoCompleteRequestToJson(this);
+  Map<String, Object?> toJson() {
+    final json = _$SsoCompleteRequestToJson(this);
+    if (_clientBindingPresent) {
+      json.putIfAbsent('client_binding', () => clientBindingValue);
+    }
+    return json;
+  }
 }

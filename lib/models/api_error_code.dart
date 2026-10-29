@@ -443,6 +443,8 @@ enum ApiErrorCode {
   slowmodeRateLimited('SLOWMODE_RATE_LIMITED'),
   @JsonValue('SEARCH_INDEX_NOT_READY')
   searchIndexNotReady('SEARCH_INDEX_NOT_READY'),
+  @JsonValue('SSO_PROVIDER_UNAVAILABLE')
+  ssoProviderUnavailable('SSO_PROVIDER_UNAVAILABLE'),
   @JsonValue('SSO_REQUIRED')
   ssoRequired('SSO_REQUIRED'),
   @JsonValue('STORE_BILLING_UNAVAILABLE')

@@ -12,6 +12,7 @@ class SsoStartResponse {
     required this.authorizationUrl,
     required this.state,
     required this.redirectUri,
+    required this.clientBinding,
   });
 
   factory SsoStartResponse.fromJson(Map<String, Object?> json) =>
@@ -28,6 +29,10 @@ class SsoStartResponse {
   /// OAuth redirect URI used for the SSO provider callback
   @JsonKey(name: 'redirect_uri', defaultValue: '')
   final String redirectUri;
+
+  /// Secret the client keeps and sends back with the code and state to complete this sign-in
+  @JsonKey(name: 'client_binding', defaultValue: '')
+  final String clientBinding;
 
   Map<String, Object?> toJson() => _$SsoStartResponseToJson(this);
 }

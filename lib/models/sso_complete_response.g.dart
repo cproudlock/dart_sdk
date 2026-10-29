@@ -84,3 +84,20 @@ Map<String, dynamic> _$SsoCompleteResponseVariant2ToJson(
   'backup_codes': instance.backupCodes,
   'redirect_to': instance.redirectTo,
 };
+
+SsoCompleteResponseVariant3 _$SsoCompleteResponseVariant3FromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('SsoCompleteResponseVariant3', json, ($checkedConvert) {
+  final val = SsoCompleteResponseVariant3(
+    linked: $checkedConvert('linked', (v) => v as bool? ?? false),
+    redirectTo: $checkedConvert('redirect_to', (v) => v as String? ?? ''),
+  );
+  return val;
+}, fieldKeyMap: const {'redirectTo': 'redirect_to'});
+
+Map<String, dynamic> _$SsoCompleteResponseVariant3ToJson(
+  SsoCompleteResponseVariant3 instance,
+) => <String, dynamic>{
+  'linked': instance.linked,
+  'redirect_to': instance.redirectTo,
+};

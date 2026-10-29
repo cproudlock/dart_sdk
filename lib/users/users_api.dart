@@ -90,6 +90,7 @@ import '../models/relationship_type_put_request.dart';
 import '../models/save_message_request.dart';
 import '../models/saved_message_entry_list_response.dart';
 import '../models/snowflake_type.dart';
+import '../models/sso_start_response.dart';
 import '../models/success_response.dart';
 import '../models/sudo_email_code_response.dart';
 import '../models/sudo_mfa_methods_response.dart';
@@ -1071,6 +1072,14 @@ abstract class UsersApi {
   Future<UserPrivateResponse> updateVoiceActivitySharingDefault({
     @Body() required VoiceActivitySharingUpdateRequest body,
   });
+
+  /// Start connecting SSO.
+  ///
+  /// Start connecting the instance SSO provider to the current account. Send the user to authorization_url, then finish with complete_sso, which returns linked and creates no new session. Works while SSO is required. Requires sudo mode verification.
+  ///
+  /// [body] - Name not received - field will be skipped.
+  @POST('/users/@me/sso/link/start')
+  Future<SsoStartResponse> startSsoLink({@Body() SudoVerificationSchema? body});
 
   /// Send a code to confirm it is you.
   ///
