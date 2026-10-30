@@ -432,7 +432,7 @@ abstract class AuthApi {
 
   /// Complete SSO.
   ///
-  /// Complete the SSO authentication flow with the authorization code from the SSO provider. Returns authentication token and user information.
+  /// Complete the SSO authentication flow with the authorization code from the SSO provider. Returns authentication token and user information, or linked when the flow was started from account settings.
   ///
   /// [body] - Name not received - field will be skipped.
   @POST('/auth/sso/complete')

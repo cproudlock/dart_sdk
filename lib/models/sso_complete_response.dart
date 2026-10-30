@@ -23,6 +23,8 @@ class SsoCompleteResponse {
       SsoCompleteResponseVariant1.fromJson(_json);
   SsoCompleteResponseVariant2 toVariant2() =>
       SsoCompleteResponseVariant2.fromJson(_json);
+  SsoCompleteResponseVariant3 toVariant3() =>
+      SsoCompleteResponseVariant3.fromJson(_json);
 }
 
 @JsonSerializable()
@@ -83,6 +85,24 @@ class SsoCompleteResponseVariant2 {
       _$SsoCompleteResponseVariant2FromJson(json);
 
   Map<String, dynamic> toJson() => _$SsoCompleteResponseVariant2ToJson(this);
+}
+
+@JsonSerializable()
+class SsoCompleteResponseVariant3 {
+  @JsonKey(defaultValue: false)
+  final bool linked;
+  @JsonKey(name: 'redirect_to', defaultValue: '')
+  final String redirectTo;
+
+  const SsoCompleteResponseVariant3({
+    required this.linked,
+    required this.redirectTo,
+  });
+
+  factory SsoCompleteResponseVariant3.fromJson(Map<String, dynamic> json) =>
+      _$SsoCompleteResponseVariant3FromJson(json);
+
+  Map<String, dynamic> toJson() => _$SsoCompleteResponseVariant3ToJson(this);
 }
 
 UserPartialResponse _$missingUserPartialResponse() =>

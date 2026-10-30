@@ -365,6 +365,7 @@ class EventParser {
         'CALL_UPDATE' => _parseCallUpdate(data),
         'CALL_DELETE' => CallDeleteEvent(
           channelId: data['channel_id'] as String,
+          unavailable: data['unavailable'] as bool? ?? false,
         ),
         'ENTRANCE_SOUND_PLAY' => EntranceSoundPlayEvent(
           userId: data['user_id'] as String,
@@ -386,7 +387,7 @@ class EventParser {
         'INVITE_CREATE' => InviteCreateEvent(data: data),
         'INVITE_DELETE' => InviteDeleteEvent(
           code: data['code'] as String,
-          guildId: data['guild_id'] as String,
+          guildId: data['guild_id'] as String?,
         ),
 
         'SAVED_MESSAGE_CREATE' => SavedMessageCreateEvent(
@@ -408,7 +409,6 @@ class EventParser {
         'FAVORITE_MEME_DELETE' => FavoriteMemeDeleteEvent(
           id: _snowflakeId(data['id'] ?? data['meme_id']) ?? '',
         ),
-        'SESSIONS_REPLACE' => const SessionsReplaceEvent(),
 
         _ => UnknownGatewayEvent(eventType: eventType, data: data),
       };
@@ -436,6 +436,7 @@ class EventParser {
         'USER_PINNED_DMS_UPDATE' => UserPinnedDmsUpdateEvent(
           pinnedDmChannelIds: data.map((dynamic id) => id.toString()).toList(),
         ),
+        'SESSIONS_REPLACE' => const SessionsReplaceEvent(),
         _ => null,
       };
     } catch (_) {

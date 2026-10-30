@@ -422,7 +422,7 @@ abstract class GuildsApi {
 
   /// Create guild role.
   ///
-  /// Create guild role. Requires manage_roles permission. Creates a new role with specified name, permissions, and color.
+  /// Create guild role. Requires manage_roles permission. Creates a new role with specified name, permissions, colour and an optional icon image or Unicode emoji.
   ///
   /// [guildId] - The ID of the guild.
   ///
@@ -471,7 +471,7 @@ abstract class GuildsApi {
 
   /// Update guild role.
   ///
-  /// Update guild role. Requires manage_roles permission. Modifies role name, permissions, color, and other settings.
+  /// Update guild role. Requires manage_roles permission. Modifies role name, permissions, colour, icon and other settings.
   ///
   /// [guildId] - The ID of the guild.
   ///

@@ -6,6 +6,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 import 'json_nullable.dart';
 
+import 'base64_image_type.dart';
 import 'color_type.dart';
 import 'unsigned_int64_type.dart';
 
@@ -20,9 +21,18 @@ class GuildRoleUpdateRequest {
     this.hoist,
     this.mentionable,
     JsonNullable<int> hoistPosition = const JsonNullable<int>.undefined(),
+    JsonNullable<Base64ImageType> icon =
+        const JsonNullable<Base64ImageType>.undefined(),
+    JsonNullable<String> unicodeEmoji = const JsonNullable<String>.undefined(),
   }) : hoistPosition = hoistPosition,
        hoistPositionValue = hoistPosition.value,
-       _hoistPositionPresent = hoistPosition.isPresent;
+       _hoistPositionPresent = hoistPosition.isPresent,
+       icon = icon,
+       iconValue = icon.value,
+       _iconPresent = icon.isPresent,
+       unicodeEmoji = unicodeEmoji,
+       unicodeEmojiValue = unicodeEmoji.value,
+       _unicodeEmojiPresent = unicodeEmoji.isPresent;
 
   const GuildRoleUpdateRequest._({
     this.name,
@@ -31,8 +41,14 @@ class GuildRoleUpdateRequest {
     this.hoist,
     this.hoistPositionValue,
     this.mentionable,
+    this.iconValue,
+    this.unicodeEmojiValue,
   }) : hoistPosition = const JsonNullable<int>.undefined(),
-       _hoistPositionPresent = false;
+       _hoistPositionPresent = false,
+       icon = const JsonNullable<Base64ImageType>.undefined(),
+       _iconPresent = false,
+       unicodeEmoji = const JsonNullable<String>.undefined(),
+       _unicodeEmojiPresent = false;
   factory GuildRoleUpdateRequest.patch(Map<String, Object?> json) =>
       GuildRoleUpdateRequest.fromJson(json);
 
@@ -47,6 +63,12 @@ class GuildRoleUpdateRequest {
           ? JsonNullable<int>.of(value.hoistPositionValue)
           : const JsonNullable<int>.undefined(),
       mentionable: value.mentionable,
+      icon: json.containsKey('icon')
+          ? JsonNullable<Base64ImageType>.of(value.iconValue)
+          : const JsonNullable<Base64ImageType>.undefined(),
+      unicodeEmoji: json.containsKey('unicode_emoji')
+          ? JsonNullable<String>.of(value.unicodeEmojiValue)
+          : const JsonNullable<String>.undefined(),
     );
   }
 
@@ -74,11 +96,27 @@ class GuildRoleUpdateRequest {
   @JsonKey(includeIfNull: false, name: 'hoist_position')
   final int? hoistPositionValue;
   final bool _hoistPositionPresent;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  final JsonNullable<Base64ImageType> icon;
+  @JsonKey(includeIfNull: false, name: 'icon')
+  final Base64ImageType? iconValue;
+  final bool _iconPresent;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  final JsonNullable<String> unicodeEmoji;
+  @JsonKey(includeIfNull: false, name: 'unicode_emoji')
+  final String? unicodeEmojiValue;
+  final bool _unicodeEmojiPresent;
 
   Map<String, Object?> toJson() {
     final json = _$GuildRoleUpdateRequestToJson(this);
     if (_hoistPositionPresent) {
       json.putIfAbsent('hoist_position', () => hoistPositionValue);
+    }
+    if (_iconPresent) {
+      json.putIfAbsent('icon', () => iconValue);
+    }
+    if (_unicodeEmojiPresent) {
+      json.putIfAbsent('unicode_emoji', () => unicodeEmojiValue);
     }
     return json;
   }

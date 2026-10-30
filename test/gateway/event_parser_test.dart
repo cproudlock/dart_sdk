@@ -1633,6 +1633,17 @@ void main() {
       expect(event, isA<CallDeleteEvent>());
       final e = event as CallDeleteEvent;
       expect(e.channelId, 'ch1');
+      expect(e.unavailable, isFalse);
+    });
+
+    test('CALL_DELETE when the call becomes unavailable', () {
+      final data = <String, Object?>{'channel_id': 'ch1', 'unavailable': true};
+      final event = parser.parse('CALL_DELETE', data);
+
+      expect(event, isA<CallDeleteEvent>());
+      final e = event as CallDeleteEvent;
+      expect(e.channelId, 'ch1');
+      expect(e.unavailable, isTrue);
     });
   });
 
@@ -1658,6 +1669,16 @@ void main() {
       final e = event as InviteDeleteEvent;
       expect(e.code, 'abc123');
       expect(e.guildId, 'g1');
+    });
+
+    test('INVITE_DELETE for a group DM invite', () {
+      final data = <String, Object?>{'code': 'abc123', 'channel_id': 'ch1'};
+      final event = parser.parse('INVITE_DELETE', data);
+
+      expect(event, isA<InviteDeleteEvent>());
+      final e = event as InviteDeleteEvent;
+      expect(e.code, 'abc123');
+      expect(e.guildId, isNull);
     });
   });
 
@@ -1733,13 +1754,6 @@ void main() {
       expect(event, isA<FavoriteMemeDeleteEvent>());
       final e = event as FavoriteMemeDeleteEvent;
       expect(e.id, 'meme2');
-    });
-
-    test('SESSIONS_REPLACE → SessionsReplaceEvent', () {
-      final data = <String, dynamic>{};
-      final event = parser.parse('SESSIONS_REPLACE', data);
-
-      expect(event, isA<SessionsReplaceEvent>());
     });
   });
 

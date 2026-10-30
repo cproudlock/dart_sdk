@@ -21,12 +21,17 @@ SsoStartResponse _$SsoStartResponseFromJson(Map<String, dynamic> json) =>
             'redirect_uri',
             (v) => v as String? ?? '',
           ),
+          clientBinding: $checkedConvert(
+            'client_binding',
+            (v) => v as String? ?? '',
+          ),
         );
         return val;
       },
       fieldKeyMap: const {
         'authorizationUrl': 'authorization_url',
         'redirectUri': 'redirect_uri',
+        'clientBinding': 'client_binding',
       },
     );
 
@@ -35,4 +40,5 @@ Map<String, dynamic> _$SsoStartResponseToJson(SsoStartResponse instance) =>
       'authorization_url': instance.authorizationUrl,
       'state': instance.state,
       'redirect_uri': instance.redirectUri,
+      'client_binding': instance.clientBinding,
     };
