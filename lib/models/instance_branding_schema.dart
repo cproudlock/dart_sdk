@@ -19,6 +19,7 @@ class InstanceBrandingSchema {
     required this.faviconDarkUrl,
     required this.themeColor,
     required this.statusPageUrl,
+    required this.statusPageInstatus,
     required this.statusPageIncidentHistoryUrl,
     required this.premiumProductName,
     required this.premiumInfoUrl,
@@ -67,6 +68,10 @@ class InstanceBrandingSchema {
   @JsonKey(includeIfNull: true, name: 'status_page_url')
   final String? statusPageUrl;
 
+  /// Whether the server detected that the status page is an Instatus page that clients can read current incidents from
+  @JsonKey(name: 'status_page_instatus', defaultValue: false)
+  final bool statusPageInstatus;
+
   /// Optional public status page incident history URL
   @JsonKey(includeIfNull: true, name: 'status_page_incident_history_url')
   final String? statusPageIncidentHistoryUrl;
@@ -83,7 +88,7 @@ class InstanceBrandingSchema {
   @JsonKey(includeIfNull: true, name: 'sign_in_backdrop_url')
   final String? signInBackdropUrl;
 
-  /// Optional stylesheet a self-hosted instance applies to every page of its web and desktop app
+  /// Optional stylesheet a self-hosted instance applies to its web and desktop app, except on sign-in pages
   @JsonKey(includeIfNull: true, name: 'custom_css')
   final String? customCss;
 
