@@ -570,9 +570,6 @@ tolerantModelFactories = <String, Object Function(Map<String, Object?>)>{
   'Object2Attachments': Object2Attachments.fromJson,
   'Object3': Object3.fromJson,
   'OkResponse': OkResponse.fromJson,
-  'OperatorPassAltchaChallenge': OperatorPassAltchaChallenge.fromJson,
-  'OperatorPassAltchaChallengeParameters':
-      OperatorPassAltchaChallengeParameters.fromJson,
   'OperatorPassCertificateLinkResponse':
       OperatorPassCertificateLinkResponse.fromJson,
   'OperatorPassCertificateResponse': OperatorPassCertificateResponse.fromJson,
@@ -581,6 +578,7 @@ tolerantModelFactories = <String, Object Function(Map<String, Object?>)>{
   'OperatorPassHolderResponse': OperatorPassHolderResponse.fromJson,
   'OperatorPassLabsGreetingRequest': OperatorPassLabsGreetingRequest.fromJson,
   'OperatorPassLabsJoinResponse': OperatorPassLabsJoinResponse.fromJson,
+  'OperatorPassLabsOperatorsRequest': OperatorPassLabsOperatorsRequest.fromJson,
   'OperatorPassLabsResponse': OperatorPassLabsResponse.fromJson,
   'OperatorPassLatestReleaseResponse':
       OperatorPassLatestReleaseResponse.fromJson,
@@ -606,16 +604,6 @@ tolerantModelFactories = <String, Object Function(Map<String, Object?>)>{
       OperatorPassVisionaryTurnOnRequestWallWallVariant1.fromJson,
   'OperatorPassVisionaryTurnOnRequestWallWallVariant2':
       OperatorPassVisionaryTurnOnRequestWallWallVariant2.fromJson,
-  'OperatorPassWaitlistChallengeResponse':
-      OperatorPassWaitlistChallengeResponse.fromJson,
-  'OperatorPassWaitlistConfirmRequest':
-      OperatorPassWaitlistConfirmRequest.fromJson,
-  'OperatorPassWaitlistConfirmResponse':
-      OperatorPassWaitlistConfirmResponse.fromJson,
-  'OperatorPassWaitlistFollowupRequest':
-      OperatorPassWaitlistFollowupRequest.fromJson,
-  'OperatorPassWaitlistRequest': OperatorPassWaitlistRequest.fromJson,
-  'OperatorPassWaitlistResponse': OperatorPassWaitlistResponse.fromJson,
   'OperatorPassWaitlistUnsubscribeResponse':
       OperatorPassWaitlistUnsubscribeResponse.fromJson,
   'OperatorPassWallOperatorResponse': OperatorPassWallOperatorResponse.fromJson,
@@ -691,6 +679,7 @@ tolerantModelFactories = <String, Object Function(Map<String, Object?>)>{
   'PresignedAttachmentUploadResponseItemSinglepartPresignedAttachmentUploadResponseItem':
       PresignedAttachmentUploadResponseItemSinglepartPresignedAttachmentUploadResponseItem
           .fromJson,
+  'PriceDistributionResponse': PriceDistributionResponse.fromJson,
   'PriceIdsResponse': PriceIdsResponse.fromJson,
   'ProfileBadgePreviewRequest': ProfileBadgePreviewRequest.fromJson,
   'ProfileBadgePreviewResponse': ProfileBadgePreviewResponse.fromJson,
@@ -732,6 +721,7 @@ tolerantModelFactories = <String, Object Function(Map<String, Object?>)>{
   'ReorderConnectionsRequest': ReorderConnectionsRequest.fromJson,
   'ReportFlowChecklist': ReportFlowChecklist.fromJson,
   'ReportFlowChecklistItem': ReportFlowChecklistItem.fromJson,
+  'ReportFlowGuildSubmissionRequest': ReportFlowGuildSubmissionRequest.fromJson,
   'ReportFlowMessageSubmissionRequest':
       ReportFlowMessageSubmissionRequest.fromJson,
   'ReportFlowNotice': ReportFlowNotice.fromJson,
@@ -852,6 +842,8 @@ tolerantModelFactories = <String, Object Function(Map<String, Object?>)>{
       UpdatePremiumPerksDisabledRequest.fromJson,
   'UpdateVoiceNodeRequest': UpdateVoiceNodeRequest.fromJson,
   'UrlResponse': UrlResponse.fromJson,
+  'UserAccountDeleteRequest': UserAccountDeleteRequest.fromJson,
+  'UserAccountDeleteResponse': UserAccountDeleteResponse.fromJson,
   'UserDsaReportFlowRequest': UserDsaReportFlowRequest.fromJson,
   'UserGuildSettingsResponse': UserGuildSettingsResponse.fromJson,
   'UserGuildSettingsResponseMuteConfig':

@@ -4,24 +4,22 @@
 
 import 'package:json_annotation/json_annotation.dart';
 
-/// Why staff declined a name or avatar on the Operators' wall, under section 3.1 of the Operator Pass terms
+/// MFA method to use for verification
 @JsonEnum()
-enum OperatorPassWallDeclineReasonSchema {
-  @JsonValue('guidelines')
-  guidelines('guidelines'),
-  @JsonValue('impersonation')
-  impersonation('impersonation'),
-  @JsonValue('rights')
-  rights('rights'),
-  @JsonValue('age_suitability')
-  ageSuitability('age_suitability'),
+enum UserAccountDeleteRequestMfaMethodMfaMethod {
+  @JsonValue('totp')
+  totp('totp'),
+  @JsonValue('webauthn')
+  webAuthn('webauthn'),
+  @JsonValue('email_code')
+  emailCode('email_code'),
 
   /// Default value for all unparsed values, allows backward compatibility when adding new values on the backend.
   $unknown(null);
 
-  const OperatorPassWallDeclineReasonSchema(this.json);
+  const UserAccountDeleteRequestMfaMethodMfaMethod(this.json);
 
-  factory OperatorPassWallDeclineReasonSchema.fromJson(String json) =>
+  factory UserAccountDeleteRequestMfaMethodMfaMethod.fromJson(String json) =>
       values.firstWhere((e) => e.json == json, orElse: () => $unknown);
 
   final String? json;
@@ -32,6 +30,6 @@ enum OperatorPassWallDeclineReasonSchema {
   String toString() => json ?? super.toString();
 
   /// Returns all defined enum values excluding the $unknown value.
-  static List<OperatorPassWallDeclineReasonSchema> get $valuesDefined =>
+  static List<UserAccountDeleteRequestMfaMethodMfaMethod> get $valuesDefined =>
       values.where((value) => value != $unknown).toList();
 }

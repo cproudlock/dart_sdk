@@ -16,6 +16,7 @@ class OperatorPassWallOperatorResponse {
     required this.tier,
     this.count,
     this.business,
+    this.quote,
   });
 
   factory OperatorPassWallOperatorResponse.fromJson(
@@ -26,15 +27,15 @@ class OperatorPassWallOperatorResponse {
   @JsonKey(defaultValue: '')
   final String id;
 
-  /// The name shown: the approved name, or Operator as fallback
+  /// The name shown: the name the holder chose, or Operator as fallback
   @JsonKey(defaultValue: '')
   final String name;
 
-  /// SHA-256 of the approved avatar snapshot, null for the default avatar
+  /// SHA-256 of the avatar snapshot, null for the default avatar
   @JsonKey(includeIfNull: true)
   final String? avatar;
 
-  /// The approved avatar snapshot at the largest size, null for the default avatar
+  /// The avatar snapshot at the largest size, null for the default avatar
   @JsonKey(includeIfNull: true, name: 'avatar_url')
   final String? avatarUrl;
 
@@ -49,6 +50,10 @@ class OperatorPassWallOperatorResponse {
   /// Present on a business listing, which shows a company name and logo at one fixed size after every listing of a person, ordered by first pass date
   @JsonKey(includeIfNull: false)
   final bool? business;
+
+  /// The quote the Operator set for their listing, plain text to show in straight double quotes and never parse as markup. Left out when there is none
+  @JsonKey(includeIfNull: false)
+  final String? quote;
 
   Map<String, Object?> toJson() =>
       _$OperatorPassWallOperatorResponseToJson(this);

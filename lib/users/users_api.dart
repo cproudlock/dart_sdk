@@ -96,6 +96,8 @@ import '../models/sudo_email_code_response.dart';
 import '../models/sudo_mfa_methods_response.dart';
 import '../models/sudo_verification_schema.dart';
 import '../models/unregister_mobile_device_request.dart';
+import '../models/user_account_delete_request.dart';
+import '../models/user_account_delete_response.dart';
 import '../models/user_guild_settings_response.dart';
 import '../models/user_guild_settings_update_request.dart';
 import '../models/user_note_response.dart';
@@ -231,11 +233,13 @@ abstract class UsersApi {
 
   /// Delete current user account.
   ///
-  /// Permanently deletes the current user's account and all associated data. Requires sudo mode verification. This action is irreversible and will remove all user data, messages, and connections.
+  /// Schedules the deletion of the current user's account and personal data after the instance's grace period, or right away when immediate is true. Signing in before the deletion runs cancels it. Messages the account sent are anonymized unless delete_messages is true, in which case they are deleted with the account. Requires sudo mode verification. The response has the time the deletion runs.
   ///
   /// [body] - Name not received - field will be skipped.
   @POST('/users/@me/delete')
-  Future<void> deleteCurrentUserAccount({@Body() SudoVerificationSchema? body});
+  Future<UserAccountDeleteResponse> deleteCurrentUserAccount({
+    @Body() UserAccountDeleteRequest? body,
+  });
 
   /// Disable current user account.
   ///
@@ -661,9 +665,12 @@ abstract class UsersApi {
   ///
   /// Generate challenge and options to register a new WebAuthn credential. Requires sudo mode verification.
   ///
+  /// [rpId] - Relying party ID to use instead of the one picked from the Origin header. Only the instance relying party and the migration relying party are honoured, and only on the official instance. Any other value is ignored.
+  ///
   /// [body] - Name not received - field will be skipped.
   @POST('/users/@me/mfa/webauthn/credentials/registration-options')
   Future<WebAuthnChallengeResponse> getWebauthnRegistrationOptions({
+    @Query('rp_id') String? rpId,
     @Body() SudoVerificationSchema? body,
   });
 
@@ -1096,8 +1103,12 @@ abstract class UsersApi {
   /// Get sudo WebAuthn authentication options.
   ///
   /// Generate WebAuthn challenge for sudo mode verification using a registered security key or biometric device.
+  ///
+  /// [rpId] - Relying party ID to use instead of the one picked from the Origin header. Only the instance relying party and the migration relying party are honoured, and only on the official instance. Any other value is ignored.
   @POST('/users/@me/sudo/webauthn/authentication-options')
-  Future<WebAuthnChallengeResponse> getSudoWebauthnAuthenticationOptions();
+  Future<WebAuthnChallengeResponse> getSudoWebauthnAuthenticationOptions({
+    @Query('rp_id') String? rpId,
+  });
 
   /// Accept updated terms of service.
   ///
