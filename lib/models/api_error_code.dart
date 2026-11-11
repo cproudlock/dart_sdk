@@ -39,6 +39,8 @@ enum ApiErrorCode {
   ageRangeNotAdult('AGE_RANGE_NOT_ADULT'),
   @JsonValue('AGE_RANGE_NOT_NEEDED')
   ageRangeNotNeeded('AGE_RANGE_NOT_NEEDED'),
+  @JsonValue('AGE_RANGE_SOURCE_NOT_VERIFIED')
+  ageRangeSourceNotVerified('AGE_RANGE_SOURCE_NOT_VERIFIED'),
   @JsonValue('APP_ATTEST_NOT_AVAILABLE')
   appAttestNotAvailable('APP_ATTEST_NOT_AVAILABLE'),
   @JsonValue('APP_ATTEST_KEY_NOT_REGISTERED')
@@ -687,6 +689,8 @@ enum ApiErrorCode {
   unknownBadge('UNKNOWN_BADGE'),
   @JsonValue('UNKNOWN_CHANNEL')
   unknownChannel('UNKNOWN_CHANNEL'),
+  @JsonValue('UNKNOWN_CONNECTION_PROVIDER')
+  unknownConnectionProvider('UNKNOWN_CONNECTION_PROVIDER'),
   @JsonValue('UNKNOWN_EMOJI')
   unknownEmoji('UNKNOWN_EMOJI'),
   @JsonValue('UNKNOWN_ENFORCEMENT_DECISION')
